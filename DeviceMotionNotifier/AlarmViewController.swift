@@ -29,7 +29,6 @@ class AlarmViewController: UIViewController {
     
     var isArmed = false
     var canCancel = false
-    
     var passCode: NSString!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -49,29 +48,37 @@ class AlarmViewController: UIViewController {
         {
             alarmCountDownLabel.text = String(countDown--)
         }
+        // Time out, start arming
         else if (countDown == 0){
-            canCancel = false
-            isArmed = true
-            numberPad.text = ""
-            alarmCountDownLabel.hidden = true
-            
-            // Change text of alarm button
-            alarmButton.hidden = true
-            alarmButton.setTitle("Unarm", forState: UIControlState.Normal)
-            statusLabel.text = "ARMED"
-            statusLabel.textColor = UIColor.redColor()
-            
-            alarmCountDownLabel.text = String(0)
-            // Stop timer
-            alarmTimer.invalidate()
-            
-            // Start detecting motion
-            detectorManager.startDetectingMotion()
-            
-            // Start detecting noise
-            detectorManager.startDetectingNoise()
+        
+            arming()
         }
         
+    }
+    
+    func arming() {
+        canCancel = false
+        isArmed = true
+        numberPad.text = ""
+        alarmCountDownLabel.text = String(0)
+        alarmCountDownLabel.hidden = true
+        
+        // Change text of alarm button
+        alarmButton.hidden = true
+        alarmButton.setTitle("Disarm", forState: UIControlState.Normal)
+        
+        // Let the user know it's armed
+        statusLabel.text = "ARMED"
+        statusLabel.textColor = UIColor.redColor()
+        
+        // Stop timer
+        alarmTimer.invalidate()
+        
+        // Start detecting motion
+        detectorManager.startDetectingMotion()
+        
+        // Start detecting noise
+        detectorManager.startDetectingNoise()
     }
     
     func startAlarm() {
@@ -114,7 +121,7 @@ class AlarmViewController: UIViewController {
                 notificationTimer.invalidate()
                 self.notificationTimer = nil
                 numberPad.text = ""
-                statusLabel.text = "UNARMED"
+                statusLabel.text = "DISARMED"
                 statusLabel.textColor = UIColor.greenColor()
                 isArmed = false
                 canCancel = true
@@ -136,7 +143,7 @@ class AlarmViewController: UIViewController {
         }
         else{
             // Start count down
-            // When duration is out, start detecting motion
+            // When duration is out, start alarming
             countDown = 10
             alarmCountDownLabel.text = String(countDown)
             alarmCountDownLabel.hidden = false
