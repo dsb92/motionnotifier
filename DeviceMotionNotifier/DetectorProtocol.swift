@@ -1,0 +1,15 @@
+//
+//  DetectorProtocol.swift
+//  DeviceMotionNotifier
+//
+//  Created by David Buhauer on 28/02/2016.
+//  Copyright © 2016 David Buhauer. All rights reserved.
+//
+
+import UIKit
+import CoreMotion
+
+protocol DetectorProtol {
+    func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!)
+    func detectNoise()
+}

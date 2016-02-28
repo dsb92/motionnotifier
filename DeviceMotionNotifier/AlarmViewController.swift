@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-let threshold = 0.50
+
 
 class AlarmViewController: UIViewController {
     
@@ -18,9 +18,8 @@ class AlarmViewController: UIViewController {
     @IBOutlet weak var numberPad: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
     
-    var movementManager: CMMotionManager!
-    var accelerometerData: CMAccelerometerData!
-    var gyroData: CMGyroData!
+    var detectorManager: DetectorManager!
+    var alarmManager: AlarmManager!
     
     var alarmTimer: NSTimer!
     var countDown = 10
@@ -38,6 +37,10 @@ class AlarmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        detectorManager = DetectorManager(detectorProtocol: self)
+        alarmManager = AlarmManager(alarmProtocol: self)
+        
+        self.numberPad.becomeFirstResponder()
     }
     
     func updateCountDown() {
@@ -63,66 +66,28 @@ class AlarmViewController: UIViewController {
             alarmTimer.invalidate()
             
             // Start detecting motion
-            movementManager = CMMotionManager()
-            movementManager.accelerometerUpdateInterval = 1.0
-            movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
-                
-                if(NSError != nil) {
-                    print("\(NSError)")
-                }
-                
-                if (self.accelerometerData == nil){
-                    // Save current motion
-                    self.accelerometerData = accelerometerData
-                }
-                
-                // Compare saved motion with current acceleration data
-                if (accelerometerData! > self.accelerometerData) {
-                    
-                    // Begin alarm
-                    if self.notificationTimer == nil {
-                        // Start notification timer and notify user every 1 second
-                        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("notifyUser"), userInfo: nil, repeats: true)
-                    }
-                }
-            }
+            detectorManager.startDetectingMotion()
             
-            movementManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
-                
-                if (NSError != nil){
-                    print("\(NSError)")
-                }
-                
-                if (self.gyroData == nil) {
-                    // Save current rotation
-                    self.gyroData = gyroData
-                }
-                
-                // Compare saved motion with current rotation data
-                if (gyroData!.rotationRate > self.gyroData.rotationRate){
-                    
-                    if self.notificationTimer == nil {
-                        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("notifyUser"), userInfo: nil, repeats: true)
-                    }
-                    
-                }
-            })
+            // Start detecting noise
+            detectorManager.startDetectingNoise()
         }
         
     }
     
-    func notifyUser() {
+    func startAlarm() {
         if (notifyTo > 0) {
             --notifyTo
             
             // Keep sending push notification to all the receivers until they have seen it
             if (!self.appDelegate.hubs.notificationSeen){
-                self.appDelegate.hubs.SendToEnabledPlatforms()
+                alarmManager.startNotifyingRecipient()
             }
-                // Alarm notification seen, stop pushing
+            // Alarm notification seen, stop pushing
             else{
                 notificationTimer.invalidate()
             }
+            
+            alarmManager.startMakingNoise()
             
         }
         else{
@@ -154,8 +119,8 @@ class AlarmViewController: UIViewController {
                 isArmed = false
                 canCancel = true
                 alarmButton.setTitle("Arm", forState: UIControlState.Normal)
-                movementManager.stopAccelerometerUpdates()
-                movementManager.stopGyroUpdates()
+                detectorManager.movementManager.stopAccelerometerUpdates()
+                detectorManager.movementManager.stopGyroUpdates()
                 print("Success")
             }
             else{
@@ -185,6 +150,60 @@ class AlarmViewController: UIViewController {
             // Save passcode
             passCode = numberPad.text;
         }
+    }
+}
+
+extension AlarmViewController : DetectorProtol {
+    func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!) {
+        
+        if (accelerometerData != nil){
+            // Compare saved motion with current acceleration data
+            if (accelerometerData! > detectorManager.accelerometerData) {
+                
+                // Begin alarm
+                if self.notificationTimer == nil {
+                    // Start notification timer and notify user every 1 second
+                    self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
+                }
+            }
+
+        }
+        
+        if (gyroData != nil){
+            // Compare saved motion with current rotation data
+            if (gyroData!.rotationRate > detectorManager.gyroData.rotationRate){
+                
+                if self.notificationTimer == nil {
+                    self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
+                }
+            }
+        }
+    }
+    
+    func detectNoise() {
+        
+    }
+}
+
+extension AlarmViewController : AlarmProtocol {
+    func notifyRecipient(){
+        self.appDelegate.hubs.SendToEnabledPlatforms()
+    }
+    
+    func alarmWithNoise(){
+        
+    }
+    
+    func takePicture(){
+        
+    }
+    
+    func recordVideo(){
+        
+    }
+    
+    func saveToCloud(){
+        
     }
 }
 
