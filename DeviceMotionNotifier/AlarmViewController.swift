@@ -80,8 +80,6 @@ class AlarmViewController: UIViewController {
                 if (accelerometerData! > self.accelerometerData) {
                     
                     // Begin alarm
-                    print("ALARM")
-                    
                     if self.notificationTimer == nil {
                         // Start notification timer and notify user every 1 second
                         self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("notifyUser"), userInfo: nil, repeats: true)
@@ -102,9 +100,6 @@ class AlarmViewController: UIViewController {
                 
                 // Compare saved motion with current rotation data
                 if (gyroData!.rotationRate > self.gyroData.rotationRate){
-                    
-                    // ALARM
-                    print("ALARM")
                     
                     if self.notificationTimer == nil {
                         self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("notifyUser"), userInfo: nil, repeats: true)
