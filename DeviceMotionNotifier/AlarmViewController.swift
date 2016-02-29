@@ -112,13 +112,20 @@ class AlarmViewController: UIViewController {
             canCancel = false
             alarmButton.hidden = true
             alarmButton.setTitle("Arm", forState: UIControlState.Normal)
-            detectorManager.movementManager.stopAccelerometerUpdates()
-            detectorManager.movementManager.stopGyroUpdates()
+            detectorManager.stopDetectingMotions()
+            detectorManager.stopDetectingNoise()
             alarmManager.stopMakingNoise()
             print("Success")
         }
         else{
             print("Fail")
+        }
+    }
+    
+    func intruderAlert(){
+        // If any of the detecting features detects disturbance(noise or motions) it stars the alarm.
+        if self.notificationTimer == nil {
+            self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
         }
     }
     
@@ -176,29 +183,20 @@ extension AlarmViewController : DetectorProtol {
         if (accelerometerData != nil){
             // Compare saved motion with current acceleration data
             if (accelerometerData! > detectorManager.accelerometerData) {
-                
-                // Begin alarm
-                if self.notificationTimer == nil {
-                    // Start notification timer and notify user every 1 second
-                    self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
-                }
+                intruderAlert()
             }
-
         }
         
         if (gyroData != nil){
             // Compare saved motion with current rotation data
             if (gyroData!.rotationRate > detectorManager.gyroData.rotationRate){
-                
-                if self.notificationTimer == nil {
-                    self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
-                }
+                intruderAlert()
             }
         }
     }
     
     func detectNoise() {
-        
+        intruderAlert()
     }
 }
 
@@ -224,13 +222,13 @@ extension AlarmViewController : AlarmProtocol {
 }
 
 func >(newCMAccelData: CMAccelerometerData, oldCMAccelData: CMAccelerometerData) -> Bool {
-    return (abs(newCMAccelData.acceleration.x - oldCMAccelData.acceleration.x) > threshold) ||
-        (abs(newCMAccelData.acceleration.y - oldCMAccelData.acceleration.y) > threshold) ||
-        (abs(newCMAccelData.acceleration.z - oldCMAccelData.acceleration.z) > threshold)
+    return (abs(newCMAccelData.acceleration.x - oldCMAccelData.acceleration.x) > motionThreshold) ||
+        (abs(newCMAccelData.acceleration.y - oldCMAccelData.acceleration.y) > motionThreshold) ||
+        (abs(newCMAccelData.acceleration.z - oldCMAccelData.acceleration.z) > motionThreshold)
 }
 
 func >(newCMRotData: CMRotationRate, oldCMRotData: CMRotationRate) -> Bool {
-    return (abs(newCMRotData.x - oldCMRotData.x) > threshold) ||
-        (abs(newCMRotData.y - oldCMRotData.y) > threshold) ||
-        (abs(newCMRotData.z - oldCMRotData.z) > threshold)
+    return (abs(newCMRotData.x - oldCMRotData.x) > motionThreshold) ||
+        (abs(newCMRotData.y - oldCMRotData.y) > motionThreshold) ||
+        (abs(newCMRotData.z - oldCMRotData.z) > motionThreshold)
 }

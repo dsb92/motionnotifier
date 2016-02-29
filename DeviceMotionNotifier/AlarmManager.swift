@@ -40,14 +40,12 @@ class AlarmManager: NSObject {
                 catch{
                     print(error)
                 }
-
             }
             else{
                 
                 if self.intruderSoundPlayer.playing == false {
                     self.intruderSoundPlayer.play()
                 }
-                
             }
         }
         

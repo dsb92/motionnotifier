@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-let threshold = 0.50
+let motionThreshold = 0.50
 
 class DetectorManager: NSObject {
 
@@ -17,6 +17,10 @@ class DetectorManager: NSObject {
     var movementManager: CMMotionManager!
     var accelerometerData: CMAccelerometerData!
     var gyroData: CMGyroData!
+    
+    var audioRecorder: ARAudioRecognizer!
+    var timesAudioRecognized = 0
+    var audioRecognizedThreshold = 10
     
     init(detectorProtocol: DetectorProtol){
         self.detectorProtocol = detectorProtocol
@@ -53,9 +57,29 @@ class DetectorManager: NSObject {
         })
     }
     
-    func startDetectingNoise(){
-        
-        self.detectorProtocol?.detectNoise()
+    func stopDetectingMotions(){
+        movementManager.stopAccelerometerUpdates()
+        movementManager.stopGyroUpdates()
     }
+    
+    func startDetectingNoise(){
+        audioRecorder = ARAudioRecognizer()
+        audioRecorder.delegate = self
+    }
+    
+    func stopDetectingNoise() {
+        audioRecorder.levelTimer.invalidate()
+        audioRecorder = nil
+        timesAudioRecognized = 0
+    }
+}
 
+extension DetectorManager: ARAudioRecognizerDelegate {
+    func audioRecognized(recognizer: ARAudioRecognizer!) {
+        ++timesAudioRecognized
+        
+        if timesAudioRecognized == audioRecognizedThreshold {
+            self.detectorProtocol?.detectNoise()
+        }
+    }
 }
