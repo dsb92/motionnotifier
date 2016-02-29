@@ -9,8 +9,6 @@
 import UIKit
 import CoreMotion
 
-
-
 class AlarmViewController: UIViewController {
     
     @IBOutlet weak var alarmCountDownLabel: UILabel!
@@ -94,11 +92,33 @@ class AlarmViewController: UIViewController {
                 notificationTimer.invalidate()
             }
             
+            numberPad.becomeFirstResponder()
             alarmManager.startMakingNoise()
             
         }
         else{
             notificationTimer.invalidate()
+        }
+    }
+    
+    func didUnarm(didArm: Bool){
+        if didArm {
+            notificationTimer.invalidate()
+            self.notificationTimer = nil
+            numberPad.text = ""
+            statusLabel.text = "DISARMED"
+            statusLabel.textColor = UIColor.greenColor()
+            isArmed = false
+            canCancel = false
+            alarmButton.hidden = true
+            alarmButton.setTitle("Arm", forState: UIControlState.Normal)
+            detectorManager.movementManager.stopAccelerometerUpdates()
+            detectorManager.movementManager.stopGyroUpdates()
+            alarmManager.stopMakingNoise()
+            print("Success")
+        }
+        else{
+            print("Fail")
         }
     }
     
@@ -118,20 +138,10 @@ class AlarmViewController: UIViewController {
         if (isArmed) {
             print("Trying to unarm...")
             if numberPad.text == passCode {
-                notificationTimer.invalidate()
-                self.notificationTimer = nil
-                numberPad.text = ""
-                statusLabel.text = "DISARMED"
-                statusLabel.textColor = UIColor.greenColor()
-                isArmed = false
-                canCancel = true
-                alarmButton.setTitle("Arm", forState: UIControlState.Normal)
-                detectorManager.movementManager.stopAccelerometerUpdates()
-                detectorManager.movementManager.stopGyroUpdates()
-                print("Success")
+                didUnarm(true)
             }
             else{
-                print("Fail")
+                didUnarm(false)
             }
         }
         else if (canCancel){
@@ -198,7 +208,6 @@ extension AlarmViewController : AlarmProtocol {
     }
     
     func alarmWithNoise(){
-        
     }
     
     func takePicture(){

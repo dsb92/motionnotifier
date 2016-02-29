@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import AVFoundation
+import AudioToolbox
 
 class AlarmManager: NSObject {
     var alarmProtocol: AlarmProtocol?
+    var intruderSoundPlayer: AVAudioPlayer!
     
     init(alarmProtocol: AlarmProtocol){
         self.alarmProtocol = alarmProtocol
@@ -20,6 +23,41 @@ class AlarmManager: NSObject {
     }
     
     func startMakingNoise(){
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)){
+            
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            if (self.intruderSoundPlayer == nil){
+                let intruderSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("intruder_alarm", ofType: "wav")!)
+                
+                do {
+                    self.intruderSoundPlayer = try AVAudioPlayer(contentsOfURL: intruderSound)
+                    self.intruderSoundPlayer.volume = 1.0
+                    self.intruderSoundPlayer.prepareToPlay()
+                }
+                catch{
+                    print(error)
+                }
+
+            }
+            else{
+                
+                if self.intruderSoundPlayer.playing == false {
+                    self.intruderSoundPlayer.play()
+                }
+                
+            }
+        }
+        
+        
         alarmProtocol?.alarmWithNoise()
+    }
+    
+    func stopMakingNoise(){
+        if intruderSoundPlayer != nil {
+            intruderSoundPlayer.stop()
+        }
     }
 }

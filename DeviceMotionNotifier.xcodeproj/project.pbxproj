@@ -11,6 +11,7 @@
 		46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
 		46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F31C839458009C5CD1 /* DetectorManager.swift */; };
+		46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */; };
 		46DEED371C7E3B9F009B30E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* Main.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
@@ -46,6 +47,7 @@
 		46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorProtocol.swift; sourceTree = "<group>"; };
 		46B684F11C83944A009C5CD1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		46B684F31C839458009C5CD1 /* DetectorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorManager.swift; sourceTree = "<group>"; };
+		46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = intruder_alarm.wav; sourceTree = "<group>"; };
 		46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceMotionNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,6 +137,22 @@
 			name = Webservice;
 			sourceTree = "<group>";
 		};
+		46B684F51C84BA84009C5CD1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				46B684F61C84BA8D009C5CD1 /* Sound effects */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		46B684F61C84BA8D009C5CD1 /* Sound effects */ = {
+			isa = PBXGroup;
+			children = (
+				46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */,
+			);
+			name = "Sound effects";
+			sourceTree = "<group>";
+		};
 		46DEED251C7E3B9F009B30E3 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +177,7 @@
 		46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				46B684F51C84BA84009C5CD1 /* Resources */,
 				46B684F01C8393F9009C5CD1 /* Webservice */,
 				46B684EF1C8393D6009C5CD1 /* View */,
 				46B684EE1C8393CE009C5CD1 /* Control */,
@@ -300,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
 				46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
 				46DEED371C7E3B9F009B30E3 /* Main.storyboard in Resources */,
