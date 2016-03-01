@@ -281,11 +281,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "478559167.072866"
+            timestampString = "478560202.6719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "AlarmButtonAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -377,11 +377,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "478559369.801643"
+            timestampString = "478560202.6719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "detectNoise()"
             landmarkType = "5">
          </BreakpointContent>
@@ -409,11 +409,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "478559167.072866"
+            timestampString = "478560202.6719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "TouchIDButtonAction(_:)"
             landmarkType = "5">
          </BreakpointContent>

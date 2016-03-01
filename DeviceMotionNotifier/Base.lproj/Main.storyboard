@@ -110,7 +110,7 @@
                                     <constraint firstAttribute="width" constant="130" id="UPf-LK-RBU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="numberPadChanged:" destination="jSy-Na-5GQ" eventType="editingChanged" id="Wjy-vt-H7k"/>
                                 </connections>
@@ -144,10 +144,22 @@
                                     <action selector="TouchIDButtonAction:" destination="jSy-Na-5GQ" eventType="touchUpInside" id="L60-w2-Gac"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wrong password!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNz-ko-REt">
+                                <rect key="frame" x="225" y="104" width="151" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="NbD-PK-B3r"/>
+                                    <constraint firstAttribute="width" constant="151" id="U6E-Ug-WfP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PAG-V2-3Cb" firstAttribute="top" secondItem="WBm-qI-yd6" secondAttribute="bottom" constant="107" id="5Zr-Ks-zgO"/>
+                            <constraint firstItem="wNz-ko-REt" firstAttribute="top" secondItem="WBm-qI-yd6" secondAttribute="bottom" constant="45" id="AQh-AV-ULC"/>
+                            <constraint firstItem="PAG-V2-3Cb" firstAttribute="top" secondItem="wNz-ko-REt" secondAttribute="bottom" constant="41" id="BNP-Kx-5IP"/>
                             <constraint firstItem="M2k-8S-s2S" firstAttribute="centerX" secondItem="1Q3-eM-Rie" secondAttribute="centerX" id="D8u-8c-Lji"/>
                             <constraint firstItem="WBm-qI-yd6" firstAttribute="top" secondItem="LHh-2k-Fpf" secondAttribute="bottom" constant="18" id="GgL-1O-Yeu"/>
                             <constraint firstItem="PAG-V2-3Cb" firstAttribute="centerY" secondItem="1Q3-eM-Rie" secondAttribute="centerY" constant="-123.5" id="L1x-QF-tEi"/>
@@ -155,6 +167,7 @@
                             <constraint firstItem="M2k-8S-s2S" firstAttribute="top" secondItem="qTe-PE-a8D" secondAttribute="bottom" constant="40" id="UIW-9f-PDe"/>
                             <constraint firstItem="C3b-kb-c3C" firstAttribute="top" secondItem="M2k-8S-s2S" secondAttribute="bottom" constant="24" id="V9E-DV-Lka"/>
                             <constraint firstItem="C3b-kb-c3C" firstAttribute="leading" secondItem="M2k-8S-s2S" secondAttribute="leading" id="b1r-jq-yue"/>
+                            <constraint firstItem="wNz-ko-REt" firstAttribute="centerX" secondItem="PAG-V2-3Cb" secondAttribute="centerX" id="iaC-d9-Uar"/>
                             <constraint firstItem="M2k-8S-s2S" firstAttribute="centerY" secondItem="1Q3-eM-Rie" secondAttribute="centerY" id="ndS-BS-VbJ"/>
                             <constraint firstItem="qTe-PE-a8D" firstAttribute="centerY" secondItem="1Q3-eM-Rie" secondAttribute="centerY" id="tFj-bt-no7"/>
                             <constraint firstItem="WBm-qI-yd6" firstAttribute="centerX" secondItem="PAG-V2-3Cb" secondAttribute="centerX" id="w95-wA-7cW"/>
@@ -173,6 +186,7 @@
                         <outlet property="numberPad" destination="qTe-PE-a8D" id="019-g5-97U"/>
                         <outlet property="statusLabel" destination="WBm-qI-yd6" id="B3W-5f-BPL"/>
                         <outlet property="touchIDButton" destination="C3b-kb-c3C" id="k7d-7a-FTj"/>
+                        <outlet property="wrongPassLabel" destination="wNz-ko-REt" id="ny4-XH-A4F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwr-ii-rBi" userLabel="First Responder" sceneMemberID="firstResponder"/>

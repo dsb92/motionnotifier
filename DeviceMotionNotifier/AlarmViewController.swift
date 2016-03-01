@@ -16,6 +16,7 @@ class AlarmViewController: UIViewController {
     @IBOutlet weak var alarmButton: UIButton!
     @IBOutlet weak var numberPad: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var wrongPassLabel: UILabel!
     @IBOutlet weak var touchIDButton: UIButton!
     
     var detectorManager: DetectorManager!
@@ -134,9 +135,11 @@ class AlarmViewController: UIViewController {
             detectorManager.stopDetectingNoise()
             alarmManager.stopMakingNoise()
             print("Success")
+            wrongPassLabel.hidden = true
         }
         else{
             print("Fail")
+            wrongPassLabel.hidden = false
         }
     }
     
@@ -205,7 +208,7 @@ class AlarmViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue(), {
                         if success {
                             // Show "the passcode" for a short time
-                            UIView.transitionWithView(self.numberPad, duration: 0.75, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+                            UIView.transitionWithView(self.numberPad, duration: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
                                 self.numberPad.text = self.passCode
                                 }, completion: { (success:Bool) -> Void in
                                     self.didUnarm(true)
