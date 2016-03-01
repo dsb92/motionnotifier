@@ -39,7 +39,9 @@ class DetectorManager: NSObject {
                 self.accelerometerData = accelerometerData
             }
             
-            self.detectorProtocol?.detectMotion(accelerometerData, gyroData: nil)
+            dispatch_async(dispatch_get_main_queue()){
+                self.detectorProtocol?.detectMotion(accelerometerData, gyroData: nil)
+            }
         }
         
         movementManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
@@ -52,8 +54,9 @@ class DetectorManager: NSObject {
                 self.gyroData = gyroData
             }
             
-            self.detectorProtocol?.detectMotion(nil, gyroData: gyroData)
-            
+            dispatch_async(dispatch_get_main_queue()){
+                self.detectorProtocol?.detectMotion(nil, gyroData: gyroData)
+            }
         })
     }
     

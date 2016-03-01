@@ -191,9 +191,9 @@
 		46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				46B684F01C8393F9009C5CD1 /* Webservice */,
 				46B684FB1C84CB59009C5CD1 /* Thirdparty */,
 				46B684F51C84BA84009C5CD1 /* Resources */,
-				46B684F01C8393F9009C5CD1 /* Webservice */,
 				46B684EF1C8393D6009C5CD1 /* View */,
 				46B684EE1C8393CE009C5CD1 /* Control */,
 				46B684ED1C8393BB009C5CD1 /* Model */,
