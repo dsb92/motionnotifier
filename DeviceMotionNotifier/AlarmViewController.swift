@@ -19,6 +19,7 @@ class AlarmViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var wrongPassLabel: UILabel!
     @IBOutlet weak var touchIDButton: UIButton!
+    @IBOutlet weak var previewView: AVCamPreviewView!
     
     var detectorManager: DetectorManager!
     var alarmManager: AlarmManager!
@@ -43,9 +44,17 @@ class AlarmViewController: UIViewController {
         detectorManager = DetectorManager(detectorProtocol: self)
         alarmManager = AlarmManager(alarmProtocol: self)
         
+        alarmManager.autoSnap = AVAutoSnap(vc: self)
+        alarmManager.autoSnap.initializeOnViewDidLoad()
+        
         self.numberPad.becomeFirstResponder()
         
         touchIDButton.hidden = true
+        previewView.hidden = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        alarmManager.autoSnap.initializeOnViewWillAppear()
     }
     
     func updateCountDown() {
@@ -107,8 +116,6 @@ class AlarmViewController: UIViewController {
                 notificationTimer.invalidate()
             }
             
-            numberPad.becomeFirstResponder()
-            
             alarmManager.startMakingNoise()
             alarmManager.startFrontCamera()
             
@@ -138,6 +145,7 @@ class AlarmViewController: UIViewController {
             alarmManager.stopMakingNoise()
             print("Success")
             wrongPassLabel.hidden = true
+            previewView.hidden = true
         }
         else{
             print("Fail")
@@ -146,6 +154,10 @@ class AlarmViewController: UIViewController {
     }
     
     func intruderAlert(){
+        
+        previewView.hidden = false
+        numberPad.becomeFirstResponder()
+        
         // If any of the detecting features detects disturbance(noise or motions) it stars the alarm.
         if self.notificationTimer == nil {
             self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
@@ -298,10 +310,9 @@ extension AlarmViewController : AlarmProtocol {
     func alarmWithNoise(){
     }
     
-    func takePicture(previewLayer: AVCaptureVideoPreviewLayer, captureSession: AVCaptureSession){
-        self.view.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.view.layer.frame
-        captureSession.startRunning()
+    func takePicture(){
+
+        alarmManager.autoSnap.snapPhoto()
     }
     
     func recordVideo(){

@@ -154,6 +154,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uDx-ha-Gdi" customClass="AVCamPreviewView" customModule="DeviceMotionNotifier" customModuleProvider="target">
+                                <rect key="frame" x="180" y="67" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="TLL-PJ-exN"/>
+                                    <constraint firstAttribute="height" constant="128" id="W2b-Rd-jTe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -164,18 +172,23 @@
                             <constraint firstItem="WBm-qI-yd6" firstAttribute="top" secondItem="LHh-2k-Fpf" secondAttribute="bottom" constant="18" id="GgL-1O-Yeu"/>
                             <constraint firstItem="PAG-V2-3Cb" firstAttribute="centerY" secondItem="1Q3-eM-Rie" secondAttribute="centerY" constant="-123.5" id="L1x-QF-tEi"/>
                             <constraint firstItem="PAG-V2-3Cb" firstAttribute="centerX" secondItem="1Q3-eM-Rie" secondAttribute="centerX" constant="1" id="RFj-HH-EGy"/>
+                            <constraint firstItem="uDx-ha-Gdi" firstAttribute="centerX" secondItem="wNz-ko-REt" secondAttribute="centerX" id="S60-si-wZC"/>
+                            <constraint firstItem="uDx-ha-Gdi" firstAttribute="centerX" secondItem="wNz-ko-REt" secondAttribute="centerX" id="TQR-jO-1Dk"/>
                             <constraint firstItem="M2k-8S-s2S" firstAttribute="top" secondItem="qTe-PE-a8D" secondAttribute="bottom" constant="40" id="UIW-9f-PDe"/>
                             <constraint firstItem="C3b-kb-c3C" firstAttribute="top" secondItem="M2k-8S-s2S" secondAttribute="bottom" constant="24" id="V9E-DV-Lka"/>
                             <constraint firstItem="C3b-kb-c3C" firstAttribute="leading" secondItem="M2k-8S-s2S" secondAttribute="leading" id="b1r-jq-yue"/>
                             <constraint firstItem="wNz-ko-REt" firstAttribute="centerX" secondItem="PAG-V2-3Cb" secondAttribute="centerX" id="iaC-d9-Uar"/>
+                            <constraint firstItem="uDx-ha-Gdi" firstAttribute="top" secondItem="WBm-qI-yd6" secondAttribute="bottom" constant="8" symbolic="YES" id="jd1-ZN-o0C"/>
                             <constraint firstItem="M2k-8S-s2S" firstAttribute="centerY" secondItem="1Q3-eM-Rie" secondAttribute="centerY" id="ndS-BS-VbJ"/>
                             <constraint firstItem="qTe-PE-a8D" firstAttribute="centerY" secondItem="1Q3-eM-Rie" secondAttribute="centerY" id="tFj-bt-no7"/>
                             <constraint firstItem="WBm-qI-yd6" firstAttribute="centerX" secondItem="PAG-V2-3Cb" secondAttribute="centerX" id="w95-wA-7cW"/>
                             <constraint firstItem="WBm-qI-yd6" firstAttribute="leading" secondItem="1Q3-eM-Rie" secondAttribute="leadingMargin" id="xsS-Q2-aWG"/>
                             <constraint firstItem="qTe-PE-a8D" firstAttribute="centerX" secondItem="1Q3-eM-Rie" secondAttribute="centerX" id="ylF-H4-FZB"/>
+                            <constraint firstItem="qTe-PE-a8D" firstAttribute="top" secondItem="uDx-ha-Gdi" secondAttribute="bottom" constant="9" id="zVq-bP-K09"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="S60-si-wZC"/>
                                 <exclude reference="tFj-bt-no7"/>
                             </mask>
                         </variation>
@@ -184,6 +197,7 @@
                         <outlet property="alarmButton" destination="M2k-8S-s2S" id="W8G-Ku-DxS"/>
                         <outlet property="alarmCountDownLabel" destination="PAG-V2-3Cb" id="KRB-n2-h5i"/>
                         <outlet property="numberPad" destination="qTe-PE-a8D" id="019-g5-97U"/>
+                        <outlet property="previewView" destination="uDx-ha-Gdi" id="mrK-J1-J5a"/>
                         <outlet property="statusLabel" destination="WBm-qI-yd6" id="B3W-5f-BPL"/>
                         <outlet property="touchIDButton" destination="C3b-kb-c3C" id="k7d-7a-FTj"/>
                         <outlet property="wrongPassLabel" destination="wNz-ko-REt" id="ny4-XH-A4F"/>

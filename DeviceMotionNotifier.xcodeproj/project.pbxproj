@@ -13,6 +13,8 @@
 		46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F31C839458009C5CD1 /* DetectorManager.swift */; };
 		46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */; };
 		46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B684FD1C84CB86009C5CD1 /* ARAudioRecognizer.m */; };
+		46B685011C8783B5009C5CD1 /* AVCamPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685001C8783B5009C5CD1 /* AVCamPreviewView.swift */; };
+		46B685041C87842C009C5CD1 /* AVAutoSnap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685031C87842C009C5CD1 /* AVAutoSnap.swift */; };
 		46DEED371C7E3B9F009B30E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* Main.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
@@ -52,6 +54,8 @@
 		46B684FC1C84CB86009C5CD1 /* ARAudioRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAudioRecognizer.h; sourceTree = "<group>"; };
 		46B684FD1C84CB86009C5CD1 /* ARAudioRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARAudioRecognizer.m; sourceTree = "<group>"; };
 		46B684FE1C84CB86009C5CD1 /* ARAudioRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAudioRecognizerDelegate.h; sourceTree = "<group>"; };
+		46B685001C8783B5009C5CD1 /* AVCamPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCamPreviewView.swift; sourceTree = "<group>"; };
+		46B685031C87842C009C5CD1 /* AVAutoSnap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAutoSnap.swift; sourceTree = "<group>"; };
 		46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceMotionNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		46B684ED1C8393BB009C5CD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				46B685021C8783E7009C5CD1 /* AlarmFeatures */,
 				46B684E91C839245009C5CD1 /* AlarmProtocol.swift */,
 				46B684F11C83944A009C5CD1 /* AlarmManager.swift */,
 				46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */,
@@ -165,6 +170,15 @@
 				46B684FE1C84CB86009C5CD1 /* ARAudioRecognizerDelegate.h */,
 			);
 			name = Thirdparty;
+			sourceTree = "<group>";
+		};
+		46B685021C8783E7009C5CD1 /* AlarmFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				46B685001C8783B5009C5CD1 /* AVCamPreviewView.swift */,
+				46B685031C87842C009C5CD1 /* AVAutoSnap.swift */,
+			);
+			name = AlarmFeatures;
 			sourceTree = "<group>";
 		};
 		46DEED251C7E3B9F009B30E3 = {
@@ -363,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */,
+				46B685011C8783B5009C5CD1 /* AVCamPreviewView.swift in Sources */,
 				46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */,
 				46DEED711C7F9E7D009B30E3 /* ViewController.swift in Sources */,
 				46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */,
@@ -370,6 +385,7 @@
 				46DEED6E1C7F9E15009B30E3 /* RegisterClient.m in Sources */,
 				46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */,
 				46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */,
+				46B685041C87842C009C5CD1 /* AVAutoSnap.swift in Sources */,
 				46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */,
 				46B684EA1C839246009C5CD1 /* AlarmProtocol.swift in Sources */,
 			);
@@ -512,8 +528,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -522,7 +538,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ee19f95b-60c3-4305-9bc5-5a0bda4b211d";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -533,8 +549,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -543,7 +559,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ee19f95b-60c3-4305-9bc5-5a0bda4b211d";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 			};
 			name = Release;
