@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol AlarmProtocol {
     func notifyRecipient()
     func alarmWithNoise()
-    func takePicture()
+    func takePicture(previewLayer: AVCaptureVideoPreviewLayer, captureSession: AVCaptureSession)
     func recordVideo()
     func saveToCloud()
 }

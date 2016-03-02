@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import CoreMotion
 import LocalAuthentication
 
@@ -109,6 +110,7 @@ class AlarmViewController: UIViewController {
             numberPad.becomeFirstResponder()
             
             alarmManager.startMakingNoise()
+            alarmManager.startFrontCamera()
             
         }
         else{
@@ -296,8 +298,10 @@ extension AlarmViewController : AlarmProtocol {
     func alarmWithNoise(){
     }
     
-    func takePicture(){
-        
+    func takePicture(previewLayer: AVCaptureVideoPreviewLayer, captureSession: AVCaptureSession){
+        self.view.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.view.layer.frame
+        captureSession.startRunning()
     }
     
     func recordVideo(){
