@@ -221,6 +221,40 @@ class AVAutoSnap: NSObject {
         
     }
     
+    func startRecording() {
+        dispatch_async(self.sessionQueue, {
+            self.lockInterfaceRotation = true
+            
+            if UIDevice.currentDevice().multitaskingSupported {
+                self.backgroundRecordId = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({})
+                
+            }
+            
+            self.movieFileOutput!.connectionWithMediaType(AVMediaTypeVideo).videoOrientation =
+                AVCaptureVideoOrientation(rawValue: (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
+            
+            // Turning OFF flash for video recording
+            AVAutoSnap.setFlashMode(AVCaptureFlashMode.Off, device: self.videoDeviceInput!.device)
+            
+            let outputFilePath  =
+            NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("movie.mov")
+            
+            //NSTemporaryDirectory().stringByAppendingPathComponent( "movie".stringByAppendingPathExtension("mov")!)
+            
+            self.movieFileOutput!.startRecordingToOutputFileURL( outputFilePath, recordingDelegate: self)
+        })
+    }
+    
+    func stopRecording() {
+        if isRecording() {
+            self.movieFileOutput!.stopRecording()
+        }
+    }
+    
+    func isRecording() -> Bool{
+        return self.movieFileOutput!.recording
+    }
+    
     func checkDeviceAuthorizationStatus(){
         let mediaType:String = AVMediaTypeVideo;
         
@@ -330,4 +364,39 @@ class AVAutoSnap: NSObject {
         })
     }
     
+    }
+
+extension AVAutoSnap: AVCaptureFileOutputRecordingDelegate{
+    // MARK: File Output Delegate
+    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+        
+        if(error != nil){
+            print(error)
+        }
+        
+        self.lockInterfaceRotation = false
+        
+        // Note the backgroundRecordingID for use in the ALAssetsLibrary completion handler to end the background task associated with this recording. This allows a new recording to be started, associated with a new UIBackgroundTaskIdentifier, once the movie file output's -isRecording is back to NO — which happens sometime after this method returns.
+        
+        let backgroundRecordId: UIBackgroundTaskIdentifier = self.backgroundRecordId
+        self.backgroundRecordId = UIBackgroundTaskInvalid
+        
+        ALAssetsLibrary().writeVideoAtPathToSavedPhotosAlbum(outputFileURL, completionBlock: {
+            (assetURL:NSURL!, error:NSError!) in
+            if error != nil{
+                print(error)
+                
+            }
+            
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(outputFileURL)
+            } catch _ {
+            }
+            
+            if backgroundRecordId != UIBackgroundTaskInvalid {
+                UIApplication.sharedApplication().endBackgroundTask(backgroundRecordId)
+            }
+            
+        })
+    }
 }

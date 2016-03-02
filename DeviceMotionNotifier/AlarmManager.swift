@@ -65,4 +65,12 @@ class AlarmManager: NSObject {
         
         alarmProtocol?.takePicture()
     }
+    
+    func startCaptureVideo() {
+        alarmProtocol?.recordVideo()
+    }
+    
+    func stopCaptureVideo() {
+        autoSnap.stopRecording()
+    }
 }

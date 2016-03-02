@@ -14,5 +14,4 @@ protocol AlarmProtocol {
     func alarmWithNoise()
     func takePicture()
     func recordVideo()
-    func saveToCloud()
 }

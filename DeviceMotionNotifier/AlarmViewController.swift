@@ -117,8 +117,8 @@ class AlarmViewController: UIViewController {
             }
             
             alarmManager.startMakingNoise()
-            alarmManager.startFrontCamera()
-            
+            //alarmManager.startFrontCamera()
+            alarmManager.startCaptureVideo()
         }
         else{
             notificationTimer.invalidate()
@@ -143,6 +143,7 @@ class AlarmViewController: UIViewController {
             detectorManager.stopDetectingMotions()
             detectorManager.stopDetectingNoise()
             alarmManager.stopMakingNoise()
+            alarmManager.stopCaptureVideo()
             print("Success")
             wrongPassLabel.hidden = true
             previewView.hidden = true
@@ -317,10 +318,9 @@ extension AlarmViewController : AlarmProtocol {
     
     func recordVideo(){
         
-    }
-    
-    func saveToCloud(){
-        
+        if (!alarmManager.autoSnap.isRecording()) {
+            alarmManager.autoSnap.startRecording()
+        }
     }
 }
 
