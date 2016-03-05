@@ -17,7 +17,6 @@ class AlarmViewController: UIViewController {
     @IBOutlet weak var alarmButton: UIButton!
     @IBOutlet weak var numberPad: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var wrongPassLabel: UILabel!
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var previewView: AVCamPreviewView!
     
@@ -57,6 +56,14 @@ class AlarmViewController: UIViewController {
         alarmManager.autoSnap.initializeOnViewWillAppear()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return navigationController?.navigationBarHidden == true
+    }
+    
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return UIStatusBarAnimation.Slide
+    }
+    
     func updateCountDown() {
         
         if(countDown > 0)
@@ -66,12 +73,20 @@ class AlarmViewController: UIViewController {
         // Time out, start arming
         else if (countDown == 0){
         
-            arming()
+            armed()
         }
         
     }
     
-    func arming() {
+    func armed() {
+        
+        let appFrame = UIScreen.mainScreen().bounds
+        
+        UIView.animateWithDuration(0.5, animations: {
+            self.navigationController?.navigationBarHidden = true
+            self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
+        })
+        
         canCancel = false
         isArmed = true
         numberPad.text = ""
@@ -80,7 +95,8 @@ class AlarmViewController: UIViewController {
         
         // Change text of alarm button
         alarmButton.hidden = true
-        alarmButton.setTitle("Disarm", forState: UIControlState.Normal)
+        alarmButton.setTitle("DISARM", forState: UIControlState.Normal)
+        alarmButton.backgroundColor = UIColor.greenColor()
         
         // Let the user know it's armed
         statusLabel.text = "ARMED"
@@ -139,18 +155,24 @@ class AlarmViewController: UIViewController {
             isArmed = false
             canCancel = false
             alarmButton.hidden = true
-            alarmButton.setTitle("Arm", forState: UIControlState.Normal)
+            alarmButton.setTitle("ARM", forState: UIControlState.Normal)
+            alarmButton.backgroundColor = UIColor.redColor()
             detectorManager.stopDetectingMotions()
             detectorManager.stopDetectingNoise()
             alarmManager.stopMakingNoise()
             alarmManager.stopCaptureVideo()
             print("Success")
-            wrongPassLabel.hidden = true
             previewView.hidden = true
+            
+            let appFrame = UIScreen.mainScreen().bounds
+            
+            UIView.animateWithDuration(0.5, animations: {
+                self.navigationController?.navigationBarHidden = false
+                self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
+            })
         }
         else{
             print("Fail")
-            wrongPassLabel.hidden = false
         }
     }
     
@@ -177,40 +199,44 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    @IBAction func AlarmButtonAction(sender: AnyObject) {
-        if (isArmed) {
+    @IBAction func AlarmButtonAction(sender: UIButton) {
+        if (self.isArmed) {
             print("Trying to unarm...")
-            if numberPad.text == passCode {
-                didUnarm(true)
+            if self.numberPad.text == self.passCode {
+                self.didUnarm(true)
             }
             else{
-                didUnarm(false)
+                self.didUnarm(false)
             }
         }
-        else if (canCancel){
-            alarmTimer.invalidate()
+        else if (self.canCancel){
+            self.alarmTimer.invalidate()
             
             // Change text of alarm button
-            alarmButton.setTitle("Arm", forState: UIControlState.Normal)
-            canCancel = false
+            self.alarmButton.setTitle("ARM", forState: UIControlState.Normal)
+            alarmButton.backgroundColor = UIColor.redColor()
+            self.canCancel = false
         }
         else{
             // Start count down
             // When duration is out, start alarming
-            countDown = 10
-            alarmCountDownLabel.text = String(countDown)
-            alarmCountDownLabel.hidden = false
-            alarmTimer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
+            self.countDown = 10
+            self.alarmCountDownLabel.text = String(self.countDown)
+            self.alarmCountDownLabel.hidden = false
+            self.alarmTimer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
             
             // Change text of alarm button
-            alarmButton.setTitle("Cancel", forState: UIControlState.Normal)
+            self.alarmButton.setTitle("CANCEL", forState: UIControlState.Normal)
+            self.alarmButton.backgroundColor = UIColor.lightGrayColor()
             
-            canCancel = true
+            self.canCancel = true
             
             // Save passcode
-            passCode = numberPad.text;
+            self.passCode = numberPad.text;
         }
+
     }
+    
     @IBAction func TouchIDButtonAction(sender: AnyObject) {
         
         // Touch ID available

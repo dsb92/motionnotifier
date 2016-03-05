@@ -19,22 +19,27 @@ class MainSettingsViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     private var settingsViewController: SettingsViewController!
     
-    var theme: SettingsTheme! {
-        didSet {
-            settingsViewController?.theme = theme
-            registerButton?.backgroundColor = theme.primaryColor
-        }
-    }
-    
     override func viewWillAppear(animated: Bool) {
         self.registerButton.setTitle("REGISTER", forState: UIControlState.Normal)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setupNavigationBar()
+        
         appDelegate.hubs.ParseConnectionString()
         appDelegate.hubs.registerClient = RegisterClient(endpoint: BACKEND_ENDPOINT)
+    }
+    
+    private func setupNavigationBar() {
+        print(navigationController)
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController!.navigationBar.shadowImage = UIImage()
+        navigationController!.navigationBar.translucent = true
+        navigationController!.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
+            NSForegroundColorAttributeName: UIColor.blackColor()
+        ]
     }
 
     @IBAction func RegisterButtonAction(sender: UIButton) {

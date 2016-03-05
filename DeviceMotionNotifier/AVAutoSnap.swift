@@ -89,9 +89,9 @@ class AVAutoSnap: NSObject {
                     // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
                     
                     let orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: self.vc.interfaceOrientation.rawValue)!
-                    
+
+                    (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).videoGravity = AVLayerVideoGravityResize
                     (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
-                    
                 })
                 
             }

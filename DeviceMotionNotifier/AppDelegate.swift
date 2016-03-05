@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error)
         }
         
+        //UILabel.appearance().font = UIFont(name: "GothamPro", size: 17.0)
+        
         return true
     }
     

@@ -24,6 +24,7 @@
 		46B685181C8B4103009C5CD1 /* CircularRevealAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */; };
 		46B6851B1C8B439F009C5CD1 /* SettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6851A1C8B439F009C5CD1 /* SettingsTheme.swift */; };
 		46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6851C1C8B4A36009C5CD1 /* UIView+IBInspectable.swift */; };
+		46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 46B685081C8B2F12009C5CD1 /* GothaProReg.otf */; };
 		46DEED371C7E3B9F009B30E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* Main.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
@@ -170,18 +171,10 @@
 		46B684F51C84BA84009C5CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				46B685071C8B2F09009C5CD1 /* Fonts */,
-				46B684F61C84BA8D009C5CD1 /* Sound effects */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		46B684F61C84BA8D009C5CD1 /* Sound effects */ = {
-			isa = PBXGroup;
-			children = (
+				46B685081C8B2F12009C5CD1 /* GothaProReg.otf */,
 				46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */,
 			);
-			name = "Sound effects";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		46B684FB1C84CB59009C5CD1 /* Thirdparty */ = {
@@ -201,14 +194,6 @@
 				46B685031C87842C009C5CD1 /* AVAutoSnap.swift */,
 			);
 			name = AlarmFeatures;
-			sourceTree = "<group>";
-		};
-		46B685071C8B2F09009C5CD1 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				46B685081C8B2F12009C5CD1 /* GothaProReg.otf */,
-			);
-			name = Fonts;
 			sourceTree = "<group>";
 		};
 		46B685091C8B3787009C5CD1 /* Extension */ = {
@@ -409,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */,
 				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
 				46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
