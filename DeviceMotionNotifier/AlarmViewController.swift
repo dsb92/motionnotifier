@@ -39,7 +39,8 @@ class AlarmViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavigationBar()
+        
         detectorManager = DetectorManager(detectorProtocol: self)
         alarmManager = AlarmManager(alarmProtocol: self)
         
@@ -50,6 +51,17 @@ class AlarmViewController: UIViewController {
         
         touchIDButton.hidden = true
         previewView.hidden = true
+    }
+    
+    private func setupNavigationBar() {
+        print(navigationController)
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController!.navigationBar.shadowImage = UIImage()
+        navigationController!.navigationBar.translucent = true
+        navigationController!.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
+            NSForegroundColorAttributeName: UIColor.blackColor()
+        ]
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,7 +87,6 @@ class AlarmViewController: UIViewController {
         
             armed()
         }
-        
     }
     
     func armed() {

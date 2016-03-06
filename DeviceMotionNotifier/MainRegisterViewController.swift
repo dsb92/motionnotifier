@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainSettingsViewController: UIViewController {
+class MainRegisterViewController: UIViewController {
 
     @IBOutlet
     weak var registerButton: UIButton!
@@ -19,12 +19,20 @@ class MainSettingsViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     private var settingsViewController: SettingsViewController!
     
+    var theme: SettingsTheme! {
+        didSet {
+            registerButton?.backgroundColor = theme.primaryColor
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.registerButton.setTitle("REGISTER", forState: UIControlState.Normal)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        theme = SettingsTheme.theme01
+        
         self.setupNavigationBar()
         
         appDelegate.hubs.ParseConnectionString()
@@ -41,8 +49,12 @@ class MainSettingsViewController: UIViewController {
             NSForegroundColorAttributeName: UIColor.blackColor()
         ]
     }
+    
+    @IBAction
+    func backToMainRegisterViewController(segue: UIStoryboardSegue) { }
 
-    @IBAction func RegisterButtonAction(sender: UIButton) {
+    @IBAction
+    func RegisterButtonAction(sender: UIButton) {
         
         // Register device here
         
@@ -67,7 +79,7 @@ class MainSettingsViewController: UIViewController {
                     self.appDelegate.hubs.recipientName = deviceToMonitor
                     self.appDelegate.hubs.notificationMessage = "Intruder alert!";
                     
-                    self.performSegueWithIdentifier("presentAlarm", sender: self)
+                    self.performSegueWithIdentifier("presentMain", sender: self)
                 }
                 else{
                     self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")

@@ -21,6 +21,7 @@ class SettingsTheme {
     let cellTitleColor: UIColor
     let cellTextFieldColor: UIColor
     let primaryColor: UIColor
+    let secondaryColor: UIColor
 
     init() {
         backgroundColor = UIColor(string: "#f8f8f8")
@@ -29,6 +30,7 @@ class SettingsTheme {
         cellTitleColor = UIColor(string: "#8e8e8e")
         cellTextFieldColor = UIColor(string: "#55606f")
         primaryColor = UIColor(string: "#0288d1")
+        secondaryColor = UIColor.blackColor()
     }
     
 }

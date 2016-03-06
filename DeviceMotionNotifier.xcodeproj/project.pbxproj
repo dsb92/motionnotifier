@@ -25,7 +25,8 @@
 		46B6851B1C8B439F009C5CD1 /* SettingsTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6851A1C8B439F009C5CD1 /* SettingsTheme.swift */; };
 		46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6851C1C8B4A36009C5CD1 /* UIView+IBInspectable.swift */; };
 		46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 46B685081C8B2F12009C5CD1 /* GothaProReg.otf */; };
-		46DEED371C7E3B9F009B30E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* Main.storyboard */; };
+		46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */; };
+		46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
 		46DEED471C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED461C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift */; };
@@ -34,7 +35,7 @@
 		46DEED6C1C7F9E15009B30E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */; };
 		46DEED6E1C7F9E15009B30E3 /* RegisterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED601C7E417F009B30E3 /* RegisterClient.m */; };
 		46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED671C7E42DC009B30E3 /* Hubs.m */; };
-		46DEED711C7F9E7D009B30E3 /* MainSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED701C7F9E7D009B30E3 /* MainSettingsViewController.swift */; };
+		46DEED711C7F9E7D009B30E3 /* MainRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */; };
 		46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,9 +77,10 @@
 		46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularRevealAnimator.swift; sourceTree = "<group>"; };
 		46B6851A1C8B439F009C5CD1 /* SettingsTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTheme.swift; sourceTree = "<group>"; };
 		46B6851C1C8B4A36009C5CD1 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
+		46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alarm.storyboard; sourceTree = "<group>"; };
 		46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceMotionNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainRegister.storyboard; sourceTree = "<group>"; };
 		46DEED381C7E3BA0009B30E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46DEED3B1C7E3BA0009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46DEED3D1C7E3BA0009B30E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 		46DEED651C7E4266009B30E3 /* HubInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubInfo.h; sourceTree = "<group>"; };
 		46DEED661C7E42DC009B30E3 /* Hubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hubs.h; sourceTree = "<group>"; };
 		46DEED671C7E42DC009B30E3 /* Hubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hubs.m; sourceTree = "<group>"; };
-		46DEED701C7F9E7D009B30E3 /* MainSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettingsViewController.swift; sourceTree = "<group>"; };
+		46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterViewController.swift; sourceTree = "<group>"; };
 		46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,10 +142,9 @@
 		46B684EE1C8393CE009C5CD1 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */,
-				46DEED701C7F9E7D009B30E3 /* MainSettingsViewController.swift */,
-				46B685051C8B29E7009C5CD1 /* SettingsViewController.swift */,
-				46B6850E1C8B3E26009C5CD1 /* MainViewController.swift */,
+				46B685211C8C518A009C5CD1 /* MainRegister */,
+				46B685221C8C5198009C5CD1 /* Main */,
+				46B685231C8C51A8009C5CD1 /* Alarm */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -223,6 +224,31 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		46B685211C8C518A009C5CD1 /* MainRegister */ = {
+			isa = PBXGroup;
+			children = (
+				46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */,
+				46B685051C8B29E7009C5CD1 /* SettingsViewController.swift */,
+			);
+			name = MainRegister;
+			sourceTree = "<group>";
+		};
+		46B685221C8C5198009C5CD1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				46B6850E1C8B3E26009C5CD1 /* MainViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		46B685231C8C51A8009C5CD1 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */,
+			);
+			name = Alarm;
+			sourceTree = "<group>";
+		};
 		46DEED251C7E3B9F009B30E3 = {
 			isa = PBXGroup;
 			children = (
@@ -261,7 +287,8 @@
 				46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */,
 				46DEED3D1C7E3BA0009B30E3 /* Info.plist */,
 				46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */,
-				46DEED351C7E3B9F009B30E3 /* Main.storyboard */,
+				46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */,
+				46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */,
 			);
 			path = DeviceMotionNotifier;
 			sourceTree = "<group>";
@@ -398,7 +425,8 @@
 				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
 				46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
-				46DEED371C7E3B9F009B30E3 /* Main.storyboard in Resources */,
+				46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */,
+				46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +456,7 @@
 				46B6851B1C8B439F009C5CD1 /* SettingsTheme.swift in Sources */,
 				46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */,
 				46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */,
-				46DEED711C7F9E7D009B30E3 /* MainSettingsViewController.swift in Sources */,
+				46DEED711C7F9E7D009B30E3 /* MainRegisterViewController.swift in Sources */,
 				46B6850B1C8B379C009C5CD1 /* UIColor+String.swift in Sources */,
 				46B685171C8B4103009C5CD1 /* AnimationDelegate.swift in Sources */,
 				46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */,
@@ -479,12 +507,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		46DEED351C7E3B9F009B30E3 /* Main.storyboard */ = {
+		46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				46DEED361C7E3B9F009B30E3 /* Base */,
 			);
-			name = Main.storyboard;
+			name = MainRegister.storyboard;
 			sourceTree = "<group>";
 		};
 		46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */ = {
@@ -597,6 +625,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -617,6 +646,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
