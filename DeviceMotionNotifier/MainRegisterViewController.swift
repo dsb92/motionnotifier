@@ -16,6 +16,9 @@ class MainRegisterViewController: UIViewController {
     @IBOutlet
     weak var spinner: UIActivityIndicatorView!
     
+    @IBOutlet
+    weak var menuButton: UIBarButtonItem!
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     private var settingsViewController: SettingsViewController!
     
@@ -33,7 +36,8 @@ class MainRegisterViewController: UIViewController {
         super.viewDidLoad()
         theme = SettingsTheme.theme01
         
-        self.setupNavigationBar()
+        setupNavigationBar()
+        setupSlidebarMenu()
         
         appDelegate.hubs.ParseConnectionString()
         appDelegate.hubs.registerClient = RegisterClient(endpoint: BACKEND_ENDPOINT)
@@ -48,6 +52,20 @@ class MainRegisterViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
             NSForegroundColorAttributeName: UIColor.blackColor()
         ]
+    }
+    
+    private func setupSlidebarMenu() {
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+            // if iPad:
+            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                self.revealViewController().rearViewRevealWidth = 600
+            }
+            
+        }
     }
     
     @IBAction

@@ -13,10 +13,20 @@ import LocalAuthentication
 
 class AlarmViewController: UIViewController {
     
-    @IBOutlet weak var alarmCountDownLabel: UILabel!
-    @IBOutlet weak var numberPad: UITextField!
-    @IBOutlet weak var touchIDButton: UIButton!
-    @IBOutlet weak var previewView: AVCamPreviewView!
+    @IBOutlet
+    weak var menuButton: UIBarButtonItem!
+    
+    @IBOutlet
+    weak var alarmCountDownLabel: UILabel!
+    
+    @IBOutlet
+    weak var numberPad: UITextField!
+    
+    @IBOutlet
+    weak var touchIDButton: UIButton!
+    
+    @IBOutlet
+    weak var previewView: AVCamPreviewView!
     
     var detectorManager: DetectorManager!
     var alarmManager: AlarmManager!
@@ -49,6 +59,7 @@ class AlarmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupSlidebarMenu()
         setupManagers()
         setupDynamic()
         
@@ -69,6 +80,19 @@ class AlarmViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
             NSForegroundColorAttributeName: UIColor.blackColor()
         ]
+    }
+    
+    private func setupSlidebarMenu() {
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+            // if iPad:
+            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                self.revealViewController().rearViewRevealWidth = 600
+            }
+        }
     }
     
     private func setupManagers() {
