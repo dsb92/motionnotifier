@@ -11,7 +11,7 @@ import UIKit
 private let tableViewOffset: CGFloat = UIScreen.mainScreen().bounds.height < 600 ? 215 : 225
 private let beforeAppearOffset: CGFloat = 400
 
-class SettingsViewController: UITableViewController {
+class MainRegisterSettingsViewController: UITableViewController {
 
     @IBOutlet
     private var backgroundHolder: UIView!
@@ -41,9 +41,9 @@ class SettingsViewController: UITableViewController {
     weak var nameOfDeviceToMonitorTextField: UITextField!
     
     @IBAction
-    private func silentValueChanged(sender: AnyObject) {
-        let center = self.tableView.convertPoint(silentSwitch.center, fromView: silentSwitch.superview)
-
+    private func silentValueChanged(sender: UISwitch) {
+        NSUserDefaults.standardUserDefaults().setBool(sender.on, forKey: "kSilentValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     var theme: SettingsTheme! {
@@ -77,6 +77,15 @@ class SettingsViewController: UITableViewController {
         
         theme = SettingsTheme.theme01
         tableView.backgroundView = backgroundHolder
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey("kSilentValue") == nil {
+            setDefaults()
+        }
+    }
+    
+    private func setDefaults() {
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "kSilentValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -89,7 +98,7 @@ class SettingsViewController: UITableViewController {
     }
 }
 
-extension SettingsViewController : UITextFieldDelegate {
+extension MainRegisterSettingsViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == nameOfDeviceTextField {
             nameOfDeviceToMonitorTextField.becomeFirstResponder()

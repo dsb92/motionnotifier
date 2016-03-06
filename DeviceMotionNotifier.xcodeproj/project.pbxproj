@@ -15,9 +15,9 @@
 		46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B684FD1C84CB86009C5CD1 /* ARAudioRecognizer.m */; };
 		46B685011C8783B5009C5CD1 /* AVCamPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685001C8783B5009C5CD1 /* AVCamPreviewView.swift */; };
 		46B685041C87842C009C5CD1 /* AVAutoSnap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685031C87842C009C5CD1 /* AVAutoSnap.swift */; };
-		46B685061C8B29E7009C5CD1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685051C8B29E7009C5CD1 /* SettingsViewController.swift */; };
+		46B685061C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685051C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift */; };
 		46B6850B1C8B379C009C5CD1 /* UIColor+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6850A1C8B379C009C5CD1 /* UIColor+String.swift */; };
-		46B6850F1C8B3E26009C5CD1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6850E1C8B3E26009C5CD1 /* MainViewController.swift */; };
+		46B6850F1C8B3E26009C5CD1 /* ReadyMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6850E1C8B3E26009C5CD1 /* ReadyMainViewController.swift */; };
 		46B685111C8B3F1E009C5CD1 /* DeviceMonitorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */; };
 		46B685131C8B40E4009C5CD1 /* UIView+CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685121C8B40E4009C5CD1 /* UIView+CircularAnimation.swift */; };
 		46B685171C8B4103009C5CD1 /* AnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */; };
@@ -28,6 +28,7 @@
 		46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */; };
 		46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */; };
 		46B685291C8C8FFE009C5CD1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */; };
+		46B6852B1C8C9E67009C5CD1 /* AlarmMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */; };
 		46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
@@ -69,10 +70,10 @@
 		46B684FE1C84CB86009C5CD1 /* ARAudioRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAudioRecognizerDelegate.h; sourceTree = "<group>"; };
 		46B685001C8783B5009C5CD1 /* AVCamPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCamPreviewView.swift; sourceTree = "<group>"; };
 		46B685031C87842C009C5CD1 /* AVAutoSnap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAutoSnap.swift; sourceTree = "<group>"; };
-		46B685051C8B29E7009C5CD1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		46B685051C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegiserSettingsViewController.swift; sourceTree = "<group>"; };
 		46B685081C8B2F12009C5CD1 /* GothaProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothaProReg.otf; sourceTree = "<group>"; };
 		46B6850A1C8B379C009C5CD1 /* UIColor+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+String.swift"; sourceTree = "<group>"; };
-		46B6850E1C8B3E26009C5CD1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		46B6850E1C8B3E26009C5CD1 /* ReadyMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadyMainViewController.swift; sourceTree = "<group>"; };
 		46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMonitorButton.swift; sourceTree = "<group>"; };
 		46B685121C8B40E4009C5CD1 /* UIView+CircularAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CircularAnimation.swift"; sourceTree = "<group>"; };
 		46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFlyingBalls.swift; sourceTree = "<group>"; };
 		46B685271C8C8FFE009C5CD1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmMenuViewController.swift; sourceTree = "<group>"; };
 		46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceMotionNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainRegister.storyboard; sourceTree = "<group>"; };
@@ -157,7 +159,8 @@
 		46B684EF1C8393D6009C5CD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */,
+				46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */,
+				46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */,
 				46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */,
 				46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */,
+				46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -235,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */,
-				46B685051C8B29E7009C5CD1 /* SettingsViewController.swift */,
+				46B685051C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift */,
 			);
 			name = MainRegister;
 			sourceTree = "<group>";
@@ -243,7 +247,7 @@
 		46B685221C8C5198009C5CD1 /* Ready */ = {
 			isa = PBXGroup;
 			children = (
-				46B6850E1C8B3E26009C5CD1 /* MainViewController.swift */,
+				46B6850E1C8B3E26009C5CD1 /* ReadyMainViewController.swift */,
 			);
 			name = Ready;
 			sourceTree = "<group>";
@@ -252,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */,
+				46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */,
 			);
 			name = Alarm;
 			sourceTree = "<group>";
@@ -303,8 +308,6 @@
 				46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */,
 				46DEED3D1C7E3BA0009B30E3 /* Info.plist */,
 				46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */,
-				46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */,
-				46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */,
 			);
 			path = DeviceMotionNotifier;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */,
 				46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */,
 				46DEED711C7F9E7D009B30E3 /* MainRegisterViewController.swift in Sources */,
+				46B6852B1C8C9E67009C5CD1 /* AlarmMenuViewController.swift in Sources */,
 				46B6850B1C8B379C009C5CD1 /* UIColor+String.swift in Sources */,
 				46B685171C8B4103009C5CD1 /* AnimationDelegate.swift in Sources */,
 				46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */,
@@ -482,10 +486,10 @@
 				46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */,
 				46B685111C8B3F1E009C5CD1 /* DeviceMonitorButton.swift in Sources */,
 				46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */,
-				46B6850F1C8B3E26009C5CD1 /* MainViewController.swift in Sources */,
+				46B6850F1C8B3E26009C5CD1 /* ReadyMainViewController.swift in Sources */,
 				46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */,
 				46B685041C87842C009C5CD1 /* AVAutoSnap.swift in Sources */,
-				46B685061C8B29E7009C5CD1 /* SettingsViewController.swift in Sources */,
+				46B685061C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift in Sources */,
 				46B685181C8B4103009C5CD1 /* CircularRevealAnimator.swift in Sources */,
 				46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */,
 				46B684EA1C839246009C5CD1 /* AlarmProtocol.swift in Sources */,

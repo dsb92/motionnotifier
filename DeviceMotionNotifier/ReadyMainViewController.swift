@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class ReadyMainViewController: UIViewController {
 
     @IBOutlet
     weak var navigationBar: UINavigationBar!

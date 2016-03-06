@@ -20,7 +20,7 @@ class MainRegisterViewController: UIViewController {
     weak var menuButton: UIBarButtonItem!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    private var settingsViewController: SettingsViewController!
+    private var settingsViewController: MainRegisterSettingsViewController!
     
     var theme: SettingsTheme! {
         didSet {
@@ -107,7 +107,7 @@ class MainRegisterViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let settings = segue.destinationViewController as? SettingsViewController {
+        if let settings = segue.destinationViewController as? MainRegisterSettingsViewController {
             settingsViewController = settings
         }
     }

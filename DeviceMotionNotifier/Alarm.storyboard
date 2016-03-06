@@ -3,32 +3,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="GothaProReg.otf">
             <string>GothamPro</string>
             <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="gqF-op-7Cw">
-            <objects>
-                <viewController id="c3w-vr-iDe" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x5i-tb-OQ4"/>
-                        <viewControllerLayoutGuide type="bottom" id="GRG-Pl-IQD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WqO-BE-epA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cFk-AI-bPn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2847" y="539"/>
-        </scene>
         <!--Alarm-->
         <scene sceneID="Lu8-7j-Ygk">
             <objects>
@@ -136,8 +124,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="c3w-vr-iDe" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="bDm-B6-8xd"/>
                         <segue destination="tUk-gC-0KO" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="g3n-xP-IWT"/>
+                        <segue destination="c45-nZ-qVH" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="cB0-ZT-NCZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bE-1e-i2k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,6 +149,156 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9v5-UF-obS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2035" y="1324"/>
+        </scene>
+        <!--Alarm Menu View Controller-->
+        <scene sceneID="JOk-bo-hGn">
+            <objects>
+                <tableViewController id="c45-nZ-qVH" customClass="AlarmMenuViewController" customModule="DeviceMotionNotifier" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="46" sectionHeaderHeight="28" sectionFooterHeight="28" id="JnZ-xZ-DO4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.1215686275" green="0.1137254902" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="77b-eG-NhG">
+                            <rect key="frame" x="0.0" y="170" width="600" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <sections>
+                            <tableViewSection id="yXm-jo-4LZ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="gaP-sR-XKk">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gaP-sR-XKk" id="Fdi-Te-kgc">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SAVE PHOTO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-It-Gc6">
+                                                    <rect key="frame" x="30" y="39" width="115" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRf-sD-GkF">
+                                                    <rect key="frame" x="30" y="8" width="221" height="21"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-kP-grd">
+                                                    <rect key="frame" x="430" y="30" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="photoSwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="bKd-Dm-okR"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zbf-kP-grd" firstAttribute="trailing" secondItem="Fdi-Te-kgc" secondAttribute="trailingMargin" constant="-91" id="Au8-Bt-JGc"/>
+                                                <constraint firstItem="AKV-It-Gc6" firstAttribute="leading" secondItem="Fdi-Te-kgc" secondAttribute="leadingMargin" id="DHu-1e-WSd"/>
+                                                <constraint firstItem="zbf-kP-grd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AKV-It-Gc6" secondAttribute="trailing" constant="8" id="Ez0-iy-gLO"/>
+                                                <constraint firstItem="zbf-kP-grd" firstAttribute="centerY" secondItem="Fdi-Te-kgc" secondAttribute="centerY" constant="10.75" id="dlP-0f-Eqf"/>
+                                                <constraint firstItem="AKV-It-Gc6" firstAttribute="centerY" secondItem="Fdi-Te-kgc" secondAttribute="centerY" constant="12" id="iGF-90-uls"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="v6c-Qj-FPs">
+                                        <rect key="frame" x="0.0" y="70" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v6c-Qj-FPs" id="ujp-Bj-CTZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE VIDEO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-1I-t1X">
+                                                    <rect key="frame" x="30" y="17" width="109" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4LM-mg-1Bc">
+                                                    <rect key="frame" x="432" y="10" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="videoSwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="tXA-hR-ZxH"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4LM-mg-1Bc" firstAttribute="trailing" secondItem="ujp-Bj-CTZ" secondAttribute="trailingMargin" constant="-89" id="7Y2-NI-nz0"/>
+                                                <constraint firstItem="dvD-1I-t1X" firstAttribute="leading" secondItem="ujp-Bj-CTZ" secondAttribute="leadingMargin" id="ivJ-02-3je"/>
+                                                <constraint firstItem="dvD-1I-t1X" firstAttribute="centerY" secondItem="ujp-Bj-CTZ" secondAttribute="centerY" id="l3B-VZ-ZVZ"/>
+                                                <constraint firstItem="4LM-mg-1Bc" firstAttribute="centerY" secondItem="ujp-Bj-CTZ" secondAttribute="centerY" constant="0.75" id="mBy-ed-0v1"/>
+                                                <constraint firstItem="4LM-mg-1Bc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dvD-1I-t1X" secondAttribute="trailing" constant="8" id="qLv-lE-976"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="3BS-iw-Eyo">
+                                        <rect key="frame" x="0.0" y="120" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3BS-iw-Eyo" id="vr6-mp-O9w">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SET TIMER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idg-Ym-vBo">
+                                                    <rect key="frame" x="30" y="17" width="93" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="Wlx-JQ-p5k">
+                                                    <rect key="frame" x="176" y="10" width="248" height="31"/>
+                                                    <color key="thumbTintColor" red="0.98039221759999995" green="0.29803922770000002" blue="0.011764707040000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <connections>
+                                                        <action selector="timerSliderValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="sis-n4-QbC"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5X-1l-11w">
+                                                    <rect key="frame" x="436" y="8" width="43" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="43" id="eQ6-vy-32Y"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="25"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="O5X-1l-11w" firstAttribute="top" secondItem="vr6-mp-O9w" secondAttribute="topMargin" id="4Mz-eS-65m"/>
+                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="leading" secondItem="idg-Ym-vBo" secondAttribute="trailing" constant="55" id="9YJ-9w-yLB"/>
+                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="centerX" secondItem="vr6-mp-O9w" secondAttribute="centerX" id="Mks-Y3-kRL"/>
+                                                <constraint firstItem="idg-Ym-vBo" firstAttribute="centerY" secondItem="vr6-mp-O9w" secondAttribute="centerY" id="Nq0-e6-g7w"/>
+                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="centerY" secondItem="idg-Ym-vBo" secondAttribute="centerY" id="O3T-Sk-Z1R"/>
+                                                <constraint firstItem="O5X-1l-11w" firstAttribute="trailing" secondItem="vr6-mp-O9w" secondAttribute="trailingMargin" constant="-91" id="Y6V-0w-9mO"/>
+                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="centerY" secondItem="O5X-1l-11w" secondAttribute="centerY" id="gwU-VZ-Vs7"/>
+                                                <constraint firstItem="idg-Ym-vBo" firstAttribute="leading" secondItem="vr6-mp-O9w" secondAttribute="leadingMargin" id="uaD-FH-dge"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="c45-nZ-qVH" id="8XL-lI-SZf"/>
+                            <outlet property="delegate" destination="c45-nZ-qVH" id="UbE-QS-9cT"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="photoSwitch" destination="zbf-kP-grd" id="hI3-Xd-UAj"/>
+                        <outlet property="sliderValueLabel" destination="O5X-1l-11w" id="seb-Qk-bRb"/>
+                        <outlet property="videoSwitch" destination="4LM-mg-1Bc" id="aN7-F7-iqB"/>
+                        <outletCollection property="cellTitleLabels" destination="AKV-It-Gc6" collectionClass="NSMutableArray" id="EAj-Ap-Pf5"/>
+                        <outletCollection property="cellTitleLabels" destination="dvD-1I-t1X" collectionClass="NSMutableArray" id="rCT-lJ-YRZ"/>
+                        <outletCollection property="cellTitleLabels" destination="idg-Ym-vBo" collectionClass="NSMutableArray" id="mEI-Gz-rBm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O58-Pg-BES" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2847" y="539"/>
         </scene>
     </scenes>
     <resources>

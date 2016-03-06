@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AppDelegate.swift"
-            timestampString = "478900061.831989"
+            timestampString = "478982837.489716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "application(_:didReceiveRemoteNotification:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -249,11 +249,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AppDelegate.swift"
-            timestampString = "478900061.831989"
+            timestampString = "478982837.489716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "application(_:didReceiveRemoteNotification:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -341,61 +341,61 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "478975622.831363"
+            timestampString = "478983879.323967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "AlarmViewController"
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "DeviceMotionNotifier.AlarmViewController.notifyRecipient (DeviceMotionNotifier.AlarmViewController)() -&gt; ()"
                   moduleName = "DeviceMotionNotifier"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/davidbuhauer/Box%20Sync/MyProjects/XCodeProjects/Projects/DeviceMotionNotifier/DeviceMotionNotifier/AlarmViewController.swift"
-                  timestampString = "478974855.386631"
+                  timestampString = "478980766.943772"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "383"
-                  endingLineNumber = "383"
+                  startingLineNumber = "415"
+                  endingLineNumber = "415"
                   offsetFromSymbolStart = "24">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "protocol witness for DeviceMotionNotifier.AlarmProtocol.notifyRecipient &lt;A where A: DeviceMotionNotifier.AlarmProtocol&gt; (A)() -&gt; () in conformance DeviceMotionNotifier.AlarmViewController : DeviceMotionNotifier.AlarmProtocol in DeviceMotionNotifier"
                   moduleName = "DeviceMotionNotifier"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/davidbuhauer/Box%20Sync/MyProjects/XCodeProjects/Projects/DeviceMotionNotifier/DeviceMotionNotifier/AlarmViewController.swift"
-                  timestampString = "478974855.387123"
+                  timestampString = "478980766.944198"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "382"
-                  endingLineNumber = "382"
+                  startingLineNumber = "414"
+                  endingLineNumber = "414"
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "dynamic DeviceMotionNotifier.AlarmViewController.notifyRecipient (DeviceMotionNotifier.AlarmViewController)() -&gt; ()"
                   moduleName = "DeviceMotionNotifier"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/davidbuhauer/Box%20Sync/MyProjects/XCodeProjects/Projects/DeviceMotionNotifier/DeviceMotionNotifier/AlarmViewController.swift"
-                  timestampString = "478974855.387503"
+                  timestampString = "478980766.944593"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "382"
-                  endingLineNumber = "382"
+                  startingLineNumber = "414"
+                  endingLineNumber = "414"
                   offsetFromSymbolStart = "0">
                </Location>
             </Locations>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AppDelegate.swift"
-            timestampString = "478900061.831989"
+            timestampString = "478982837.489716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "applicationWillEnterForeground(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -424,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "478975622.831363"
+            timestampString = "478983879.323967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "TouchIDButtonAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -552,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "478975622.831363"
+            timestampString = "478983879.323967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "AlarmButtonAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -574,6 +574,54 @@
             startingLineNumber = "58"
             endingLineNumber = "58"
             landmarkName = "setupSlidebarMenu()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeviceMotionNotifier/AlarmViewController.swift"
+            timestampString = "478983879.323967"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "startAlarm()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeviceMotionNotifier/AlarmViewController.swift"
+            timestampString = "478983879.323967"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "startAlarm()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeviceMotionNotifier/AlarmMenuViewController.swift"
+            timestampString = "478983644.348014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
