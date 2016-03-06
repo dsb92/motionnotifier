@@ -48,7 +48,7 @@ class DynamicFlyingBalls: UIView {
         for ball in self.balls as! [UIButton]{
             ball.addTarget(vc, action: "AlarmButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         }
-        
+
         self.addSubview(vc.numberPad)
         self.addSubview(vc.touchIDButton)
     }
@@ -66,7 +66,7 @@ class DynamicFlyingBalls: UIView {
             field1.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
             field1.strength = 1
             
-            let field2 = UIFieldBehavior.noiseFieldWithSmoothness(1.0, animationSpeed: 5.0)
+            let field2 = UIFieldBehavior.noiseFieldWithSmoothness(1.0, animationSpeed: 0.5)
             field2.region = UIRegion(size: self.bounds.size)
             field2.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
             field2.strength = 1
@@ -89,7 +89,15 @@ class DynamicFlyingBalls: UIView {
             behavior1.allowsRotation = true
             self.animator.addBehavior(behavior1)
             
-            let collision = UICollisionBehavior(items: self.balls)
+            let behavior2 = UIDynamicItemBehavior(items: [self.vc.numberPad])
+            behavior2.anchored = true
+            self.animator.addBehavior(behavior2)
+            
+            // Create a new array to keep balls array ALL of same type (UIButton)
+            var collisionArray = self.balls
+            collisionArray.append(self.vc.numberPad)
+            
+            let collision = UICollisionBehavior(items: collisionArray)
             collision.translatesReferenceBoundsIntoBoundary = true
             self.animator.addBehavior(collision)
             

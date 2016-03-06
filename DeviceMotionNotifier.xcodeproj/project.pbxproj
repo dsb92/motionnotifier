@@ -155,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */,
-				46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -215,6 +214,7 @@
 			children = (
 				46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */,
 				46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */,
+				46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";

@@ -42,25 +42,22 @@ class AlarmViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        alarmManager.autoSnap.initializeOnViewWillAppear()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupManagers()
+        setupDynamic()
+        
         theme = SettingsTheme.theme01
-        
-        detectorManager = DetectorManager(detectorProtocol: self)
-        alarmManager = AlarmManager(alarmProtocol: self)
-        
-        alarmManager.autoSnap = AVAutoSnap(vc: self)
-        alarmManager.autoSnap.initializeOnViewDidLoad()
-        
         self.numberPad.becomeFirstResponder()
         
         touchIDButton.hidden = true
         previewView.hidden = true
         
-        dynamicBallsUIView = DynamicFlyingBalls(frame: self.view.bounds)
-        dynamicBallsUIView.associateVC(self)
-        self.view.addSubview(dynamicBallsUIView)
     }
     
     private func setupNavigationBar() {
@@ -74,8 +71,19 @@ class AlarmViewController: UIViewController {
         ]
     }
     
-    override func viewWillAppear(animated: Bool) {
-        alarmManager.autoSnap.initializeOnViewWillAppear()
+    private func setupManagers() {
+        detectorManager = DetectorManager(detectorProtocol: self)
+        alarmManager = AlarmManager(alarmProtocol: self)
+        
+        alarmManager.autoSnap = AVAutoSnap(vc: self)
+        alarmManager.autoSnap.initializeOnViewDidLoad()
+    }
+    
+    private func setupDynamic() {
+        dynamicBallsUIView = DynamicFlyingBalls(frame: self.view.bounds)
+        dynamicBallsUIView.associateVC(self)
+        self.view.addSubview(dynamicBallsUIView)
+
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -215,7 +223,10 @@ class AlarmViewController: UIViewController {
     @IBAction func numberPadChanged(sender: UITextField) {
         let codeFromPad = numberPad.text;
         
-        if codeFromPad?.characters.count >= 4 {
+        // How many digits should the code have?
+        let digits = 8
+        
+        if codeFromPad?.characters.count >= digits {
             numberPad.resignFirstResponder()
             
             if self.isArmed {
@@ -226,11 +237,18 @@ class AlarmViewController: UIViewController {
             }
         }
         else{
-            
+            if self.isArmed {
+                setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
+            }
+            else{
+                setDynamicBall("DISARMED", color: UIColor.greenColor(), userinteractable: false)
+            }
         }
     }
     
     @IBAction func AlarmButtonAction(sender: UIButton) {
+        
+        // ARMED
         if (self.isArmed) {
             print("Trying to unarm...")
             if self.numberPad.text == self.passCode {
@@ -240,26 +258,23 @@ class AlarmViewController: UIViewController {
                 self.didUnarm(false)
             }
         }
+        // CANCELED
         else if (self.canCancel){
             self.alarmTimer.invalidate()
             
-            let balls = dynamicBallsUIView.balls as! [UIButton]
-            
-            for ball in balls {
-                // Change text of alarm button
-                ball.setTitle("ARM", forState: UIControlState.Normal)
-                ball.backgroundColor = UIColor.redColor()
-                ball.userInteractionEnabled = true
-            }
+            setDynamicBall("ARM", color: UIColor.redColor(), userinteractable: true)
             
             self.canCancel = false
+            self.alarmCountDownLabel.hidden = true
         }
+        // DISARMED
         else{
             // Start count down
             // When duration is out, start alarming
             self.countDown = 10
             self.alarmCountDownLabel.text = String(self.countDown)
             self.alarmCountDownLabel.hidden = false
+            
             self.alarmTimer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
             
             setDynamicBall("CANCEL", color: UIColor.lightGrayColor(), userinteractable: true)
@@ -269,7 +284,6 @@ class AlarmViewController: UIViewController {
             // Save passcode
             self.passCode = numberPad.text;
         }
-
     }
     
     @IBAction func TouchIDButtonAction(sender: AnyObject) {
