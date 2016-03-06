@@ -14,9 +14,7 @@ import LocalAuthentication
 class AlarmViewController: UIViewController {
     
     @IBOutlet weak var alarmCountDownLabel: UILabel!
-    @IBOutlet weak var alarmButton: UIButton!
     @IBOutlet weak var numberPad: UITextField!
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var previewView: AVCamPreviewView!
     
@@ -36,10 +34,18 @@ class AlarmViewController: UIViewController {
     var passCode: String!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var dynamicBallsUIView: DynamicFlyingBalls!
+    
+    var theme: SettingsTheme!{
+        didSet {
+            self.view.backgroundColor = theme.backgroundColor
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        theme = SettingsTheme.theme01
         
         detectorManager = DetectorManager(detectorProtocol: self)
         alarmManager = AlarmManager(alarmProtocol: self)
@@ -51,6 +57,10 @@ class AlarmViewController: UIViewController {
         
         touchIDButton.hidden = true
         previewView.hidden = true
+        
+        dynamicBallsUIView = DynamicFlyingBalls(frame: self.view.bounds)
+        dynamicBallsUIView.associateVC(self)
+        self.view.addSubview(dynamicBallsUIView)
     }
     
     private func setupNavigationBar() {
@@ -98,20 +108,14 @@ class AlarmViewController: UIViewController {
             self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
         })
         
+        setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
+        
         canCancel = false
         isArmed = true
+        
         numberPad.text = ""
         alarmCountDownLabel.text = String(0)
         alarmCountDownLabel.hidden = true
-        
-        // Change text of alarm button
-        alarmButton.hidden = true
-        alarmButton.setTitle("DISARM", forState: UIControlState.Normal)
-        alarmButton.backgroundColor = UIColor.greenColor()
-        
-        // Let the user know it's armed
-        statusLabel.text = "ARMED"
-        statusLabel.textColor = UIColor.redColor()
         
         // Stop timer
         alarmTimer.invalidate()
@@ -161,13 +165,12 @@ class AlarmViewController: UIViewController {
             context = nil;
             touchIDButton.hidden = true
             numberPad.text = ""
-            statusLabel.text = "DISARMED"
-            statusLabel.textColor = UIColor.greenColor()
+            
+            setDynamicBall("DISARMED", color: UIColor.greenColor(), userinteractable: false)
+            
             isArmed = false
             canCancel = false
-            alarmButton.hidden = true
-            alarmButton.setTitle("ARM", forState: UIControlState.Normal)
-            alarmButton.backgroundColor = UIColor.redColor()
+
             detectorManager.stopDetectingMotions()
             detectorManager.stopDetectingNoise()
             alarmManager.stopMakingNoise()
@@ -198,15 +201,32 @@ class AlarmViewController: UIViewController {
         }
     }
     
+    func setDynamicBall(text: String, color: UIColor, userinteractable: Bool){
+        let balls = dynamicBallsUIView.balls as! [UIButton]
+        
+        for ball in balls {
+            ball.setTitle(text, forState: UIControlState.Normal)
+            ball.backgroundColor = color
+            ball.userInteractionEnabled = userinteractable
+        }
+    }
+    
+    
     @IBAction func numberPadChanged(sender: UITextField) {
         let codeFromPad = numberPad.text;
         
         if codeFromPad?.characters.count >= 4 {
             numberPad.resignFirstResponder()
-            alarmButton.hidden = false
+            
+            if self.isArmed {
+                setDynamicBall("DISARM", color: UIColor.greenColor(), userinteractable: true)
+            }
+            else{
+                setDynamicBall("ARM", color: UIColor.redColor(), userinteractable: true)
+            }
         }
         else{
-            alarmButton.hidden = true
+            
         }
     }
     
@@ -223,9 +243,15 @@ class AlarmViewController: UIViewController {
         else if (self.canCancel){
             self.alarmTimer.invalidate()
             
-            // Change text of alarm button
-            self.alarmButton.setTitle("ARM", forState: UIControlState.Normal)
-            alarmButton.backgroundColor = UIColor.redColor()
+            let balls = dynamicBallsUIView.balls as! [UIButton]
+            
+            for ball in balls {
+                // Change text of alarm button
+                ball.setTitle("ARM", forState: UIControlState.Normal)
+                ball.backgroundColor = UIColor.redColor()
+                ball.userInteractionEnabled = true
+            }
+            
             self.canCancel = false
         }
         else{
@@ -236,9 +262,7 @@ class AlarmViewController: UIViewController {
             self.alarmCountDownLabel.hidden = false
             self.alarmTimer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
             
-            // Change text of alarm button
-            self.alarmButton.setTitle("CANCEL", forState: UIControlState.Normal)
-            self.alarmButton.backgroundColor = UIColor.lightGrayColor()
+            setDynamicBall("CANCEL", color: UIColor.lightGrayColor(), userinteractable: true)
             
             self.canCancel = true
             

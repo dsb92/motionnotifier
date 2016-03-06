@@ -26,6 +26,7 @@
 		46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6851C1C8B4A36009C5CD1 /* UIView+IBInspectable.swift */; };
 		46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 46B685081C8B2F12009C5CD1 /* GothaProReg.otf */; };
 		46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */; };
+		46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */; };
 		46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
@@ -78,6 +79,7 @@
 		46B6851A1C8B439F009C5CD1 /* SettingsTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTheme.swift; sourceTree = "<group>"; };
 		46B6851C1C8B4A36009C5CD1 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alarm.storyboard; sourceTree = "<group>"; };
+		46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFlyingBalls.swift; sourceTree = "<group>"; };
 		46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceMotionNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainRegister.storyboard; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				46B685211C8C518A009C5CD1 /* MainRegister */,
-				46B685221C8C5198009C5CD1 /* Main */,
+				46B685221C8C5198009C5CD1 /* Ready */,
 				46B685231C8C51A8009C5CD1 /* Alarm */,
 			);
 			name = Control;
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */,
+				46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -233,12 +236,12 @@
 			name = MainRegister;
 			sourceTree = "<group>";
 		};
-		46B685221C8C5198009C5CD1 /* Main */ = {
+		46B685221C8C5198009C5CD1 /* Ready */ = {
 			isa = PBXGroup;
 			children = (
 				46B6850E1C8B3E26009C5CD1 /* MainViewController.swift */,
 			);
-			name = Main;
+			name = Ready;
 			sourceTree = "<group>";
 		};
 		46B685231C8C51A8009C5CD1 /* Alarm */ = {
@@ -462,6 +465,7 @@
 				46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */,
 				46DEED6C1C7F9E15009B30E3 /* AppDelegate.swift in Sources */,
 				46DEED6E1C7F9E15009B30E3 /* RegisterClient.m in Sources */,
+				46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */,
 				46B685111C8B3F1E009C5CD1 /* DeviceMonitorButton.swift in Sources */,
 				46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */,
 				46B6850F1C8B3E26009C5CD1 /* MainViewController.swift in Sources */,
