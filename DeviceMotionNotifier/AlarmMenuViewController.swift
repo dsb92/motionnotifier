@@ -25,6 +25,9 @@ class AlarmMenuViewController: UITableViewController {
     @IBOutlet
     weak var videoSwitch: UISwitch!
     
+    @IBOutlet
+    weak var delaySwitch: UISwitch!
+
     var theme: SettingsTheme! {
         didSet {
             tableView.separatorColor = theme.separatorColor
@@ -70,9 +73,15 @@ class AlarmMenuViewController: UITableViewController {
     
     @IBAction
     func videoSwitchValueChanged(sender: UISwitch) {
-        NSUserDefaults.standardUserDefaults().setBool(sender.on, forKey: "kVideoSwitchValue")
+        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kVideoSwitchValue")
         NSUserDefaults.standardUserDefaults().synchronize()
         
         photoSwitch.enabled = sender.on ? false : true
+    }
+    
+    @IBAction
+    func delaySwitch(sender: UISwitch) {
+        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kDelaySwitchValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

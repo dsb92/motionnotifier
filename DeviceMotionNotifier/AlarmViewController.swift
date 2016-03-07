@@ -36,6 +36,9 @@ class AlarmViewController: UIViewController {
     var alarmTimer: NSTimer!
     var countDown = 10
     
+    var delayTimer: NSTimer!
+    var delayDown = 10
+    
     var notificationTimer: NSTimer!
     var notifyTo = UINT16_MAX
     
@@ -123,6 +126,10 @@ class AlarmViewController: UIViewController {
         }
         
         if userDefaults.objectForKey("kVideoSwitchValue") == nil {
+            userDefaults.setObject(false, forKey: "kVideoSwitchValue")
+        }
+        
+        if userDefaults.objectForKey("kDelaySwitchValue") == nil {
             userDefaults.setObject(false, forKey: "kVideoSwitchValue")
         }
         
@@ -218,12 +225,31 @@ class AlarmViewController: UIViewController {
         }
     }
     
+    func updateDelay() {
+        if(delayDown > 0)
+        {
+            delayDown--
+            print(delayDown)
+        }
+            // Time out, user did not disarm the alarm in time
+        else if (delayDown == 0){
+            
+            // Stop delay timer
+            delayTimer.invalidate()
+            delayTimer = nil
+            
+            startAlarmProcedure()
+        }
+    }
+    
     func didUnarm(didArm: Bool){
         if didArm {
             if notificationTimer != nil {
                 notificationTimer.invalidate()
             }
+
             self.notificationTimer = nil
+            
             context = nil;
             touchIDButton.hidden = true
             numberPad.text = ""
@@ -254,12 +280,18 @@ class AlarmViewController: UIViewController {
     
     func intruderAlert(){
         
-        previewView.hidden = false
-        numberPad.becomeFirstResponder()
+        print("INTRUDER ALERT")
         
-        // If any of the detecting features detects disturbance(noise or motions) it stars the alarm.
-        if self.notificationTimer == nil {
-            self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
+        let noDelay = NSUserDefaults.standardUserDefaults().boolForKey("kDelaySwitchValue")
+        
+        if noDelay {
+            startAlarmProcedure()
+        }
+        else{
+            
+            if self.delayTimer == nil {
+                self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
+            }
         }
     }
     
@@ -270,6 +302,16 @@ class AlarmViewController: UIViewController {
             ball.setTitle(text, forState: UIControlState.Normal)
             ball.backgroundColor = color
             ball.userInteractionEnabled = userinteractable
+        }
+    }
+    
+    private func startAlarmProcedure(){
+        // If any of the detecting features detects disturbance(noise or motions) it stars the alarm.
+        if self.notificationTimer == nil {
+            previewView.hidden = false
+            numberPad.becomeFirstResponder()
+            
+            self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
         }
     }
     
@@ -330,7 +372,7 @@ class AlarmViewController: UIViewController {
             self.alarmCountDownLabel.text = String(self.countDown)
             self.alarmCountDownLabel.hidden = false
             
-            self.alarmTimer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
+            self.alarmTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
             
             setDynamicBall("CANCEL", color: UIColor.lightGrayColor(), userinteractable: true)
             
@@ -443,14 +485,14 @@ extension AlarmViewController : AlarmProtocol {
     
     func takePicture(){
 
-        alarmManager.autoSnap.snapPhoto()
+        //alarmManager.autoSnap.snapPhoto()
     }
     
     func recordVideo(){
         
-        if (!alarmManager.autoSnap.isRecording()) {
-            alarmManager.autoSnap.startRecording()
-        }
+//        if (!alarmManager.autoSnap.isRecording()) {
+//            alarmManager.autoSnap.startRecording()
+//        }
     }
 }
 
