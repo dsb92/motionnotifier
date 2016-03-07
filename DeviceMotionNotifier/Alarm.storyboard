@@ -219,7 +219,7 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4LM-mg-1Bc">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4LM-mg-1Bc">
                                                     <rect key="frame" x="432" y="10" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
@@ -322,6 +322,7 @@
                     <connections>
                         <outlet property="delaySwitch" destination="Met-mA-3og" id="ndm-r0-QEw"/>
                         <outlet property="photoSwitch" destination="zbf-kP-grd" id="hI3-Xd-UAj"/>
+                        <outlet property="slider" destination="Wlx-JQ-p5k" id="B7q-HX-v6n"/>
                         <outlet property="sliderValueLabel" destination="O5X-1l-11w" id="seb-Qk-bRb"/>
                         <outlet property="videoSwitch" destination="4LM-mg-1Bc" id="aN7-F7-iqB"/>
                         <outletCollection property="cellTitleLabels" destination="AKV-It-Gc6" collectionClass="NSMutableArray" id="EAj-Ap-Pf5"/>

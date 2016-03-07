@@ -17,6 +17,9 @@ class AlarmMenuViewController: UITableViewController {
     private var cellTitleLabels: [UILabel]!
     
     @IBOutlet
+    weak var slider: UISlider!
+    
+    @IBOutlet
     weak var sliderValueLabel: UILabel!
     
     @IBOutlet
@@ -41,6 +44,8 @@ class AlarmMenuViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         theme = SettingsTheme.theme01
+        
+        setSettings()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,7 +55,23 @@ class AlarmMenuViewController: UITableViewController {
         tableView.contentOffset = CGPoint(x: 0, y: -appearOffset)
     }
     
-    
+    private func setSettings() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        let savedTimerValue = userDefaults.integerForKey("kTimerValue")
+        let savedPhotoSwitchValue = userDefaults.boolForKey("kPhotoSwitchValue")
+        let savedVideoSwitchValue = userDefaults.boolForKey("kVideoSwitchValue")
+        let savedDelaySwitchValue = userDefaults.boolForKey("kDelaySwitchValue")
+        
+        slider.value = Float(savedTimerValue)
+        sliderValueLabel.text = String(savedTimerValue)
+        photoSwitch.setOn(savedPhotoSwitchValue, animated: false)
+        videoSwitch.setOn(savedVideoSwitchValue, animated: false)
+        delaySwitch.setOn(savedDelaySwitchValue, animated: false)
+        
+        photoSwitch.enabled = videoSwitch.on ? false : true
+        videoSwitch.enabled = photoSwitch.on ? false : true
+    }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = theme.backgroundColor
