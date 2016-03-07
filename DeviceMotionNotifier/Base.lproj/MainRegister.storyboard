@@ -58,7 +58,7 @@
             </objects>
             <point key="canvasLocation" x="2035" y="-364"/>
         </scene>
-        <!--Settings-->
+        <!--Registration-->
         <scene sceneID="lGO-Nj-GYB">
             <objects>
                 <viewController id="Kfd-gP-fCf" customClass="MainRegisterViewController" customModule="DeviceMotionNotifier" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,7 +116,7 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Bzw-GX-vfU"/>
-                    <navigationItem key="navigationItem" title="Settings" id="yyq-we-Kgt">
+                    <navigationItem key="navigationItem" title="Registration" id="yyq-we-Kgt">
                         <barButtonItem key="leftBarButtonItem" image="Menu_icn" id="uat-Zc-ckf"/>
                     </navigationItem>
                     <connections>
@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="2035" y="470"/>
         </scene>
-        <!--Ready Main View Controller-->
+        <!--Monitors Overview Main View Controller-->
         <scene sceneID="yIK-Ls-C9d">
             <objects>
-                <viewController id="GLq-Tn-rEJ" customClass="ReadyMainViewController" customModule="DeviceMotionNotifier" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GLq-Tn-rEJ" customClass="MonitorsOverviewMainViewController" customModule="DeviceMotionNotifier" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VgA-dk-bVm"/>
                         <viewControllerLayoutGuide type="bottom" id="i7I-aO-Da5"/>
@@ -178,7 +178,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <navigationItem title="Ready" id="jEp-Aw-eH1">
+                                    <navigationItem title="Monitors" id="jEp-Aw-eH1">
                                         <barButtonItem key="rightBarButtonItem" image="Close_icn" id="eqa-hr-F5c">
                                             <connections>
                                                 <segue destination="1xd-4Q-m7X" kind="unwind" unwindAction="backToMainRegisterViewController:" id="0iF-RP-Ka3"/>
@@ -221,7 +221,6 @@
         <!--Navigation Controller-->
         <scene sceneID="J7E-mg-KgO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yc7-aX-swY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kit-pV-aI5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vnA-Ge-rgC">
@@ -233,6 +232,7 @@
                         <segue destination="Kfd-gP-fCf" kind="relationship" relationship="rootViewController" id="Blj-4Z-3Nu"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yc7-aX-swY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1257" y="470"/>
         </scene>
@@ -368,7 +368,7 @@
                         <outlet property="backgroundWidthConstraint" destination="oHV-SF-WN6" id="Fpi-3q-7Gb"/>
                         <outlet property="nameOfDeviceTextField" destination="gSP-U6-te0" id="1Qa-Ym-DUc"/>
                         <outlet property="nameOfDeviceToMonitorTextField" destination="Tg4-us-jm3" id="On7-Q4-RrK"/>
-                        <outlet property="silentSwitch" destination="jOI-y1-XmN" id="U4k-b9-ewc"/>
+                        <outlet property="silentSwitch" destination="jOI-y1-XmN" id="bLG-ta-oNy"/>
                         <outletCollection property="cellTitleLabels" destination="GF0-V5-qHW" collectionClass="NSMutableArray" id="qqD-JJ-kgj"/>
                         <outletCollection property="cellTitleLabels" destination="SDy-mG-Kfc" collectionClass="NSMutableArray" id="p6J-ow-wiV"/>
                         <outletCollection property="cellTitleLabels" destination="uWW-tg-oMj" collectionClass="NSMutableArray" id="uuS-bf-nKT"/>

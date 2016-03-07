@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ReadyMainViewController: UIViewController {
+class MonitorsOverviewMainViewController: UIViewController {
 
     @IBOutlet
     weak var navigationBar: UINavigationBar!
+   
     @IBOutlet
     weak var startDeviceMonitorButton: DeviceMonitorButton!
     

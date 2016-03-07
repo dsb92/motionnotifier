@@ -254,7 +254,7 @@ class AlarmViewController: UIViewController {
             touchIDButton.hidden = true
             numberPad.text = ""
             
-            setDynamicBall("DISARMED", color: UIColor.greenColor(), userinteractable: false)
+            setDynamicBall("Ready", color: UIColor.greenColor(), userinteractable: false)
             
             isArmed = false
             canCancel = false
@@ -337,7 +337,7 @@ class AlarmViewController: UIViewController {
                 setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
             }
             else{
-                setDynamicBall("DISARMED", color: UIColor.greenColor(), userinteractable: false)
+                setDynamicBall("Ready", color: UIColor.greenColor(), userinteractable: false)
             }
         }
     }
@@ -363,7 +363,7 @@ class AlarmViewController: UIViewController {
             self.canCancel = false
             self.alarmCountDownLabel.hidden = true
         }
-        // DISARMED
+        // Ready
         else{
             // Start count down
             // When duration is out, start alarming

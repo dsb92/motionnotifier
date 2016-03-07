@@ -28,7 +28,7 @@ class DynamicFlyingBalls: UIView {
         button.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
         button.titleLabel?.textAlignment = NSTextAlignment.Center
         button.titleLabel?.font = UIFont(name: "GothamPro", size: 20)
-        button.setTitle("DISARMED", forState: UIControlState.Normal)
+        button.setTitle("Ready", forState: UIControlState.Normal)
         button.layer.cornerRadius = button.frame.width/2 // or height
         button.clipsToBounds = true
         button.alpha = 1.0

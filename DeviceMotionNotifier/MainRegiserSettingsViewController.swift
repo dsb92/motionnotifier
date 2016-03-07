@@ -40,12 +40,6 @@ class MainRegisterSettingsViewController: UITableViewController {
     @IBOutlet
     weak var nameOfDeviceToMonitorTextField: UITextField!
     
-    @IBAction
-    private func silentValueChanged(sender: UISwitch) {
-        NSUserDefaults.standardUserDefaults().setBool(sender.on, forKey: "kSilentValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
     var theme: SettingsTheme! {
         didSet {
             //backgroundImageView.image = theme.topImage
@@ -81,11 +75,19 @@ class MainRegisterSettingsViewController: UITableViewController {
         if NSUserDefaults.standardUserDefaults().objectForKey("kSilentValue") == nil {
             setDefaults()
         }
+        
+        setSettings()
     }
     
     private func setDefaults() {
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "kSilentValue")
         NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    private func setSettings() {
+        let savedSilentValue = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        
+        silentSwitch.setOn(savedSilentValue, animated: false)
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -95,6 +97,12 @@ class MainRegisterSettingsViewController: UITableViewController {
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         backgroundHeightConstraint.constant = max(navigationController!.navigationBar.bounds.height + scrollView.contentInset.top - scrollView.contentOffset.y, 0)
         backgroundWidthConstraint.constant = navigationController!.navigationBar.bounds.height - scrollView.contentInset.top - scrollView.contentOffset.y * 0.8
+    }
+    
+    @IBAction
+    private func silentValueChanged(sender: UISwitch) {
+        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kSilentValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
 
