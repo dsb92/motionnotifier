@@ -83,6 +83,9 @@ class MainRegisterViewController: UIViewController {
         
         registerButton.setTitle("", forState: UIControlState.Normal)
         spinner.startAnimating()
+
+        //self.performSegueWithIdentifier("presentMain", sender: self)
+
         appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceName, andPassword: pass)
         appDelegate.hubs.registerClient.registerWithDeviceToken(appDelegate.hubs.deviceToken, tags: nil) { (error) -> Void in
             

@@ -8,8 +8,8 @@
 
 import UIKit
 
-private let tableViewOffset: CGFloat = UIScreen.mainScreen().bounds.height < 600 ? 215 : 225
-private let appearOffset: CGFloat = 200
+private let tableViewOffset: CGFloat = UIScreen.mainScreen().bounds.height < 600 ? 108 : 113
+private let appearOffset: CGFloat = 100
 
 class AlarmMenuViewController: UITableViewController {
 
@@ -53,6 +53,10 @@ class AlarmMenuViewController: UITableViewController {
         
         tableView.contentInset = UIEdgeInsets(top: tableViewOffset, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -appearOffset)
+        
+        UIView.animateWithDuration(0.5, animations: {
+            self.tableView.contentOffset = CGPoint(x: 0, y: -tableViewOffset)
+        })
     }
     
     private func setSettings() {

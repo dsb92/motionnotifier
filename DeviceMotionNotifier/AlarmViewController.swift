@@ -83,6 +83,13 @@ class AlarmViewController: UIViewController {
         previewView.hidden = true
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        // If you press the close button while the alarm timer is counting down.
+        if alarmTimer != nil && alarmTimer.valid {
+            alarmTimer.invalidate()
+        }
+    }
+    
     private func setupNavigationBar() {
         print(navigationController)
         navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -102,7 +109,10 @@ class AlarmViewController: UIViewController {
             
             // if iPad:
             if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                self.revealViewController().rearViewRevealWidth = 600
+                self.revealViewController().rearViewRevealWidth = UIScreen().bounds.size.width - 150
+            }
+            else {
+                self.revealViewController().rearViewRevealWidth = UIScreen().bounds.size.width - 30
             }
         }
     }
@@ -270,6 +280,12 @@ class AlarmViewController: UIViewController {
             }
 
             self.notificationTimer = nil
+            
+            if delayTimer != nil {
+                delayTimer.invalidate()
+            }
+            
+            self.delayTimer = nil
             
             context = nil;
             touchIDButton.hidden = true
