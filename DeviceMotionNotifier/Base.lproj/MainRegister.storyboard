@@ -142,18 +142,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0D-Ja-39b">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0D-Ja-39b" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
                                 <rect key="frame" x="200" y="283" width="200" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="ATZ-uo-BQT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
-                                <state key="normal" title="Start Baby Monitor"/>
+                                <state key="normal" title="Start Baby Monitor">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.98039221759999995" green="0.29803922770000002" blue="0.011764707040000001" alpha="1" colorSpace="deviceRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="babyMonitorButtonAction:" destination="GLq-Tn-rEJ" eventType="touchUpInside" id="dPE-jx-QjO"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpW-f6-ecY" customClass="DeviceMonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpW-f6-ecY" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
                                 <rect key="frame" x="193" y="215" width="214" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3gK-nG-O30"/>
+                                    <constraint firstAttribute="width" constant="214" id="Pzw-BP-hcz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
                                 <state key="normal" title="Start Device Monitor">
@@ -210,6 +227,7 @@
                     </view>
                     <connections>
                         <outlet property="navigationBar" destination="siu-Uq-tht" id="p6U-Aa-yHW"/>
+                        <outlet property="startBabyMonitorButton" destination="v0D-Ja-39b" id="blG-ae-zf1"/>
                         <outlet property="startDeviceMonitorButton" destination="tpW-f6-ecY" id="fw0-yR-mTj"/>
                     </connections>
                 </viewController>

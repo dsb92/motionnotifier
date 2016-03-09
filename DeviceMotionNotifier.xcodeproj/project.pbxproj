@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		461BEAA01C8F4B3100043815 /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 461BEA9F1C8F4B3100043815 /* Baby.storyboard */; };
+		461BEAA31C8F4BFB00043815 /* BabyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461BEAA21C8F4BFB00043815 /* BabyViewController.swift */; };
+		461BEAA51C8F4C2E00043815 /* BabyMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461BEAA41C8F4C2E00043815 /* BabyMenuViewController.swift */; };
 		46B684EA1C839246009C5CD1 /* AlarmProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684E91C839245009C5CD1 /* AlarmProtocol.swift */; };
 		46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
@@ -18,7 +21,7 @@
 		46B685061C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685051C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift */; };
 		46B6850B1C8B379C009C5CD1 /* UIColor+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6850A1C8B379C009C5CD1 /* UIColor+String.swift */; };
 		46B6850F1C8B3E26009C5CD1 /* MonitorsOverviewMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6850E1C8B3E26009C5CD1 /* MonitorsOverviewMainViewController.swift */; };
-		46B685111C8B3F1E009C5CD1 /* DeviceMonitorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */; };
+		46B685111C8B3F1E009C5CD1 /* MonitorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685101C8B3F1E009C5CD1 /* MonitorButton.swift */; };
 		46B685131C8B40E4009C5CD1 /* UIView+CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685121C8B40E4009C5CD1 /* UIView+CircularAnimation.swift */; };
 		46B685171C8B4103009C5CD1 /* AnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */; };
 		46B685181C8B4103009C5CD1 /* CircularRevealAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */; };
@@ -60,6 +63,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		461BEA9F1C8F4B3100043815 /* Baby.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
+		461BEAA21C8F4BFB00043815 /* BabyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabyViewController.swift; sourceTree = "<group>"; };
+		461BEAA41C8F4C2E00043815 /* BabyMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabyMenuViewController.swift; sourceTree = "<group>"; };
 		46B684E91C839245009C5CD1 /* AlarmProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmProtocol.swift; sourceTree = "<group>"; };
 		46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorProtocol.swift; sourceTree = "<group>"; };
 		46B684F11C83944A009C5CD1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
@@ -74,7 +80,7 @@
 		46B685081C8B2F12009C5CD1 /* GothaProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothaProReg.otf; sourceTree = "<group>"; };
 		46B6850A1C8B379C009C5CD1 /* UIColor+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+String.swift"; sourceTree = "<group>"; };
 		46B6850E1C8B3E26009C5CD1 /* MonitorsOverviewMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitorsOverviewMainViewController.swift; sourceTree = "<group>"; };
-		46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMonitorButton.swift; sourceTree = "<group>"; };
+		46B685101C8B3F1E009C5CD1 /* MonitorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitorButton.swift; sourceTree = "<group>"; };
 		46B685121C8B40E4009C5CD1 /* UIView+CircularAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CircularAnimation.swift"; sourceTree = "<group>"; };
 		46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationDelegate.swift; sourceTree = "<group>"; };
 		46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularRevealAnimator.swift; sourceTree = "<group>"; };
@@ -134,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		461BEAA11C8F4BBD00043815 /* Baby */ = {
+			isa = PBXGroup;
+			children = (
+				461BEAA21C8F4BFB00043815 /* BabyViewController.swift */,
+				461BEAA41C8F4C2E00043815 /* BabyMenuViewController.swift */,
+			);
+			name = Baby;
+			sourceTree = "<group>";
+		};
 		46B684ED1C8393BB009C5CD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +167,7 @@
 				46B685211C8C518A009C5CD1 /* MainRegister */,
 				46B685221C8C5198009C5CD1 /* MonitorsOverview */,
 				46B685231C8C51A8009C5CD1 /* Alarm */,
+				461BEAA11C8F4BBD00043815 /* Baby */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -161,6 +177,7 @@
 			children = (
 				46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */,
 				46B6851F1C8C3BFC009C5CD1 /* Alarm.storyboard */,
+				461BEA9F1C8F4B3100043815 /* Baby.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -222,7 +239,7 @@
 				46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */,
 				46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */,
 				46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */,
-				46B685101C8B3F1E009C5CD1 /* DeviceMonitorButton.swift */,
+				46B685101C8B3F1E009C5CD1 /* MonitorButton.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -443,6 +460,7 @@
 				46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */,
 				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
 				46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */,
+				461BEAA01C8F4B3100043815 /* Baby.storyboard in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
 				46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */,
 				46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */,
@@ -471,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */,
+				461BEAA51C8F4C2E00043815 /* BabyMenuViewController.swift in Sources */,
 				46B685011C8783B5009C5CD1 /* AVCamPreviewView.swift in Sources */,
 				46B6851B1C8B439F009C5CD1 /* SettingsTheme.swift in Sources */,
 				46B685291C8C8FFE009C5CD1 /* SWRevealViewController.m in Sources */,
@@ -484,13 +503,14 @@
 				46DEED6C1C7F9E15009B30E3 /* AppDelegate.swift in Sources */,
 				46DEED6E1C7F9E15009B30E3 /* RegisterClient.m in Sources */,
 				46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */,
-				46B685111C8B3F1E009C5CD1 /* DeviceMonitorButton.swift in Sources */,
+				46B685111C8B3F1E009C5CD1 /* MonitorButton.swift in Sources */,
 				46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */,
 				46B6850F1C8B3E26009C5CD1 /* MonitorsOverviewMainViewController.swift in Sources */,
 				46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */,
 				46B685041C87842C009C5CD1 /* AVAutoSnap.swift in Sources */,
 				46B685061C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift in Sources */,
 				46B685181C8B4103009C5CD1 /* CircularRevealAnimator.swift in Sources */,
+				461BEAA31C8F4BFB00043815 /* BabyViewController.swift in Sources */,
 				46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */,
 				46B684EA1C839246009C5CD1 /* AlarmProtocol.swift in Sources */,
 				46B685131C8B40E4009C5CD1 /* UIView+CircularAnimation.swift in Sources */,

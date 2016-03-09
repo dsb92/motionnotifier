@@ -15,6 +15,7 @@
             <string>GothamPro</string>
             <string>GothamPro</string>
             <string>GothamPro</string>
+            <string>GothamPro</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -69,18 +70,51 @@
                                     <action selector="numberPadChanged:" destination="nP4-PY-7ab" eventType="editingChanged" id="64t-NZ-2NP"/>
                                 </connections>
                             </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIJ-S9-7Zv" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
+                                <rect key="frame" x="185" y="273" width="229" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="229" id="0eX-m8-QdD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="20"/>
+                                <state key="normal" title="Hide"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.22061917185783386" green="0.96208900213241577" blue="0.018065227195620537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="hideButtonAction:" destination="nP4-PY-7ab" eventType="touchUpInside" id="AmD-P9-FnN"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qh-Yg-tGw">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cc6-zP-cl0" firstAttribute="top" secondItem="y5J-7B-HTA" secondAttribute="top" id="4dZ-QY-tyN"/>
                             <constraint firstItem="6eF-U9-SCE" firstAttribute="top" secondItem="CSV-B8-6yK" secondAttribute="bottom" constant="3" id="7hI-GQ-9sW"/>
                             <constraint firstItem="y5J-7B-HTA" firstAttribute="top" secondItem="6eF-U9-SCE" secondAttribute="bottom" constant="8" id="8n9-ld-1RT"/>
+                            <constraint firstItem="1qh-Yg-tGw" firstAttribute="centerX" secondItem="6eF-U9-SCE" secondAttribute="centerX" id="A9k-R5-l0M"/>
+                            <constraint firstItem="1qh-Yg-tGw" firstAttribute="top" secondItem="ksr-Re-z6e" secondAttribute="top" id="Akn-0f-6Ze"/>
                             <constraint firstItem="V9A-kI-Rsk" firstAttribute="centerY" secondItem="ksr-Re-z6e" secondAttribute="centerY" constant="-148" id="I44-xJ-zBg"/>
                             <constraint firstItem="6eF-U9-SCE" firstAttribute="centerX" secondItem="V9A-kI-Rsk" secondAttribute="centerX" constant="-0.5" id="Ma4-qc-QRJ"/>
+                            <constraint firstItem="pIJ-S9-7Zv" firstAttribute="top" secondItem="y5J-7B-HTA" secondAttribute="bottom" constant="15" id="V1A-vh-FIQ"/>
                             <constraint firstItem="Cc6-zP-cl0" firstAttribute="leading" secondItem="y5J-7B-HTA" secondAttribute="trailing" constant="16" id="ZMq-PK-6Sd"/>
+                            <constraint firstItem="1qh-Yg-tGw" firstAttribute="leading" secondItem="ksr-Re-z6e" secondAttribute="leading" id="dou-Kn-CNI"/>
                             <constraint firstItem="V9A-kI-Rsk" firstAttribute="centerX" secondItem="ksr-Re-z6e" secondAttribute="centerX" constant="1" id="l61-ke-ayr"/>
                             <constraint firstItem="y5J-7B-HTA" firstAttribute="top" secondItem="6eF-U9-SCE" secondAttribute="bottom" constant="8" id="lDv-jM-ZIq"/>
                             <constraint firstItem="y5J-7B-HTA" firstAttribute="centerX" secondItem="ksr-Re-z6e" secondAttribute="centerX" id="p0k-ig-ggi"/>
+                            <constraint firstItem="pIJ-S9-7Zv" firstAttribute="centerX" secondItem="6eF-U9-SCE" secondAttribute="centerX" id="riA-nQ-bs8"/>
+                            <constraint firstItem="pIJ-S9-7Zv" firstAttribute="centerY" secondItem="1qh-Yg-tGw" secondAttribute="centerY" id="ris-De-iIe"/>
+                            <constraint firstItem="1qh-Yg-tGw" firstAttribute="bottom" secondItem="i3I-1W-GzA" secondAttribute="top" id="vKI-0m-JC8"/>
                             <constraint firstItem="y5J-7B-HTA" firstAttribute="centerY" secondItem="ksr-Re-z6e" secondAttribute="centerY" id="yon-Gd-qnj"/>
                         </constraints>
                         <variation key="default">
@@ -100,6 +134,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="alarmCountDownLabel" destination="V9A-kI-Rsk" id="jmL-ld-cmP"/>
+                        <outlet property="hiddenBlackView" destination="1qh-Yg-tGw" id="B5K-yD-ivw"/>
+                        <outlet property="hideButton" destination="pIJ-S9-7Zv" id="8iG-TF-a4T"/>
                         <outlet property="menuButton" destination="2cn-vK-LZh" id="erg-fq-03Q"/>
                         <outlet property="numberPad" destination="y5J-7B-HTA" id="gbp-vD-Yn5"/>
                         <outlet property="previewView" destination="6eF-U9-SCE" id="lp0-X7-5Yy"/>

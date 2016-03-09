@@ -81,7 +81,7 @@
 	const double ALPHA = 0.1;
 	double peakPowerForChannel = pow(10, (0.05 * [self.recorder peakPowerForChannel:0]));
 	_lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * self.lowPassResults;
-    //NSLog(@"LOWPAS%f", _lowPassResults);
+    NSLog(@"LOWPAS%f", _lowPassResults);
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(audioLevelUpdated:level:)]) {
         [self.delegate audioLevelUpdated:self level:self.lowPassResults];

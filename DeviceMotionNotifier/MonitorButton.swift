@@ -11,7 +11,7 @@ import UIKit
 private let buttonPadding: CGFloat = 50
 
 @IBDesignable
-class DeviceMonitorButton: UIButton {
+class MonitorButton: UIButton {
     
     override func intrinsicContentSize() -> CGSize {
         let size = super.intrinsicContentSize()

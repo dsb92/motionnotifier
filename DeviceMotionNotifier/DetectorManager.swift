@@ -21,7 +21,7 @@ class DetectorManager: NSObject {
     var audioRecorder: ARAudioRecognizer!
     var timesAudioRecognized = 0
     var audioRecognizedThreshold = 10
-    
+
     init(detectorProtocol: DetectorProtol){
         self.detectorProtocol = detectorProtocol
         movementManager = CMMotionManager()
@@ -29,7 +29,8 @@ class DetectorManager: NSObject {
     }
     
     func startDetectingMotion(){
-        movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+        
+        movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
         
             if(NSError != nil) {
                 print("\(NSError)")
@@ -38,13 +39,16 @@ class DetectorManager: NSObject {
             if (self.accelerometerData == nil){
                 self.accelerometerData = accelerometerData
             }
-            
+   
             dispatch_async(dispatch_get_main_queue()){
+                print(accelerometerData?.acceleration.x)
+                print(accelerometerData?.acceleration.y)
+                print(accelerometerData?.acceleration.z)
                 self.detectorProtocol?.detectMotion(accelerometerData, gyroData: nil)
             }
         }
         
-        movementManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
+        movementManager.startGyroUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
             
             if (NSError != nil){
                 print("\(NSError)")

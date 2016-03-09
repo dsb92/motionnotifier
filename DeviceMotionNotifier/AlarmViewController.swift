@@ -17,6 +17,9 @@ class AlarmViewController: UIViewController {
     weak var menuButton: UIBarButtonItem!
     
     @IBOutlet
+    weak var hideButton: MonitorButton!
+    
+    @IBOutlet
     weak var alarmCountDownLabel: UILabel!
     
     @IBOutlet
@@ -27,6 +30,9 @@ class AlarmViewController: UIViewController {
     
     @IBOutlet
     weak var previewView: AVCamPreviewView!
+    
+    @IBOutlet
+    weak var hiddenBlackView: UIView!
     
     var detectorManager: DetectorManager!
     var alarmManager: AlarmManager!
@@ -52,6 +58,8 @@ class AlarmViewController: UIViewController {
     var theme: SettingsTheme!{
         didSet {
             self.view.backgroundColor = theme.backgroundColor
+            self.hideButton.borderColor = theme.primaryColor
+            self.hideButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
         }
     }
     
@@ -66,13 +74,13 @@ class AlarmViewController: UIViewController {
         setupManagers()
         setupDynamic()
         setDefaults()
+        setOtherStuff()
         
         theme = SettingsTheme.theme01
         self.numberPad.becomeFirstResponder()
         
         touchIDButton.hidden = true
         previewView.hidden = true
-        
     }
     
     private func setupNavigationBar() {
@@ -136,6 +144,18 @@ class AlarmViewController: UIViewController {
         userDefaults.synchronize()
     }
     
+    private func setOtherStuff() {
+        let singleFingerTap = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+        hiddenBlackView.addGestureRecognizer(singleFingerTap)
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer){
+        if isArmed {
+            hiddenBlackView.hidden = true
+            hideButton.hidden = false
+        }
+    }
+    
     override func prefersStatusBarHidden() -> Bool {
         return navigationController?.navigationBarHidden == true
     }
@@ -164,6 +184,7 @@ class AlarmViewController: UIViewController {
         UIView.animateWithDuration(0.5, animations: {
             self.navigationController?.navigationBarHidden = true
             self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
+            self.hiddenBlackView.hidden = false;
         })
         
         setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
@@ -271,6 +292,7 @@ class AlarmViewController: UIViewController {
             UIView.animateWithDuration(0.5, animations: {
                 self.navigationController?.navigationBarHidden = false
                 self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
+                self.hideButton.hidden = true
             })
         }
         else{
@@ -290,6 +312,7 @@ class AlarmViewController: UIViewController {
         else{
             
             if self.delayTimer == nil {
+                self.hiddenBlackView.hidden = true;
                 self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
             }
         }
@@ -308,9 +331,9 @@ class AlarmViewController: UIViewController {
     private func startAlarmProcedure(){
         // If any of the detecting features detects disturbance(noise or motions) it stars the alarm.
         if self.notificationTimer == nil {
+            self.hiddenBlackView.hidden = true;
             previewView.hidden = false
             numberPad.becomeFirstResponder()
-            
             self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
         }
     }
@@ -448,6 +471,14 @@ class AlarmViewController: UIViewController {
             self.presentViewController(alertView, animated: true, completion: nil)
             
             self.didUnarm(false)
+        }
+    }
+    
+    @IBAction
+    func hideButtonAction(sender: MonitorButton) {
+        sender.animateTouchUpInside { () -> Void in
+            self.hiddenBlackView.hidden = false
+            self.hideButton.hidden = true
         }
     }
 }

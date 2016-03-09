@@ -51,6 +51,8 @@ class DynamicFlyingBalls: UIView {
 
         self.addSubview(vc.numberPad)
         self.addSubview(vc.touchIDButton)
+        self.addSubview(vc.hiddenBlackView)
+        self.addSubview(vc.hideButton)
     }
     
     override func layoutSubviews() {
@@ -85,11 +87,11 @@ class DynamicFlyingBalls: UIView {
             }
             
             let behavior1 = UIDynamicItemBehavior(items: balls)
-            behavior1.elasticity = 1.0
+            behavior1.elasticity = 0.4
             behavior1.allowsRotation = true
             self.animator.addBehavior(behavior1)
             
-            let behavior2 = UIDynamicItemBehavior(items: [self.vc.numberPad])
+            let behavior2 = UIDynamicItemBehavior(items: [self.vc.numberPad, self.vc.hideButton])
             behavior2.anchored = true
             self.animator.addBehavior(behavior2)
             

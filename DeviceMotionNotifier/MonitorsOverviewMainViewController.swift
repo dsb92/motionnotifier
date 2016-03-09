@@ -14,7 +14,10 @@ class MonitorsOverviewMainViewController: UIViewController {
     weak var navigationBar: UINavigationBar!
    
     @IBOutlet
-    weak var startDeviceMonitorButton: DeviceMonitorButton!
+    weak var startDeviceMonitorButton: MonitorButton!
+    
+    @IBOutlet
+    weak var startBabyMonitorButton: UIButton!
     
     var theme: SettingsTheme!{
         didSet {
@@ -22,6 +25,8 @@ class MonitorsOverviewMainViewController: UIViewController {
             self.navigationBar.barTintColor = theme.backgroundColor
             self.startDeviceMonitorButton.borderColor = theme.primaryColor
             self.startDeviceMonitorButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
+            self.startBabyMonitorButton.borderColor = theme.primaryColor
+            self.startBabyMonitorButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
         }
     }
     
@@ -46,7 +51,7 @@ class MonitorsOverviewMainViewController: UIViewController {
     func backToMainViewController(segue: UIStoryboardSegue) { }
     
     @IBAction
-    func deviceMonitorButton(sender: DeviceMonitorButton) {
+    func deviceMonitorButton(sender: MonitorButton) {
         sender.animateTouchUpInside {
             let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
             let initialVC = alarmSB.instantiateInitialViewController()
@@ -54,6 +59,14 @@ class MonitorsOverviewMainViewController: UIViewController {
         }
     }
 
+    @IBAction
+    func babyMonitorButtonAction(sender: MonitorButton) {
+        sender.animateTouchUpInside { () -> Void in
+            let babySB = UIStoryboard(name: "Baby", bundle: nil)
+            let initialVC = babySB.instantiateInitialViewController()
+            self.presentViewController(initialVC!, animated: true, completion: nil)
+        }
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        let destination = segue.destinationViewController
 //        if let navigation = destination as? UINavigationController,
