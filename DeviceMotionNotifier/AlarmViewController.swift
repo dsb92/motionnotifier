@@ -213,7 +213,7 @@ class AlarmViewController: UIViewController {
         detectorManager.startDetectingMotion()
         
         // Start detecting noise
-        detectorManager.startDetectingNoise()
+        //detectorManager.startDetectingNoise()
         
         context = LAContext()
         
@@ -532,14 +532,14 @@ extension AlarmViewController : AlarmProtocol {
     
     func takePicture(){
 
-        //alarmManager.autoSnap.snapPhoto()
+        alarmManager.autoSnap.snapPhoto()
     }
     
     func recordVideo(){
         
-//        if (!alarmManager.autoSnap.isRecording()) {
-//            alarmManager.autoSnap.startRecording()
-//        }
+        if (!alarmManager.autoSnap.isRecording()) {
+            alarmManager.autoSnap.startRecording()
+        }
     }
 }
 
