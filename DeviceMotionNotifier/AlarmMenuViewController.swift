@@ -30,7 +30,13 @@ class AlarmMenuViewController: UITableViewController {
     
     @IBOutlet
     weak var delaySwitch: UISwitch!
+    
+    @IBOutlet
+    weak var soundSwitch: UISwitch!
 
+    @IBOutlet
+    weak var sensitivityTableCell: UITableViewCell!
+    
     var theme: SettingsTheme! {
         didSet {
             tableView.separatorColor = theme.separatorColor
@@ -66,15 +72,19 @@ class AlarmMenuViewController: UITableViewController {
         let savedPhotoSwitchValue = userDefaults.boolForKey("kPhotoSwitchValue")
         let savedVideoSwitchValue = userDefaults.boolForKey("kVideoSwitchValue")
         let savedDelaySwitchValue = userDefaults.boolForKey("kDelaySwitchValue")
+        let savedSoundSwitchValue = userDefaults.boolForKey("kSoundSwitchValue")
         
         slider.value = Float(savedTimerValue)
         sliderValueLabel.text = String(savedTimerValue)
         photoSwitch.setOn(savedPhotoSwitchValue, animated: false)
         videoSwitch.setOn(savedVideoSwitchValue, animated: false)
         delaySwitch.setOn(savedDelaySwitchValue, animated: false)
+        soundSwitch.setOn(savedSoundSwitchValue, animated: false)
         
         photoSwitch.enabled = videoSwitch.on ? false : true
         videoSwitch.enabled = photoSwitch.on ? false : true
+        
+        sensitivityTableCell.hidden = soundSwitch.on ? false : true
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -105,8 +115,22 @@ class AlarmMenuViewController: UITableViewController {
     }
     
     @IBAction
-    func delaySwitch(sender: UISwitch) {
+    func delaySwitchValueChanged(sender: UISwitch) {
         NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kDelaySwitchValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    @IBAction
+    func soundSwitchValueChanged(sender: UISwitch) {
+        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kSoundSwitchValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        sensitivityTableCell.hidden = !sender.on
+    }
+    
+    @IBAction
+    func sensitivityValueChanged(sender: UISegmentedControl) {
+        NSUserDefaults.standardUserDefaults().setObject(sender.selectedSegmentIndex, forKey: "kSensitivityIndex")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

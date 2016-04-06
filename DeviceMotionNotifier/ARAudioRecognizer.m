@@ -28,7 +28,22 @@
 {
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
 
-    return [self initWithSensitivity:AR_AUDIO_RECOGNIZER_SENSITIVITY_DEFAULT
+    NSInteger sensitivityIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"kSensitivityIndex"];
+    float sensitivity = AR_AUDIO_RECOGNIZER_FREQUENCY_DEFAULT;
+    
+    switch (sensitivityIndex){
+    case 0:
+            sensitivity = AR_AUDIO_RECOGNIZER_SENSITIVITY_LOW;
+        break;
+    case 1:
+            sensitivity = AR_AUDIO_RECOGNIZER_SENSITIVITY_MODERATE;
+        break;
+    case 2:
+            sensitivity = AR_AUDIO_RECOGNIZER_SENSITIVITY_HIGH;
+        break;
+    }
+    
+    return [self initWithSensitivity:sensitivity
                            frequency:AR_AUDIO_RECOGNIZER_FREQUENCY_DEFAULT];
 }
 
@@ -81,7 +96,7 @@
 	const double ALPHA = 0.1;
 	double peakPowerForChannel = pow(10, (0.05 * [self.recorder peakPowerForChannel:0]));
 	_lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * self.lowPassResults;
-    NSLog(@"LOWPAS%f", _lowPassResults);
+    NSLog(@"LOWPAS RESULT %f, SENSITIVITY %f", _lowPassResults, _sensitivity);
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(audioLevelUpdated:level:)]) {
         [self.delegate audioLevelUpdated:self level:self.lowPassResults];
@@ -91,7 +106,7 @@
         [self.delegate audioLevelUpdated:self averagePower:[self.recorder averagePowerForChannel:0] peakPower:[self.recorder peakPowerForChannel:0]];
     }
     
-	if (self.lowPassResults > 0.7 && self.delegate && [self.delegate respondsToSelector:@selector(audioRecognized:)]) {
+	if (self.lowPassResults > _sensitivity && self.delegate && [self.delegate respondsToSelector:@selector(audioRecognized:)]) {
         [self.delegate audioRecognized:self];
         _lowPassResults = 0.0f;
     }

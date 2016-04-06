@@ -151,6 +151,14 @@ class AlarmViewController: UIViewController {
             userDefaults.setObject(false, forKey: "kVideoSwitchValue")
         }
         
+        if userDefaults.objectForKey("kSoundSwitchValue") == nil {
+            userDefaults.setObject(false, forKey: "kSoundSwitchValue")
+        }
+        
+        if userDefaults.objectForKey("kSensitivityIndex") == nil {
+            userDefaults.setObject(1, forKey: "kSensitivityIndex")
+        }
+        
         userDefaults.synchronize()
     }
     
@@ -212,9 +220,12 @@ class AlarmViewController: UIViewController {
         // Start detecting motion
         detectorManager.startDetectingMotion()
         
-        // Start detecting noise
-        //detectorManager.startDetectingNoise()
-        
+        // Start detecting noise if enabled
+        let detectNoise = NSUserDefaults.standardUserDefaults().boolForKey("kSoundSwitchValue")
+        if detectNoise {
+            detectorManager.startDetectingNoise()
+        }
+
         context = LAContext()
         
         // Show TouchID button if supported
