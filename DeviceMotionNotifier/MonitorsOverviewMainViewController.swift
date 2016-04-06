@@ -16,17 +16,12 @@ class MonitorsOverviewMainViewController: UIViewController {
     @IBOutlet
     weak var startDeviceMonitorButton: MonitorButton!
     
-    @IBOutlet
-    weak var startBabyMonitorButton: UIButton!
-    
     var theme: SettingsTheme!{
         didSet {
             self.view.backgroundColor = theme.backgroundColor
             self.navigationBar.barTintColor = theme.backgroundColor
             self.startDeviceMonitorButton.borderColor = theme.primaryColor
             self.startDeviceMonitorButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
-            self.startBabyMonitorButton.borderColor = theme.primaryColor
-            self.startBabyMonitorButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
         }
     }
     
@@ -59,14 +54,6 @@ class MonitorsOverviewMainViewController: UIViewController {
         }
     }
 
-    @IBAction
-    func babyMonitorButtonAction(sender: MonitorButton) {
-        sender.animateTouchUpInside { () -> Void in
-            let babySB = UIStoryboard(name: "Baby", bundle: nil)
-            let initialVC = babySB.instantiateInitialViewController()
-            self.presentViewController(initialVC!, animated: true, completion: nil)
-        }
-    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        let destination = segue.destinationViewController
 //        if let navigation = destination as? UINavigationController,
