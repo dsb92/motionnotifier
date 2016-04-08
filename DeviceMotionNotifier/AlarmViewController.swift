@@ -148,7 +148,7 @@ class AlarmViewController: UIViewController {
         }
         
         if userDefaults.objectForKey("kDelaySwitchValue") == nil {
-            userDefaults.setObject(false, forKey: "kVideoSwitchValue")
+            userDefaults.setObject(false, forKey: "kDelaySwitchValue")
         }
         
         if userDefaults.objectForKey("kSoundSwitchValue") == nil {

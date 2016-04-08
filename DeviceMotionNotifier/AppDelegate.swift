@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         catch {
             print(error)
         }
+        
+        IAPManager.sharedInstance.startIAPCheck()
     
         return true
     }

@@ -10,6 +10,13 @@ import Foundation
 import AVFoundation
 import AudioToolbox
 
+protocol AlarmProtocol {
+    func notifyRecipient()
+    func alarmWithNoise()
+    func takePicture()
+    func recordVideo()
+}
+
 class AlarmManager: NSObject {
     var alarmProtocol: AlarmProtocol?
     var intruderSoundPlayer: AVAudioPlayer!
