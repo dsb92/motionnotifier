@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class MonitorsOverviewMainViewController: UIViewController {
 
@@ -15,6 +16,9 @@ class MonitorsOverviewMainViewController: UIViewController {
    
     @IBOutlet
     weak var startDeviceMonitorButton: MonitorButton!
+    
+    @IBOutlet
+    weak var bannerView: GADBannerView!
     
     var theme: SettingsTheme!{
         didSet {
@@ -28,6 +32,8 @@ class MonitorsOverviewMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        loadAds()
+        
         theme = SettingsTheme.theme01
     }
     
@@ -40,6 +46,19 @@ class MonitorsOverviewMainViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
             NSForegroundColorAttributeName: UIColor.blackColor()
         ]
+    }
+    
+    private func loadAds() {
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        
+        // Test
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        
+        // Live
+        //bannerView.adUnitID = "ca-app-pub-2595377837159656/1504782129"
+        
+        bannerView.rootViewController = self
+        bannerView.loadRequest(GADRequest())
     }
   
     @IBAction

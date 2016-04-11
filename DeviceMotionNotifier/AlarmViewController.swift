@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreMotion
 import LocalAuthentication
+import GoogleMobileAds
 
 class AlarmViewController: UIViewController {
     
@@ -55,6 +56,8 @@ class AlarmViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var dynamicBallsUIView: DynamicFlyingBalls!
     
+    var interstitial: GADInterstitial!
+    
     var theme: SettingsTheme!{
         didSet {
             self.view.backgroundColor = theme.backgroundColor
@@ -73,6 +76,7 @@ class AlarmViewController: UIViewController {
         setupSlidebarMenu()
         setupManagers()
         setupDynamic()
+        setupInterstitials()
         setDefaults()
         setOtherStuff()
         
@@ -130,6 +134,10 @@ class AlarmViewController: UIViewController {
         dynamicBallsUIView.associateVC(self)
         self.view.addSubview(dynamicBallsUIView)
 
+    }
+    
+    private func setupInterstitials() {
+        self.interstitial = createAndLoadInterstitial()
     }
     
     private func setDefaults(){
@@ -311,7 +319,7 @@ class AlarmViewController: UIViewController {
             detectorManager.stopDetectingNoise()
             alarmManager.stopMakingNoise()
             alarmManager.stopCaptureVideo()
-            print("Success")
+            
             previewView.hidden = true
             
             let appFrame = UIScreen.mainScreen().bounds
@@ -321,6 +329,10 @@ class AlarmViewController: UIViewController {
                 self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
                 self.hideButton.hidden = true
             })
+            
+            showInterstitials()
+            
+            print("Success")
         }
         else{
             print("Fail")
@@ -365,6 +377,19 @@ class AlarmViewController: UIViewController {
         }
     }
     
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        interstitial.delegate = self
+        interstitial.loadRequest(GADRequest())
+        return interstitial
+    }
+    
+    private func showInterstitials() {
+        if self.interstitial.isReady {
+            print("***INTERSTITIAL SHOWING***")
+            self.interstitial.presentFromRootViewController(self)
+        }
+    }
     
     @IBAction func numberPadChanged(sender: UITextField) {
         let codeFromPad = numberPad.text;
@@ -551,6 +576,12 @@ extension AlarmViewController : AlarmProtocol {
         if (!alarmManager.autoSnap.isRecording()) {
             alarmManager.autoSnap.startRecording()
         }
+    }
+}
+
+extension AlarmViewController : GADInterstitialDelegate {
+    func interstitialDidDismissScreen(ad: GADInterstitial!) {
+        self.interstitial = createAndLoadInterstitial()
     }
 }
 
