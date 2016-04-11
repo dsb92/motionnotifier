@@ -152,14 +152,29 @@ class AlarmMenuViewController: UITableViewController {
             alertView.addCancelAction({
                 
                 if productId == IAPManager.sharedInstance.products.VideoCapture {
-                    self.videoSwitch.setOn(false, animated: true)
+                    self.enableVideo(false)
                 }
                 else {
-                    self.soundSwitch.setOn(false, animated: true)
-                    self.sensitivityTableCell.hidden = true
+                    self.enableSound(false)
                 }
             })
         }
+    }
+    
+    private func enableVideo(enable: Bool) {
+        videoSwitch.setOn(enable, animated: true)
+        photoSwitch.enabled = !enable
+        
+        NSUserDefaults.standardUserDefaults().setObject(enable, forKey: "kVideoSwitchValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    private func enableSound(enable: Bool) {
+        soundSwitch.setOn(enable, animated: true)
+        sensitivityTableCell.hidden = !enable
+        
+        NSUserDefaults.standardUserDefaults().setObject(enable, forKey: "kSoundSwitchValue")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -189,11 +204,12 @@ class AlarmMenuViewController: UITableViewController {
         if !videoCaptureEnabled {
             showPurchaseAlertView(IAPManager.sharedInstance.products.VideoCapture)
         }
-        
-        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kVideoSwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        photoSwitch.enabled = sender.on ? false : true
+        else {
+            NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kVideoSwitchValue")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            photoSwitch.enabled = sender.on ? false : true
+        }
     }
     
     @IBAction
@@ -210,11 +226,12 @@ class AlarmMenuViewController: UITableViewController {
         if !soundRecognitionEnabled {
             showPurchaseAlertView(IAPManager.sharedInstance.products.SoundRegonition)
         }
-        
-        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kSoundSwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        sensitivityTableCell.hidden = !sender.on
+        else{
+            NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kSoundSwitchValue")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            sensitivityTableCell.hidden = !sender.on
+        }
     }
     
     @IBAction
@@ -226,17 +243,26 @@ class AlarmMenuViewController: UITableViewController {
 extension AlarmMenuViewController : PurchaseProtocol {
     func errorPurchase(productId: String, errorMsg: String) {
         if productId == IAPManager.sharedInstance.products.VideoCapture {
-            videoSwitch.setOn(false, animated: true)
+            enableVideo(false)
         }
         else if productId == IAPManager.sharedInstance.products.SoundRegonition {
-            soundSwitch.setOn(false, animated: true)
-            sensitivityTableCell.hidden = true
+            enableSound(false)
         }
         
         JSSAlertView().danger(self, title: "Error", text: errorMsg, buttonText:"OK")
     }
     
     func successPurchase(productId: String) {
+        var productMessage : String!
+        if productId == IAPManager.sharedInstance.products.VideoCapture {
+            enableVideo(true)
+            productMessage = "Video capture is now enabled!"
+        }
+        else if productId == IAPManager.sharedInstance.products.SoundRegonition {
+            enableSound(true)
+            productMessage = "Sound recognition is now enabled!"
+        }
         
+        JSSAlertView().success(self, title: "Success", text: productMessage, buttonText:"OK")
     }
 }

@@ -38,6 +38,7 @@ class MainRegisterViewController: UIViewController {
         
         setupNavigationBar()
         setupSlidebarMenu()
+        setDefaults()
         
         appDelegate.hubs.ParseConnectionString()
         appDelegate.hubs.registerClient = RegisterClient(endpoint: BACKEND_ENDPOINT)
@@ -66,6 +67,16 @@ class MainRegisterViewController: UIViewController {
             }
             
         }
+    }
+    
+    private func setDefaults(){
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if userDefaults.objectForKey("kRemoveAdsSwitchValue") == nil {
+            userDefaults.setObject(false, forKey: "kRemoveAdsSwitchValue")
+        }
+        
+        userDefaults.synchronize()
     }
     
     @IBAction

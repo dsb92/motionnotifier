@@ -10,10 +10,10 @@ import UIKit
 import GoogleMobileAds
 
 class MonitorsOverviewMainViewController: UIViewController {
-
+    
     @IBOutlet
     weak var navigationBar: UINavigationBar!
-   
+    
     @IBOutlet
     weak var startDeviceMonitorButton: MonitorButton!
     
@@ -32,9 +32,11 @@ class MonitorsOverviewMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        loadAds()
+        setupAds()
         
         theme = SettingsTheme.theme01
+        
+        NSNotificationCenter().addObserver(self, selector: #selector(setupAds), name: "onAdsEnabled", object: nil)
     }
     
     private func setupNavigationBar() {
@@ -48,7 +50,18 @@ class MonitorsOverviewMainViewController: UIViewController {
         ]
     }
     
-    private func loadAds() {
+    @objc private func setupAds() {
+        let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
+        
+        if !removeAds {
+            loadAdBanner()
+        }
+        else {
+            bannerView.hidden = true
+        }
+    }
+    
+    private func loadAdBanner() {
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
         
         // Test
@@ -57,10 +70,11 @@ class MonitorsOverviewMainViewController: UIViewController {
         // Live
         //bannerView.adUnitID = "ca-app-pub-2595377837159656/1504782129"
         
+        bannerView.hidden = false
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
     }
-  
+    
     @IBAction
     func backToMainViewController(segue: UIStoryboardSegue) { }
     
@@ -72,14 +86,14 @@ class MonitorsOverviewMainViewController: UIViewController {
             self.presentViewController(initialVC!, animated: true, completion: nil)
         }
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let destination = segue.destinationViewController
-//        if let navigation = destination as? UINavigationController,
-//            settings = navigation.topViewController as? MainSettingsViewController {
-//                
-//        }
+        //        let destination = segue.destinationViewController
+        //        if let navigation = destination as? UINavigationController,
+        //            settings = navigation.topViewController as? MainSettingsViewController {
+        //
+        //        }
     }
-
-
+    
+    
 }

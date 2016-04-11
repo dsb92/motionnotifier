@@ -137,7 +137,11 @@ class AlarmViewController: UIViewController {
     }
     
     private func setupInterstitials() {
-        self.interstitial = createAndLoadInterstitial()
+        let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
+        
+        if !removeAds {
+            self.interstitial = createAndLoadInterstitial()
+        }
     }
     
     private func setDefaults(){
@@ -385,7 +389,7 @@ class AlarmViewController: UIViewController {
     }
     
     private func showInterstitials() {
-        if self.interstitial.isReady {
+        if self.interstitial != nil && self.interstitial.isReady {
             print("***INTERSTITIAL SHOWING***")
             self.interstitial.presentFromRootViewController(self)
         }
@@ -581,7 +585,7 @@ extension AlarmViewController : AlarmProtocol {
 
 extension AlarmViewController : GADInterstitialDelegate {
     func interstitialDidDismissScreen(ad: GADInterstitial!) {
-        self.interstitial = createAndLoadInterstitial()
+        setupInterstitials()
     }
 }
 

@@ -427,8 +427,8 @@
                                                         <action selector="sensitivityValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="Ex7-ea-emb"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SENSITIVITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-RL-zAv">
-                                                    <rect key="frame" x="30" y="34" width="109" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENSITIVITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-RL-zAv">
+                                                    <rect key="frame" x="30" y="34" width="109" height="16"/>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -462,6 +462,9 @@
                         <outletCollection property="cellTitleLabels" destination="AKV-It-Gc6" collectionClass="NSMutableArray" id="EAj-Ap-Pf5"/>
                         <outletCollection property="cellTitleLabels" destination="dvD-1I-t1X" collectionClass="NSMutableArray" id="rCT-lJ-YRZ"/>
                         <outletCollection property="cellTitleLabels" destination="idg-Ym-vBo" collectionClass="NSMutableArray" id="mEI-Gz-rBm"/>
+                        <outletCollection property="cellTitleLabels" destination="1TR-32-Ctx" collectionClass="NSMutableArray" id="wE4-jy-QmE"/>
+                        <outletCollection property="cellTitleLabels" destination="ef0-mF-XPz" collectionClass="NSMutableArray" id="FoL-PU-Tb7"/>
+                        <outletCollection property="cellTitleLabels" destination="UQT-RL-zAv" collectionClass="NSMutableArray" id="1ZS-Jf-wMj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O58-Pg-BES" userLabel="First Responder" sceneMemberID="firstResponder"/>
