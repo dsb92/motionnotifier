@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 private let tableViewOffset: CGFloat = UIScreen.mainScreen().bounds.height < 600 ? 215 : 225
 private let beforeAppearOffset: CGFloat = 400
@@ -40,6 +41,10 @@ class MainRegisterSettingsViewController: UITableViewController {
     @IBOutlet
     weak var nameOfDeviceToMonitorTextField: UITextField!
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    var isAdvertising: Bool!
+    
     var theme: SettingsTheme! {
         didSet {
             //backgroundImageView.image = theme.topImage
@@ -60,7 +65,7 @@ class MainRegisterSettingsViewController: UITableViewController {
             self.tableView.contentOffset = CGPoint(x: 0, y: -tableViewOffset)
         })
         
-        self.nameOfDeviceTextField.becomeFirstResponder()
+        self.nameOfDeviceToMonitorTextField.becomeFirstResponder()
     }
     
     override func viewDidLoad() {
@@ -77,6 +82,7 @@ class MainRegisterSettingsViewController: UITableViewController {
         }
         
         setSettings()
+        setupDeviceNames()
     }
     
     private func setDefaults() {
@@ -88,6 +94,19 @@ class MainRegisterSettingsViewController: UITableViewController {
         let savedSilentValue = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
         
         silentSwitch.setOn(savedSilentValue, animated: false)
+    }
+    
+    private func setupDeviceNames() {
+        self.nameOfDeviceTextField.text = UIDevice.currentDevice().name
+        
+        appDelegate.mpcManager.delegate = self
+        
+        appDelegate.mpcManager.browser.startBrowsingForPeers()
+        
+        appDelegate.mpcManager.advertiser.startAdvertisingPeer()
+        
+        isAdvertising = true
+
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -117,4 +136,71 @@ extension MainRegisterSettingsViewController : UITextFieldDelegate {
         
         return true
     }
+}
+
+extension MainRegisterSettingsViewController : MPCManagerDelegate {
+    // MARK: MPCManagerDelegate method implementation
+    
+    func foundPeer() {
+        
+        let peers = appDelegate.mpcManager.foundPeers
+        var buttonTexts = [String]()
+ 
+        for peer in peers {
+            if !buttonTexts.contains(peer.displayName) {
+                buttonTexts.append(peer.displayName)
+            }
+        }
+        
+        buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
+        
+        let alertView = JSSAlertView().show(self, title: "Nearby device(s)", text: "Device(s)", buttonTexts: buttonTexts, color: UIColor.blackColor().colorWithAlphaComponent(0.7))
+        
+        alertView.setTitleFont("ClearSans-Bold")
+        alertView.setTextFont("ClearSans")
+        alertView.setButtonFont("ClearSans-Light")
+        alertView.setTextTheme(.Golden)
+        
+        alertView.addAction({
+            let peerIndex = alertView.getButtonId()-1
+            self.nameOfDeviceToMonitorTextField.text = peers[peerIndex].displayName
+        })
+        
+        alertView.addCancelAction({
+            
+            
+        })
+    }
+    
+    
+    func lostPeer() {
+        
+    }
+//
+//    func invitationWasReceived(fromPeer: String) {
+//        let alert = UIAlertController(title: "", message: "\(fromPeer) wants to chat with you.", preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+//            self.appDelegate.mpcManager.invitationHandler(true, self.appDelegate.mpcManager.session)
+//        }
+//        
+//        let declineAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
+//            self.appDelegate.mpcManager.invitationHandler(false, self.appDelegate.mpcManager.session)
+//        }
+//        
+//        alert.addAction(acceptAction)
+//        alert.addAction(declineAction)
+//        
+//        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        }
+//    }
+//    
+//    
+//    func connectedWithPeer(peerID: MCPeerID) {
+//        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+//            self.performSegueWithIdentifier("idSegueChat", sender: self)
+//        }
+//    }
+
 }

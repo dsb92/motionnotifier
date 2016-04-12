@@ -382,7 +382,13 @@ class AlarmViewController: UIViewController {
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
+        
+        // Test
         let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        
+        // Live
+        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-2595377837159656/4903743727")
+        
         interstitial.delegate = self
         interstitial.loadRequest(GADRequest())
         return interstitial

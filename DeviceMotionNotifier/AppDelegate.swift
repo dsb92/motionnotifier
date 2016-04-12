@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var hubs : Hubs!
+    var mpcManager: MPCManager!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -34,7 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         IAPManager.sharedInstance.startIAPCheck()
-    
+        
+        mpcManager = MPCManager()
+        
         return true
     }
     
