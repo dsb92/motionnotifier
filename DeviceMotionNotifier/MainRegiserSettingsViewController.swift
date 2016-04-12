@@ -36,10 +36,10 @@ class MainRegisterSettingsViewController: UITableViewController {
     private var cellTextFields: [UITextField]!
     
     @IBOutlet
-    weak var nameOfDeviceTextField: UITextField!
+    weak var nameOfDeviceToMonitorTextField: UITextField!
     
     @IBOutlet
-    weak var nameOfDeviceToMonitorTextField: UITextField!
+    weak var nameOfDeviceToNotifyTextField: UITextField!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -65,14 +65,14 @@ class MainRegisterSettingsViewController: UITableViewController {
             self.tableView.contentOffset = CGPoint(x: 0, y: -tableViewOffset)
         })
         
-        self.nameOfDeviceToMonitorTextField.becomeFirstResponder()
+        self.nameOfDeviceToNotifyTextField.becomeFirstResponder()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameOfDeviceTextField.delegate = self
         nameOfDeviceToMonitorTextField.delegate = self
+        nameOfDeviceToNotifyTextField.delegate = self
         
         theme = SettingsTheme.theme01
         tableView.backgroundView = backgroundHolder
@@ -97,7 +97,7 @@ class MainRegisterSettingsViewController: UITableViewController {
     }
     
     private func setupDeviceNames() {
-        self.nameOfDeviceTextField.text = UIDevice.currentDevice().name
+        self.nameOfDeviceToMonitorTextField.text = UIDevice.currentDevice().name
         
         appDelegate.mpcManager.delegate = self
         
@@ -127,11 +127,11 @@ class MainRegisterSettingsViewController: UITableViewController {
 
 extension MainRegisterSettingsViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == nameOfDeviceTextField {
-            nameOfDeviceToMonitorTextField.becomeFirstResponder()
-        }
         if textField == nameOfDeviceToMonitorTextField {
-            nameOfDeviceToMonitorTextField.resignFirstResponder()
+            nameOfDeviceToNotifyTextField.becomeFirstResponder()
+        }
+        if textField == nameOfDeviceToNotifyTextField {
+            nameOfDeviceToNotifyTextField.resignFirstResponder()
         }
         
         return true
@@ -163,7 +163,7 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
         
         alertView.addAction({
             let peerIndex = alertView.getButtonId()-1
-            self.nameOfDeviceToMonitorTextField.text = peers[peerIndex].displayName
+            self.nameOfDeviceToNotifyTextField.text = peers[peerIndex].displayName
         })
         
         alertView.addCancelAction({

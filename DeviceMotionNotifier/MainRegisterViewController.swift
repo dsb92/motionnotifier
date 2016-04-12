@@ -87,17 +87,31 @@ class MainRegisterViewController: UIViewController {
         
         // Register device here
         
-        let deviceName = settingsViewController.nameOfDeviceTextField.text
-        let deviceToMonitor = settingsViewController.nameOfDeviceToMonitorTextField.text;
-        // OBS
-        let pass = deviceName
+        var deviceToMonitor = settingsViewController.nameOfDeviceToMonitorTextField.text
+        var deviceToNotify = settingsViewController.nameOfDeviceToNotifyTextField.text;
+        
+        if (deviceToMonitor!.isEmpty) {
+            JSSAlertView().warning(self, title: "Please enter device name to monitor", buttonText: "OK")
+            settingsViewController.nameOfDeviceToMonitorTextField.becomeFirstResponder()
+            return
+        }
+        else if (deviceToNotify!.isEmpty) {
+            JSSAlertView().warning(self, title: "Please enter device name to notify", buttonText: "OK")
+            settingsViewController.nameOfDeviceToNotifyTextField.becomeFirstResponder()
+            return
+        }
         
         registerButton.setTitle("", forState: UIControlState.Normal)
         spinner.startAnimating()
 
-        //self.performSegueWithIdentifier("presentMain", sender: self)
-
-        appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceName, andPassword: pass)
+        // trim the names
+        deviceToMonitor = deviceToMonitor?.stringByReplacingOccurrencesOfString(" ", withString: "")
+        deviceToNotify = deviceToNotify?.stringByReplacingOccurrencesOfString(" ", withString: "")
+        
+        // OBS
+        let pass = deviceToMonitor
+        
+        appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceToMonitor, andPassword: pass)
         appDelegate.hubs.registerClient.registerWithDeviceToken(appDelegate.hubs.deviceToken, tags: nil) { (error) -> Void in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -107,8 +121,8 @@ class MainRegisterViewController: UIViewController {
                 if (error == nil) {
                     
                     self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
-                    self.appDelegate.hubs.userName = deviceName
-                    self.appDelegate.hubs.recipientName = deviceToMonitor
+                    self.appDelegate.hubs.userName = deviceToMonitor
+                    self.appDelegate.hubs.recipientName = deviceToNotify
                     self.appDelegate.hubs.notificationMessage = "Intruder alert!";
                     
                     self.performSegueWithIdentifier("presentMain", sender: self)

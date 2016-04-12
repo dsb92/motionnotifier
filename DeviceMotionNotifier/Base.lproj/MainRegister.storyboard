@@ -304,12 +304,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NAME OF DEVICE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDy-mG-Kfc">
-                                                    <rect key="frame" x="30" y="8" width="156" height="19"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-U6-te0">
                                                     <rect key="frame" x="30" y="40" width="190" height="40"/>
                                                     <constraints>
@@ -319,6 +313,12 @@
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME OF DEVICE TO MONITOR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDy-mG-Kfc">
+                                                    <rect key="frame" x="30" y="8" width="275" height="18"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="SDy-mG-Kfc" firstAttribute="top" secondItem="uxh-I0-OAc" secondAttribute="topMargin" id="22w-hj-XXl"/>
@@ -338,14 +338,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NAME OF DEVICE TO MONITOR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWW-tg-oMj">
-                                                    <rect key="frame" x="30" y="8" width="275" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME OF DEVICE TO NOTIFY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWW-tg-oMj">
+                                                    <rect key="frame" x="30" y="8" width="257" height="21"/>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tg4-us-jm3">
-                                                    <rect key="frame" x="30" y="42" width="190" height="40"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tg4-us-jm3">
+                                                    <rect key="frame" x="30" y="41" width="172" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="ziB-6Y-Glw"/>
                                                     </constraints>
@@ -378,8 +378,8 @@
                         <outlet property="backgroundHolder" destination="tgu-zl-vS7" id="NFK-yF-RRc"/>
                         <outlet property="backgroundImageView" destination="Fju-8A-u5W" id="g9F-G3-K7l"/>
                         <outlet property="backgroundWidthConstraint" destination="oHV-SF-WN6" id="Fpi-3q-7Gb"/>
-                        <outlet property="nameOfDeviceTextField" destination="gSP-U6-te0" id="1Qa-Ym-DUc"/>
-                        <outlet property="nameOfDeviceToMonitorTextField" destination="Tg4-us-jm3" id="On7-Q4-RrK"/>
+                        <outlet property="nameOfDeviceToMonitorTextField" destination="gSP-U6-te0" id="zFX-Ee-OtK"/>
+                        <outlet property="nameOfDeviceToNotifyTextField" destination="Tg4-us-jm3" id="KNC-4D-CSt"/>
                         <outlet property="silentSwitch" destination="jOI-y1-XmN" id="bLG-ta-oNy"/>
                         <outletCollection property="cellTitleLabels" destination="GF0-V5-qHW" collectionClass="NSMutableArray" id="qqD-JJ-kgj"/>
                         <outletCollection property="cellTitleLabels" destination="SDy-mG-Kfc" collectionClass="NSMutableArray" id="p6J-ow-wiV"/>
