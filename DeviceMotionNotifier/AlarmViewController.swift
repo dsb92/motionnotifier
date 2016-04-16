@@ -123,6 +123,7 @@ class AlarmViewController: UIViewController {
     private func setupManagers() {
         detectorManager = DetectorManager(detectorProtocol: self)
         alarmManager = AlarmManager(alarmProtocol: self)
+        alarmManager.prepareToPlaySounds()
         
         alarmManager.autoSnap = AVAutoSnap(vc: self)
         alarmManager.autoSnap.initializeOnViewDidLoad()
@@ -250,11 +251,7 @@ class AlarmViewController: UIViewController {
                 notificationTimer.invalidate()
             }
             
-            let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
-            
-            if !silent {
-                alarmManager.startMakingNoise()
-            }
+            alarmManager.startMakingNoise()
             
             let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
             
@@ -569,7 +566,7 @@ extension AlarmViewController : AlarmProtocol {
             if(self.delayDown > 0)
             {
                 self.delayDown--
-                print(self.delayDown)
+                print("Alarming in \(self.delayDown)")
             }
                 // Time out, user did not disarm the alarm in time
             else if (self.delayDown == 0){

@@ -45,7 +45,6 @@ class MainRegisterViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        print(navigationController)
         navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.translucent = true

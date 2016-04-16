@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="GothaProReg.otf">
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APPChildViewController">
+            <connections>
+                <outlet property="beginButton" destination="Mh1-Rf-usJ" id="Et9-ct-xaj"/>
+                <outlet property="imageView" destination="sLS-NM-TAa" id="v18-uA-bTP"/>
+                <outlet property="mainLine" destination="tCf-Gt-uqh" id="pKa-Dw-fp6"/>
+                <outlet property="subLine" destination="XhV-0x-LMT" id="XeN-XD-9qX"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="634" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCf-Gt-uqh">
+                    <rect key="frame" x="8" y="48" width="618" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="Jvy-P3-015"/>
+                        <constraint firstAttribute="width" constant="618" id="gaV-he-ee4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="23"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here telling about the app, what it does and why it does it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-0x-LMT">
+                    <rect key="frame" x="28" y="406" width="579" height="15"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple_products.png" translatesAutoresizingMaskIntoConstraints="NO" id="sLS-NM-TAa">
+                    <rect key="frame" x="152" y="124" width="330" height="247"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-Rf-usJ" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
+                    <rect key="frame" x="210" y="500" width="214" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="214" id="S7J-F3-bnQ"/>
+                        <constraint firstAttribute="height" constant="60" id="zY1-zd-y9X"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
+                    <state key="normal" title="Let's begin">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="27"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.99955612419999995" green="0.0" blue="0.034535944460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="beginButton:" destination="-1" eventType="touchUpInside" id="jiv-nd-xl4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="tCf-Gt-uqh" firstAttribute="top" secondItem="1" secondAttribute="top" constant="48" id="0n1-Rl-Vmx"/>
+                <constraint firstItem="sLS-NM-TAa" firstAttribute="leading" secondItem="tCf-Gt-uqh" secondAttribute="leading" constant="144" id="6I2-8l-M9O"/>
+                <constraint firstItem="sLS-NM-TAa" firstAttribute="trailing" secondItem="tCf-Gt-uqh" secondAttribute="trailing" constant="-144" id="9pe-RA-E9K"/>
+                <constraint firstItem="Mh1-Rf-usJ" firstAttribute="centerX" secondItem="XhV-0x-LMT" secondAttribute="centerX" id="D6I-hg-Rem"/>
+                <constraint firstAttribute="trailing" secondItem="XhV-0x-LMT" secondAttribute="trailing" constant="27" id="NhS-ff-2Bf"/>
+                <constraint firstItem="XhV-0x-LMT" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="28" id="SIk-HZ-zAp"/>
+                <constraint firstItem="XhV-0x-LMT" firstAttribute="top" secondItem="sLS-NM-TAa" secondAttribute="bottom" constant="35" id="STa-hb-dD2"/>
+                <constraint firstItem="XhV-0x-LMT" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="gCD-X2-FuI"/>
+                <constraint firstItem="tCf-Gt-uqh" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="h3y-Tm-HXg"/>
+                <constraint firstItem="Mh1-Rf-usJ" firstAttribute="bottom" secondItem="1" secondAttribute="bottomMargin" id="kmf-dQ-HPd"/>
+                <constraint firstItem="XhV-0x-LMT" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" constant="129.5" id="p25-bw-U4D"/>
+                <constraint firstItem="sLS-NM-TAa" firstAttribute="top" secondItem="tCf-Gt-uqh" secondAttribute="bottom" constant="21" id="tFs-zE-l0P"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="707" y="394"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="apple_products.png" width="1203" height="1353"/>
+    </resources>
+</document>

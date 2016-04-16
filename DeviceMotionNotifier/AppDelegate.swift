@@ -13,6 +13,7 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var viewController: APPViewController!
     
     var hubs : Hubs!
     var mpcManager: MPCManager!
@@ -38,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         mpcManager = MPCManager()
         
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.viewController = APPViewController(nibName: "APPViewController", bundle: nil);
+        self.window?.rootViewController = self.viewController
+        self.window?.makeKeyAndVisible()
         return true
     }
     

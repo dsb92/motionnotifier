@@ -40,7 +40,6 @@ class MonitorsOverviewMainViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        print(navigationController)
         self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.translucent = true

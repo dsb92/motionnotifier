@@ -59,8 +59,6 @@ class DynamicFlyingBalls: UIView {
         super.layoutSubviews()
         
         if framesSet == false {
-            print("Layout")
-            
             animator = UIDynamicAnimator(referenceView: self)
             
             let field1 = UIFieldBehavior.vortexField()

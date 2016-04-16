@@ -37,31 +37,18 @@ class AlarmManager: NSObject {
     
     func startMakingNoise(){
         
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)){
-            
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            
-            if (self.intruderSoundPlayer == nil){
-                let intruderSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("intruder_alarm", ofType: "wav")!)
-                
-                do {
-                    self.intruderSoundPlayer = try AVAudioPlayer(contentsOfURL: intruderSound)
-                    self.intruderSoundPlayer.volume = 1.0
-                    self.intruderSoundPlayer.prepareToPlay()
-                }
-                catch{
-                    print(error)
-                }
-            }
-            else{
-                
+        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        
+        if !silent {
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)){
+  
                 if self.intruderSoundPlayer.playing == false {
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.intruderSoundPlayer.play()
                 }
             }
         }
-        
         
         alarmProtocol?.alarmWithNoise()
     }
@@ -73,26 +60,15 @@ class AlarmManager: NSObject {
     }
     
     func startBeep() {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)){
-            
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            
-            if (self.beepSoundPlayer == nil){
-                let beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
-                
-                do {
-                    self.beepSoundPlayer = try AVAudioPlayer(contentsOfURL: beepSound)
-                    self.beepSoundPlayer.volume = 1.0
-                    self.beepSoundPlayer.prepareToPlay()
-                }
-                catch{
-                    print(error)
-                }
-            }
-            else{
+        
+        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        
+        if !silent {
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)){
                 
                 if self.beepSoundPlayer.playing == false {
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.beepSoundPlayer.play()
                 }
             }
@@ -102,26 +78,15 @@ class AlarmManager: NSObject {
     }
     
     func startTone() {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)){
-            
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            
-            if (self.toneSoundPlayer == nil){
-                let toneSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tone", ofType: "wav")!)
-                
-                do {
-                    self.toneSoundPlayer = try AVAudioPlayer(contentsOfURL: toneSound)
-                    self.toneSoundPlayer.volume = 1.0
-                    self.toneSoundPlayer.prepareToPlay()
-                }
-                catch{
-                    print(error)
-                }
-            }
-            else{
+        
+        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        
+        if !silent {
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)){
                 
                 if self.toneSoundPlayer.playing == false {
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.toneSoundPlayer.play()
                 }
             }
@@ -141,5 +106,46 @@ class AlarmManager: NSObject {
     
     func stopCaptureVideo() {
         autoSnap.stopRecording()
+    }
+    
+    func prepareToPlaySounds() {
+        if (self.intruderSoundPlayer == nil){
+            let intruderSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("intruder_alarm", ofType: "wav")!)
+            
+            do {
+                self.intruderSoundPlayer = try AVAudioPlayer(contentsOfURL: intruderSound)
+                self.intruderSoundPlayer.volume = 1.0
+                self.intruderSoundPlayer.prepareToPlay()
+            }
+            catch{
+                print(error)
+            }
+        }
+        
+        if (self.beepSoundPlayer == nil){
+            let beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
+            
+            do {
+                self.beepSoundPlayer = try AVAudioPlayer(contentsOfURL: beepSound)
+                self.beepSoundPlayer.volume = 1.0
+                self.beepSoundPlayer.prepareToPlay()
+            }
+            catch{
+                print(error)
+            }
+        }
+
+        if (self.toneSoundPlayer == nil){
+            let toneSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tone", ofType: "wav")!)
+            
+            do {
+                self.toneSoundPlayer = try AVAudioPlayer(contentsOfURL: toneSound)
+                self.toneSoundPlayer.volume = 1.0
+                self.toneSoundPlayer.prepareToPlay()
+            }
+            catch{
+                print(error)
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTheme {
+@objc class SettingsTheme : NSObject{
     
     static var theme01: SettingsTheme {
         return SettingsTheme()
@@ -23,13 +23,13 @@ class SettingsTheme {
     let primaryColor: UIColor
     let secondaryColor: UIColor
 
-    init() {
-        backgroundColor = UIColor(string: "#f8f8f8")
-        separatorColor = UIColor(string: "#ededed")
+    override init() {
+        backgroundColor = UIColor(string: "#f8f8f8") // lighter lightgrey
+        separatorColor = UIColor(string: "#ededed") // lightgrey
         //topImage = UIImage(named: "PicNameHere")!
-        cellTitleColor = UIColor(string: "#8e8e8e")
-        cellTextFieldColor = UIColor(string: "#55606f")
-        primaryColor = UIColor(string: "#0288d1")
+        cellTitleColor = UIColor(string: "#8e8e8e") // darkgrey
+        cellTextFieldColor = UIColor(string: "#55606f") // darker darkgrey
+        primaryColor = UIColor(string: "#0288d1") // blue
         secondaryColor = UIColor.blackColor()
     }
     
