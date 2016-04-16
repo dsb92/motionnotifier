@@ -39,10 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         mpcManager = MPCManager()
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.viewController = APPViewController(nibName: "APPViewController", bundle: nil);
-        self.window?.rootViewController = self.viewController
-        self.window?.makeKeyAndVisible()
+        let hasLaunchedBefore = NSUserDefaults.standardUserDefaults().boolForKey("kFirstTimeLaunch")
+        
+        if !hasLaunchedBefore {
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.viewController = APPViewController(nibName: "APPViewController", bundle: nil);
+            self.window?.rootViewController = self.viewController
+            self.window?.makeKeyAndVisible()
+            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kFirstTimeLaunch")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
         return true
     }
     

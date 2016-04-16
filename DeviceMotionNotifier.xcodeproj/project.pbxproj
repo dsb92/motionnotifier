@@ -13,7 +13,6 @@
 		46419A551CC26BC600F043EA /* APPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46419A501CC26BC600F043EA /* APPViewController.xib */; };
 		46419A561CC26BC600F043EA /* APPChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46419A521CC26BC600F043EA /* APPChildViewController.m */; };
 		46419A571CC26BC600F043EA /* APPChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46419A531CC26BC600F043EA /* APPChildViewController.xib */; };
-		46419A591CC2846600F043EA /* apple_products.png in Resources */ = {isa = PBXBuildFile; fileRef = 46419A581CC2846600F043EA /* apple_products.png */; };
 		46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
 		46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F31C839458009C5CD1 /* DetectorManager.swift */; };
@@ -35,6 +34,11 @@
 		46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */; };
 		46B685291C8C8FFE009C5CD1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */; };
 		46B6852B1C8C9E67009C5CD1 /* AlarmMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */; };
+		46D0A3651CC2A2160028DE2D /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D0A3641CC2A2160028DE2D /* Page.m */; };
+		46D0A3761CC2BED70028DE2D /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D0A36E1CC2BE3F0028DE2D /* page1.png */; };
+		46D0A3771CC2BEDC0028DE2D /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D0A36F1CC2BE3F0028DE2D /* page2.png */; };
+		46D0A3781CC2BEE30028DE2D /* page3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46D0A3701CC2BE3F0028DE2D /* page3.jpg */; };
+		46D0A37F1CC2C2DB0028DE2D /* page4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46D0A37E1CC2C2DB0028DE2D /* page4.jpg */; };
 		46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EC1CB57EEF0097197E /* IAPManager.swift */; };
 		46D9E3F01CB6C06F0097197E /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */; };
 		46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */; };
@@ -81,7 +85,6 @@
 		46419A511CC26BC600F043EA /* APPChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPChildViewController.h; sourceTree = "<group>"; };
 		46419A521CC26BC600F043EA /* APPChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPChildViewController.m; sourceTree = "<group>"; };
 		46419A531CC26BC600F043EA /* APPChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPChildViewController.xib; sourceTree = "<group>"; };
-		46419A581CC2846600F043EA /* apple_products.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple_products.png; sourceTree = "<group>"; };
 		46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorProtocol.swift; sourceTree = "<group>"; };
 		46B684F11C83944A009C5CD1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		46B684F31C839458009C5CD1 /* DetectorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorManager.swift; sourceTree = "<group>"; };
@@ -106,6 +109,12 @@
 		46B685271C8C8FFE009C5CD1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmMenuViewController.swift; sourceTree = "<group>"; };
+		46D0A3631CC2A2160028DE2D /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
+		46D0A3641CC2A2160028DE2D /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		46D0A36E1CC2BE3F0028DE2D /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
+		46D0A36F1CC2BE3F0028DE2D /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
+		46D0A3701CC2BE3F0028DE2D /* page3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page3.jpg; sourceTree = "<group>"; };
+		46D0A37E1CC2C2DB0028DE2D /* page4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page4.jpg; sourceTree = "<group>"; };
 		46D9E3EC1CB57EEF0097197E /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterMenuViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +187,8 @@
 				46419A511CC26BC600F043EA /* APPChildViewController.h */,
 				46419A521CC26BC600F043EA /* APPChildViewController.m */,
 				46419A531CC26BC600F043EA /* APPChildViewController.xib */,
+				46D0A3631CC2A2160028DE2D /* Page.h */,
+				46D0A3641CC2A2160028DE2D /* Page.m */,
 			);
 			name = Welcome;
 			sourceTree = "<group>";
@@ -227,8 +238,11 @@
 		46B684F51C84BA84009C5CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				46419A581CC2846600F043EA /* apple_products.png */,
 				46B685081C8B2F12009C5CD1 /* GothaProReg.otf */,
+				46D0A36E1CC2BE3F0028DE2D /* page1.png */,
+				46D0A36F1CC2BE3F0028DE2D /* page2.png */,
+				46D0A3701CC2BE3F0028DE2D /* page3.jpg */,
+				46D0A37E1CC2C2DB0028DE2D /* page4.jpg */,
 				46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */,
 				46419A0F1CC2558E00F043EA /* beep.wav */,
 				46419A111CC25CBC00F043EA /* tone.wav */,
@@ -533,7 +547,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46419A591CC2846600F043EA /* apple_products.png in Resources */,
+				46D0A37F1CC2C2DB0028DE2D /* page4.jpg in Resources */,
+				46D0A3781CC2BEE30028DE2D /* page3.jpg in Resources */,
+				46D0A3771CC2BEDC0028DE2D /* page2.png in Resources */,
+				46D0A3761CC2BED70028DE2D /* page1.png in Resources */,
 				46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */,
 				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
 				46419A551CC26BC600F043EA /* APPViewController.xib in Resources */,
@@ -616,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D0A3651CC2A2160028DE2D /* Page.m in Sources */,
 				46D9E3F01CB6C06F0097197E /* JSSAlertView.swift in Sources */,
 				46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */,
 				46D9E3F81CBD726A0097197E /* MPCManager.swift in Sources */,

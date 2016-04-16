@@ -10,6 +10,8 @@
 #import "APPChildViewController.h"
 #import "DeviceMotionNotifier-Swift.h"
 
+NSUInteger maxPages = 4;
+
 @interface APPViewController ()
 
 @end
@@ -54,6 +56,7 @@
         
     APPChildViewController *childViewController = [[APPChildViewController alloc] initWithNibName:@"APPChildViewController" bundle:nil];
     childViewController.index = index;
+    childViewController.maxPages = maxPages;
     
     return childViewController;
     
@@ -80,7 +83,7 @@
     
     index++;
     
-    if (index == 5) {
+    if (index == maxPages) {
         return nil;
     }
     
@@ -90,7 +93,7 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     // The number of items reflected in the page indicator.
-    return 5;
+    return maxPages;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {

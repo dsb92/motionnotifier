@@ -11,6 +11,7 @@
 @interface APPChildViewController : UIViewController
 
 @property (assign, nonatomic) NSInteger index;
-@property (strong, nonatomic) IBOutlet UILabel *screenNumber;
+@property (assign, nonatomic) NSInteger maxPages;
+@property (strong, nonatomic) NSArray *pages;
 
 @end
