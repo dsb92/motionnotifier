@@ -345,13 +345,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "482177029.07943"
+            timestampString = "482500017.073341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "564"
-            endingLineNumber = "564"
-            landmarkName = "detectMotion(_:gyroData:)"
-            landmarkType = "5">
+            startingLineNumber = "543"
+            endingLineNumber = "543"
+            landmarkName = "AlarmViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -424,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "482177029.07943"
+            timestampString = "482500017.073341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "471"
-            endingLineNumber = "471"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "TouchIDButtonAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -520,11 +520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "482099984.878216"
+            timestampString = "482498421.646988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "startAlarm()"
             landmarkType = "5">
          </BreakpointContent>
@@ -536,11 +536,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "482099984.878216"
+            timestampString = "482498421.646988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "startAlarm()"
             landmarkType = "5">
          </BreakpointContent>
@@ -552,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "482099984.878216"
+            timestampString = "482498421.646988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "startAlarm()"
             landmarkType = "5">
          </BreakpointContent>

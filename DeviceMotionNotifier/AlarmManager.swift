@@ -12,6 +12,8 @@ import AudioToolbox
 
 protocol AlarmProtocol {
     func notifyRecipient()
+    func beep()
+    func tone()
     func alarmWithNoise()
     func takePicture()
     func recordVideo()
@@ -20,7 +22,9 @@ protocol AlarmProtocol {
 class AlarmManager: NSObject {
     var alarmProtocol: AlarmProtocol?
     var intruderSoundPlayer: AVAudioPlayer!
-
+    var beepSoundPlayer: AVAudioPlayer!
+    var toneSoundPlayer: AVAudioPlayer!
+    
     var autoSnap: AVAutoSnap!
 
     init(alarmProtocol: AlarmProtocol){
@@ -68,13 +72,71 @@ class AlarmManager: NSObject {
         }
     }
     
+    func startBeep() {
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)){
+            
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            if (self.beepSoundPlayer == nil){
+                let beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
+                
+                do {
+                    self.beepSoundPlayer = try AVAudioPlayer(contentsOfURL: beepSound)
+                    self.beepSoundPlayer.volume = 1.0
+                    self.beepSoundPlayer.prepareToPlay()
+                }
+                catch{
+                    print(error)
+                }
+            }
+            else{
+                
+                if self.beepSoundPlayer.playing == false {
+                    self.beepSoundPlayer.play()
+                }
+            }
+        }
+        
+        alarmProtocol?.beep()
+    }
+    
+    func startTone() {
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)){
+            
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            if (self.toneSoundPlayer == nil){
+                let toneSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tone", ofType: "wav")!)
+                
+                do {
+                    self.toneSoundPlayer = try AVAudioPlayer(contentsOfURL: toneSound)
+                    self.toneSoundPlayer.volume = 1.0
+                    self.toneSoundPlayer.prepareToPlay()
+                }
+                catch{
+                    print(error)
+                }
+            }
+            else{
+                
+                if self.toneSoundPlayer.playing == false {
+                    self.toneSoundPlayer.play()
+                }
+            }
+        }
+        
+        alarmProtocol?.tone()
+    }
+    
     func startFrontCamera() {
         
-        alarmProtocol?.takePicture()
+        //alarmProtocol?.takePicture()
     }
     
     func startCaptureVideo() {
-        alarmProtocol?.recordVideo()
+        //alarmProtocol?.recordVideo()
     }
     
     func stopCaptureVideo() {

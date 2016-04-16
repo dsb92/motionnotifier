@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46419A101CC2558E00F043EA /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46419A0F1CC2558E00F043EA /* beep.wav */; };
+		46419A121CC25CBC00F043EA /* tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46419A111CC25CBC00F043EA /* tone.wav */; };
 		46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
 		46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F31C839458009C5CD1 /* DetectorManager.swift */; };
@@ -66,6 +68,8 @@
 /* Begin PBXFileReference section */
 		1E215A39599922A0C783135D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3E3D137C92CCB485B3136429 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		46419A0F1CC2558E00F043EA /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		46419A111CC25CBC00F043EA /* tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tone.wav; sourceTree = "<group>"; };
 		46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorProtocol.swift; sourceTree = "<group>"; };
 		46B684F11C83944A009C5CD1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		46B684F31C839458009C5CD1 /* DetectorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorManager.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 			children = (
 				46B685081C8B2F12009C5CD1 /* GothaProReg.otf */,
 				46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */,
+				46419A0F1CC2558E00F043EA /* beep.wav */,
+				46419A111CC25CBC00F043EA /* tone.wav */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -502,8 +508,10 @@
 			files = (
 				46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */,
 				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
+				46419A121CC25CBC00F043EA /* tone.wav in Resources */,
 				46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
+				46419A101CC2558E00F043EA /* beep.wav in Resources */,
 				46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */,
 				46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */,
 			);

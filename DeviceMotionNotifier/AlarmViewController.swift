@@ -95,7 +95,6 @@ class AlarmViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        print(navigationController)
         navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.translucent = true
@@ -196,15 +195,7 @@ class AlarmViewController: UIViewController {
     
     func updateCountDown() {
         
-        if(countDown > 0)
-        {
-            alarmCountDownLabel.text = String(countDown--)
-        }
-        // Time out, start arming
-        else if (countDown == 0){
-        
-            armed()
-        }
+        alarmManager.startBeep()
     }
     
     func armed() {
@@ -280,20 +271,7 @@ class AlarmViewController: UIViewController {
     }
     
     func updateDelay() {
-        if(delayDown > 0)
-        {
-            delayDown--
-            print(delayDown)
-        }
-            // Time out, user did not disarm the alarm in time
-        else if (delayDown == 0){
-            
-            // Stop delay timer
-            delayTimer.invalidate()
-            delayTimer = nil
-            
-            startAlarmProcedure()
-        }
+        alarmManager.startTone()
     }
     
     func didUnarm(didArm: Bool){
@@ -571,6 +549,38 @@ extension AlarmViewController : DetectorProtol {
 extension AlarmViewController : AlarmProtocol {
     func notifyRecipient(){
         self.appDelegate.hubs.SendToEnabledPlatforms()
+    }
+    
+    func beep() {
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            if(self.countDown > 0)
+            {
+                self.alarmCountDownLabel.text = String(self.countDown--)
+            }
+                // Time out, start arming
+            else if (self.countDown == 0){
+                self.armed()
+            }
+        })
+    }
+    
+    func tone() {
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            if(self.delayDown > 0)
+            {
+                self.delayDown--
+                print(self.delayDown)
+            }
+                // Time out, user did not disarm the alarm in time
+            else if (self.delayDown == 0){
+                
+                // Stop delay timer
+                self.delayTimer.invalidate()
+                self.delayTimer = nil
+                
+                self.startAlarmProcedure()
+            }
+        })
     }
     
     func alarmWithNoise(){
