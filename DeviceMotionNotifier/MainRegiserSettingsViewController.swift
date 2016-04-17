@@ -9,7 +9,7 @@
 import UIKit
 import MultipeerConnectivity
 
-private let tableViewOffset: CGFloat = UIScreen.mainScreen().bounds.height < 600 ? 215 : 225
+private var tableViewOffset: CGFloat = UIScreen.mainScreen().bounds.height < 600 ? 215 : 225
 private let beforeAppearOffset: CGFloat = 400
 
 class MainRegisterSettingsViewController: UITableViewController {
@@ -22,6 +22,8 @@ class MainRegisterSettingsViewController: UITableViewController {
     
     @IBOutlet
     private weak var backgroundHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var backgroundHolderTop: NSLayoutConstraint!
     
     @IBOutlet
     private weak var backgroundWidthConstraint: NSLayoutConstraint!
@@ -47,7 +49,7 @@ class MainRegisterSettingsViewController: UITableViewController {
     
     var theme: SettingsTheme! {
         didSet {
-            //backgroundImageView.image = theme.topImage
+            backgroundImageView.image = theme.topImage
             tableView.separatorColor = theme.separatorColor
             backgroundHolder.backgroundColor = theme.backgroundColor
             for label in cellTitleLabels { label.textColor = theme.cellTitleColor }
@@ -58,6 +60,11 @@ class MainRegisterSettingsViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            tableViewOffset += 150
+            backgroundHolderTop.constant = 60
+        }
         tableView.contentInset = UIEdgeInsets(top: tableViewOffset, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -beforeAppearOffset)
         

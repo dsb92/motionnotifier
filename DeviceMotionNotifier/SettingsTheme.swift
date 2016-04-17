@@ -16,7 +16,7 @@ import UIKit
     
     let backgroundColor: UIColor
     let separatorColor: UIColor
-    //let topImage: UIImage
+    let topImage: UIImage
     
     let cellTitleColor: UIColor
     let cellTextFieldColor: UIColor
@@ -26,7 +26,7 @@ import UIKit
     override init() {
         backgroundColor = UIColor(string: "#f8f8f8") // lighter lightgrey
         separatorColor = UIColor(string: "#ededed") // lightgrey
-        //topImage = UIImage(named: "PicNameHere")!
+        topImage = UIImage(named: "devices")!
         cellTitleColor = UIColor(string: "#8e8e8e") // darkgrey
         cellTextFieldColor = UIColor(string: "#55606f") // darker darkgrey
         primaryColor = UIColor(string: "#0288d1") // blue
