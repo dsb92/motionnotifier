@@ -56,9 +56,9 @@ class JSSAlertView: UIViewController {
     enum FontType {
         case Title, Text, Button
     }
-    var titleFont = "HelveticaNeue-Light"
-    var textFont = "HelveticaNeue"
-    var buttonFont = "HelveticaNeue-Bold"
+    var titleFont = "GothaProReg"
+    var textFont = "GothaProReg"
+    var buttonFont = "GothaProReg"
     
     var defaultColor = UIColorFromHex(0xF2F4F4, alpha: 1)
     
@@ -291,7 +291,7 @@ class JSSAlertView: UIViewController {
             self.alertBackgroundView.frame = CGRect(x: 0, y: 0, width: self.alertWidth, height: yPos)
             
             // size the container that holds everything together
-            self.containerView.frame = CGRect(x: (self.viewWidth!-30-self.alertWidth)/2, y: (self.viewHeight! - yPos)/2, width: self.alertWidth, height: yPos)
+            self.containerView.frame = CGRect(x: (self.viewWidth!-self.alertWidth)/2, y: (self.viewHeight! - yPos)/2, width: self.alertWidth, height: yPos)
         }
     }
     
@@ -348,7 +348,7 @@ class JSSAlertView: UIViewController {
         self.rootViewController.addChildViewController(self)
         self.rootViewController.view.addSubview(view)
         
-        self.view.backgroundColor = UIColorFromHex(0x000000, alpha: 0.7)
+        self.view.backgroundColor = UIColorFromHex(0xffffff, alpha: 0.7)
         
         var baseColor:UIColor?
         if let customColor = color {
@@ -416,7 +416,7 @@ class JSSAlertView: UIViewController {
                 
                 // Button
                 let dismissButton = UIButton()
-                let buttonColor = UIImage.withColor(adjustBrightness(UIColor.redColor(), amount: 0.8))
+                let buttonColor = UIImage.withColor(adjustBrightness(SettingsTheme.theme01.primaryColor, amount: 0.8))
                 let buttonHighlightColor = UIImage.withColor(adjustBrightness(UIColor.redColor().colorWithAlphaComponent(0.7), amount: 0.9)) // BaseColor!
                 dismissButton.setBackgroundImage(buttonColor, forState: .Normal)
                 dismissButton.setBackgroundImage(buttonHighlightColor, forState: .Highlighted)

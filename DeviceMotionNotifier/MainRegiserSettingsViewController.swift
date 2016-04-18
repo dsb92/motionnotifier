@@ -161,7 +161,7 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
         
         buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
         
-        let alertView = JSSAlertView().show(self, title: "Nearby device(s)", text: "Device(s)", buttonTexts: buttonTexts, color: UIColor.blackColor().colorWithAlphaComponent(0.7))
+        let alertView = JSSAlertView().show(self, title: "Nearby device(s)", text: "Device(s)", buttonTexts: buttonTexts, color: SettingsTheme.theme01.secondaryColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "bluetooth"))
         
         alertView.setTitleFont("ClearSans-Bold")
         alertView.setTextFont("ClearSans")
