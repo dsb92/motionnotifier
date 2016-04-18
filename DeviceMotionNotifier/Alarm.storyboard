@@ -136,8 +136,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Alarm" id="PeE-lD-u0K">
-                        <barButtonItem key="leftBarButtonItem" image="Menu_icn" id="2cn-vK-LZh"/>
+                        <barButtonItem key="leftBarButtonItem" image="Menu_icn" id="2cn-vK-LZh">
+                            <color key="tintColor" red="0.0078431372550000003" green="0.53333333329999999" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Close_icn" id="8sK-vf-0y8">
+                            <color key="tintColor" red="0.0078431372550000003" green="0.53333333329999999" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="cKq-Wi-iVB" kind="unwind" unwindAction="backToMainViewController:" id="7cE-pO-RcK"/>
                             </connections>

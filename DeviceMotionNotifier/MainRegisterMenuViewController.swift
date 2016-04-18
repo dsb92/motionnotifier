@@ -16,10 +16,28 @@ class MainRegisterMenuViewController: UITableViewController {
     @IBOutlet
     weak var removeAdsSwitch: UISwitch!
     
+    @IBOutlet
+    weak var restorePurchasesButton: MonitorButton!
+    
+    @IBOutlet
+    weak var contactButton: MonitorButton!
+    
+    @IBOutlet
+    weak var aboutButton: MonitorButton!
+    
+    @IBOutlet
+    weak var logoImage: UIImageView!
+    
     var theme: SettingsTheme! {
         didSet {
             tableView.separatorColor = theme.separatorColor
-            
+            tableView.backgroundColor = theme.backgroundColor
+            restorePurchasesButton.borderColor = theme.primaryColor
+            restorePurchasesButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
+            aboutButton.borderColor = theme.primaryColor
+            aboutButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
+            contactButton.borderColor = theme.primaryColor
+            contactButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
             for label in cellTitleLabels { label.textColor = theme.cellTitleColor }
             
             tableView.reloadData()
@@ -31,7 +49,13 @@ class MainRegisterMenuViewController: UITableViewController {
         
         theme = SettingsTheme.theme01
         
+        setLayout()
         setSettings()
+    }
+    
+    private func setLayout() {
+        self.logoImage.clipsToBounds = true
+        self.logoImage.layer.cornerRadius = self.logoImage.frame.size.width/2
     }
     
     private func setSettings() {
@@ -128,6 +152,29 @@ class MainRegisterMenuViewController: UITableViewController {
             NSUserDefaults.standardUserDefaults().synchronize()
             
             NSNotificationCenter().postNotificationName("onAdsEnabled", object: nil)
+        }
+    }
+    
+    @IBAction
+    func restorePurchasesButtonAction(sender: MonitorButton) {
+        sender.animateTouchUpInside { 
+            IAPManager.sharedInstance.restorePurchases()
+        }
+    }
+    
+    @IBAction
+    func contactButtonAction(sender: MonitorButton) {
+        sender.animateTouchUpInside { 
+            
+        }
+    }
+    
+    @IBAction
+    func aboutButtonAction(sender: MonitorButton) {
+        sender.animateTouchUpInside {
+            // Show welcome screen
+            let welcomeVC = APPViewController(nibName: "APPViewController", bundle: nil);
+            self.presentViewController(welcomeVC, animated: true, completion: nil)
         }
     }
 }

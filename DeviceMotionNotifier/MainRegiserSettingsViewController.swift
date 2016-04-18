@@ -62,7 +62,7 @@ class MainRegisterSettingsViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            tableViewOffset += 150
+            tableViewOffset = UIScreen.mainScreen().bounds.height < 600 ? (215+150) : (225+150)
             backgroundHolderTop.constant = 60
         }
         tableView.contentInset = UIEdgeInsets(top: tableViewOffset, left: 0, bottom: 0, right: 0)
@@ -71,8 +71,6 @@ class MainRegisterSettingsViewController: UITableViewController {
         UIView.animateWithDuration(0.5, animations: {
             self.tableView.contentOffset = CGPoint(x: 0, y: -tableViewOffset)
         })
-        
-        self.nameOfDeviceToNotifyTextField.becomeFirstResponder()
     }
     
     override func viewDidLoad() {
@@ -87,6 +85,8 @@ class MainRegisterSettingsViewController: UITableViewController {
         if NSUserDefaults.standardUserDefaults().objectForKey("kSilentValue") == nil {
             setDefaults()
         }
+        
+        self.nameOfDeviceToNotifyTextField.becomeFirstResponder()
         
         setSettings()
         setupDeviceNames()
