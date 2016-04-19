@@ -43,6 +43,12 @@ class MainRegisterSettingsViewController: UITableViewController {
     @IBOutlet
     weak var nameOfDeviceToNotifyTextField: UITextField!
     
+    @IBOutlet
+    weak var continueWithout: UIButton!
+    
+    @IBOutlet
+    weak var findingDeviceSpinner: UIActivityIndicatorView!
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var isAdvertising: Bool!
@@ -71,6 +77,8 @@ class MainRegisterSettingsViewController: UITableViewController {
         UIView.animateWithDuration(0.5, animations: {
             self.tableView.contentOffset = CGPoint(x: 0, y: -tableViewOffset)
         })
+        
+        setSettings()
     }
     
     override func viewDidLoad() {
@@ -87,8 +95,7 @@ class MainRegisterSettingsViewController: UITableViewController {
         }
         
         self.nameOfDeviceToNotifyTextField.becomeFirstResponder()
-        
-        setSettings()
+
         setupDeviceNames()
     }
     
@@ -101,10 +108,24 @@ class MainRegisterSettingsViewController: UITableViewController {
         let savedSilentValue = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
         
         silentSwitch.setOn(savedSilentValue, animated: false)
+        
+        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+        
+        continueWithout.enabled = !deviceRegistered
     }
     
     private func setupDeviceNames() {
+        
         self.nameOfDeviceToMonitorTextField.text = UIDevice.currentDevice().name
+        
+        let deviceToNotify = NSUserDefaults.standardUserDefaults().stringForKey("kdeviceToNotiy")
+        
+        if (deviceToNotify != nil){
+            self.nameOfDeviceToNotifyTextField.text = deviceToNotify
+        }
+        else{
+            findingDeviceSpinner.startAnimating()
+        }
         
         appDelegate.mpcManager.delegate = self
         
@@ -129,6 +150,10 @@ class MainRegisterSettingsViewController: UITableViewController {
     private func silentValueChanged(sender: UISwitch) {
         NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kSilentValue")
         NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    @IBAction func continueWithoutAction(sender: UIButton) {
+        self.performSegueWithIdentifier("presentMain", sender: self)
     }
 }
 
@@ -169,8 +194,12 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
         alertView.setTextTheme(.Golden)
         
         alertView.addAction({
-            let peerIndex = alertView.getButtonId()-1
-            self.nameOfDeviceToNotifyTextField.text = peers[peerIndex].displayName
+            self.findingDeviceSpinner.stopAnimating()
+            let peerIndex = alertView.getButtonId()
+            let deviceNameFound = peers[peerIndex-1].displayName
+            self.nameOfDeviceToNotifyTextField.text = deviceNameFound
+            
+            NSUserDefaults.standardUserDefaults().setObject(deviceNameFound, forKey: "kdeviceToNotiy")
         })
         
         alertView.addCancelAction({

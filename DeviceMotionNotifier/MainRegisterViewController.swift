@@ -29,7 +29,9 @@ class MainRegisterViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.registerButton.setTitle("REGISTER", forState: UIControlState.Normal)
+        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+        let registerButtonTitle = deviceRegistered ? "CONTINUE" : "REGISTER"
+        self.registerButton.setTitle(registerButtonTitle, forState: UIControlState.Normal)
     }
     
     override func viewDidLoad() {
@@ -89,13 +91,8 @@ class MainRegisterViewController: UIViewController {
         var deviceToMonitor = settingsViewController.nameOfDeviceToMonitorTextField.text
         var deviceToNotify = settingsViewController.nameOfDeviceToNotifyTextField.text;
         
-        if (deviceToMonitor!.isEmpty) {
-            JSSAlertView().warning(self, title: "Please enter device name to monitor", buttonText: "OK")
-            settingsViewController.nameOfDeviceToMonitorTextField.becomeFirstResponder()
-            return
-        }
-        else if (deviceToNotify!.isEmpty) {
-            JSSAlertView().warning(self, title: "Please enter device name to notify", buttonText: "OK")
+        if (deviceToNotify!.isEmpty) {
+            JSSAlertView().warning(self, title: "Please turn on bluetooth on both devices", buttonText: "OK")
             settingsViewController.nameOfDeviceToNotifyTextField.becomeFirstResponder()
             return
         }
@@ -107,7 +104,7 @@ class MainRegisterViewController: UIViewController {
         deviceToMonitor = deviceToMonitor?.stringByReplacingOccurrencesOfString(" ", withString: "")
         deviceToNotify = deviceToNotify?.stringByReplacingOccurrencesOfString(" ", withString: "")
         
-        // OBS
+        // OBS Password same as name of device
         let pass = deviceToMonitor
         
         appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceToMonitor, andPassword: pass)
@@ -119,10 +116,16 @@ class MainRegisterViewController: UIViewController {
 
                 if (error == nil) {
                     
-                    self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
-                    self.appDelegate.hubs.userName = deviceToMonitor
-                    self.appDelegate.hubs.recipientName = deviceToNotify
-                    self.appDelegate.hubs.notificationMessage = "Intruder alert!";
+                    let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+                    
+                    if !deviceRegistered {
+                        self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
+                        self.appDelegate.hubs.userName = deviceToMonitor
+                        self.appDelegate.hubs.recipientName = deviceToNotify
+                        self.appDelegate.hubs.notificationMessage = "Intruder alert!";
+                        
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
+                    }
                     
                     self.performSegueWithIdentifier("presentMain", sender: self)
                 }

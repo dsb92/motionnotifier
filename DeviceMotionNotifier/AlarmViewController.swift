@@ -545,6 +545,11 @@ extension AlarmViewController : DetectorProtol {
 
 extension AlarmViewController : AlarmProtocol {
     func notifyRecipient(){
+        
+        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+        
+        if !deviceRegistered { return }
+        
         self.appDelegate.hubs.SendToEnabledPlatforms()
     }
     

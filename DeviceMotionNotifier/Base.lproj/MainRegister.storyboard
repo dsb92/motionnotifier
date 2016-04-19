@@ -19,6 +19,9 @@
             <string>GothamPro</string>
             <string>GothamPro</string>
             <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+            <string>GothamPro</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -246,25 +249,25 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="272" id="Sad-pc-nWQ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="272"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sad-pc-nWQ" id="QLd-bj-kp2">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Sad-pc-nWQ" id="QLd-bj-kp2">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="271.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo_light" translatesAutoresizingMaskIntoConstraints="NO" id="l9I-lC-BQi">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Photo_light" translatesAutoresizingMaskIntoConstraints="NO" id="l9I-lC-BQi">
                                                     <rect key="frame" x="200" y="25" width="200" height="200"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="FoG-9h-cRv"/>
                                                         <constraint firstAttribute="width" constant="200" id="nz0-Tx-Jhn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McD-W2-3W1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Version 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McD-W2-3W1">
                                                     <rect key="frame" x="207" y="233" width="187" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="187" id="FQa-dg-k6r"/>
                                                         <constraint firstAttribute="height" constant="13" id="p63-Fm-HRP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwI-BV-BsO">
@@ -498,7 +501,7 @@
                         <color key="separatorColor" red="0.1215686275" green="0.1137254902" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="PlE-6U-hS1">
-                            <rect key="frame" x="0.0" y="184" width="600" height="0.0"/>
+                            <rect key="frame" x="0.0" y="253" width="600" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -549,13 +552,13 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jMY-3v-J3P">
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jMY-3v-J3P">
                                                     <rect key="frame" x="30" y="38" width="194" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="FEZ-pb-OSC"/>
                                                         <constraint firstAttribute="width" constant="194" id="I2u-Mw-Glv"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -582,22 +585,52 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-MH-YWK">
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-MH-YWK">
                                                     <rect key="frame" x="30" y="37" width="181" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="181" id="giz-m9-IGE"/>
                                                         <constraint firstAttribute="height" constant="23" id="xXR-VS-rjM"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="snK-VP-xeu">
+                                                    <rect key="frame" x="290" y="39" width="20" height="20"/>
+                                                    <color key="color" red="0.0078431372550000003" green="0.53333333329999999" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="snK-VP-xeu" firstAttribute="centerY" secondItem="YP4-iu-z0p" secondAttribute="centerY" constant="14.75" id="55m-1c-BA3"/>
                                                 <constraint firstItem="qpB-LQ-0dY" firstAttribute="top" secondItem="YP4-iu-z0p" secondAttribute="topMargin" constant="12" id="8lZ-dT-l7h"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="qpB-LQ-0dY" secondAttribute="trailing" id="HyC-jl-91i"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="oZx-MH-YWK" secondAttribute="leading" id="JD9-V3-ZIW"/>
+                                                <constraint firstItem="snK-VP-xeu" firstAttribute="top" secondItem="qpB-LQ-0dY" secondAttribute="bottom" constant="8" id="SCZ-Cw-zPU"/>
                                                 <constraint firstItem="qpB-LQ-0dY" firstAttribute="leading" secondItem="YP4-iu-z0p" secondAttribute="leadingMargin" id="c2b-Ei-c4M"/>
                                                 <constraint firstItem="oZx-MH-YWK" firstAttribute="top" secondItem="qpB-LQ-0dY" secondAttribute="bottom" constant="6" id="rnu-NL-4MS"/>
+                                                <constraint firstItem="snK-VP-xeu" firstAttribute="centerX" secondItem="YP4-iu-z0p" secondAttribute="centerX" id="t06-hP-FJC"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="gtj-Eh-7e9">
+                                        <rect key="frame" x="0.0" y="184" width="600" height="69"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gtj-Eh-7e9" id="OpO-3x-KvZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="68.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuK-IU-IxN">
+                                                    <rect key="frame" x="206" y="23" width="190" height="24"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="13"/>
+                                                    <state key="normal" title="Continue without registration"/>
+                                                    <connections>
+                                                        <action selector="continueWithoutAction:" destination="Kt4-iN-2ZV" eventType="touchUpInside" id="pim-se-7kB"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LuK-IU-IxN" firstAttribute="centerX" secondItem="OpO-3x-KvZ" secondAttribute="centerX" constant="1" id="A5p-UX-uvx"/>
+                                                <constraint firstItem="LuK-IU-IxN" firstAttribute="centerY" secondItem="OpO-3x-KvZ" secondAttribute="centerY" id="JeP-WL-yoc"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
                                         </tableViewCellContentView>
@@ -616,6 +649,8 @@
                         <outlet property="backgroundHolderTop" destination="Jdp-9w-1nI" id="sJS-GL-Gjb"/>
                         <outlet property="backgroundImageView" destination="xDy-yk-tBN" id="dpr-i8-Uae"/>
                         <outlet property="backgroundWidthConstraint" destination="Ac7-Hc-pfh" id="V4P-a4-Dw7"/>
+                        <outlet property="continueWithout" destination="LuK-IU-IxN" id="vYg-sl-fEd"/>
+                        <outlet property="findingDeviceSpinner" destination="snK-VP-xeu" id="VE3-6Q-5Sg"/>
                         <outlet property="nameOfDeviceToMonitorTextField" destination="jMY-3v-J3P" id="lRh-f6-YiD"/>
                         <outlet property="nameOfDeviceToNotifyTextField" destination="oZx-MH-YWK" id="uZ1-iG-lwd"/>
                         <outlet property="silentSwitch" destination="db8-rg-2CX" id="mRM-db-6p2"/>
@@ -624,6 +659,7 @@
                         <outletCollection property="cellTitleLabels" destination="qpB-LQ-0dY" collectionClass="NSMutableArray" id="DYG-6F-a0F"/>
                         <outletCollection property="cellTextFields" destination="jMY-3v-J3P" collectionClass="NSMutableArray" id="dC1-aF-zzo"/>
                         <outletCollection property="cellTextFields" destination="oZx-MH-YWK" collectionClass="NSMutableArray" id="BAK-iL-tNM"/>
+                        <segue destination="GLq-Tn-rEJ" kind="presentation" identifier="presentMain" id="YIO-Le-ey9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tqb-mw-YqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -667,4 +703,7 @@
         <image name="Photo_light" width="375" height="497"/>
         <image name="devices" width="667" height="365"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="YIO-Le-ey9"/>
+    </inferredMetricsTieBreakers>
 </document>
