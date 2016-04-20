@@ -153,7 +153,9 @@ class MainRegisterSettingsViewController: UITableViewController {
     }
     
     @IBAction func continueWithoutAction(sender: UIButton) {
-        self.performSegueWithIdentifier("presentMain", sender: self)
+        let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
+        let initialVC = alarmSB.instantiateInitialViewController()
+        self.presentViewController(initialVC!, animated: true, completion: nil)
     }
 }
 

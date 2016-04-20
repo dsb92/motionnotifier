@@ -35,6 +35,9 @@ class AlarmViewController: UIViewController {
     @IBOutlet
     weak var hiddenBlackView: UIView!
     
+    @IBOutlet
+    weak var bannerView: GADBannerView!
+    
     var detectorManager: DetectorManager!
     var alarmManager: AlarmManager!
     
@@ -76,6 +79,7 @@ class AlarmViewController: UIViewController {
         setupSlidebarMenu()
         setupManagers()
         setupDynamic()
+        setupAds()
         setupInterstitials()
         setDefaults()
         setOtherStuff()
@@ -85,6 +89,8 @@ class AlarmViewController: UIViewController {
         
         touchIDButton.hidden = true
         previewView.hidden = true
+        
+        NSNotificationCenter().addObserver(self, selector: #selector(setupAds), name: "onAdsEnabled", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -92,6 +98,31 @@ class AlarmViewController: UIViewController {
         if alarmTimer != nil && alarmTimer.valid {
             alarmTimer.invalidate()
         }
+    }
+    
+    @objc private func setupAds() {
+        let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
+        
+        if !removeAds {
+            loadAdBanner()
+        }
+        else {
+            bannerView.hidden = true
+        }
+    }
+    
+    private func loadAdBanner() {
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        
+        // Test
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        
+        // Live
+        //bannerView.adUnitID = "ca-app-pub-2595377837159656/1504782129"
+        
+        bannerView.hidden = false
+        bannerView.rootViewController = self
+        bannerView.loadRequest(GADRequest())
     }
     
     private func setupNavigationBar() {

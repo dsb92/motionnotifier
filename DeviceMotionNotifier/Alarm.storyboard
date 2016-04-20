@@ -97,10 +97,23 @@
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qh-Yg-tGw">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MxS-qU-bL4" customClass="GADBannerView">
+                                        <rect key="frame" x="140" y="550" width="320" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="RRe-T0-2gJ"/>
+                                            <constraint firstAttribute="height" constant="50" id="paw-Sn-CZP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="MxS-qU-bL4" secondAttribute="bottom" id="iWs-EN-X5m"/>
+                                    <constraint firstItem="MxS-qU-bL4" firstAttribute="centerX" secondItem="1qh-Yg-tGw" secondAttribute="centerX" id="m6M-70-VTc"/>
+                                </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cc6-zP-cl0" firstAttribute="top" secondItem="y5J-7B-HTA" secondAttribute="top" id="4dZ-QY-tyN"/>
                             <constraint firstItem="6eF-U9-SCE" firstAttribute="top" secondItem="CSV-B8-6yK" secondAttribute="bottom" constant="3" id="7hI-GQ-9sW"/>
@@ -142,12 +155,13 @@
                         <barButtonItem key="rightBarButtonItem" image="Close_icn" id="8sK-vf-0y8">
                             <color key="tintColor" red="0.0078431372550000003" green="0.53333333329999999" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="cKq-Wi-iVB" kind="unwind" unwindAction="backToMainViewController:" id="7cE-pO-RcK"/>
+                                <segue destination="cKq-Wi-iVB" kind="unwind" unwindAction="backToMainRegisterViewController:" id="imI-Dw-EVk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="alarmCountDownLabel" destination="V9A-kI-Rsk" id="jmL-ld-cmP"/>
+                        <outlet property="bannerView" destination="MxS-qU-bL4" id="wsx-Pv-Muu"/>
                         <outlet property="hiddenBlackView" destination="1qh-Yg-tGw" id="B5K-yD-ivw"/>
                         <outlet property="hideButton" destination="pIJ-S9-7Zv" id="8iG-TF-a4T"/>
                         <outlet property="menuButton" destination="2cn-vK-LZh" id="erg-fq-03Q"/>

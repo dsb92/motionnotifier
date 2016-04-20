@@ -127,7 +127,9 @@ class MainRegisterViewController: UIViewController {
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
                     }
                     
-                    self.performSegueWithIdentifier("presentMain", sender: self)
+                    let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
+                    let initialVC = alarmSB.instantiateInitialViewController()
+                    self.presentViewController(initialVC!, animated: true, completion: nil)
                 }
                 else{
                     self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
