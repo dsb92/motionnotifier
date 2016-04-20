@@ -15,9 +15,6 @@
             <string>GothamPro</string>
             <string>GothamPro</string>
             <string>GothamPro</string>
-            <string>GothamPro</string>
-            <string>GothamPro</string>
-            <string>GothamPro</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -226,23 +223,30 @@
                         <color key="separatorColor" red="0.1215686275" green="0.1137254902" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="77b-eG-NhG">
-                            <rect key="frame" x="0.0" y="415" width="600" height="0.0"/>
+                            <rect key="frame" x="0.0" y="295" width="600" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <sections>
                             <tableViewSection id="yXm-jo-4LZ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="gaP-sR-XKk">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="gaP-sR-XKk">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gaP-sR-XKk" id="Fdi-Te-kgc">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-kP-grd">
+                                                    <rect key="frame" x="480" y="10" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="photoSwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="bKd-Dm-okR"/>
+                                                    </connections>
+                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE PHOTO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-It-Gc6">
-                                                    <rect key="frame" x="30" y="39" width="115" height="16"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <rect key="frame" x="30" y="20" width="81" height="11"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -252,20 +256,13 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-kP-grd">
-                                                    <rect key="frame" x="480" y="30" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="photoSwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="bKd-Dm-okR"/>
-                                                    </connections>
-                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="zbf-kP-grd" firstAttribute="trailing" secondItem="Fdi-Te-kgc" secondAttribute="trailingMargin" constant="-41" id="Au8-Bt-JGc"/>
                                                 <constraint firstItem="AKV-It-Gc6" firstAttribute="leading" secondItem="Fdi-Te-kgc" secondAttribute="leadingMargin" id="DHu-1e-WSd"/>
                                                 <constraint firstItem="zbf-kP-grd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AKV-It-Gc6" secondAttribute="trailing" constant="8" id="Ez0-iy-gLO"/>
                                                 <constraint firstItem="zbf-kP-grd" firstAttribute="centerY" secondItem="Fdi-Te-kgc" secondAttribute="centerY" constant="10.75" id="dlP-0f-Eqf"/>
-                                                <constraint firstItem="AKV-It-Gc6" firstAttribute="centerY" secondItem="Fdi-Te-kgc" secondAttribute="centerY" constant="12" id="iGF-90-uls"/>
+                                                <constraint firstItem="AKV-It-Gc6" firstAttribute="centerY" secondItem="Fdi-Te-kgc" secondAttribute="centerY" constant="0.5" id="iGF-90-uls"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
                                             <variation key="default">
@@ -276,18 +273,12 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="v6c-Qj-FPs">
-                                        <rect key="frame" x="0.0" y="70" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v6c-Qj-FPs" id="ujp-Bj-CTZ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE VIDEO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-1I-t1X">
-                                                    <rect key="frame" x="30" y="17" width="109" height="16"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4LM-mg-1Bc">
                                                     <rect key="frame" x="480" y="10" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -295,96 +286,25 @@
                                                         <action selector="videoSwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="tXA-hR-ZxH"/>
                                                     </connections>
                                                 </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE VIDEO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-1I-t1X">
+                                                    <rect key="frame" x="30" y="20" width="83" height="12"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="13"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="4LM-mg-1Bc" firstAttribute="trailing" secondItem="ujp-Bj-CTZ" secondAttribute="trailingMargin" constant="-41" id="7Y2-NI-nz0"/>
                                                 <constraint firstItem="dvD-1I-t1X" firstAttribute="leading" secondItem="ujp-Bj-CTZ" secondAttribute="leadingMargin" id="ivJ-02-3je"/>
-                                                <constraint firstItem="dvD-1I-t1X" firstAttribute="centerY" secondItem="ujp-Bj-CTZ" secondAttribute="centerY" id="l3B-VZ-ZVZ"/>
+                                                <constraint firstItem="dvD-1I-t1X" firstAttribute="centerY" secondItem="ujp-Bj-CTZ" secondAttribute="centerY" constant="1.25" id="l3B-VZ-ZVZ"/>
                                                 <constraint firstItem="4LM-mg-1Bc" firstAttribute="centerY" secondItem="ujp-Bj-CTZ" secondAttribute="centerY" constant="0.75" id="mBy-ed-0v1"/>
                                                 <constraint firstItem="4LM-mg-1Bc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dvD-1I-t1X" secondAttribute="trailing" constant="8" id="qLv-lE-976"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="3BS-iw-Eyo">
-                                        <rect key="frame" x="0.0" y="120" width="600" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3BS-iw-Eyo" id="vr6-mp-O9w">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SET TIMER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idg-Ym-vBo">
-                                                    <rect key="frame" x="30" y="17" width="93" height="16"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5X-1l-11w">
-                                                    <rect key="frame" x="480" y="8" width="43" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="43" id="eQ6-vy-32Y"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="25"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="Wlx-JQ-p5k">
-                                                    <rect key="frame" x="215" y="10" width="170" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="166" id="4GB-zT-oL6"/>
-                                                        <constraint firstAttribute="height" constant="30" id="DHb-Zg-q0D"/>
-                                                    </constraints>
-                                                    <color key="thumbTintColor" red="0.98039221759999995" green="0.29803922770000002" blue="0.011764707040000001" alpha="1" colorSpace="deviceRGB"/>
-                                                    <connections>
-                                                        <action selector="timerSliderValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="sis-n4-QbC"/>
-                                                    </connections>
-                                                </slider>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="O5X-1l-11w" firstAttribute="top" secondItem="vr6-mp-O9w" secondAttribute="topMargin" id="4Mz-eS-65m"/>
-                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="centerX" secondItem="vr6-mp-O9w" secondAttribute="centerX" id="Mks-Y3-kRL"/>
-                                                <constraint firstItem="idg-Ym-vBo" firstAttribute="centerY" secondItem="vr6-mp-O9w" secondAttribute="centerY" id="Nq0-e6-g7w"/>
-                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="centerY" secondItem="idg-Ym-vBo" secondAttribute="centerY" id="O3T-Sk-Z1R"/>
-                                                <constraint firstItem="O5X-1l-11w" firstAttribute="trailing" secondItem="vr6-mp-O9w" secondAttribute="trailingMargin" constant="-47" id="Y6V-0w-9mO"/>
-                                                <constraint firstItem="Wlx-JQ-p5k" firstAttribute="centerY" secondItem="O5X-1l-11w" secondAttribute="centerY" id="gwU-VZ-Vs7"/>
-                                                <constraint firstItem="idg-Ym-vBo" firstAttribute="leading" secondItem="vr6-mp-O9w" secondAttribute="leadingMargin" id="uaD-FH-dge"/>
-                                            </constraints>
-                                            <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="WKb-Xl-onp">
-                                        <rect key="frame" x="0.0" y="170" width="600" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WKb-Xl-onp" id="6aY-FX-dzB">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Met-mA-3og">
-                                                    <rect key="frame" x="480" y="9" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="delaySwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="aQ6-7Q-LnX"/>
-                                                    </connections>
-                                                </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO DELAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TR-32-Ctx">
-                                                    <rect key="frame" x="30" y="17" width="92" height="16"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Met-mA-3og" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1TR-32-Ctx" secondAttribute="trailing" constant="8" id="A9K-aL-iaB"/>
-                                                <constraint firstItem="1TR-32-Ctx" firstAttribute="leading" secondItem="6aY-FX-dzB" secondAttribute="leadingMargin" id="ADf-1k-1Sf"/>
-                                                <constraint firstItem="1TR-32-Ctx" firstAttribute="centerY" secondItem="6aY-FX-dzB" secondAttribute="centerY" id="JGE-o6-fUk"/>
-                                                <constraint firstItem="Met-mA-3og" firstAttribute="centerY" secondItem="6aY-FX-dzB" secondAttribute="centerY" constant="-0.5" id="iUI-CL-otz"/>
-                                                <constraint firstItem="Met-mA-3og" firstAttribute="trailing" secondItem="6aY-FX-dzB" secondAttribute="trailingMargin" constant="-41" id="sSI-l0-cKY"/>
-                                            </constraints>
-                                            <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="lrR-Qt-MjO">
-                                        <rect key="frame" x="0.0" y="220" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="100" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lrR-Qt-MjO" id="Nt6-18-FSo">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -397,9 +317,9 @@
                                                         <action selector="soundSwitchValueChanged:" destination="c45-nZ-qVH" eventType="valueChanged" id="6ST-lR-6FS"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOUND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-mF-XPz">
-                                                    <rect key="frame" x="30" y="17" width="65" height="16"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DETECT SOUND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-mF-XPz">
+                                                    <rect key="frame" x="30" y="20" width="100" height="11"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -415,7 +335,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="145" id="Fck-h6-y7a">
-                                        <rect key="frame" x="0.0" y="270" width="600" height="145"/>
+                                        <rect key="frame" x="0.0" y="150" width="600" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fck-h6-y7a" id="wFW-CU-XHY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="144.5"/>
@@ -445,8 +365,8 @@
                                                     </connections>
                                                 </segmentedControl>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENSITIVITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-RL-zAv">
-                                                    <rect key="frame" x="30" y="34" width="109" height="16"/>
-                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                                                    <rect key="frame" x="30" y="37" width="77" height="11"/>
+                                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -469,17 +389,12 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="delaySwitch" destination="Met-mA-3og" id="ndm-r0-QEw"/>
                         <outlet property="photoSwitch" destination="zbf-kP-grd" id="hI3-Xd-UAj"/>
                         <outlet property="sensitivityTableCell" destination="Fck-h6-y7a" id="zEy-7a-gjn"/>
-                        <outlet property="slider" destination="Wlx-JQ-p5k" id="B7q-HX-v6n"/>
-                        <outlet property="sliderValueLabel" destination="O5X-1l-11w" id="seb-Qk-bRb"/>
                         <outlet property="soundSwitch" destination="RTg-Tg-gZf" id="OTK-QM-wSi"/>
                         <outlet property="videoSwitch" destination="4LM-mg-1Bc" id="aN7-F7-iqB"/>
                         <outletCollection property="cellTitleLabels" destination="AKV-It-Gc6" collectionClass="NSMutableArray" id="EAj-Ap-Pf5"/>
                         <outletCollection property="cellTitleLabels" destination="dvD-1I-t1X" collectionClass="NSMutableArray" id="rCT-lJ-YRZ"/>
-                        <outletCollection property="cellTitleLabels" destination="idg-Ym-vBo" collectionClass="NSMutableArray" id="mEI-Gz-rBm"/>
-                        <outletCollection property="cellTitleLabels" destination="1TR-32-Ctx" collectionClass="NSMutableArray" id="wE4-jy-QmE"/>
                         <outletCollection property="cellTitleLabels" destination="ef0-mF-XPz" collectionClass="NSMutableArray" id="FoL-PU-Tb7"/>
                         <outletCollection property="cellTitleLabels" destination="UQT-RL-zAv" collectionClass="NSMutableArray" id="1ZS-Jf-wMj"/>
                     </connections>

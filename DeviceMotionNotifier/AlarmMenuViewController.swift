@@ -17,19 +17,10 @@ class AlarmMenuViewController: UITableViewController {
     private var cellTitleLabels: [UILabel]!
     
     @IBOutlet
-    weak var slider: UISlider!
-    
-    @IBOutlet
-    weak var sliderValueLabel: UILabel!
-    
-    @IBOutlet
     weak var photoSwitch: UISwitch!
     
     @IBOutlet
     weak var videoSwitch: UISwitch!
-    
-    @IBOutlet
-    weak var delaySwitch: UISwitch!
     
     @IBOutlet
     weak var soundSwitch: UISwitch!
@@ -67,18 +58,13 @@ class AlarmMenuViewController: UITableViewController {
     
     private func setSettings() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        
-        let savedTimerValue = userDefaults.integerForKey("kTimerValue")
+
         let savedPhotoSwitchValue = userDefaults.boolForKey("kPhotoSwitchValue")
         let savedVideoSwitchValue = userDefaults.boolForKey("kVideoSwitchValue")
-        let savedDelaySwitchValue = userDefaults.boolForKey("kDelaySwitchValue")
         let savedSoundSwitchValue = userDefaults.boolForKey("kSoundSwitchValue")
-        
-        slider.value = Float(savedTimerValue)
-        sliderValueLabel.text = String(savedTimerValue)
+
         photoSwitch.setOn(savedPhotoSwitchValue, animated: false)
         videoSwitch.setOn(savedVideoSwitchValue, animated: false)
-        delaySwitch.setOn(savedDelaySwitchValue, animated: false)
         soundSwitch.setOn(savedSoundSwitchValue, animated: false)
         
         photoSwitch.enabled = videoSwitch.on ? false : true
@@ -182,13 +168,6 @@ class AlarmMenuViewController: UITableViewController {
     }
     
     @IBAction
-    func timerSliderValueChanged(sender: UISlider) {
-        sliderValueLabel.text = String(Int(sender.value))
-        NSUserDefaults.standardUserDefaults().setObject(Int(sender.value), forKey: "kTimerValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    @IBAction
     func photoSwitchValueChanged(sender: UISwitch) {
         NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kPhotoSwitchValue")
         NSUserDefaults.standardUserDefaults().synchronize()
@@ -210,12 +189,6 @@ class AlarmMenuViewController: UITableViewController {
             
             photoSwitch.enabled = sender.on ? false : true
         }
-    }
-    
-    @IBAction
-    func delaySwitchValueChanged(sender: UISwitch) {
-        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kDelaySwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction

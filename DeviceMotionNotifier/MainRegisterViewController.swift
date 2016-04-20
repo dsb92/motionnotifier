@@ -66,6 +66,9 @@ class MainRegisterViewController: UIViewController {
             if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
                 self.revealViewController().rearViewRevealWidth = 600
             }
+            else {
+                self.revealViewController().rearViewRevealWidth = UIScreen().bounds.size.width - 30
+            }
             
         }
     }

@@ -178,20 +178,12 @@ class AlarmViewController: UIViewController {
     private func setDefaults(){
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        if userDefaults.objectForKey("kTimerValue") == nil {
-            userDefaults.setObject(Int(10), forKey: "kTimerValue")
-        }
-        
         if userDefaults.objectForKey("kPhotoSwitchValue") == nil {
             userDefaults.setObject(true, forKey: "kPhotoSwitchValue")
         }
         
         if userDefaults.objectForKey("kVideoSwitchValue") == nil {
             userDefaults.setObject(false, forKey: "kVideoSwitchValue")
-        }
-        
-        if userDefaults.objectForKey("kDelaySwitchValue") == nil {
-            userDefaults.setObject(false, forKey: "kDelaySwitchValue")
         }
         
         if userDefaults.objectForKey("kSoundSwitchValue") == nil {
@@ -353,17 +345,9 @@ class AlarmViewController: UIViewController {
         
         print("INTRUDER ALERT")
         
-        let noDelay = NSUserDefaults.standardUserDefaults().boolForKey("kDelaySwitchValue")
-        
-        if noDelay {
-            startAlarmProcedure()
-        }
-        else{
-            
-            if self.delayTimer == nil {
-                self.hiddenBlackView.hidden = true;
-                self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
-            }
+        if self.delayTimer == nil {
+            self.hiddenBlackView.hidden = true;
+            self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
         }
     }
     

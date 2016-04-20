@@ -261,14 +261,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsV-tZ-owM" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
-                                                    <rect key="frame" x="193" y="10" width="214" height="60"/>
+                                                    <rect key="frame" x="193" y="15" width="215" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="214" id="OIm-vK-il2"/>
-                                                        <constraint firstAttribute="height" constant="60" id="fi5-OH-an1"/>
+                                                        <constraint firstAttribute="width" constant="215" id="OIm-vK-il2"/>
+                                                        <constraint firstAttribute="height" constant="50" id="fi5-OH-an1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <state key="normal" title="RESTORE PURCHASES">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -289,7 +289,7 @@
                                             <constraints>
                                                 <constraint firstItem="fsV-tZ-owM" firstAttribute="centerY" secondItem="2tR-1a-NPh" secondAttribute="centerY" id="DuZ-ZU-3ZP"/>
                                                 <constraint firstItem="fsV-tZ-owM" firstAttribute="centerX" secondItem="2tR-1a-NPh" secondAttribute="centerX" id="Hra-jM-WJm"/>
-                                                <constraint firstItem="fsV-tZ-owM" firstAttribute="top" secondItem="2tR-1a-NPh" secondAttribute="topMargin" constant="2" id="fGR-40-MPG"/>
+                                                <constraint firstItem="fsV-tZ-owM" firstAttribute="top" secondItem="2tR-1a-NPh" secondAttribute="topMargin" constant="7" id="fGR-40-MPG"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
                                         </tableViewCellContentView>
@@ -303,9 +303,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAo-Wc-fFG" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
-                                                    <rect key="frame" x="193" y="10" width="214" height="60"/>
+                                                    <rect key="frame" x="193" y="15" width="215" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="214" id="wCb-0s-C3z"/>
+                                                        <constraint firstAttribute="width" constant="215" id="wCb-0s-C3z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <state key="normal" title="CONTACT">
@@ -331,7 +331,7 @@
                                             <constraints>
                                                 <constraint firstItem="YAo-Wc-fFG" firstAttribute="centerY" secondItem="Lvx-yE-gMP" secondAttribute="centerY" id="OpJ-o7-V9L"/>
                                                 <constraint firstItem="YAo-Wc-fFG" firstAttribute="centerX" secondItem="Lvx-yE-gMP" secondAttribute="centerX" id="mSW-RJ-92J"/>
-                                                <constraint firstItem="YAo-Wc-fFG" firstAttribute="top" secondItem="Lvx-yE-gMP" secondAttribute="topMargin" constant="2" id="wZO-es-qgX"/>
+                                                <constraint firstItem="YAo-Wc-fFG" firstAttribute="top" secondItem="Lvx-yE-gMP" secondAttribute="topMargin" constant="7" id="wZO-es-qgX"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="30" bottom="8" right="30"/>
                                         </tableViewCellContentView>
@@ -345,9 +345,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIJ-a4-VkT" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
-                                                    <rect key="frame" x="193" y="10" width="214" height="60"/>
+                                                    <rect key="frame" x="193" y="15" width="215" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="214" id="652-WF-0gU"/>
+                                                        <constraint firstAttribute="width" constant="215" id="652-WF-0gU"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <state key="normal" title="ABOUT">
@@ -370,7 +370,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KIJ-a4-VkT" firstAttribute="top" secondItem="yLA-Al-ao5" secondAttribute="topMargin" constant="2" id="I9j-yf-qcm"/>
+                                                <constraint firstItem="KIJ-a4-VkT" firstAttribute="top" secondItem="yLA-Al-ao5" secondAttribute="topMargin" constant="7" id="I9j-yf-qcm"/>
                                                 <constraint firstItem="KIJ-a4-VkT" firstAttribute="centerY" secondItem="yLA-Al-ao5" secondAttribute="centerY" id="ecC-75-7yA"/>
                                                 <constraint firstItem="KIJ-a4-VkT" firstAttribute="centerX" secondItem="yLA-Al-ao5" secondAttribute="centerX" id="f4o-OO-xbw"/>
                                             </constraints>
