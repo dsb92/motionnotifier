@@ -13,6 +13,7 @@
 		46419A551CC26BC600F043EA /* APPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46419A501CC26BC600F043EA /* APPViewController.xib */; };
 		46419A561CC26BC600F043EA /* APPChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46419A521CC26BC600F043EA /* APPChildViewController.m */; };
 		46419A571CC26BC600F043EA /* APPChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46419A531CC26BC600F043EA /* APPChildViewController.xib */; };
+		469A586B1CCA140A0070A145 /* RoundClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469A586A1CCA140A0070A145 /* RoundClock.swift */; };
 		46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
 		46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F31C839458009C5CD1 /* DetectorManager.swift */; };
@@ -80,6 +81,7 @@
 		46419A511CC26BC600F043EA /* APPChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPChildViewController.h; sourceTree = "<group>"; };
 		46419A521CC26BC600F043EA /* APPChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPChildViewController.m; sourceTree = "<group>"; };
 		46419A531CC26BC600F043EA /* APPChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPChildViewController.xib; sourceTree = "<group>"; };
+		469A586A1CCA140A0070A145 /* RoundClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundClock.swift; sourceTree = "<group>"; };
 		46B684EB1C8392D4009C5CD1 /* DetectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorProtocol.swift; sourceTree = "<group>"; };
 		46B684F11C83944A009C5CD1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		46B684F31C839458009C5CD1 /* DetectorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorManager.swift; sourceTree = "<group>"; };
@@ -268,11 +270,13 @@
 		46B685141C8B40F7009C5CD1 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				46B685261C8C8FD0009C5CD1 /* SlidebarMenu */,
+				46B685271C8C8FFE009C5CD1 /* SWRevealViewController.h */,
+				46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */,
 				46B685151C8B4103009C5CD1 /* AnimationDelegate.swift */,
 				46B685161C8B4103009C5CD1 /* CircularRevealAnimator.swift */,
 				46B685241C8C56B0009C5CD1 /* DynamicFlyingBalls.swift */,
 				46B685101C8B3F1E009C5CD1 /* MonitorButton.swift */,
+				469A586A1CCA140A0070A145 /* RoundClock.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -302,15 +306,6 @@
 				46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */,
 			);
 			name = Alarm;
-			sourceTree = "<group>";
-		};
-		46B685261C8C8FD0009C5CD1 /* SlidebarMenu */ = {
-			isa = PBXGroup;
-			children = (
-				46B685271C8C8FFE009C5CD1 /* SWRevealViewController.h */,
-				46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */,
-			);
-			name = SlidebarMenu;
 			sourceTree = "<group>";
 		};
 		46D9E3E81CB57E9F0097197E /* Purchases */ = {
@@ -619,6 +614,7 @@
 				46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */,
 				46D9E3F81CBD726A0097197E /* MPCManager.swift in Sources */,
 				46B684EC1C8392D4009C5CD1 /* DetectorProtocol.swift in Sources */,
+				469A586B1CCA140A0070A145 /* RoundClock.swift in Sources */,
 				46B685011C8783B5009C5CD1 /* AVCamPreviewView.swift in Sources */,
 				46B6851B1C8B439F009C5CD1 /* SettingsTheme.swift in Sources */,
 				46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */,

@@ -12,6 +12,11 @@ import CoreMotion
 import LocalAuthentication
 import GoogleMobileAds
 
+protocol SystemProtocol {
+    func idle()
+    func armed()
+}
+
 class AlarmViewController: UIViewController {
     
     @IBOutlet
@@ -38,16 +43,22 @@ class AlarmViewController: UIViewController {
     @IBOutlet
     weak var bannerView: GADBannerView!
     
+    @IBOutlet
+    weak var roundClockPlaceholder: UIView!
+    
+    var dynamicBallsUIView: DynamicFlyingBalls!
+    var roundClock: RoundClock!
+    
     var detectorManager: DetectorManager!
     var alarmManager: AlarmManager!
     
     var context: LAContext!
     
     var alarmTimer: NSTimer!
-    var countDown = 10
+    var countDown = 3
     
     var delayTimer: NSTimer!
-    var delayDown = 10
+    var delayDown = 3
     
     var notificationTimer: NSTimer!
     var notifyTo = UINT16_MAX
@@ -57,13 +68,15 @@ class AlarmViewController: UIViewController {
     var passCode: String!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    var dynamicBallsUIView: DynamicFlyingBalls!
     
     var interstitial: GADInterstitial!
+    
+    var systemProtocol: SystemProtocol!
     
     var theme: SettingsTheme!{
         didSet {
             self.view.backgroundColor = theme.backgroundColor
+            self.roundClockPlaceholder.backgroundColor = theme.backgroundColor
             self.hideButton.borderColor = theme.primaryColor
             self.hideButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
         }
@@ -87,10 +100,10 @@ class AlarmViewController: UIViewController {
         theme = SettingsTheme.theme01
         self.numberPad.becomeFirstResponder()
         
-        touchIDButton.hidden = true
-        previewView.hidden = true
-        
         NSNotificationCenter().addObserver(self, selector: #selector(setupAds), name: "onAdsEnabled", object: nil)
+        
+        systemProtocol = self
+        systemProtocol?.idle()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -167,6 +180,22 @@ class AlarmViewController: UIViewController {
 
     }
     
+    private func startClock() {
+        roundClockPlaceholder.hidden = false
+        roundClock = RoundClock(frame: roundClockPlaceholder.bounds)
+        roundClock.roundClockProtocol = self
+        roundClock.duration = Double(delayDown)
+        roundClock.startCountDown()
+        roundClockPlaceholder.addSubview(roundClock)
+    }
+    
+    private func stopClock() {
+        roundClockPlaceholder.hidden = true
+        roundClock?.stopCountDown()
+        roundClock?.displayLink.invalidate()
+        roundClock = nil
+    }
+    
     private func setupInterstitials() {
         let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
         
@@ -221,46 +250,7 @@ class AlarmViewController: UIViewController {
         
         alarmManager.startBeep()
     }
-    
-    func armed() {
-        
-        let appFrame = UIScreen.mainScreen().bounds
-        
-        UIView.animateWithDuration(0.5, animations: {
-            self.navigationController?.navigationBarHidden = true
-            self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
-            self.hiddenBlackView.hidden = false;
-        })
-        
-        setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
-        
-        canCancel = false
-        isArmed = true
-        
-        numberPad.text = ""
-        alarmCountDownLabel.text = String(0)
-        alarmCountDownLabel.hidden = true
-        
-        // Stop timer
-        alarmTimer.invalidate()
-        
-        // Start detecting motion
-        detectorManager.startDetectingMotion()
-        
-        // Start detecting noise if enabled
-        let detectNoise = NSUserDefaults.standardUserDefaults().boolForKey("kSoundSwitchValue")
-        if detectNoise {
-            detectorManager.startDetectingNoise()
-        }
 
-        context = LAContext()
-        
-        // Show TouchID button if supported
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil) {
-            touchIDButton.hidden = false
-        }
-    }
-    
     func startAlarm() {
         if (notifyTo > 0) {
             --notifyTo
@@ -294,35 +284,9 @@ class AlarmViewController: UIViewController {
         alarmManager.startTone()
     }
     
-    func didUnarm(didArm: Bool){
-        if didArm {
-            if notificationTimer != nil {
-                notificationTimer.invalidate()
-            }
-
-            self.notificationTimer = nil
-            
-            if delayTimer != nil {
-                delayTimer.invalidate()
-            }
-            
-            self.delayTimer = nil
-            
-            context = nil;
-            touchIDButton.hidden = true
-            numberPad.text = ""
-            
-            setDynamicBall("Ready", color: UIColor.greenColor(), userinteractable: false)
-            
-            isArmed = false
-            canCancel = false
-
-            detectorManager.stopDetectingMotions()
-            detectorManager.stopDetectingNoise()
-            alarmManager.stopMakingNoise()
-            alarmManager.stopCaptureVideo()
-            
-            previewView.hidden = true
+    func didUnarm(unarmed: Bool){
+        if unarmed {
+            systemProtocol?.idle()
             
             let appFrame = UIScreen.mainScreen().bounds
             
@@ -333,6 +297,7 @@ class AlarmViewController: UIViewController {
             })
             
             showInterstitials()
+            stopClock()
             
             print("Success")
         }
@@ -348,6 +313,7 @@ class AlarmViewController: UIViewController {
         if self.delayTimer == nil {
             self.hiddenBlackView.hidden = true;
             self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
+            startClock()
         }
     }
     
@@ -442,8 +408,6 @@ class AlarmViewController: UIViewController {
         else{
             // Start count down
             // When duration is out, start alarming
-            let timerValue = NSUserDefaults.standardUserDefaults().floatForKey("kTimerValue")
-            self.countDown = Int(timerValue)
             self.alarmCountDownLabel.text = String(self.countDown)
             self.alarmCountDownLabel.hidden = false
             
@@ -535,6 +499,75 @@ class AlarmViewController: UIViewController {
     }
 }
 
+extension AlarmViewController : SystemProtocol {
+    func idle() {
+        countDown = 3
+        delayDown = 3
+        notifyTo = UINT16_MAX
+        isArmed = false
+        canCancel = false
+        
+        notificationTimer?.invalidate()
+        notificationTimer = nil
+        
+        delayTimer?.invalidate()
+        delayTimer = nil
+        
+        context = nil;
+        touchIDButton.hidden = true
+        numberPad.text = ""
+        
+        setDynamicBall("Ready", color: UIColor.greenColor(), userinteractable: false)
+        
+        touchIDButton.hidden = true
+        previewView.hidden = true
+        
+        detectorManager?.stopDetectingMotions()
+        detectorManager?.stopDetectingNoise()
+        alarmManager?.stopMakingNoise()
+        alarmManager?.stopCaptureVideo()
+    }
+    
+    func armed() {
+        let appFrame = UIScreen.mainScreen().bounds
+        
+        UIView.animateWithDuration(0.5, animations: {
+            self.navigationController?.navigationBarHidden = true
+            self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
+            self.hiddenBlackView.hidden = false;
+        })
+        
+        setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
+        
+        canCancel = false
+        isArmed = true
+        
+        numberPad.text = ""
+        alarmCountDownLabel.text = String(0)
+        alarmCountDownLabel.hidden = true
+        
+        // Stop timer
+        alarmTimer?.invalidate()
+        
+        // Start detecting motion
+        detectorManager?.startDetectingMotion()
+        
+        // Start detecting noise if enabled
+        let detectNoise = NSUserDefaults.standardUserDefaults().boolForKey("kSoundSwitchValue")
+        if detectNoise {
+            detectorManager.startDetectingNoise()
+        }
+        
+        context = LAContext()
+        
+        // Show TouchID button if supported
+        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil) {
+            touchIDButton.hidden = false
+        }
+
+    }
+}
+
 extension AlarmViewController : DetectorProtol {
     func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!) {
         
@@ -576,7 +609,7 @@ extension AlarmViewController : AlarmProtocol {
             }
                 // Time out, start arming
             else if (self.countDown == 0){
-                self.armed()
+                self.systemProtocol?.armed()
             }
         })
     }
@@ -619,6 +652,12 @@ extension AlarmViewController : AlarmProtocol {
 extension AlarmViewController : GADInterstitialDelegate {
     func interstitialDidDismissScreen(ad: GADInterstitial!) {
         setupInterstitials()
+    }
+}
+
+extension AlarmViewController : RoundClockProtocol {
+    func timerDidFinish() {
+        stopClock()
     }
 }
 

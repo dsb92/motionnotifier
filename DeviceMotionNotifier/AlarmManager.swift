@@ -105,7 +105,7 @@ class AlarmManager: NSObject {
     }
     
     func stopCaptureVideo() {
-        autoSnap.stopRecording()
+        autoSnap?.stopRecording()
     }
     
     func prepareToPlaySounds() {

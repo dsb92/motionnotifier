@@ -20,7 +20,7 @@ class AVAutoSnap: NSObject {
     var sessionQueue: dispatch_queue_t!
     var session: AVCaptureSession?
     var videoDeviceInput: AVCaptureDeviceInput?
-    var movieFileOutput: AVCaptureMovieFileOutput?
+    var movieFileOutput: AVCaptureMovieFileOutput!
     var stillImageOutput: AVCaptureStillImageOutput?
     
     
@@ -252,7 +252,11 @@ class AVAutoSnap: NSObject {
     }
     
     func isRecording() -> Bool{
-        return self.movieFileOutput!.recording
+        if self.movieFileOutput != nil {
+            self.movieFileOutput.recording
+        }
+        
+        return false
     }
     
     func checkDeviceAuthorizationStatus(){

@@ -41,9 +41,9 @@ class DetectorManager: NSObject {
             }
    
             dispatch_async(dispatch_get_main_queue()){
-                print(accelerometerData!.acceleration.x)
-                print(accelerometerData!.acceleration.y)
-                print(accelerometerData!.acceleration.z)
+//                print(accelerometerData!.acceleration.x)
+//                print(accelerometerData!.acceleration.y)
+//                print(accelerometerData!.acceleration.z)
                 self.detectorProtocol?.detectMotion(accelerometerData, gyroData: nil)
             }
         }
@@ -65,8 +65,8 @@ class DetectorManager: NSObject {
     }
     
     func stopDetectingMotions(){
-        movementManager.stopAccelerometerUpdates()
-        movementManager.stopGyroUpdates()
+        movementManager?.stopAccelerometerUpdates()
+        movementManager?.stopGyroUpdates()
     }
     
     func startDetectingNoise(){
@@ -75,11 +75,9 @@ class DetectorManager: NSObject {
     }
     
     func stopDetectingNoise() {
-        if audioRecorder != nil {
-            audioRecorder.levelTimer.invalidate()
-            audioRecorder = nil
-            timesAudioRecognized = 0
-        }
+        audioRecorder?.levelTimer.invalidate()
+        audioRecorder = nil
+        timesAudioRecognized = 0
     }
 }
 
