@@ -123,12 +123,15 @@ class MainRegisterViewController: UIViewController {
                     
                     if !deviceRegistered {
                         self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
-                        self.appDelegate.hubs.userName = deviceToMonitor
-                        self.appDelegate.hubs.recipientName = deviceToNotify
-                        self.appDelegate.hubs.notificationMessage = "Intruder alert!";
                         
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
                     }
+                    
+                    self.appDelegate.hubs.userName = deviceToMonitor
+                    self.appDelegate.hubs.recipientName = deviceToNotify
+                    self.appDelegate.hubs.remoteDisarmAlarm = false
+                    self.appDelegate.hubs.notificationSeen = false
+                    self.appDelegate.hubs.notificationMessage = "Intruder alert!";
                     
                     let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
                     let initialVC = alarmSB.instantiateInitialViewController()

@@ -79,6 +79,7 @@ class MainRegisterSettingsViewController: UITableViewController {
         })
         
         setSettings()
+        setupDeviceNames()
     }
     
     override func viewDidLoad() {
@@ -95,8 +96,6 @@ class MainRegisterSettingsViewController: UITableViewController {
         }
         
         self.nameOfDeviceToNotifyTextField.becomeFirstResponder()
-
-        setupDeviceNames()
     }
     
     private func setDefaults() {
@@ -177,6 +176,8 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
     
     func foundPeer() {
         
+        findingDeviceSpinner.startAnimating()
+        
         let peers = appDelegate.mpcManager.foundPeers
         var buttonTexts = [String]()
  
@@ -205,8 +206,7 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
         })
         
         alertView.addCancelAction({
-            
-            
+            self.findingDeviceSpinner.stopAnimating()
         })
     }
     

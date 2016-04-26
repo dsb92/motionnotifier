@@ -177,7 +177,7 @@ class AlarmViewController: UIViewController {
         dynamicBallsUIView = DynamicFlyingBalls(frame: self.view.bounds)
         dynamicBallsUIView.associateVC(self)
         self.view.addSubview(dynamicBallsUIView)
-
+        
     }
     
     private func startClock() {
@@ -250,33 +250,31 @@ class AlarmViewController: UIViewController {
         
         alarmManager.startBeep()
     }
-
+    
     func startAlarm() {
         if (notifyTo > 0) {
             --notifyTo
             
-            // Keep sending push notification to all the receivers until they have seen it
-            if (!self.appDelegate.hubs.notificationSeen){
+            // Keep sending push notification to all the receivers until they have seen the push message or remotely disarmed it.
+            if (self.appDelegate.hubs.notificationSeen == false){
                 alarmManager.startNotifyingRecipient()
+                alarmManager.startMakingNoise()
+                
+                let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
+                if startCamera {
+                    alarmManager.startFrontCamera()
+                }
+                else{
+                    alarmManager.startCaptureVideo()
+                }
             }
-            // Alarm notification seen, stop pushing
-            else{
-                notificationTimer.invalidate()
+            if (self.appDelegate.hubs.remoteDisarmAlarm == true){
+                systemProtocol.idle()
             }
             
-            alarmManager.startMakingNoise()
-            
-            let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
-            
-            if startCamera {
-                alarmManager.startFrontCamera()
-            }
-            else{
-                alarmManager.startCaptureVideo()
-            }
         }
         else{
-            notificationTimer.invalidate()
+            systemProtocol.idle()
         }
     }
     
@@ -287,14 +285,6 @@ class AlarmViewController: UIViewController {
     func didUnarm(unarmed: Bool){
         if unarmed {
             systemProtocol?.idle()
-            
-            let appFrame = UIScreen.mainScreen().bounds
-            
-            UIView.animateWithDuration(0.5, animations: {
-                self.navigationController?.navigationBarHidden = false
-                self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
-                self.hideButton.hidden = true
-            })
             
             showInterstitials()
             stopClock()
@@ -307,10 +297,8 @@ class AlarmViewController: UIViewController {
     }
     
     func intruderAlert(){
-        
-        print("INTRUDER ALERT")
-        
         if self.delayTimer == nil {
+            print("INTRUDER ALERT")
             self.hiddenBlackView.hidden = true;
             self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
             startClock()
@@ -333,7 +321,12 @@ class AlarmViewController: UIViewController {
             self.hiddenBlackView.hidden = true;
             previewView.hidden = false
             numberPad.becomeFirstResponder()
-            self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
+            
+            self.appDelegate.hubs.notificationSeen = false
+            self.appDelegate.hubs.remoteDisarmAlarm = false
+            self.appDelegate.hubs.notificationMessage = "Intruder alert!";
+            // start alarm every x seconds
+            self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
         }
     }
     
@@ -395,7 +388,7 @@ class AlarmViewController: UIViewController {
                 self.didUnarm(false)
             }
         }
-        // CANCELED
+            // CANCELED
         else if (self.canCancel){
             self.alarmTimer.invalidate()
             
@@ -404,7 +397,7 @@ class AlarmViewController: UIViewController {
             self.canCancel = false
             self.alarmCountDownLabel.hidden = true
         }
-        // Ready
+            // Ready
         else{
             // Start count down
             // When duration is out, start alarming
@@ -428,60 +421,60 @@ class AlarmViewController: UIViewController {
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil){
             
             context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics,
-                localizedReason: "Unarming with Touch ID",
-                reply: { (success: Bool, error: NSError?) -> Void in
-            
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if success {
-                            // Show "the passcode" for a short time
-                            UIView.transitionWithView(self.numberPad, duration: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
-                                self.numberPad.text = self.passCode
-                                }, completion: { (success:Bool) -> Void in
-                                    self.didUnarm(true)
-                            })
-                        }
-                        
-                        if error != nil {
-                            var message : NSString
-                            var showAlert : Bool
-
-                            switch(error!.code) {
-                            case LAError.AuthenticationFailed.rawValue:
-                                message = "There was a problem verifying your identity."
-                                showAlert = true
-                                break;
-                            case LAError.UserCancel.rawValue:
-                                message = "You pressed cancel."
-                                showAlert = true
-                                break;
-                            case LAError.UserFallback.rawValue:
-                                message = "You pressed password."
-                                showAlert = true
-                                break;
-                            default:
-                                showAlert = true
-                                message = "Touch ID may not be configured"
-                                break;
-                            }
-                            
-                            let alertView = UIAlertController(title: "Error",
-                                message: message as String, preferredStyle:.Alert)
-                            let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
-                            alertView.addAction(okAction)
-                            if showAlert {
-                                self.presentViewController(alertView, animated: true, completion: nil)
-                            }
-                            
-                            self.didUnarm(false)
-                        }
-                    })
-                    
+                                   localizedReason: "Unarming with Touch ID",
+                                   reply: { (success: Bool, error: NSError?) -> Void in
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        if success {
+                                            // Show "the passcode" for a short time
+                                            UIView.transitionWithView(self.numberPad, duration: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+                                                self.numberPad.text = self.passCode
+                                                }, completion: { (success:Bool) -> Void in
+                                                    self.didUnarm(true)
+                                            })
+                                        }
+                                        
+                                        if error != nil {
+                                            var message : NSString
+                                            var showAlert : Bool
+                                            
+                                            switch(error!.code) {
+                                            case LAError.AuthenticationFailed.rawValue:
+                                                message = "There was a problem verifying your identity."
+                                                showAlert = true
+                                                break;
+                                            case LAError.UserCancel.rawValue:
+                                                message = "You pressed cancel."
+                                                showAlert = true
+                                                break;
+                                            case LAError.UserFallback.rawValue:
+                                                message = "You pressed password."
+                                                showAlert = true
+                                                break;
+                                            default:
+                                                showAlert = true
+                                                message = "Touch ID may not be configured"
+                                                break;
+                                            }
+                                            
+                                            let alertView = UIAlertController(title: "Error",
+                                                message: message as String, preferredStyle:.Alert)
+                                            let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
+                                            alertView.addAction(okAction)
+                                            if showAlert {
+                                                self.presentViewController(alertView, animated: true, completion: nil)
+                                            }
+                                            
+                                            self.didUnarm(false)
+                                        }
+                                    })
+                                    
             })
         }
-        // Touch ID not available
+            // Touch ID not available
         else {
             let alertView = UIAlertController(title: "Error",
-                message: "Touch ID not available" as String, preferredStyle:.Alert)
+                                              message: "Touch ID not available" as String, preferredStyle:.Alert)
             let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
             alertView.addAction(okAction)
             self.presentViewController(alertView, animated: true, completion: nil)
@@ -521,6 +514,18 @@ extension AlarmViewController : SystemProtocol {
         
         touchIDButton.hidden = true
         previewView.hidden = true
+        
+        let appFrame = UIScreen.mainScreen().bounds
+        
+        UIView.animateWithDuration(0.5, animations: {
+            self.navigationController?.navigationBarHidden = false
+            self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
+            self.hideButton.hidden = true
+        })
+        
+        appDelegate.hubs.remoteDisarmAlarm = false
+        appDelegate.hubs.notificationSeen = false
+        appDelegate.hubs.notificationMessage = "Intruder alert!";
         
         detectorManager?.stopDetectingMotions()
         detectorManager?.stopDetectingNoise()
@@ -564,7 +569,7 @@ extension AlarmViewController : SystemProtocol {
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil) {
             touchIDButton.hidden = false
         }
-
+        
     }
 }
 
@@ -598,7 +603,7 @@ extension AlarmViewController : AlarmProtocol {
         
         if !deviceRegistered { return }
         
-        self.appDelegate.hubs.SendToEnabledPlatforms()
+        appDelegate.hubs.SendToEnabledPlatforms()
     }
     
     func beep() {
@@ -637,7 +642,7 @@ extension AlarmViewController : AlarmProtocol {
     }
     
     func takePicture(){
-
+        
         alarmManager.autoSnap.snapPhoto()
     }
     

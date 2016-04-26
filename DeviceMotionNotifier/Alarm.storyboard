@@ -93,11 +93,11 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKd-Gj-bxA">
-                                <rect key="frame" x="250" y="273" width="100" height="100"/>
+                                <rect key="frame" x="20" y="72" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="LPL-oa-H9R"/>
-                                    <constraint firstAttribute="height" constant="100" id="Peb-nv-VOa"/>
+                                    <constraint firstAttribute="height" constant="50" id="UQp-Ew-CA3"/>
+                                    <constraint firstAttribute="width" constant="50" id="uTH-iK-WRF"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qh-Yg-tGw">
@@ -126,14 +126,14 @@
                             <constraint firstItem="1qh-Yg-tGw" firstAttribute="centerX" secondItem="6eF-U9-SCE" secondAttribute="centerX" id="A9k-R5-l0M"/>
                             <constraint firstItem="pIJ-S9-7Zv" firstAttribute="centerY" secondItem="ksr-Re-z6e" secondAttribute="centerY" id="ADh-PF-fTi"/>
                             <constraint firstItem="1qh-Yg-tGw" firstAttribute="top" secondItem="ksr-Re-z6e" secondAttribute="top" id="Akn-0f-6Ze"/>
-                            <constraint firstItem="kKd-Gj-bxA" firstAttribute="centerY" secondItem="ksr-Re-z6e" secondAttribute="centerY" constant="23" id="CNR-xG-mRy"/>
                             <constraint firstItem="V9A-kI-Rsk" firstAttribute="centerY" secondItem="ksr-Re-z6e" secondAttribute="centerY" constant="-148" id="I44-xJ-zBg"/>
                             <constraint firstItem="6eF-U9-SCE" firstAttribute="centerX" secondItem="V9A-kI-Rsk" secondAttribute="centerX" constant="-0.5" id="Ma4-qc-QRJ"/>
-                            <constraint firstItem="kKd-Gj-bxA" firstAttribute="centerX" secondItem="ksr-Re-z6e" secondAttribute="centerX" id="PNe-zW-61r"/>
                             <constraint firstItem="pIJ-S9-7Zv" firstAttribute="top" secondItem="y5J-7B-HTA" secondAttribute="bottom" constant="15" id="V1A-vh-FIQ"/>
                             <constraint firstItem="pIJ-S9-7Zv" firstAttribute="centerX" secondItem="ksr-Re-z6e" secondAttribute="centerX" id="XBT-Vm-zwN"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="kKd-Gj-bxA" secondAttribute="leading" id="YRe-pf-c8K"/>
                             <constraint firstItem="Cc6-zP-cl0" firstAttribute="leading" secondItem="y5J-7B-HTA" secondAttribute="trailing" constant="16" id="ZMq-PK-6Sd"/>
                             <constraint firstItem="1qh-Yg-tGw" firstAttribute="leading" secondItem="ksr-Re-z6e" secondAttribute="leading" id="dou-Kn-CNI"/>
+                            <constraint firstItem="kKd-Gj-bxA" firstAttribute="top" secondItem="CSV-B8-6yK" secondAttribute="bottom" constant="8" id="klE-Vb-SDB"/>
                             <constraint firstItem="V9A-kI-Rsk" firstAttribute="centerX" secondItem="ksr-Re-z6e" secondAttribute="centerX" constant="1" id="l61-ke-ayr"/>
                             <constraint firstItem="y5J-7B-HTA" firstAttribute="top" secondItem="6eF-U9-SCE" secondAttribute="bottom" constant="8" id="lDv-jM-ZIq"/>
                             <constraint firstItem="Cc6-zP-cl0" firstAttribute="bottom" secondItem="y5J-7B-HTA" secondAttribute="bottom" id="lef-od-0oc"/>
@@ -147,13 +147,13 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="oef-ZU-mKb"/>
                                 <exclude reference="8n9-ld-1RT"/>
                                 <exclude reference="yon-Gd-qnj"/>
                                 <exclude reference="ADh-PF-fTi"/>
                                 <exclude reference="XBT-Vm-zwN"/>
                                 <exclude reference="riA-nQ-bs8"/>
                                 <exclude reference="ris-De-iIe"/>
-                                <exclude reference="oef-ZU-mKb"/>
                             </mask>
                         </variation>
                     </view>
