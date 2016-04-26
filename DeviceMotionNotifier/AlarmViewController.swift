@@ -49,29 +49,17 @@ class AlarmViewController: UIViewController {
     var dynamicBallsUIView: DynamicFlyingBalls!
     var roundClock: RoundClock!
     
-    var detectorManager: DetectorManager!
     var alarmManager: AlarmManager!
+    var detectorManager: DetectorManager!
+    var timerManager: TimerManager!
     
     var context: LAContext!
-    
-    var alarmTimer: NSTimer!
-    var countDown = 3
-    
-    var delayTimer: NSTimer!
-    var delayDown = 3
-    
-    var notificationTimer: NSTimer!
-    var notifyTo = UINT16_MAX
-    
-    var isArmed = false
-    var canCancel = false
-    var passCode: String!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var interstitial: GADInterstitial!
     
-    var systemProtocol: SystemProtocol!
+    var passCode : String!
     
     var theme: SettingsTheme!{
         didSet {
@@ -82,35 +70,26 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        alarmManager.autoSnap.initializeOnViewWillAppear()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupSlidebarMenu()
-        setupManagers()
         setupDynamic()
+        setupSlidebarMenu()
         setupAds()
         setupInterstitials()
         setDefaults()
         setOtherStuff()
         
+        setupManagers()
+
         theme = SettingsTheme.theme01
         self.numberPad.becomeFirstResponder()
         
         NSNotificationCenter().addObserver(self, selector: #selector(setupAds), name: "onAdsEnabled", object: nil)
-        
-        systemProtocol = self
-        systemProtocol?.idle()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        // If you press the close button while the alarm timer is counting down.
-        if alarmTimer != nil && alarmTimer.valid {
-            alarmTimer.invalidate()
-        }
+        alarmManager.setAlarmState(.Ready)
     }
     
     @objc private func setupAds() {
@@ -165,12 +144,14 @@ class AlarmViewController: UIViewController {
     }
     
     private func setupManagers() {
-        detectorManager = DetectorManager(detectorProtocol: self)
-        alarmManager = AlarmManager(alarmProtocol: self)
-        alarmManager.prepareToPlaySounds()
+        alarmManager = AlarmManager.sharedInstance
+        timerManager = alarmManager.timerManager
         
-        alarmManager.autoSnap = AVAutoSnap(vc: self)
-        alarmManager.autoSnap.initializeOnViewDidLoad()
+        alarmManager.assoicateVC(self)
+        detectorManager = alarmManager.detectorManager
+        
+        alarmManager.initializeAlarm()
+        alarmManager.setAlarmState(.Ready)
     }
     
     private func setupDynamic() {
@@ -184,7 +165,8 @@ class AlarmViewController: UIViewController {
         roundClockPlaceholder.hidden = false
         roundClock = RoundClock(frame: roundClockPlaceholder.bounds)
         roundClock.roundClockProtocol = self
-        roundClock.duration = Double(delayDown)
+        let delayTimer = timerManager.delayTimer
+        roundClock.duration = Double(delayTimer.delayDown)
         roundClock.startCountDown()
         roundClockPlaceholder.addSubview(roundClock)
     }
@@ -232,7 +214,7 @@ class AlarmViewController: UIViewController {
     }
     
     func handleSingleTap(recognizer: UITapGestureRecognizer){
-        if isArmed {
+        if alarmManager.getAlarmState() == .Armed {
             hiddenBlackView.hidden = true
             hideButton.hidden = false
         }
@@ -246,63 +228,12 @@ class AlarmViewController: UIViewController {
         return UIStatusBarAnimation.Slide
     }
     
-    func updateCountDown() {
-        
-        alarmManager.startBeep()
-    }
-    
-    func startAlarm() {
-        if (notifyTo > 0) {
-            --notifyTo
-            
-            // Keep sending push notification to all the receivers until they have seen the push message or remotely disarmed it.
-            if (self.appDelegate.hubs.notificationSeen == false){
-                alarmManager.startNotifyingRecipient()
-                alarmManager.startMakingNoise()
-                
-                let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
-                if startCamera {
-                    alarmManager.startFrontCamera()
-                }
-                else{
-                    alarmManager.startCaptureVideo()
-                }
-            }
-            if (self.appDelegate.hubs.remoteDisarmAlarm == true){
-                systemProtocol.idle()
-            }
-            
-        }
-        else{
-            systemProtocol.idle()
-        }
-    }
-    
-    func updateDelay() {
-        alarmManager.startTone()
-    }
-    
-    func didUnarm(unarmed: Bool){
-        if unarmed {
-            systemProtocol?.idle()
-            
-            showInterstitials()
-            stopClock()
-            
-            print("Success")
-        }
-        else{
-            print("Fail")
-        }
-    }
-    
     func intruderAlert(){
-        if self.delayTimer == nil {
-            print("INTRUDER ALERT")
-            self.hiddenBlackView.hidden = true;
-            self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateDelay"), userInfo: nil, repeats: true)
-            startClock()
+    
+        if alarmManager.getAlarmState() == .Armed  {
+            alarmManager.setAlarmState(.Alarming)
         }
+
     }
     
     func setDynamicBall(text: String, color: UIColor, userinteractable: Bool){
@@ -312,21 +243,6 @@ class AlarmViewController: UIViewController {
             ball.setTitle(text, forState: UIControlState.Normal)
             ball.backgroundColor = color
             ball.userInteractionEnabled = userinteractable
-        }
-    }
-    
-    private func startAlarmProcedure(){
-        // If any of the detecting features detects disturbance(noise or motions) it stars the alarm.
-        if self.notificationTimer == nil {
-            self.hiddenBlackView.hidden = true;
-            previewView.hidden = false
-            numberPad.becomeFirstResponder()
-            
-            self.appDelegate.hubs.notificationSeen = false
-            self.appDelegate.hubs.remoteDisarmAlarm = false
-            self.appDelegate.hubs.notificationMessage = "Intruder alert!";
-            // start alarm every x seconds
-            self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("startAlarm"), userInfo: nil, repeats: true)
         }
     }
     
@@ -359,7 +275,7 @@ class AlarmViewController: UIViewController {
         if codeFromPad?.characters.count >= digits {
             numberPad.resignFirstResponder()
             
-            if self.isArmed {
+            if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alarming ||  alarmManager.getAlarmState() == .Alarm {
                 setDynamicBall("DISARM", color: UIColor.greenColor(), userinteractable: true)
             }
             else{
@@ -367,7 +283,7 @@ class AlarmViewController: UIViewController {
             }
         }
         else{
-            if self.isArmed {
+            if alarmManager.getAlarmState() == .Armed {
                 setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
             }
             else{
@@ -379,39 +295,20 @@ class AlarmViewController: UIViewController {
     @IBAction func AlarmButtonAction(sender: UIButton) {
         
         // ARMED
-        if (self.isArmed) {
-            print("Trying to unarm...")
+        if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alarming ||  alarmManager.getAlarmState() == .Alarm {
             if self.numberPad.text == self.passCode {
-                self.didUnarm(true)
-            }
-            else{
-                self.didUnarm(false)
+                alarmManager.setAlarmState(.Ready)
             }
         }
-            // CANCELED
-        else if (self.canCancel){
-            self.alarmTimer.invalidate()
-            
-            setDynamicBall("ARM", color: UIColor.redColor(), userinteractable: true)
-            
-            self.canCancel = false
-            self.alarmCountDownLabel.hidden = true
+        
+        // ARMING
+        else if alarmManager.getAlarmState() == .Arming{
+            alarmManager.setAlarmState(.Ready)
         }
-            // Ready
+        
+        // READY
         else{
-            // Start count down
-            // When duration is out, start alarming
-            self.alarmCountDownLabel.text = String(self.countDown)
-            self.alarmCountDownLabel.hidden = false
-            
-            self.alarmTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateCountDown"), userInfo: nil, repeats: true)
-            
-            setDynamicBall("CANCEL", color: UIColor.lightGrayColor(), userinteractable: true)
-            
-            self.canCancel = true
-            
-            // Save passcode
-            self.passCode = numberPad.text;
+            alarmManager.setAlarmState(.Arming)
         }
     }
     
@@ -430,7 +327,7 @@ class AlarmViewController: UIViewController {
                                             UIView.transitionWithView(self.numberPad, duration: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
                                                 self.numberPad.text = self.passCode
                                                 }, completion: { (success:Bool) -> Void in
-                                                    self.didUnarm(true)
+                                                    self.alarmManager.setAlarmState(.Ready)
                                             })
                                         }
                                         
@@ -464,8 +361,6 @@ class AlarmViewController: UIViewController {
                                             if showAlert {
                                                 self.presentViewController(alertView, animated: true, completion: nil)
                                             }
-                                            
-                                            self.didUnarm(false)
                                         }
                                     })
                                     
@@ -478,8 +373,6 @@ class AlarmViewController: UIViewController {
             let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
             alertView.addAction(okAction)
             self.presentViewController(alertView, animated: true, completion: nil)
-            
-            self.didUnarm(false)
         }
     }
     
@@ -492,20 +385,12 @@ class AlarmViewController: UIViewController {
     }
 }
 
-extension AlarmViewController : SystemProtocol {
+extension AlarmViewController : AlarmUIDelegate {
     func idle() {
-        countDown = 3
-        delayDown = 3
-        notifyTo = UINT16_MAX
-        isArmed = false
-        canCancel = false
-        
-        notificationTimer?.invalidate()
-        notificationTimer = nil
-        
-        delayTimer?.invalidate()
-        delayTimer = nil
-        
+        showInterstitials()
+        stopClock()
+ 
+        alarmCountDownLabel.hidden = true
         context = nil;
         touchIDButton.hidden = true
         numberPad.text = ""
@@ -526,14 +411,16 @@ extension AlarmViewController : SystemProtocol {
         appDelegate.hubs.remoteDisarmAlarm = false
         appDelegate.hubs.notificationSeen = false
         appDelegate.hubs.notificationMessage = "Intruder alert!";
-        
-        detectorManager?.stopDetectingMotions()
-        detectorManager?.stopDetectingNoise()
-        alarmManager?.stopMakingNoise()
-        alarmManager?.stopCaptureVideo()
+    }
+    
+    func arming() {
+        setDynamicBall("CANCEL", color: UIColor.lightGrayColor(), userinteractable: true)
     }
     
     func armed() {
+        // Save passcode
+        self.passCode = numberPad.text;
+        
         let appFrame = UIScreen.mainScreen().bounds
         
         UIView.animateWithDuration(0.5, animations: {
@@ -543,33 +430,31 @@ extension AlarmViewController : SystemProtocol {
         })
         
         setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
-        
-        canCancel = false
-        isArmed = true
-        
+  
         numberPad.text = ""
         alarmCountDownLabel.text = String(0)
         alarmCountDownLabel.hidden = true
-        
-        // Stop timer
-        alarmTimer?.invalidate()
-        
-        // Start detecting motion
-        detectorManager?.startDetectingMotion()
-        
-        // Start detecting noise if enabled
-        let detectNoise = NSUserDefaults.standardUserDefaults().boolForKey("kSoundSwitchValue")
-        if detectNoise {
-            detectorManager.startDetectingNoise()
-        }
-        
+   
         context = LAContext()
         
         // Show TouchID button if supported
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil) {
             touchIDButton.hidden = false
         }
+    }
+    
+    func alarming() {
+        startClock()
+        self.hiddenBlackView.hidden = true;
+    }
+    
+    func alarm() {
+        previewView.hidden = false
+        numberPad.becomeFirstResponder()
         
+        self.appDelegate.hubs.notificationSeen = false
+        self.appDelegate.hubs.remoteDisarmAlarm = false
+        self.appDelegate.hubs.notificationMessage = "Intruder alert!";
     }
 }
 
@@ -596,7 +481,7 @@ extension AlarmViewController : DetectorProtol {
     }
 }
 
-extension AlarmViewController : AlarmProtocol {
+extension AlarmViewController : AlarmOnDelegate {
     func notifyRecipient(){
         
         let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
@@ -608,32 +493,28 @@ extension AlarmViewController : AlarmProtocol {
     
     func beep() {
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            if(self.countDown > 0)
-            {
-                self.alarmCountDownLabel.text = String(self.countDown--)
+            
+            let countTimer = self.timerManager.countDownTmer
+            
+            if countTimer.isRunning() {
+                self.alarmCountDownLabel.hidden = false
+                self.alarmCountDownLabel.text = String(countTimer.countDown)
             }
-                // Time out, start arming
-            else if (self.countDown == 0){
-                self.systemProtocol?.armed()
+            else{
+                self.alarmManager.setAlarmState(.Armed)
             }
         })
     }
     
     func tone() {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            if(self.delayDown > 0)
-            {
-                self.delayDown--
-                print("Alarming in \(self.delayDown)")
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in            
+            let delayTimer = self.timerManager.delayTimer
+            
+            if delayTimer.isRunning() {
+                print("Alarming in \(delayTimer.delayDown)")
             }
-                // Time out, user did not disarm the alarm in time
-            else if (self.delayDown == 0){
-                
-                // Stop delay timer
-                self.delayTimer.invalidate()
-                self.delayTimer = nil
-                
-                self.startAlarmProcedure()
+            else{
+                self.alarmManager.setAlarmState(.Alarm)
             }
         })
     }
@@ -643,13 +524,13 @@ extension AlarmViewController : AlarmProtocol {
     
     func takePicture(){
         
-        alarmManager.autoSnap.snapPhoto()
+        alarmManager.armedHandler.autoSnap.snapPhoto()
     }
     
     func recordVideo(){
         
-        if (!alarmManager.autoSnap.isRecording()) {
-            alarmManager.autoSnap.startRecording()
+        if (!alarmManager.armedHandler.autoSnap.isRecording()) {
+            alarmManager.armedHandler.autoSnap.startRecording()
         }
     }
 }

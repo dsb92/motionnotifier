@@ -9,6 +9,11 @@
 import Foundation
 import CoreMotion
 
+protocol DetectorProtol {
+    func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!)
+    func detectNoise()
+}
+
 let motionThreshold = 0.50
 
 class DetectorManager: NSObject {

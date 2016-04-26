@@ -29,9 +29,7 @@ class MainRegisterViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
-        let registerButtonTitle = deviceRegistered ? "CONTINUE" : "REGISTER"
-        self.registerButton.setTitle(registerButtonTitle, forState: UIControlState.Normal)
+        self.registerButton.setTitle(getButtonText(), forState: UIControlState.Normal)
     }
     
     override func viewDidLoad() {
@@ -81,6 +79,12 @@ class MainRegisterViewController: UIViewController {
         }
         
         userDefaults.synchronize()
+    }
+    
+    private func getButtonText() -> String {
+        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+        let registerButtonTitle = deviceRegistered ? "CONTINUE" : "REGISTER"
+        return registerButtonTitle
     }
     
     @IBAction
@@ -139,6 +143,7 @@ class MainRegisterViewController: UIViewController {
                 }
                 else{
                     self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
+                    self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
                 }
             })
         }

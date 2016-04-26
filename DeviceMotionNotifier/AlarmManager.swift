@@ -1,151 +1,118 @@
 //
-//  AlarmManager.swift
+//  Alarm.swift
 //  DeviceMotionNotifier
 //
 //  Created by David Buhauer on 28/02/2016.
 //  Copyright © 2016 David Buhauer. All rights reserved.
 //
 
-import Foundation
-import AVFoundation
-import AudioToolbox
-
-protocol AlarmProtocol {
-    func notifyRecipient()
-    func beep()
-    func tone()
-    func alarmWithNoise()
-    func takePicture()
-    func recordVideo()
+public enum State : String {
+    case Ready = "Ready"
+    case Arming = "Arming"
+    case Armed = "Armed"
+    case Alarming = "Alarming"
+    case Alarm = "Intruder alert"
 }
 
-class AlarmManager: NSObject {
-    var alarmProtocol: AlarmProtocol?
-    var intruderSoundPlayer: AVAudioPlayer!
-    var beepSoundPlayer: AVAudioPlayer!
-    var toneSoundPlayer: AVAudioPlayer!
-    
-    var autoSnap: AVAutoSnap!
+protocol AlarmUIDelegate {
+    func idle ()
+    func arming()
+    func armed ()
+    func alarming ()
+    func alarm ()
+}
 
-    init(alarmProtocol: AlarmProtocol){
-        self.alarmProtocol = alarmProtocol
-    }
+class AlarmManager {
+    static let sharedInstance = AlarmManager()
     
-    func startNotifyingRecipient(){
-        alarmProtocol?.notifyRecipient()
-    }
+    var timerManager: TimerManager!
+    var detectorManager: DetectorManager!
     
-    func startMakingNoise(){
-        
-        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
-        
-        if !silent {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)){
-  
-                if self.intruderSoundPlayer.playing == false {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                    self.intruderSoundPlayer.play()
-                }
-            }
-        }
-        
-        alarmProtocol?.alarmWithNoise()
-    }
+    var armedHandler : ArmedHandler!
+    var vc : AlarmViewController!
+    var alarmUIDelegate : AlarmUIDelegate!
     
-    func stopMakingNoise(){
-        if intruderSoundPlayer != nil {
-            intruderSoundPlayer.stop()
-        }
-    }
-    
-    func startBeep() {
-        
-        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
-        
-        if !silent {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)){
+    var state : State{
+        didSet{
+            print("Alarm state changed from "+oldValue.rawValue+" to "+state.rawValue)
+            
+            switch state {
                 
-                if self.beepSoundPlayer.playing == false {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                    self.beepSoundPlayer.play()
-                }
-            }
-        }
-        
-        alarmProtocol?.beep()
-    }
-    
-    func startTone() {
-        
-        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
-        
-        if !silent {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)){
+            case .Ready:
+                print("Ready")
+                detectorManager?.stopDetectingMotions()
+                detectorManager?.stopDetectingNoise()
+                armedHandler?.stopMakingNoise()
+                armedHandler?.stopCaptureVideo()
+                timerManager.countDownTmer.stop()
+                timerManager.delayTimer.stop()
+                timerManager.notificationTimer.stop()
                 
-                if self.toneSoundPlayer.playing == false {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                    self.toneSoundPlayer.play()
+                alarmUIDelegate?.idle()
+                break
+                
+            case .Arming:
+                print("Arming")
+                alarmUIDelegate?.arming()
+                timerManager.countDownTmer.start()
+                break
+                
+            case .Armed:
+                print("Armed")
+                // Start detecting motion
+                detectorManager?.startDetectingMotion()
+                
+                // Start detecting noise if enabled
+                let detectNoise = NSUserDefaults.standardUserDefaults().boolForKey("kSoundSwitchValue")
+                if detectNoise {
+                    detectorManager.startDetectingNoise()
                 }
+                
+                alarmUIDelegate?.armed()
+                break
+                
+            case .Alarming:
+                alarmUIDelegate.alarming()
+                timerManager.delayTimer.start()
+                break
+                
+            case .Alarm:
+                print("Intruder alert!")
+                alarmUIDelegate.alarm()
+                timerManager.notificationTimer.start()
+                break
             }
-        }
-        
-        alarmProtocol?.tone()
-    }
-    
-    func startFrontCamera() {
-        
-        //alarmProtocol?.takePicture()
-    }
-    
-    func startCaptureVideo() {
-        //alarmProtocol?.recordVideo()
-    }
-    
-    func stopCaptureVideo() {
-        autoSnap?.stopRecording()
-    }
-    
-    func prepareToPlaySounds() {
-        if (self.intruderSoundPlayer == nil){
-            let intruderSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("intruder_alarm", ofType: "wav")!)
             
-            do {
-                self.intruderSoundPlayer = try AVAudioPlayer(contentsOfURL: intruderSound)
-                self.intruderSoundPlayer.volume = 1.0
-                self.intruderSoundPlayer.prepareToPlay()
-            }
-            catch{
-                print(error)
-            }
         }
+    }
+    
+    private init() {
+        state = .Ready
+        armedHandler = ArmedHandler()
+        timerManager = TimerManager(handler: armedHandler)
+    }
+    
+    func assoicateVC(vc: AlarmViewController){
+        self.vc = vc
+        armedHandler.alarmOnDelegate = vc
+        alarmUIDelegate = vc
+        self.detectorManager = DetectorManager(detectorProtocol: vc)
+    }
+    
+    func initializeAlarm() {
+        armedHandler.prepareToPlaySounds()
         
-        if (self.beepSoundPlayer == nil){
-            let beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
-            
-            do {
-                self.beepSoundPlayer = try AVAudioPlayer(contentsOfURL: beepSound)
-                self.beepSoundPlayer.volume = 1.0
-                self.beepSoundPlayer.prepareToPlay()
-            }
-            catch{
-                print(error)
-            }
-        }
-
-        if (self.toneSoundPlayer == nil){
-            let toneSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tone", ofType: "wav")!)
-            
-            do {
-                self.toneSoundPlayer = try AVAudioPlayer(contentsOfURL: toneSound)
-                self.toneSoundPlayer.volume = 1.0
-                self.toneSoundPlayer.prepareToPlay()
-            }
-            catch{
-                print(error)
-            }
-        }
+        armedHandler.autoSnap = AVAutoSnap(vc: self.vc)
+        armedHandler.autoSnap.initializeOnViewDidLoad()
+        armedHandler.autoSnap.initializeOnViewWillAppear()
+        
+    }
+    
+    func setAlarmState(state: State){
+        self.state = state
+    }
+    
+    func getAlarmState() -> State {
+        return self.state
     }
 }
