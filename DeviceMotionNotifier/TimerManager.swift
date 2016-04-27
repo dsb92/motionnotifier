@@ -22,7 +22,7 @@ class TimerManager {
     var delayTimer: DelayTimer!
     var notificationTimer: NotificationTimer!
     
-    init(handler: ArmedHandler) {
+    init(handler: AlertHandler) {
         countDownTmer = CountDownTimer()
         delayTimer = DelayTimer()
         notificationTimer = NotificationTimer()

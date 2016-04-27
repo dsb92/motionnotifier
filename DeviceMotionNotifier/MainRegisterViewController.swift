@@ -114,38 +114,47 @@ class MainRegisterViewController: UIViewController {
         // OBS Password same as name of device
         let pass = deviceToMonitor
         
-        appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceToMonitor, andPassword: pass)
-        appDelegate.hubs.registerClient.registerWithDeviceToken(appDelegate.hubs.deviceToken, tags: nil) { (error) -> Void in
-            
-            dispatch_async(dispatch_get_main_queue(), {
+        self.appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceToMonitor, andPassword: pass)
+        
+        if self.appDelegate.hubs.deviceToken != nil {
+            self.appDelegate.hubs.registerClient.registerWithDeviceToken(self.appDelegate.hubs.deviceToken, tags: nil) { (error) -> Void in
                 
-                self.spinner.stopAnimating()
-
-                if (error == nil) {
+                dispatch_async(dispatch_get_main_queue(), {
                     
-                    let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+                    self.spinner.stopAnimating()
                     
-                    if !deviceRegistered {
-                        self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
+                    if (error == nil) {
                         
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
+                        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+                        
+                        if !deviceRegistered {
+                            self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
+                            
+                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
+                        }
+                        
+                        self.appDelegate.hubs.userName = deviceToMonitor
+                        self.appDelegate.hubs.recipientName = deviceToNotify
+                        self.appDelegate.hubs.notificationMessage = "Intruder alert!";
+                        
+                        let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
+                        let initialVC = alarmSB.instantiateInitialViewController()
+                        self.presentViewController(initialVC!, animated: true, completion: nil)
                     }
-                    
-                    self.appDelegate.hubs.userName = deviceToMonitor
-                    self.appDelegate.hubs.recipientName = deviceToNotify
-                    self.appDelegate.hubs.remoteDisarmAlarm = false
-                    self.appDelegate.hubs.notificationSeen = false
-                    self.appDelegate.hubs.notificationMessage = "Intruder alert!";
-                    
-                    let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
-                    let initialVC = alarmSB.instantiateInitialViewController()
-                    self.presentViewController(initialVC!, animated: true, completion: nil)
-                }
-                else{
-                    self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
-                    self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
-                }
-            })
+                    else{
+                        self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
+                        self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
+                    }
+                })
+            }
+
+        }
+        else{
+            print("ERROR: Device token nil, cannot register...")
+            
+            self.spinner.stopAnimating()
+            self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
+            self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
         }
     }
     

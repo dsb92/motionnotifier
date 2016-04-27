@@ -19,7 +19,7 @@ protocol AlarmOnDelegate {
     func recordVideo()
 }
 
-class ArmedHandler {
+class AlertHandler {
     var alarmOnDelegate: AlarmOnDelegate?
     var intruderSoundPlayer: AVAudioPlayer!
     var beepSoundPlayer: AVAudioPlayer!

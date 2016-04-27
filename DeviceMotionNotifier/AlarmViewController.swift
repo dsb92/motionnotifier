@@ -78,7 +78,7 @@ class AlarmViewController: UIViewController {
         setupAds()
         setupInterstitials()
         setDefaults()
-        setOtherStuff()
+        setTouchHandler()
         
         setupManagers()
 
@@ -106,11 +106,7 @@ class AlarmViewController: UIViewController {
     private func loadAdBanner() {
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
         
-        // Test
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        
-        // Live
-        //bannerView.adUnitID = "ca-app-pub-2595377837159656/1504782129"
+        bannerView.adUnitID = kConfigAdUnitBannerId
         
         bannerView.hidden = false
         bannerView.rootViewController = self
@@ -130,7 +126,7 @@ class AlarmViewController: UIViewController {
     private func setupSlidebarMenu() {
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
             // if iPad:
@@ -150,7 +146,6 @@ class AlarmViewController: UIViewController {
         alarmManager.assoicateVC(self)
         detectorManager = alarmManager.detectorManager
         
-        alarmManager.initializeAlarm()
         alarmManager.setAlarmState(.Ready)
     }
     
@@ -208,8 +203,8 @@ class AlarmViewController: UIViewController {
         userDefaults.synchronize()
     }
     
-    private func setOtherStuff() {
-        let singleFingerTap = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+    private func setTouchHandler() {
+        let singleFingerTap = UITapGestureRecognizer(target: self, action: #selector(AlarmViewController.handleSingleTap(_:)))
         hiddenBlackView.addGestureRecognizer(singleFingerTap)
     }
     
@@ -231,7 +226,7 @@ class AlarmViewController: UIViewController {
     func intruderAlert(){
     
         if alarmManager.getAlarmState() == .Armed  {
-            alarmManager.setAlarmState(.Alarming)
+            alarmManager.setAlarmState(.Alert)
         }
 
     }
@@ -247,12 +242,7 @@ class AlarmViewController: UIViewController {
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        
-        // Test
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        
-        // Live
-        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-2595377837159656/4903743727")
+        let interstitial = GADInterstitial(adUnitID: kConfigAdUnitInterstitialsId)
         
         interstitial.delegate = self
         interstitial.loadRequest(GADRequest())
@@ -275,7 +265,7 @@ class AlarmViewController: UIViewController {
         if codeFromPad?.characters.count >= digits {
             numberPad.resignFirstResponder()
             
-            if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alarming ||  alarmManager.getAlarmState() == .Alarm {
+            if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting {
                 setDynamicBall("DISARM", color: UIColor.greenColor(), userinteractable: true)
             }
             else{
@@ -283,7 +273,7 @@ class AlarmViewController: UIViewController {
             }
         }
         else{
-            if alarmManager.getAlarmState() == .Armed {
+            if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting  {
                 setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
             }
             else{
@@ -295,7 +285,7 @@ class AlarmViewController: UIViewController {
     @IBAction func AlarmButtonAction(sender: UIButton) {
         
         // ARMED
-        if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alarming ||  alarmManager.getAlarmState() == .Alarm {
+        if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting {
             if self.numberPad.text == self.passCode {
                 alarmManager.setAlarmState(.Ready)
             }
@@ -408,8 +398,6 @@ extension AlarmViewController : AlarmUIDelegate {
             self.hideButton.hidden = true
         })
         
-        appDelegate.hubs.remoteDisarmAlarm = false
-        appDelegate.hubs.notificationSeen = false
         appDelegate.hubs.notificationMessage = "Intruder alert!";
     }
     
@@ -443,17 +431,15 @@ extension AlarmViewController : AlarmUIDelegate {
         }
     }
     
-    func alarming() {
+    func alert() {
         startClock()
         self.hiddenBlackView.hidden = true;
     }
     
-    func alarm() {
+    func alerting() {
         previewView.hidden = false
         numberPad.becomeFirstResponder()
-        
-        self.appDelegate.hubs.notificationSeen = false
-        self.appDelegate.hubs.remoteDisarmAlarm = false
+
         self.appDelegate.hubs.notificationMessage = "Intruder alert!";
     }
 }
@@ -514,7 +500,7 @@ extension AlarmViewController : AlarmOnDelegate {
                 print("Alarming in \(delayTimer.delayDown)")
             }
             else{
-                self.alarmManager.setAlarmState(.Alarm)
+                self.alarmManager.setAlarmState(.Alerting)
             }
         })
     }

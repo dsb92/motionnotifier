@@ -10,16 +10,16 @@ public enum State : String {
     case Ready = "Ready"
     case Arming = "Arming"
     case Armed = "Armed"
-    case Alarming = "Alarming"
-    case Alarm = "Intruder alert"
+    case Alert = "Alert"
+    case Alerting = "Alerting"
 }
 
 protocol AlarmUIDelegate {
-    func idle ()
-    func arming()
-    func armed ()
-    func alarming ()
-    func alarm ()
+    func idle () // Ready
+    func arming() // Arming, beep...
+    func armed () // Armed
+    func alert () // Alert, tone...
+    func alerting () // Alerting, alarm...
 }
 
 class AlarmManager {
@@ -28,7 +28,7 @@ class AlarmManager {
     var timerManager: TimerManager!
     var detectorManager: DetectorManager!
     
-    var armedHandler : ArmedHandler!
+    var armedHandler : AlertHandler!
     var vc : AlarmViewController!
     var alarmUIDelegate : AlarmUIDelegate!
     
@@ -48,17 +48,24 @@ class AlarmManager {
                 timerManager.delayTimer.stop()
                 timerManager.notificationTimer.stop()
                 
+                deinitialize()
+                
                 alarmUIDelegate?.idle()
                 break
                 
             case .Arming:
                 print("Arming")
+
+                // Initialize what ever needs to be initialized (in a thread)
+                initialize()
+                
                 alarmUIDelegate?.arming()
                 timerManager.countDownTmer.start()
                 break
                 
             case .Armed:
                 print("Armed")
+                
                 // Start detecting motion
                 detectorManager?.startDetectingMotion()
                 
@@ -71,14 +78,14 @@ class AlarmManager {
                 alarmUIDelegate?.armed()
                 break
                 
-            case .Alarming:
-                alarmUIDelegate.alarming()
+            case .Alert:
+                alarmUIDelegate.alert()
                 timerManager.delayTimer.start()
                 break
                 
-            case .Alarm:
+            case .Alerting:
                 print("Intruder alert!")
-                alarmUIDelegate.alarm()
+                alarmUIDelegate.alerting()
                 timerManager.notificationTimer.start()
                 break
             }
@@ -88,7 +95,7 @@ class AlarmManager {
     
     private init() {
         state = .Ready
-        armedHandler = ArmedHandler()
+        armedHandler = AlertHandler()
         timerManager = TimerManager(handler: armedHandler)
     }
     
@@ -99,13 +106,29 @@ class AlarmManager {
         self.detectorManager = DetectorManager(detectorProtocol: vc)
     }
     
-    func initializeAlarm() {
-        armedHandler.prepareToPlaySounds()
-        
-        armedHandler.autoSnap = AVAutoSnap(vc: self.vc)
-        armedHandler.autoSnap.initializeOnViewDidLoad()
-        armedHandler.autoSnap.initializeOnViewWillAppear()
-        
+    func initialize() {
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            // do some task
+            
+            self.armedHandler.prepareToPlaySounds()
+            
+            if self.armedHandler.autoSnap == nil {
+                self.armedHandler.autoSnap = AVAutoSnap(vc: self.vc)
+            }
+            
+            self.armedHandler.autoSnap?.initializeOnViewDidLoad()
+            self.armedHandler.autoSnap?.initializeOnViewWillAppear()
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                // update some UI
+            }
+        }
+    }
+    
+    func deinitialize() {
+        armedHandler.autoSnap?.deinitialize()
+        armedHandler.autoSnap = nil
     }
     
     func setAlarmState(state: State){

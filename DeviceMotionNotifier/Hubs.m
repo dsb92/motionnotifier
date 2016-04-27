@@ -59,7 +59,7 @@ NSString *HubSasKeyValue;
                                                                  self.statusResult = [self.statusResult stringByAppendingString:status];
                                                              });
                                               
-                                              NSLog(status);
+                                              NSLog(@"%@",status);
                                           }
                                           
                                           if (data != NULL)

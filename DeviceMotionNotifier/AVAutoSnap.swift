@@ -157,14 +157,14 @@ class AVAutoSnap: NSObject {
             self.addObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", options:[.Old , .New], context: &CapturingStillImageContext)
             self.addObserver(self, forKeyPath: "movieFileOutput.recording", options: [.Old , .New], context: &RecordingContext)
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "subjectAreaDidChange:", name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("subjectAreaDidChange:"), name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
             
             
             weak var weakSelf = self
             
             self.runtimeErrorHandlingObserver = NSNotificationCenter.defaultCenter().addObserverForName(AVCaptureSessionRuntimeErrorNotification, object: self.session, queue: nil, usingBlock: {
                 (note: NSNotification?) in
-                var strongSelf: AVAutoSnap = weakSelf!
+                let strongSelf: AVAutoSnap = weakSelf!
                 dispatch_async(strongSelf.sessionQueue, {
                     //                    strongSelf.session?.startRunning()
                     if let sess = strongSelf.session{
@@ -179,6 +179,12 @@ class AVAutoSnap: NSObject {
             
         })
 
+    }
+    
+    func deinitialize() {
+        self.removeObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized")
+        self.removeObserver(self, forKeyPath: "stillImageOutput.capturingStillImage")
+        self.removeObserver(self, forKeyPath: "movieFileOutput.recording")
     }
     
     func snapPhoto(){

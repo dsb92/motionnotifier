@@ -144,21 +144,23 @@ class IAPManager: NSObject {
 
 extension IAPManager : SKProductsRequestDelegate {
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-        print("In-AppPurchase: product request")
+//        print("In-AppPurchase: product request")
         let myProduct = response.products
         
         for product in myProduct{
-            print("In-AppPurchase: product added")
-            print(product.productIdentifier)
-            print(product.localizedTitle)
-            print(product.localizedDescription)
-            print(product.price)
+//            print("In-AppPurchase: product added")
+//            print(product.productIdentifier)
+//            print(product.localizedTitle)
+//            print(product.localizedDescription)
+//            print(product.price)
             
             list.append(product )
         }
         
         // Sort the list price ascending order
         list.sortInPlace({$0.price.compare($1.price) == NSComparisonResult.OrderedAscending})
+        
+        print("In-AppPurchase: IAP is enabled..success")
     }
 }
 

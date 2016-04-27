@@ -11,7 +11,7 @@ import UIKit
 class NotificationTimer: NSObject, TimerDelegate {
     let startValue = UINT16_MAX
     var notificationTimer: NSTimer!
-    var handler: ArmedHandler!
+    var handler: AlertHandler!
     var notifyTo: Int32 {
         didSet {
             if notifyTo == 0 {
@@ -25,7 +25,7 @@ class NotificationTimer: NSObject, TimerDelegate {
     }
     
     func start(){
-        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(NotificationTimer.update), userInfo: nil, repeats: true)
     }
     
     func stop() {

@@ -46,7 +46,7 @@ class DynamicFlyingBalls: UIView {
         self.vc = vc
 
         for ball in self.balls as! [UIButton]{
-            ball.addTarget(vc, action: "AlarmButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            ball.addTarget(vc, action: Selector("AlarmButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         }
 
         self.addSubview(vc.numberPad)

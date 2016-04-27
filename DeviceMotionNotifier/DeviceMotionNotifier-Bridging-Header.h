@@ -5,5 +5,8 @@
 #import "Hubs.h"
 #import "ARAudioRecognizer.h"
 #import "SWRevealViewController.h"
+// For the welcome screen dots...
 #import "APPViewController.h"
 #import "APPChildViewController.h"
+#import "ObjC.h"
+#import "Config.h"

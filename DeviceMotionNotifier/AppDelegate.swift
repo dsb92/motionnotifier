@@ -60,6 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
         hubs.deviceToken = deviceToken;
+        
+        print("Device token: \(deviceToken)")
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
@@ -74,86 +76,75 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Remote Notification received: " + message)
         
-        // Message seen
-        hubs.notificationSeen = true
-        
-        if (message.containsString("__ARM__")){
+        switch message {
+        case "__ARM__":
             
-        }
-        else if (message.containsString("__DISARM__")){
-            self.hubs.remoteDisarmAlarm = true
+            break
+            
+        case "__DISARM__":
+            
+            AlarmManager.sharedInstance.setAlarmState(.Ready)
             
             self.hubs.recipientName = senderUserName
             self.hubs.notificationMessage = "__DISARMED__"
             self.hubs.SendToEnabledPlatforms()
-        }
             
-            // unused...for the moment
-        else if (message.containsString("__ARMED__")){
+            break
             
-            AppDelegate.simpleMessage(title: "ALARM", message: "ARMED", image: nil, uiViewController: vc!)
+        case "__ARMED__":
             
-        }
+            break
             
-        else if (message.containsString("__DISARMED__")){
-            
-            hubs.notificationSeen = false
-            hubs.remoteDisarmAlarm = false
-            
-            AppDelegate.userInteracted = true
-            
-            AppDelegate.simpleMessage(title: "ALARM", message: "DISARMED", image: nil, uiViewController: vc!)
-        }
-        
-        else if (message.containsString("__MESSAGE_SEEN__")){
-            
-            hubs.notificationSeen = true
-            hubs.remoteDisarmAlarm = false
-            
-            AppDelegate.userInteracted = true
-        }
-            
-        else if (message.containsString("Intruder alert!")){
-            // If message has not yet been seen by recipient
-            if hubs.notificationSeen == true && AppDelegate.userInteracted == false {
-                // Message seen
-                hubs.notificationSeen = false
+        case "__DISARMED__":
+
+            if !AppDelegate.userInteracted {
+                
                 AppDelegate.userInteracted = true
                 
-                // Alarm start her
                 let alertVC = UIAlertController(title: "ALARM", message: message, preferredStyle: .Alert)
-                let callAction = UIAlertAction(title: "REMOTE DISARM ALARM", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
+                let okAction = UIAlertAction(title: "DISARMED", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
                     
-                    // disarm alarm
+                    AppDelegate.userInteracted = false
+                }
+
+                alertVC.addAction(okAction)
+                vc!.presentViewController(alertVC, animated: true, completion: nil)
+            }
+            
+            break
+            
+        case "Intruder alert!":
+            
+            if !AppDelegate.userInteracted {
+                
+                AppDelegate.userInteracted = true
+                
+                let alertVC = UIAlertController(title: "ALARM", message: message, preferredStyle: .Alert)
+                let remoteAction = UIAlertAction(title: "REMOTE DISARM ALARM", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
+                    
+                    // Disarm alarm
                     // Send push message back to sender(Device with the alarm)
                     self.hubs.recipientName = senderUserName
                     self.hubs.notificationMessage = "__DISARM__"
                     self.hubs.SendToEnabledPlatforms()
                     
-                    self.hubs.notificationSeen = false
                     AppDelegate.userInteracted = false
                 }
                 
                 let okAction = UIAlertAction(title: "OK...", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
                     
-                    // Other actions
-                    // Send push message back to sender(Device with the alarm)
-                    self.hubs.recipientName = senderUserName
-                    self.hubs.notificationMessage = "__MESSAGE_SEEN__"
-                    self.hubs.SendToEnabledPlatforms()
+                    AppDelegate.userInteracted = false
                     
-                    self.hubs.notificationSeen = false
                 }
                 
-                alertVC.addAction(callAction)
+                alertVC.addAction(remoteAction)
                 alertVC.addAction(okAction)
-                
-                let vc = UIWindow.getVisibleViewControllerFrom(window!.rootViewController)
-                
-                print("Presenting alert dialog...")
                 vc!.presentViewController(alertVC, animated: true, completion: nil)
-                
             }
+            
+            break
+        default:
+            break
         }
     }
     
@@ -165,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         alertView.addAction({
             
-            self.userInteracted = false
+            
             
         })
         

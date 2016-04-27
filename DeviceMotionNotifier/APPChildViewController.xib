@@ -37,13 +37,13 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Some text here telling about the app, what it does and why it does it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-0x-LMT">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here telling about the app, what it does and why it does it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-0x-LMT">
                     <rect key="frame" x="28" y="406" width="579" height="15"/>
                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLS-NM-TAa">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLS-NM-TAa">
                     <rect key="frame" x="152" y="124" width="330" height="247"/>
                 </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-Rf-usJ" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
@@ -76,12 +76,12 @@
                 <constraint firstItem="tCf-Gt-uqh" firstAttribute="top" secondItem="1" secondAttribute="top" constant="48" id="0n1-Rl-Vmx"/>
                 <constraint firstItem="sLS-NM-TAa" firstAttribute="leading" secondItem="tCf-Gt-uqh" secondAttribute="leading" constant="144" id="6I2-8l-M9O"/>
                 <constraint firstItem="sLS-NM-TAa" firstAttribute="trailing" secondItem="tCf-Gt-uqh" secondAttribute="trailing" constant="-144" id="9pe-RA-E9K"/>
-                <constraint firstItem="Mh1-Rf-usJ" firstAttribute="centerX" secondItem="XhV-0x-LMT" secondAttribute="centerX" id="D6I-hg-Rem"/>
                 <constraint firstAttribute="trailing" secondItem="XhV-0x-LMT" secondAttribute="trailing" constant="27" id="NhS-ff-2Bf"/>
                 <constraint firstItem="XhV-0x-LMT" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="28" id="SIk-HZ-zAp"/>
                 <constraint firstItem="XhV-0x-LMT" firstAttribute="top" secondItem="sLS-NM-TAa" secondAttribute="bottom" constant="35" id="STa-hb-dD2"/>
                 <constraint firstItem="XhV-0x-LMT" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="gCD-X2-FuI"/>
                 <constraint firstItem="tCf-Gt-uqh" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="h3y-Tm-HXg"/>
+                <constraint firstItem="Mh1-Rf-usJ" firstAttribute="centerX" secondItem="XhV-0x-LMT" secondAttribute="centerX" id="j1d-tf-SZ8"/>
                 <constraint firstItem="Mh1-Rf-usJ" firstAttribute="bottom" secondItem="1" secondAttribute="bottomMargin" id="kmf-dQ-HPd"/>
                 <constraint firstItem="XhV-0x-LMT" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" constant="129.5" id="p25-bw-U4D"/>
                 <constraint firstItem="sLS-NM-TAa" firstAttribute="top" secondItem="tCf-Gt-uqh" secondAttribute="bottom" constant="21" id="tFs-zE-l0P"/>

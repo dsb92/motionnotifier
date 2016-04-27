@@ -40,7 +40,6 @@
 @property (strong, nonatomic) NSXMLParser *xmlParser;
 @property (copy, nonatomic) NSString *currentElement;
 @property(strong, nonatomic) NSString *statusResult;
-@property BOOL notificationSeen;
 @property BOOL remoteDisarmAlarm;
 
 @end

@@ -14,12 +14,14 @@
 		46419A551CC26BC600F043EA /* APPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46419A501CC26BC600F043EA /* APPViewController.xib */; };
 		46419A561CC26BC600F043EA /* APPChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46419A521CC26BC600F043EA /* APPChildViewController.m */; };
 		46419A571CC26BC600F043EA /* APPChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46419A531CC26BC600F043EA /* APPChildViewController.xib */; };
-		466ECE771CCFCDB600F1C01D /* ArmedHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE761CCFCDB600F1C01D /* ArmedHandler.swift */; };
+		466ECE771CCFCDB600F1C01D /* AlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE761CCFCDB600F1C01D /* AlertHandler.swift */; };
 		466ECE7D1CCFDFFE00F1C01D /* CountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE7C1CCFDFFE00F1C01D /* CountDownTimer.swift */; };
 		466ECE7F1CCFE07B00F1C01D /* DelayTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE7E1CCFE07B00F1C01D /* DelayTimer.swift */; };
 		466ECE811CCFE14600F1C01D /* NotificationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE801CCFE14600F1C01D /* NotificationTimer.swift */; };
 		466ECE831CCFE8DF00F1C01D /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE821CCFE8DF00F1C01D /* TimerManager.swift */; };
 		466ECE851CD0095E00F1C01D /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE841CD0095E00F1C01D /* Timer.swift */; };
+		466ECE881CD124D500F1C01D /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE871CD124D500F1C01D /* ObjC.m */; };
+		467FC8E21CD14A52003D7FF7 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC8E11CD14A52003D7FF7 /* Config.m */; };
 		469A586B1CCA140A0070A145 /* RoundClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469A586A1CCA140A0070A145 /* RoundClock.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
 		46B684F41C839458009C5CD1 /* DetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F31C839458009C5CD1 /* DetectorManager.swift */; };
@@ -88,12 +90,16 @@
 		46419A511CC26BC600F043EA /* APPChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPChildViewController.h; sourceTree = "<group>"; };
 		46419A521CC26BC600F043EA /* APPChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPChildViewController.m; sourceTree = "<group>"; };
 		46419A531CC26BC600F043EA /* APPChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPChildViewController.xib; sourceTree = "<group>"; };
-		466ECE761CCFCDB600F1C01D /* ArmedHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmedHandler.swift; sourceTree = "<group>"; };
+		466ECE761CCFCDB600F1C01D /* AlertHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHandler.swift; sourceTree = "<group>"; };
 		466ECE7C1CCFDFFE00F1C01D /* CountDownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownTimer.swift; sourceTree = "<group>"; };
 		466ECE7E1CCFE07B00F1C01D /* DelayTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayTimer.swift; sourceTree = "<group>"; };
 		466ECE801CCFE14600F1C01D /* NotificationTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTimer.swift; sourceTree = "<group>"; };
 		466ECE821CCFE8DF00F1C01D /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		466ECE841CD0095E00F1C01D /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		466ECE861CD124D500F1C01D /* ObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
+		466ECE871CD124D500F1C01D /* ObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
+		467FC8E01CD14A52003D7FF7 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		467FC8E11CD14A52003D7FF7 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		469A586A1CCA140A0070A145 /* RoundClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundClock.swift; sourceTree = "<group>"; };
 		46B684F11C83944A009C5CD1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		46B684F31C839458009C5CD1 /* DetectorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorManager.swift; sourceTree = "<group>"; };
@@ -197,14 +203,6 @@
 			name = Welcome;
 			sourceTree = "<group>";
 		};
-		466ECE711CCFC4EA00F1C01D /* StateHandlers */ = {
-			isa = PBXGroup;
-			children = (
-				466ECE761CCFCDB600F1C01D /* ArmedHandler.swift */,
-			);
-			name = StateHandlers;
-			sourceTree = "<group>";
-		};
 		466ECE7B1CCFDFE700F1C01D /* Timers */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,8 +220,8 @@
 				46B684F11C83944A009C5CD1 /* AlarmManager.swift */,
 				466ECE821CCFE8DF00F1C01D /* TimerManager.swift */,
 				46B684F31C839458009C5CD1 /* DetectorManager.swift */,
+				466ECE761CCFCDB600F1C01D /* AlertHandler.swift */,
 				466ECE7B1CCFDFE700F1C01D /* Timers */,
-				466ECE711CCFC4EA00F1C01D /* StateHandlers */,
 				46B685021C8783E7009C5CD1 /* AlarmFeatures */,
 			);
 			name = Model;
@@ -256,6 +254,8 @@
 				46DEED601C7E417F009B30E3 /* RegisterClient.m */,
 				46DEED661C7E42DC009B30E3 /* Hubs.h */,
 				46DEED671C7E42DC009B30E3 /* Hubs.m */,
+				466ECE861CD124D500F1C01D /* ObjC.h */,
+				466ECE871CD124D500F1C01D /* ObjC.m */,
 			);
 			name = Webservice;
 			sourceTree = "<group>";
@@ -413,6 +413,8 @@
 				46B684EE1C8393CE009C5CD1 /* Control */,
 				46B684ED1C8393BB009C5CD1 /* Model */,
 				46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */,
+				467FC8E01CD14A52003D7FF7 /* Config.h */,
+				467FC8E11CD14A52003D7FF7 /* Config.m */,
 				46DEED381C7E3BA0009B30E3 /* Assets.xcassets */,
 				46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */,
 				46DEED3D1C7E3BA0009B30E3 /* Info.plist */,
@@ -658,6 +660,7 @@
 				46419A561CC26BC600F043EA /* APPChildViewController.m in Sources */,
 				46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */,
 				46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */,
+				467FC8E21CD14A52003D7FF7 /* Config.m in Sources */,
 				466ECE851CD0095E00F1C01D /* Timer.swift in Sources */,
 				46DEED711C7F9E7D009B30E3 /* MainRegisterViewController.swift in Sources */,
 				46B6852B1C8C9E67009C5CD1 /* AlarmMenuViewController.swift in Sources */,
@@ -666,7 +669,7 @@
 				46B685171C8B4103009C5CD1 /* AnimationDelegate.swift in Sources */,
 				46419A541CC26BC600F043EA /* APPViewController.m in Sources */,
 				46B684FF1C84CB86009C5CD1 /* ARAudioRecognizer.m in Sources */,
-				466ECE771CCFCDB600F1C01D /* ArmedHandler.swift in Sources */,
+				466ECE771CCFCDB600F1C01D /* AlertHandler.swift in Sources */,
 				46DEED6C1C7F9E15009B30E3 /* AppDelegate.swift in Sources */,
 				46DEED6E1C7F9E15009B30E3 /* RegisterClient.m in Sources */,
 				46B685251C8C56B0009C5CD1 /* DynamicFlyingBalls.swift in Sources */,
@@ -677,6 +680,7 @@
 				46B685061C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift in Sources */,
 				46B685181C8B4103009C5CD1 /* CircularRevealAnimator.swift in Sources */,
 				46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */,
+				466ECE881CD124D500F1C01D /* ObjC.m in Sources */,
 				466ECE7F1CCFE07B00F1C01D /* DelayTimer.swift in Sources */,
 				46B685131C8B40E4009C5CD1 /* UIView+CircularAnimation.swift in Sources */,
 			);
@@ -831,7 +835,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49d9752e-f953-479b-9927-45db8a1a6784";
+				PROVISIONING_PROFILE = "08eefca9-2a6e-4ae1-b22e-94a555154954";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -855,7 +859,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49d9752e-f953-479b-9927-45db8a1a6784";
+				PROVISIONING_PROFILE = "08eefca9-2a6e-4ae1-b22e-94a555154954";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

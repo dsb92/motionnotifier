@@ -9,9 +9,9 @@
 import UIKit
 
 class Timer : NSObject {
-    var armedHandler : ArmedHandler!
+    var armedHandler : AlertHandler!
     
     override init() {
-        self.armedHandler = ArmedHandler()
+        self.armedHandler = AlertHandler()
     }
 }
