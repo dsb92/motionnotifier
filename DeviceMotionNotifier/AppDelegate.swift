@@ -68,15 +68,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The message received
         let message = (userInfo as NSDictionary).objectForKey("aps")!.valueForKey("alert") as! String
         
-        // Get Sender user name (Device with the alarm)
-        let beginMessage = message.componentsSeparatedByString(":")[0]
-        let senderUserName = beginMessage.stringByReplacingOccurrencesOfString("From ", withString: "")
+        // Seperate the message into sender and what message
+        let fullMessage = message.componentsSeparatedByString(":")
+        let firstComponent = fullMessage[0]
+        let secondComponent = fullMessage[1]
+        
+        // Get sender user name (Device with the alarm)
+        let senderUserName = firstComponent.stringByReplacingOccurrencesOfString("From ", withString: "")
+        
+        // Get the alert message
+        let alertMessage = secondComponent.stringByReplacingOccurrencesOfString(" ", withString: "") // Remove empty spaces
         
         let vc = UIWindow.getVisibleViewControllerFrom(window!.rootViewController)
         
         print("Remote Notification received: " + message)
-        
-        switch message {
+
+        switch alertMessage {
         case "__ARM__":
             
             break
@@ -101,8 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 AppDelegate.userInteracted = true
                 
-                let alertVC = UIAlertController(title: "ALARM", message: message, preferredStyle: .Alert)
-                let okAction = UIAlertAction(title: "DISARMED", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+                let alertVC = UIAlertController(title: "ALARM", message: "Alarm has been remotely disarmed", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
                     
                     AppDelegate.userInteracted = false
                 }
@@ -112,9 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             break
-            
-        case "Intruder alert!":
-            
+ 
+        default:
             if !AppDelegate.userInteracted {
                 
                 AppDelegate.userInteracted = true
@@ -142,8 +148,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 vc!.presentViewController(alertVC, animated: true, completion: nil)
             }
             
-            break
-        default:
             break
         }
     }
