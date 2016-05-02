@@ -9,7 +9,7 @@
 import UIKit
 
 class DynamicFlyingBalls: UIView {
-
+    
     var animator : UIDynamicAnimator!
     var balls : [UIView]!
     var vc: AlarmViewController!
@@ -37,19 +37,20 @@ class DynamicFlyingBalls: UIView {
         self.addSubview(button)
         self.balls.append(button)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func associateVC(vc: AlarmViewController){
         self.vc = vc
-
+        
         for ball in self.balls as! [UIButton]{
             ball.addTarget(vc, action: Selector("AlarmButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         }
-
+        
         self.addSubview(vc.numberPad)
+        self.addSubview(vc.alarmCountDownLabel)
         self.addSubview(vc.touchIDButton)
         self.addSubview(vc.hiddenBlackView)
         self.addSubview(vc.hideButton)
@@ -61,15 +62,15 @@ class DynamicFlyingBalls: UIView {
         if framesSet == false {
             animator = UIDynamicAnimator(referenceView: self)
             
-            let field1 = UIFieldBehavior.vortexField()
-            field1.region = UIRegion(radius: self.bounds.size.width/2)
-            field1.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
-            field1.strength = 1
+            let radialGravity = UIFieldBehavior.noiseFieldWithSmoothness(1.0, animationSpeed: 0.5)
+            radialGravity.region = UIRegion(size: self.bounds.size)
+            radialGravity.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
+            radialGravity.strength = 1.5
             
-            let field2 = UIFieldBehavior.noiseFieldWithSmoothness(1.0, animationSpeed: 0.5)
-            field2.region = UIRegion(size: self.bounds.size)
-            field2.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
-            field2.strength = 1
+            let vortex = UIFieldBehavior.vortexField()
+            vortex.region = UIRegion(radius: self.bounds.size.width/2)
+            vortex.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
+            vortex.strength = 1
             
             for label in self.balls {
                 
@@ -80,16 +81,16 @@ class DynamicFlyingBalls: UIView {
                 
                 label.center = CGPointMake(CGFloat(xPos), CGFloat(yPos))
                 
-                field1.addItem(label)
-                field2.addItem(label)
+                radialGravity.addItem(label)
+                vortex.addItem(label)
             }
             
             let behavior1 = UIDynamicItemBehavior(items: balls)
             behavior1.elasticity = 0.4
-            behavior1.allowsRotation = true
+            behavior1.allowsRotation = false
             self.animator.addBehavior(behavior1)
             
-            let behavior2 = UIDynamicItemBehavior(items: [self.vc.numberPad, self.vc.hideButton])
+            let behavior2 = UIDynamicItemBehavior(items: [self.vc.alarmCountDownLabel, self.vc.numberPad, self.vc.hideButton])
             behavior2.anchored = true
             self.animator.addBehavior(behavior2)
             
@@ -101,10 +102,10 @@ class DynamicFlyingBalls: UIView {
             collision.translatesReferenceBoundsIntoBoundary = true
             self.animator.addBehavior(collision)
             
-            self.animator.addBehavior(field1)
-            self.animator.addBehavior(field2)
+            self.animator.addBehavior(vortex)
+            self.animator.addBehavior(radialGravity)
             
-            //self.animator.setValue(true, forKey: "debugEnabled")
+            self.animator.setValue(true, forKey: "debugEnabled")
             
             framesSet = true
         }

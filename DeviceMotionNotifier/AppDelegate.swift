@@ -17,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var hubs : Hubs!
     var mpcManager: MPCManager!
-    static var userInteracted: Bool!
+    var userInteracted: Bool!
+    
+    enum AlertMessage : String {
+        case ARM = "__ARM__"
+        case DISARM = "__DISARM__"
+        case ARMED = "__ARMED__"
+        case DISARMED = "__DISARMED__"
+    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -52,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         
-        AppDelegate.userInteracted = false;
+        userInteracted = false;
         
         return true
     }
@@ -65,9 +72,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        // The message received
-        let message = (userInfo as NSDictionary).objectForKey("aps")!.valueForKey("alert") as! String
+        // If the message has to do with alarm alerting
+        if let message = (userInfo as NSDictionary).objectForKey("aps")!.valueForKey("alert"){
+            handleAlert(message as! String)
+        }
         
+    }
+    
+    func handleAlert(message: String){
         // Seperate the message into sender and what message
         let fullMessage = message.componentsSeparatedByString(":")
         let firstComponent = fullMessage[0]
@@ -77,53 +89,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let senderUserName = firstComponent.stringByReplacingOccurrencesOfString("From ", withString: "")
         
         // Get the alert message
-        let alertMessage = secondComponent.stringByReplacingOccurrencesOfString(" ", withString: "") // Remove empty spaces
+        let alertMessage = secondComponent.stringByReplacingOccurrencesOfString(" ", withString: "")
         
         let vc = UIWindow.getVisibleViewControllerFrom(window!.rootViewController)
         
         print("Remote Notification received: " + message)
-
+        
         switch alertMessage {
-        case "__ARM__":
+        case AlertMessage.ARM.rawValue:
             
             break
             
-        case "__DISARM__":
+        case AlertMessage.DISARM.rawValue:
             
             AlarmManager.sharedInstance.setAlarmState(.Ready)
             
             self.hubs.recipientName = senderUserName
-            self.hubs.notificationMessage = "__DISARMED__"
+            self.hubs.notificationMessage = AlertMessage.DISARMED.rawValue
             self.hubs.SendToEnabledPlatforms()
             
             break
             
-        case "__ARMED__":
+        case AlertMessage.ARMED.rawValue:
             
             break
             
-        case "__DISARMED__":
-
-            if !AppDelegate.userInteracted {
+        case AlertMessage.DISARMED.rawValue:
+            
+            if !userInteracted {
                 
-                AppDelegate.userInteracted = true
+                userInteracted = true
+                self.hubs.remoteDisarmAlarm = false
                 
                 let alertVC = UIAlertController(title: "ALARM", message: "Alarm has been remotely disarmed", preferredStyle: .Alert)
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
                     
-                    AppDelegate.userInteracted = false
+                    self.userInteracted = false
                 }
-
+                
                 alertVC.addAction(okAction)
                 vc!.presentViewController(alertVC, animated: true, completion: nil)
             }
             
             break
- 
+            
         default:
-            if !AppDelegate.userInteracted {
+            if !userInteracted && !self.hubs.remoteDisarmAlarm {
                 
-                AppDelegate.userInteracted = true
+                userInteracted = true
                 
                 let alertVC = UIAlertController(title: "ALARM", message: message, preferredStyle: .Alert)
                 let remoteAction = UIAlertAction(title: "REMOTE DISARM ALARM", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
@@ -131,15 +144,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // Disarm alarm
                     // Send push message back to sender(Device with the alarm)
                     self.hubs.recipientName = senderUserName
-                    self.hubs.notificationMessage = "__DISARM__"
+                    self.hubs.notificationMessage = AlertMessage.DISARM.rawValue
                     self.hubs.SendToEnabledPlatforms()
                     
-                    AppDelegate.userInteracted = false
+                    self.userInteracted = false
+                    self.hubs.remoteDisarmAlarm = true
                 }
                 
                 let okAction = UIAlertAction(title: "OK...", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
                     
-                    AppDelegate.userInteracted = false
+                    self.userInteracted = false
                     
                 }
                 
