@@ -49,8 +49,6 @@
 		46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */; };
 		46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED381C7E3BA0009B30E3 /* Assets.xcassets */; };
 		46DEED3C1C7E3BA0009B30E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DEED3A1C7E3BA0009B30E3 /* LaunchScreen.storyboard */; };
-		46DEED471C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED461C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift */; };
-		46DEED521C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED511C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.swift */; };
 		46DEED641C7E425A009B30E3 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DEED631C7E425A009B30E3 /* WindowsAzureMessaging.framework */; };
 		46DEED6C1C7F9E15009B30E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */; };
 		46DEED6E1C7F9E15009B30E3 /* RegisterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED601C7E417F009B30E3 /* RegisterClient.m */; };
@@ -133,11 +131,7 @@
 		46DEED3B1C7E3BA0009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46DEED3D1C7E3BA0009B30E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46DEED421C7E3BA0009B30E3 /* DeviceMotionNotifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceMotionNotifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46DEED461C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionNotifierTests.swift; sourceTree = "<group>"; };
-		46DEED481C7E3BA0009B30E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46DEED4D1C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceMotionNotifierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46DEED511C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionNotifierUITests.swift; sourceTree = "<group>"; };
-		46DEED531C7E3BA0009B30E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMotionNotifier-Bridging-Header.h"; sourceTree = "<group>"; };
 		46DEED601C7E417F009B30E3 /* RegisterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterClient.m; sourceTree = "<group>"; };
 		46DEED621C7E41D7009B30E3 /* RegisterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterClient.h; path = ../RegisterClient.h; sourceTree = "<group>"; };
@@ -376,8 +370,6 @@
 			children = (
 				46DEED631C7E425A009B30E3 /* WindowsAzureMessaging.framework */,
 				46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */,
-				46DEED451C7E3BA0009B30E3 /* DeviceMotionNotifierTests */,
-				46DEED501C7E3BA0009B30E3 /* DeviceMotionNotifierUITests */,
 				46DEED2F1C7E3B9F009B30E3 /* Products */,
 				AF9D9FB62DCC889A06B15D28 /* Pods */,
 				32ED9D0A01F487AA6CE402A4 /* Frameworks */,
@@ -416,24 +408,6 @@
 				46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */,
 			);
 			path = DeviceMotionNotifier;
-			sourceTree = "<group>";
-		};
-		46DEED451C7E3BA0009B30E3 /* DeviceMotionNotifierTests */ = {
-			isa = PBXGroup;
-			children = (
-				46DEED461C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift */,
-				46DEED481C7E3BA0009B30E3 /* Info.plist */,
-			);
-			path = DeviceMotionNotifierTests;
-			sourceTree = "<group>";
-		};
-		46DEED501C7E3BA0009B30E3 /* DeviceMotionNotifierUITests */ = {
-			isa = PBXGroup;
-			children = (
-				46DEED511C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.swift */,
-				46DEED531C7E3BA0009B30E3 /* Info.plist */,
-			);
-			path = DeviceMotionNotifierUITests;
 			sourceTree = "<group>";
 		};
 		AF9D9FB62DCC889A06B15D28 /* Pods */ = {
@@ -698,7 +672,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46DEED471C7E3BA0009B30E3 /* DeviceMotionNotifierTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,7 +679,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46DEED521C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

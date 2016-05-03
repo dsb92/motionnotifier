@@ -4,4 +4,3 @@ HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/H
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Crashlytics" -isystem "${PODS_ROOT}/Headers/Public/Fabric" -isystem "${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK"
 OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"z" -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreTelephony" -framework "Crashlytics" -framework "EventKit" -framework "EventKitUI" -framework "Fabric" -framework "GoogleMobileAds" -framework "MediaPlayer" -framework "MessageUI" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit" -weak_framework "AdSupport"
 PODS_ROOT = ${SRCROOT}/Pods
-DEBUG_INFORMATION_FORMAT = dwarf
