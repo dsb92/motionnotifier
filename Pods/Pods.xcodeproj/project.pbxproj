@@ -128,6 +128,21 @@
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
 		</dict>
+		<key>1EBD07C441EC25D130A22C3121CEE87D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>4B3FF95CCD56B2D0B5B98BAF5D40DE8B</string>
+				<string>7B364F29C460EEEE77F3EB9127BC4974</string>
+				<string>F7DD1FF4555152505B4F5241B327AE61</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>1F0B9F713A13B4F29BE0C0E7483B187B</key>
 		<dict>
 			<key>children</key>
@@ -151,6 +166,19 @@
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
 			<string>Pods-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2C2D5D8FE49E0EA212276D076F8E7522</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Fabric.framework</string>
+			<key>path</key>
+			<string>iOS/Fabric.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -207,6 +235,21 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
+		<key>4B3FF95CCD56B2D0B5B98BAF5D40DE8B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BB80CCDE55209E7850E2A4E3122323AD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Crashlytics</string>
+			<key>path</key>
+			<string>Crashlytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>4E762F23EC34ED4A6FF3312D84E33A40</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -217,19 +260,6 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A44836C96D94598FFEB276123121E73</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleMobileAds.framework</string>
-			<key>path</key>
-			<string>GoogleMobileAdsSdkiOS-7.7.1/GoogleMobileAds.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -280,31 +310,33 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>7B364F29C460EEEE77F3EB9127BC4974</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>DC13AF6FB52FD16CE9AF2E2005422FD3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Fabric</string>
+			<key>path</key>
+			<string>Fabric</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>820FBBDA65C5B1A6A4C379A893C27235</string>
+				<string>1EBD07C441EC25D130A22C3121CEE87D</string>
 				<string>1F0B9F713A13B4F29BE0C0E7483B187B</string>
 				<string>037C0CA694176A3C0915F62C9D20B3E6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>820FBBDA65C5B1A6A4C379A893C27235</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E91D6015731707498AAA5817D350B87B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -340,6 +372,19 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>8E01BE27B4C156AF852689EAA1368E81</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleMobileAds.framework</string>
+			<key>path</key>
+			<string>GoogleMobileAdsSdkiOS-7.7.1/GoogleMobileAds.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>98C98CDFB3F20F2925F6CD1F141BB14F</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -350,6 +395,32 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9B8C38D46E994A559A3167EC4E31BF16</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8E01BE27B4C156AF852689EAA1368E81</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9E85BC8C45E0C503BCCEB58955D4DED0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Crashlytics.framework</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -516,6 +587,19 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
+		<key>BB80CCDE55209E7850E2A4E3122323AD</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9E85BC8C45E0C503BCCEB58955D4DED0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
 		<dict>
 			<key>children</key>
@@ -595,11 +679,11 @@
 				<string>1469924FC52F60B0068FA24EEFCB3EFC</string>
 			</array>
 		</dict>
-		<key>DA9C7F1A92E0A134FB3BBBCEC6F403E4</key>
+		<key>DC13AF6FB52FD16CE9AF2E2005422FD3</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>5A44836C96D94598FFEB276123121E73</string>
+				<string>2C2D5D8FE49E0EA212276D076F8E7522</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -608,11 +692,11 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E91D6015731707498AAA5817D350B87B</key>
+		<key>F7DD1FF4555152505B4F5241B327AE61</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>DA9C7F1A92E0A134FB3BBBCEC6F403E4</string>
+				<string>9B8C38D46E994A559A3167EC4E31BF16</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
