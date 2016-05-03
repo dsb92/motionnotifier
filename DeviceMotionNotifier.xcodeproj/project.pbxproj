@@ -20,7 +20,6 @@
 		466ECE811CCFE14600F1C01D /* NotificationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE801CCFE14600F1C01D /* NotificationTimer.swift */; };
 		466ECE831CCFE8DF00F1C01D /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE821CCFE8DF00F1C01D /* TimerManager.swift */; };
 		466ECE851CD0095E00F1C01D /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE841CD0095E00F1C01D /* Timer.swift */; };
-		466ECE881CD124D500F1C01D /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 466ECE871CD124D500F1C01D /* ObjC.m */; };
 		467FC8E21CD14A52003D7FF7 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC8E11CD14A52003D7FF7 /* Config.m */; };
 		469A586B1CCA140A0070A145 /* RoundClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469A586A1CCA140A0070A145 /* RoundClock.swift */; };
 		46B684F21C83944A009C5CD1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B684F11C83944A009C5CD1 /* AlarmManager.swift */; };
@@ -96,8 +95,6 @@
 		466ECE801CCFE14600F1C01D /* NotificationTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTimer.swift; sourceTree = "<group>"; };
 		466ECE821CCFE8DF00F1C01D /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		466ECE841CD0095E00F1C01D /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
-		466ECE861CD124D500F1C01D /* ObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
-		466ECE871CD124D500F1C01D /* ObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
 		467FC8E01CD14A52003D7FF7 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		467FC8E11CD14A52003D7FF7 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		469A586A1CCA140A0070A145 /* RoundClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundClock.swift; sourceTree = "<group>"; };
@@ -254,8 +251,6 @@
 				46DEED601C7E417F009B30E3 /* RegisterClient.m */,
 				46DEED661C7E42DC009B30E3 /* Hubs.h */,
 				46DEED671C7E42DC009B30E3 /* Hubs.m */,
-				466ECE861CD124D500F1C01D /* ObjC.h */,
-				466ECE871CD124D500F1C01D /* ObjC.m */,
 			);
 			name = Webservice;
 			sourceTree = "<group>";
@@ -694,7 +689,6 @@
 				46B685061C8B29E7009C5CD1 /* MainRegiserSettingsViewController.swift in Sources */,
 				46B685181C8B4103009C5CD1 /* CircularRevealAnimator.swift in Sources */,
 				46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */,
-				466ECE881CD124D500F1C01D /* ObjC.m in Sources */,
 				466ECE7F1CCFE07B00F1C01D /* DelayTimer.swift in Sources */,
 				46B685131C8B40E4009C5CD1 /* UIView+CircularAnimation.swift in Sources */,
 			);
