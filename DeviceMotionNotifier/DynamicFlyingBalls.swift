@@ -105,8 +105,10 @@ class DynamicFlyingBalls: UIView {
             self.animator.addBehavior(vortex)
             self.animator.addBehavior(radialGravity)
             
-            self.animator.setValue(true, forKey: "debugEnabled")
-            
+            #if DEBUG
+                self.animator.setValue(true, forKey: "debugEnabled")
+            #endif
+          
             framesSet = true
         }
     }

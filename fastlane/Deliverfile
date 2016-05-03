@@ -1,10 +1,28 @@
 ###################### More Options ######################
 # If you want to have even more control, check out the documentation
-# https://github.com/fastlane/deliver/blob/master/Deliverfile.md
+# https://github.com/KrauseFx/deliver/blob/master/Deliverfile.md
 
+automatic_release true
 
-###################### Automatically generated ######################
-# Feel free to remove the following line if you use fastlane (which you should)
+app_review_information({
+  first_name: "David",
+  last_name: "Buhauer",
+  phone_number: "+4528716801",
+  email_address: "carbonex_92@hotmail.com",
+  demo_user: "",
+  demo_password: "",
+  notes: ""
+})
 
-app_identifier "com.dabdeveloper.DeviceMotionNotifier" # The bundle identifier of your app
-username "carbonex_92@hotmail.com" # your Apple ID user
+submission_information({
+  add_id_info_limits_tracking: false,
+  add_id_info_serves_ads: false,
+  add_id_info_tracks_action: false,
+  add_id_info_tracks_install: false,
+  add_id_info_uses_idfa: false,
+  content_rights_contains_third_party_content: false,
+  content_rights_has_rights: false,
+  export_compliance_is_exempt: false,
+  export_compliance_uses_encryption: false,
+  export_compliance_encryption_updated: false
+})

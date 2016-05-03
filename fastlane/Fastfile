@@ -1,76 +1,349 @@
 # Customise this file, documentation can be found here:
-# https://github.com/fastlane/fastlane/tree/master/docs
-# All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md
+# https://github.com/KrauseFx/fastlane/tree/master/docs
+# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md
 # can also be listed using the `fastlane actions` command
-
 # Change the syntax highlighting to Ruby
-# All lines starting with a # are ignored when running `fastlane`
 
-# By default, fastlane will send which actions are used
-# No personal data is shared, more information on https://github.com/fastlane/enhancer
-# Uncomment the following line to opt out
-# opt_out_usage
+# To update fastlane run: 
+# sudo gem update fastlane
 
-# If you want to automatically update fastlane if a new version is available:
-# update_fastlane
+before_all do
+  # update_fastlane
+end
 
-# This is the minimum version number required.
-# Update this, if you use features of a newer version
-fastlane_version "1.59.0"
+after_all do |lane| # if all lanes were successful
+end
 
-default_platform :ios
+error do |lane, exception|
+  say exception.message
+end
 
-platform :ios do
-  before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+
+desc "Create or Update App for Dev"
+lane :create_app_for_dev do
+  set_dev_context()
+
+  cert(
+    development: true, 
+    output_path: "./certificates/")
+  produce_devcenter(ENV["DEV_DEVCENTER"]) #produce must be before sigh to make sure appId is created
+  # produce_itc(ENV["DEV_ITC"]) 
+  sigh(
+    development: true, 
+    output_path: "./fastlane/certificates/")
+end
+
+desc "Deploy to Crashlytics Beta"
+lane :crashlytics_beta do
+  set_dev_context()
+
+  branch = git_branch
+  if branch == "prod"
+    raise "Not allowed to deploy 'prod' to 'stage'"
+  elsif prompt(text: "Do you want to deploy '#{branch}' to 'stage' and Crashlytics Beta? (y/n)") == "y"
     
-    
-  end
+    ensure_git_branch(branch: branch)
+    ensure_git_status_clean #if it fails you can undo changes with: git checkout *
+    increment_build_number()
+    update_version_number()
 
-  desc "Runs all the tests"
-  lane :test do
-    scan
-  end
+    dataSource = prompt(text: "Which data: Dev, Stage or Prod? (d/s/p)")
+    if dataSource != "d" && dataSource != "s" && dataSource != "p"
+      raise "Invalid option - must be 'd', 's' or 'p'"
+    else 
+      if dataSource == "p"
+        dataSource = "PROD"
+      elsif dataSource == "s"
+        dataSource = "TEST"
+      else dataSource == "d"
+        dataSource = "DEV"
+      end
+    end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "DeviceMotionNotifier") # Build your app - more options available
-    pilot
+    customEmails = ""
+    testTarget = prompt(text: "Is it for internal, external, self or custom test? (i/e/s/c - you can choose multiple)")
+    if !(testTarget.include?("i") or testTarget.include?("e") or testTarget.include?("s") or testTarget.include? ("c"))
+      raise "Invalid option - must include an 'i', 'e', 's' or 'c'"
+    elsif testTarget.include?("c")
+      customEmails = prompt(text: "Write a list of emails, to receive the test version: (Seperated with comma, end with enter)")
+    end
+    internalEmails = "carbonex_92@hotmail.com"
+    externalEmails = "carbonex_92@hotmail.com"
+    selfEmail = ENV["BETA_EMAIL"]
+    emails = customEmails
+    if testTarget.include?("i")
+      emails += (emails.to_s.empty? ? "" : ",") + internalEmails
+    end
+    if testTarget.include?("e")
+      emails += (emails.to_s.empty? ? "" : ",") + externalEmails
+    end
+    if testTarget.include?("s")
+      emails += (emails.to_s.empty? ? "" : ",") + selfEmail
+    end
+    puts "Test receivers: #{emails}"
 
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
-  end
+    testNotes = prompt(text: "Write a message to the testers here: (Required, end with enter)")
 
-  desc "Deploy a new version to the App Store"
-  lane :appstore do
-    # match(type: "appstore")
-    # snapshot
-    gym(scheme: "DeviceMotionNotifier") # Build your app - more options available
-    deliver(force: true)
-    # frameit
-  end
+    cert(development: true, output_path: "./certificates/")
+    sigh(development: true, output_path: "./fastlane/certificates/")
+    build_app("Test", dataSource, nil)
+    crashlytics(
+      crashlytics_path: './Pods/Crashlytics/iOS/Crashlytics.framework',
+      api_token: '31c24a769e20f5da0788a7e0fca7c731512e4dce',
+      build_secret: 'c03978db58fa2faf73ab180afc4eb741e89db42e0c304f4aab504b113f266876',
+      notifications: true,
+      notes: testNotes,
+      emails: emails
+    )
 
-  # You can define as many lanes as you want
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+    commit_deployed_version()
+    if branch != "stage"
+      merge_to_branch(branch, "stage") 
+    end
   end
 end
 
 
+desc "Deploy to AppStore"
+lane :appstore do
+  set_prod_context()
 
-# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/docs/Platforms.md
-# All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md
+  branch = git_branch
+  if branch != "stage" && branch != "prod"
+    raise "Not allowed to deploy '#{branch}' directly to 'prod'"
+  elsif prompt(text: "Do you want to deploy '#{branch}' to 'prod' and build ipa for AppStore? (y/n)") == "y"
+
+    ensure_git_branch(branch: branch)
+    ensure_git_status_clean #if it fails you can undo changes with: git checkout *
+    if branch == "prod"
+      increment_build_number()
+      update_version_number()
+    end
+
+    cert(
+      username: ENV["PROD_DEVCENTER"],
+      output_path: "./certificates/")
+    produce_devcenter(ENV["PROD_DEVCENTER"]) #produce must be before sigh to make sure appId is created
+    sigh(username: ENV["PROD_DEVCENTER"],
+      output_path: "./fastlane/certificates/")
+
+    version = get_version_number()
+    build_app("Release", "DeviceMotionNotifier_appstore #{version}")
+
+    # commit_deployed_version()
+    # if branch != "prod"
+    #   merge_to_branch("stage", "prod")
+    # end
+  end
+end
+
+desc "Manuel Deploy to AppStore - merge branches"
+lane :manuel_appstore_deploy_merge_branch do
+  branch = git_branch
+  if branch != "stage" && branch != "prod"
+    raise "Not allowed to deploy '#{branch}' directly to 'prod'"
+  elsif prompt(text: "Did you deploy '#{branch}' to 'prod' and build ipa for AppStore? (y/n)") == "y"
+
+    ensure_git_branch(branch: branch)
+    commit_deployed_version()
+    if branch != "prod"
+      merge_to_branch("stage", "prod")
+    end
+  end
+end
+
+desc "Add test device"
+lane :add_test_device do
+  set_dev_context()
+  deviceId = prompt(text: "Device id?")
+  deviceTitle = prompt(text: "Device title? (Include persons name, device type and organisation in the title)")
+  register_devices( devices: { deviceTitle => deviceId })
+  sigh(development: true, force: true, output_path: "./fastlane/certificates/")
+end
+
+desc "Create dev new provisioning profile with all devices"
+lane :create_new_dev_provisioning_profile do
+  set_dev_context()
+  sigh(development: true, force: true, output_path: "./fastlane/certificates/")
+end
+
+
+desc "Download existing screenshots"
+lane :download_existing_screenshots do
+  set_prod_context()
+
+  puts "Downloads existing screenshots and puts them in the folder delivery. Move them to the apps folder to be used."
+  appIdentifier = ENV["APP_IDENTIFIER"]
+  sh "deliver download_screenshots --app_identifier #{appIdentifier}"
+end
+
+
+desc "Frame screenshots"
+lane :frame_screenshots do
+  frameit
+end
+
+
+desc "Check for advertising identifier"
+lane :checkForAdvertisingIdentifier do
+  sh "fgrep -R advertisingIdentifier ../."
+end
+
+desc "Update fastlane"
+lane :updatefastlane do
+  update_fastlane
+  # https://github.com/fastlane/fastlane/blob/master/docs/Actions.md#update_fastlane
+  # Create .bashrc in root folder (~/) with contents of above link
+  # Create a .gems folder
+  # Run the lane
+end
+
+def build_app(configuration, ipaName)
+   build_app(configuration, nil, ipaName)
+end
+
+def build_app(configuration, dataSource, ipaName)
+  dataArgs = ""
+  if dataSource != nil
+    dataArgs = "GCC_PREPROCESSOR_DEFINITIONS='$(inherited) DATA_#{dataSource}' OTHER_SWIFT_FLAGS='$(inherited) -DDATA_#{dataSource}'"
+  end
+
+  gym(
+   scheme: "DeviceMotionNotifier",
+   configuration: configuration,
+   silent: true,
+   clean: true,
+   output_directory: "./fastlane/certificates/",
+   output_name: ipaName,
+   xcargs: dataArgs)
+end
+
+def produce_itc(username)
+  produce_app(true, false, username)
+end
+
+def produce_devcenter(username)
+  produce_app(false, true, username)
+end
+
+def produce_app(create_itc, create_developer_account, username)
+    produce(
+      username: username,
+      app_identifier: ENV["APP_IDENTIFIER"],
+      language: "English",
+      app_version: ENV["APP_VERSION_NUMBER"],
+      app_name: ENV["APP_TITLE"],
+      sku: ENV["APP_IDENTIFIER"],
+      skip_itc: !create_itc,
+      skip_devcenter: !create_developer_account
+    )  
+end
+
+def update_version_number()
+  currentVersion = get_version_number()
+  puts "Current version number: #{currentVersion}"
+  bumpType = ""
+  case prompt(text: "Bump version number? \n1. major\n2. minor\n3. patch\n4. no change")
+  when "1"
+    bumpType = 'major'
+  when "2"
+    bumpType = 'minor'
+  when "3"
+    bumpType = 'patch'
+  when "4"
+  else
+    raise 'Invalid option selected. It has to be a number between 1 and 4'
+  end
+
+  if bumpType.length > 0
+    increment_version_number(bump_type: bumpType)
+  end
+end
+
+def commit_deployed_version()
+  currentVersionNumber = get_version_number()
+  currentBuildNumber = get_build_number()
+
+  sh "git add -A"
+  sh "git commit -m \"Version: #{currentVersionNumber}_#{currentBuildNumber}\""
+
+  add_git_tag(
+    grouping: 'builds',
+    prefix: "#{currentVersionNumber}_")
+  push_to_git_remote
+end
+
+def merge_to_branch(source, target)
+  ensure_git_branch(branch: source)
+  ensure_git_status_clean
+
+  sh "git checkout #{target}"
+  sh "git pull"
+  sh "git merge #{source}"
+  push_to_git_remote
+  sh "git checkout #{source}"
+end
+
+def set_dev_context()
+  ENV["APP_VERSION_NUMBER"] = get_version_number()
+  set_app_identifier("com.dabdeveloper.DeviceMotionNotifier.test")
+  team_id "WC3CDPK7H2" # David Buhauer
+  ENV["APP_TITLE"] = "DeviceMotionNotifier test"
+
+  case prompt(text: "Which Dev accounts do you want to use?\n 
+    1. devcenter: carbonex_92@hotmail.com, itc: carbonex_92@hotmail.com\n
+    If your option is not listed, press ctrl+C and add it to the Fastfile")
+  when "1"
+    ENV["DEV_DEVCENTER"] = "carbonex_92@hotmail.com"
+    ENV["DEV_ITC"] = "carbonex_92@hotmail.com"
+    ENV["BETA_EMAIL"] = "carbonex_92@hotmail.com"
+  else
+    raise 'Invalid option selected'
+  end
+
+  set_apple_id(ENV["DEV_DEVCENTER"])
+end
+
+def set_prod_context()
+  ENV["APP_VERSION_NUMBER"] = get_version_number()
+  set_app_identifier("com.dabdeveloper.DeviceMotionNotifier")
+  team_id "WC3CDPK7H2" # David Buhauer
+  ENV["APP_TITLE"] = "DeviceMotionNotifier"
+
+  case prompt(text: "Which Prod account do you want to use?\n 
+    1. devcenter: carbonex_92@hotmail.com\n
+
+    If your option is not listed, press ctrl+C and add it to the Fastfile")
+  when "1"
+    ENV["PROD_DEVCENTER"] = "carbonex_92@hotmail.com"
+  else
+    raise 'Invalid option selected'
+  end
+  set_apple_id(ENV["PROD_DEVCENTER"])
+end
+
+def set_app_identifier(identifier)
+  ENV["APP_IDENTIFIER"] = identifier
+  ENV["SIGH_APP_IDENTIFIER"] = identifier
+  ENV["PEM_APP_IDENTIFIER"] = identifier
+end
+
+def set_apple_id(email)
+  ENV["APPLE_ID"] = email
+  ENV["DELIVER_USER"] = ENV["APPLE_ID"]
+  ENV["SIGH_USERNAME"] = ENV["APPLE_ID"]
+  ENV["CERT_USERNAME"] = ENV["APPLE_ID"]
+  ENV["PILOT_USERNAME"] = ENV["APPLE_ID"]
+end
+
+# Print all ENV's
+def print_envs
+  puts "All environment variables:"
+  @result = {}
+    count = 1
+    ENV.each do |k,v|
+     @result[count.to_s] = { "key" => k, "value" => v }
+     puts "[#{count.to_s}]: #{k}: #{v}"
+     count += 1
+    end
+end
