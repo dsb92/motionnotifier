@@ -67,8 +67,8 @@
     
     if (self.index == _maxPages-1) {
         SettingsTheme *theme = [SettingsTheme theme01];
-        _beginButton.borderColor = theme.primaryColor;
-        [_beginButton setTitleColor:theme.secondaryColor forState:UIControlStateNormal];
+        _beginButton.borderColor = theme.blueColor;
+        [_beginButton setTitleColor:theme.blackColor forState:UIControlStateNormal];
         _beginButton.hidden = false;
         
     }

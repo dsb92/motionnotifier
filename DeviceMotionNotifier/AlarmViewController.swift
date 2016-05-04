@@ -65,8 +65,8 @@ class AlarmViewController: UIViewController {
         didSet {
             self.view.backgroundColor = theme.backgroundColor
             self.roundClockPlaceholder.backgroundColor = theme.backgroundColor
-            self.hideButton.borderColor = theme.primaryColor
-            self.hideButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
+            self.hideButton.borderColor = theme.blueColor
+            self.hideButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
         }
     }
     
@@ -266,18 +266,18 @@ class AlarmViewController: UIViewController {
             numberPad.resignFirstResponder()
             
             if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting {
-                setDynamicBall("DISARM", color: UIColor.greenColor(), userinteractable: true)
+                setDynamicBall("DISARM", color: SettingsTheme.theme01.disarm, userinteractable: true)
             }
             else{
-                setDynamicBall("ARM", color: UIColor.redColor(), userinteractable: true)
+                setDynamicBall("ARM", color: SettingsTheme.theme01.arm, userinteractable: true)
             }
         }
         else{
             if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting  {
-                setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
+                setDynamicBall("ARMED", color: SettingsTheme.theme01.arm, userinteractable: false)
             }
             else{
-                setDynamicBall("Ready", color: UIColor.greenColor(), userinteractable: false)
+                setDynamicBall("Ready", color: SettingsTheme.theme01.ready, userinteractable: false)
             }
         }
     }
@@ -385,7 +385,7 @@ extension AlarmViewController : AlarmUIDelegate {
         touchIDButton.hidden = true
         numberPad.text = ""
         
-        setDynamicBall("Ready", color: UIColor.greenColor(), userinteractable: false)
+        setDynamicBall("Ready", color: SettingsTheme.theme01.ready, userinteractable: false)
         
         touchIDButton.hidden = true
         previewView.hidden = true
@@ -402,7 +402,7 @@ extension AlarmViewController : AlarmUIDelegate {
     }
     
     func arming() {
-        setDynamicBall("CANCEL", color: UIColor.lightGrayColor(), userinteractable: true)
+        setDynamicBall("CANCEL", color: SettingsTheme.theme01.cancel, userinteractable: true)
     }
     
     func armed() {
@@ -417,7 +417,7 @@ extension AlarmViewController : AlarmUIDelegate {
             self.hiddenBlackView.hidden = false;
         })
         
-        setDynamicBall("ARMED", color: UIColor.redColor(), userinteractable: false)
+        setDynamicBall("ARMED", color: SettingsTheme.theme01.arm, userinteractable: false)
   
         numberPad.text = ""
         alarmCountDownLabel.text = String(0)

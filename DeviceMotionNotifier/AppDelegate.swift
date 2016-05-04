@@ -174,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // The Custom iOS Alert
         
-        let alertView = JSSAlertView().show(uiViewController, title: title, text: message, buttonTexts: ["OK"], color: UIColor.blackColor().colorWithAlphaComponent(0.7), iconImage: image)
+        let alertView = JSSAlertView().show(uiViewController, title: title, text: message, buttonTexts: ["OK"], color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: image)
         
         alertView.addAction({
             

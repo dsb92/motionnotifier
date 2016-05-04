@@ -48,7 +48,7 @@ NSUInteger maxPages = 4;
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = theme.separatorColor;
-    pageControl.currentPageIndicatorTintColor = theme.primaryColor;
+    pageControl.currentPageIndicatorTintColor = theme.blueColor;
     pageControl.backgroundColor = [UIColor whiteColor];
 }
 

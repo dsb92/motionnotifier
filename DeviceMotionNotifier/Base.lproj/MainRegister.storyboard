@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ePK-uq-bLP">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -158,22 +157,21 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="272" id="Sad-pc-nWQ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="272"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Sad-pc-nWQ" id="QLd-bj-kp2">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sad-pc-nWQ" id="QLd-bj-kp2">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="271.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Photo_light" translatesAutoresizingMaskIntoConstraints="NO" id="l9I-lC-BQi">
-                                                    <rect key="frame" x="200" y="25" width="200" height="200"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="l9I-lC-BQi">
+                                                    <rect key="frame" x="213" y="25" width="175" height="175"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="FoG-9h-cRv"/>
-                                                        <constraint firstAttribute="width" constant="200" id="nz0-Tx-Jhn"/>
+                                                        <constraint firstAttribute="width" constant="175" id="89P-DA-fmt"/>
+                                                        <constraint firstAttribute="height" constant="175" id="fOr-Jg-wNZ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Version 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McD-W2-3W1">
-                                                    <rect key="frame" x="207" y="233" width="187" height="11"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McD-W2-3W1">
+                                                    <rect key="frame" x="207" y="220" width="187" height="11"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="187" id="FQa-dg-k6r"/>
-                                                        <constraint firstAttribute="height" constant="13" id="p63-Fm-HRP"/>
+                                                        <constraint firstAttribute="width" constant="187" id="6mu-31-mUd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -187,12 +185,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="McD-W2-3W1" secondAttribute="bottom" constant="31.5" id="65G-Ao-OYJ"/>
-                                                <constraint firstItem="McD-W2-3W1" firstAttribute="centerX" secondItem="l9I-lC-BQi" secondAttribute="centerX" id="Hmf-Vd-ZuD"/>
-                                                <constraint firstItem="McD-W2-3W1" firstAttribute="top" secondItem="l9I-lC-BQi" secondAttribute="bottom" constant="8" symbolic="YES" id="MXC-rF-c3s"/>
-                                                <constraint firstItem="l9I-lC-BQi" firstAttribute="centerX" secondItem="QLd-bj-kp2" secondAttribute="centerX" id="O7X-uH-rh4"/>
-                                                <constraint firstItem="l9I-lC-BQi" firstAttribute="top" secondItem="QLd-bj-kp2" secondAttribute="topMargin" constant="17" id="Oqs-IL-J4r"/>
+                                                <constraint firstItem="McD-W2-3W1" firstAttribute="top" secondItem="l9I-lC-BQi" secondAttribute="bottom" constant="20" id="Exf-gP-Wuj"/>
+                                                <constraint firstItem="McD-W2-3W1" firstAttribute="centerX" secondItem="l9I-lC-BQi" secondAttribute="centerX" id="OeF-it-2Hd"/>
                                                 <constraint firstItem="McD-W2-3W1" firstAttribute="centerX" secondItem="l9I-lC-BQi" secondAttribute="centerX" id="h0L-BR-fdC"/>
+                                                <constraint firstItem="l9I-lC-BQi" firstAttribute="centerY" secondItem="QLd-bj-kp2" secondAttribute="centerY" constant="-23.25" id="kdh-9z-EVI"/>
+                                                <constraint firstItem="l9I-lC-BQi" firstAttribute="centerX" secondItem="QLd-bj-kp2" secondAttribute="centerX" id="qma-nJ-2RX"/>
                                                 <constraint firstItem="l9I-lC-BQi" firstAttribute="centerY" secondItem="QLd-bj-kp2" secondAttribute="centerY" constant="-36" id="sVl-Dm-5lj"/>
                                                 <constraint firstItem="McD-W2-3W1" firstAttribute="centerX" secondItem="l9I-lC-BQi" secondAttribute="centerX" id="v2b-55-igC"/>
                                             </constraints>
@@ -261,9 +258,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsV-tZ-owM" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
-                                                    <rect key="frame" x="193" y="15" width="215" height="50"/>
+                                                    <rect key="frame" x="215" y="15" width="170" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="215" id="OIm-vK-il2"/>
+                                                        <constraint firstAttribute="width" constant="170" id="OIm-vK-il2"/>
                                                         <constraint firstAttribute="height" constant="50" id="fi5-OH-an1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
@@ -303,9 +300,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAo-Wc-fFG" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
-                                                    <rect key="frame" x="193" y="15" width="215" height="50"/>
+                                                    <rect key="frame" x="215" y="15" width="170" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="215" id="wCb-0s-C3z"/>
+                                                        <constraint firstAttribute="width" constant="170" id="wCb-0s-C3z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <state key="normal" title="CONTACT">
@@ -345,9 +342,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIJ-a4-VkT" customClass="MonitorButton" customModule="DeviceMotionNotifier" customModuleProvider="target">
-                                                    <rect key="frame" x="193" y="15" width="215" height="50"/>
+                                                    <rect key="frame" x="215" y="15" width="170" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="215" id="652-WF-0gU"/>
+                                                        <constraint firstAttribute="width" constant="170" id="652-WF-0gU"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                                                     <state key="normal" title="ABOUT">
@@ -607,7 +604,7 @@
     </scenes>
     <resources>
         <image name="Menu_icn" width="21" height="21"/>
-        <image name="Photo_light" width="375" height="497"/>
         <image name="devices" width="667" height="365"/>
+        <image name="logo" width="167" height="166"/>
     </resources>
 </document>

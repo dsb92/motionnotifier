@@ -32,12 +32,12 @@ class MainRegisterMenuViewController: UITableViewController {
         didSet {
             tableView.separatorColor = theme.separatorColor
             tableView.backgroundColor = theme.backgroundColor
-            restorePurchasesButton.borderColor = theme.primaryColor
-            restorePurchasesButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
-            aboutButton.borderColor = theme.primaryColor
-            aboutButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
-            contactButton.borderColor = theme.primaryColor
-            contactButton.setTitleColor(theme.secondaryColor, forState: UIControlState.Normal)
+            restorePurchasesButton.borderColor = theme.blueColor
+            restorePurchasesButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
+            aboutButton.borderColor = theme.blueColor
+            aboutButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
+            contactButton.borderColor = theme.blueColor
+            contactButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
             for label in cellTitleLabels { label.textColor = theme.cellTitleColor }
             
             tableView.reloadData()
@@ -104,7 +104,7 @@ class MainRegisterMenuViewController: UITableViewController {
             
             buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
             
-            let alertView = JSSAlertView().show(self, title: "Store", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.secondaryColor.colorWithAlphaComponent(0.7))
+            let alertView = JSSAlertView().show(self, title: "Store", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7))
             
             alertView.setTitleFont("ClearSans-Bold")
             alertView.setTextFont("ClearSans")

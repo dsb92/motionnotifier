@@ -416,8 +416,8 @@ class JSSAlertView: UIViewController {
                 
                 // Button
                 let dismissButton = UIButton()
-                let buttonColor = UIImage.withColor(adjustBrightness(SettingsTheme.theme01.primaryColor, amount: 0.8))
-                let buttonHighlightColor = UIImage.withColor(adjustBrightness(UIColor.redColor().colorWithAlphaComponent(0.7), amount: 0.9)) // BaseColor!
+                let buttonColor = UIImage.withColor(adjustBrightness(SettingsTheme.theme01.blueColor, amount: 0.8)) // Button pressed color
+                let buttonHighlightColor = UIImage.withColor(adjustBrightness(SettingsTheme.theme01.backgroundColor.colorWithAlphaComponent(0.7), amount: 0.9)) // Button color
                 dismissButton.setBackgroundImage(buttonColor, forState: .Normal)
                 dismissButton.setBackgroundImage(buttonHighlightColor, forState: .Highlighted)
                 

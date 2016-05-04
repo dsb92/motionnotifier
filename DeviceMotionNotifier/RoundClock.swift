@@ -65,7 +65,7 @@ class RoundClock: UIView {
         let context = UIGraphicsGetCurrentContext()
         CGContextClearRect(context, borderRect)
         
-        CGContextSetFillColorWithColor(context, UIColor.redColor().CGColor)
+        CGContextSetFillColorWithColor(context, SettingsTheme.theme01.arm.CGColor)
         
         let x = borderRect.origin.x + borderRect.size.width/2
         let y = borderRect.origin.y + borderRect.size.height/2

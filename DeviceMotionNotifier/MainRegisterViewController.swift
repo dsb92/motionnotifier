@@ -24,7 +24,7 @@ class MainRegisterViewController: UIViewController {
     
     var theme: SettingsTheme! {
         didSet {
-            registerButton?.backgroundColor = theme.primaryColor
+            registerButton?.backgroundColor = theme.blueColor
         }
     }
     
@@ -128,7 +128,7 @@ class MainRegisterViewController: UIViewController {
                         let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
                         
                         if !deviceRegistered {
-                            self.appDelegate.hubs.MessageBox("Success", message: "Registered successfully!")
+                            JSSAlertView().success(self, title: "Registered successfully!")
                             
                             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
                         }
@@ -142,7 +142,7 @@ class MainRegisterViewController: UIViewController {
                         self.presentViewController(initialVC!, animated: true, completion: nil)
                     }
                     else{
-                        self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
+                        JSSAlertView().danger(self, title: "Failed to register")
                         self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
                     }
                 })
