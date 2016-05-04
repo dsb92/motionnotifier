@@ -1,4 +1,4 @@
-platform :ios, '7.0'
+platform :ios, '9.0'
 pod 'Google-Mobile-Ads-SDK', '~> 7.0'
 pod 'Fabric'
 pod 'Crashlytics'
