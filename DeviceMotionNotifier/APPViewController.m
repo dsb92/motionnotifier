@@ -10,7 +10,7 @@
 #import "APPChildViewController.h"
 #import "DeviceMotionNotifier-Swift.h"
 
-NSUInteger maxPages = 4;
+NSUInteger maxPages = 5;
 
 @interface APPViewController ()
 

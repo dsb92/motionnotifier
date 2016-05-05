@@ -57,7 +57,7 @@ class AlarmViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var interstitial: GADInterstitial!
-    var interstitialShowing: Bool!
+    var showInterstitial: Bool!
     
     var passCode : String!
     
@@ -91,6 +91,7 @@ class AlarmViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
+        showInterstitial = false
         alarmManager.setAlarmState(.Ready)
     }
     
@@ -183,7 +184,7 @@ class AlarmViewController: UIViewController {
         let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
         
         if !removeAds {
-            interstitialShowing = false
+            showInterstitial = true
             self.interstitial = createAndLoadInterstitial()
         }
     }
@@ -258,10 +259,10 @@ class AlarmViewController: UIViewController {
     
     private func showInterstitials() {
         if self.interstitial != nil && self.interstitial.isReady {
-            if !interstitialShowing {
+            if showInterstitial == true {
                 print("***INTERSTITIAL SHOWING***")
                 self.interstitial.presentFromRootViewController(self)
-                interstitialShowing = true
+                showInterstitial = false
             }
         }
     }
@@ -366,7 +367,6 @@ class AlarmViewController: UIViewController {
                                             }
                                         }
                                     })
-                                    
             })
         }
             // Touch ID not available
@@ -450,10 +450,14 @@ extension AlarmViewController : AlarmUIDelegate {
     }
     
     func alerting() {
-        previewView.hidden = false
-        let balls = dynamicBallsUIView.balls as! [UIButton]
-        balls[0].addSubview(previewView)
+        let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
+        let startVideo = NSUserDefaults.standardUserDefaults().boolForKey("kVideoSwitchValue")
         
+        if startCamera || startVideo {
+            previewView.hidden = false
+            let balls = dynamicBallsUIView.balls as! [UIButton]
+            balls[0].addSubview(previewView)
+        }
         numberPad.becomeFirstResponder()
 
         self.appDelegate.hubs.notificationMessage = "Intruder alert!";
@@ -526,14 +530,14 @@ extension AlarmViewController : AlarmOnDelegate {
     
     func takePicture(){
         
-        //alarmManager.armedHandler.autoSnap.snapPhoto()
+        alarmManager.alertHandler.autoSnap.snapPhoto()
     }
     
     func recordVideo(){
         
-//        if (!alarmManager.armedHandler.autoSnap.isRecording()) {
-//            alarmManager.armedHandler.autoSnap.startRecording()
-//        }
+        if (!alarmManager.alertHandler.autoSnap.isRecording()) {
+            alarmManager.alertHandler.autoSnap.startRecording()
+        }
         
     }
 }

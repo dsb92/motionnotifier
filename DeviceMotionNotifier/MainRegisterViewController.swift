@@ -51,7 +51,7 @@ class MainRegisterViewController: UIViewController {
         navigationController!.navigationBar.translucent = true
         navigationController!.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
-            NSForegroundColorAttributeName: UIColor.blackColor()
+            NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
     }
     

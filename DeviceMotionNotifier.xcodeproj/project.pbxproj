@@ -43,6 +43,8 @@
 		46B6852B1C8C9E67009C5CD1 /* AlarmMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */; };
 		46D0A3651CC2A2160028DE2D /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D0A3641CC2A2160028DE2D /* Page.m */; };
 		46D7306F1CDB4C8100A0330C /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7306E1CDB4C8100A0330C /* IJProgressView.swift */; };
+		46D730741CDBAB2800A0330C /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */; };
+		46D730781CDBBCD400A0330C /* bluetooth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46D730771CDBBCD400A0330C /* bluetooth.gif */; };
 		46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EC1CB57EEF0097197E /* IAPManager.swift */; };
 		46D9E3F01CB6C06F0097197E /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */; };
 		46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */; };
@@ -121,6 +123,9 @@
 		46D0A3631CC2A2160028DE2D /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		46D0A3641CC2A2160028DE2D /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
 		46D7306E1CDB4C8100A0330C /* IJProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJProgressView.swift; sourceTree = "<group>"; };
+		46D730721CDBAB2800A0330C /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
+		46D730771CDBBCD400A0330C /* bluetooth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bluetooth.gif; sourceTree = "<group>"; };
 		46D9E3EC1CB57EEF0097197E /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterMenuViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +257,7 @@
 		46B684F51C84BA84009C5CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46D730771CDBBCD400A0330C /* bluetooth.gif */,
 				46B685081C8B2F12009C5CD1 /* GothaProReg.otf */,
 				46B684F91C84C1FF009C5CD1 /* intruder_alarm.wav */,
 				46419A0F1CC2558E00F043EA /* beep.wav */,
@@ -287,6 +293,8 @@
 				46B685121C8B40E4009C5CD1 /* UIView+CircularAnimation.swift */,
 				46B6851C1C8B4A36009C5CD1 /* UIView+IBInspectable.swift */,
 				460E56771CCE7D8D005BD3FC /* UIWindow+VisibleVC.swift */,
+				46D730721CDBAB2800A0330C /* UIImage+animatedGIF.h */,
+				46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -543,6 +551,7 @@
 			files = (
 				46B6851E1C8B67ED009C5CD1 /* GothaProReg.otf in Resources */,
 				46B684FA1C84C1FF009C5CD1 /* intruder_alarm.wav in Resources */,
+				46D730781CDBBCD400A0330C /* bluetooth.gif in Resources */,
 				46419A551CC26BC600F043EA /* APPViewController.xib in Resources */,
 				46419A121CC25CBC00F043EA /* tone.wav in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
@@ -648,6 +657,7 @@
 				46B6851B1C8B439F009C5CD1 /* SettingsTheme.swift in Sources */,
 				46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */,
 				46B685291C8C8FFE009C5CD1 /* SWRevealViewController.m in Sources */,
+				46D730741CDBAB2800A0330C /* UIImage+animatedGIF.m in Sources */,
 				46419A561CC26BC600F043EA /* APPChildViewController.m in Sources */,
 				46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */,
 				46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */,

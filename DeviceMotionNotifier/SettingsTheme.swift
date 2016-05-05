@@ -34,10 +34,10 @@ import UIKit
     override init() {
         backgroundColor = UIColor(string: "#f8f8f8") // lighter lightgrey
         separatorColor = UIColor(string: "#ededed") // lightgrey
-        topImage = UIImage(named: "devices")!
+        topImage = UIImage(named: "page5")!
         cellTitleColor = UIColor(string: "#8e8e8e") // darkgrey
         cellTextFieldColor = UIColor(string: "#55606f") // darker darkgrey
-        blueColor = UIColor(string: "#0288d1") // light blue
+        blueColor = UIColor(string: "#0079b8") // light blue
         blackColor = UIColor.blackColor()
         redColor = UIColor(string: "#ef5350") // light red
         greenColor = UIColor(string: "#3cb371") // light green

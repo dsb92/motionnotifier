@@ -9,6 +9,7 @@ int APP_WEB_SERVICES_VERSION = 1;
 #warning all modules in debug mode
     #define ADS_IN_TEST_MODE
     #define LAYOUT_IN_TEST_MODE
+    #define TIMER_LAY_TEST_MODE
 #endif
 
 #ifndef ADS_IN_TEST_MODE
@@ -24,6 +25,12 @@ int APP_WEB_SERVICES_VERSION = 1;
     const BOOL kDebugLayout = NO;
 #else
     const BOOL kDebugLayout = YES;
+#endif
+
+#ifndef TIMER_LAY_TEST_MODE
+    const NSUInteger kCountDownDelay = 11;
+#else
+    const NSUInteger kCountDownDelay = 4;
 #endif
 
 @implementation Config

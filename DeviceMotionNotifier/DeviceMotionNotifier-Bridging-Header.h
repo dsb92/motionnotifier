@@ -9,3 +9,4 @@
 #import "APPViewController.h"
 #import "APPChildViewController.h"
 #import "Config.h"
+#import "UIImage+animatedGIF.h"

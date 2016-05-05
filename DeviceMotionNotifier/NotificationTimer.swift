@@ -44,10 +44,11 @@ class NotificationTimer: NSObject, TimerDelegate {
         handler.startMakingNoise()
         
         let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
+        let startVideo = NSUserDefaults.standardUserDefaults().boolForKey("kVideoSwitchValue")
         if startCamera {
             handler.startFrontCamera()
         }
-        else{
+        else if startVideo{
             handler.startCaptureVideo()
         }
     }

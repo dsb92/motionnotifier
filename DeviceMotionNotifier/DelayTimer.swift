@@ -9,7 +9,7 @@
 import UIKit
 
 class DelayTimer : NSObject, TimerDelegate {
-    let startValue = 3
+    let startValue = Int(kCountDownDelay)
     var delayTimer: NSTimer!
     var handler: AlertHandler!
     var delayDown: Int {

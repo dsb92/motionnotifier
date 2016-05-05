@@ -51,6 +51,8 @@ class MainRegisterSettingsViewController: UITableViewController {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    var blueToothOn: Bool = true
+    
     var menuOpen: Bool = false {
         didSet{
             if !menuOpen {
@@ -61,9 +63,8 @@ class MainRegisterSettingsViewController: UITableViewController {
     
     var theme: SettingsTheme! {
         didSet {
-            backgroundImageView.image = theme.topImage
             tableView.separatorColor = theme.separatorColor
-            backgroundHolder.backgroundColor = theme.backgroundColor
+            backgroundHolder.backgroundColor = theme.blueColor
             for label in cellTitleLabels { label.textColor = theme.cellTitleColor }
             for label in cellTextFields { label.textColor = theme.cellTextFieldColor }
             tableView.reloadData()
@@ -86,6 +87,10 @@ class MainRegisterSettingsViewController: UITableViewController {
         
         setSettings()
         setupDeviceNames()
+        
+        let tapGestureImage = UITapGestureRecognizer(target: self, action: "bluetoothImageTapped")
+        backgroundImageView.userInteractionEnabled = true
+        backgroundImageView.addGestureRecognizer(tapGestureImage)
     }
     
     override func viewDidLoad() {
@@ -149,11 +154,16 @@ class MainRegisterSettingsViewController: UITableViewController {
     func startBrowsingPeers() {
         appDelegate.mpcManager.browser.startBrowsingForPeers()
         appDelegate.mpcManager.advertiser.startAdvertisingPeer()
+        
+        let url = NSBundle.mainBundle().URLForResource("bluetooth", withExtension: "gif")
+        backgroundImageView.image = UIImage.animatedImageWithAnimatedGIFURL(url!)
     }
     
     func stopBrowsingPeers() {
         appDelegate.mpcManager.browser.stopBrowsingForPeers()
         appDelegate.mpcManager.advertiser.stopAdvertisingPeer()
+        
+        backgroundImageView.image = UIImage(named: "bluetooth-off")
     }
     
     func peerFoundHandler() {
@@ -200,6 +210,17 @@ class MainRegisterSettingsViewController: UITableViewController {
             self.startBrowsingPeers()
         })
 
+    }
+    
+    func bluetoothImageTapped(){
+        blueToothOn = !blueToothOn
+        
+        if blueToothOn {
+            startBrowsingPeers()
+        }
+        else{
+            stopBrowsingPeers()
+        }
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
