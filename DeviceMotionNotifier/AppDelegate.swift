@@ -122,48 +122,77 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if !userInteracted {
                 
+                IJProgressView.shared.hideProgressView()
+                
                 userInteracted = true
+                // *Remote disarm set, waitForRemoteAlarm finished...
                 self.hubs.remoteDisarmAlarm = false
+
+                let alertView = JSSAlertView().success(vc!, title: "Alarm has been remotely disarmed!")
                 
-                let alertVC = UIAlertController(title: "ALARM", message: "Alarm has been remotely disarmed", preferredStyle: .Alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-                    
+                alertView.setTitleFont("ClearSans-Bold")
+                alertView.setTextFont("ClearSans")
+                alertView.setButtonFont("ClearSans-Light")
+                alertView.setTextTheme(.Golden)
+                
+                alertView.addAction({
                     self.userInteracted = false
-                }
-                
-                alertVC.addAction(okAction)
-                vc!.presentViewController(alertVC, animated: true, completion: nil)
+                })
             }
             
             break
-            
+         // Intruder alert!
         default:
             if !userInteracted && !self.hubs.remoteDisarmAlarm {
                 
                 userInteracted = true
                 
-                let alertVC = UIAlertController(title: "ALARM", message: message, preferredStyle: .Alert)
-                let remoteAction = UIAlertAction(title: "REMOTE DISARM ALARM", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
-                    
-                    // Disarm alarm
-                    // Send push message back to sender(Device with the alarm)
-                    self.hubs.recipientName = senderUserName
-                    self.hubs.notificationMessage = AlertMessage.DISARM.rawValue
-                    self.hubs.SendToEnabledPlatforms()
-                    
-                    self.userInteracted = false
-                    self.hubs.remoteDisarmAlarm = true
-                }
+                let buttonTexts = ["Remote disarm alarm", "OK..."]
+                let alertView = JSSAlertView().show(vc!, title: "Alarm!", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "alert-icon"))
                 
-                let okAction = UIAlertAction(title: "OK...", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
-                    
-                    self.userInteracted = false
-                    
-                }
+                alertView.setTitleFont("ClearSans-Bold")
+                alertView.setTextFont("ClearSans")
+                alertView.setButtonFont("ClearSans-Light")
+                alertView.setTextTheme(.Golden)
                 
-                alertVC.addAction(remoteAction)
-                alertVC.addAction(okAction)
-                vc!.presentViewController(alertVC, animated: true, completion: nil)
+                alertView.addAction({
+                    if alertView.getButtonId() == 1{
+                        // Disarm alarm
+                        // Send push message back to sender(Device with the alarm)
+                        self.hubs.recipientName = senderUserName
+                        self.hubs.notificationMessage = AlertMessage.DISARM.rawValue
+                        self.hubs.SendToEnabledPlatforms()
+                        
+                        self.userInteracted = false
+                        self.hubs.remoteDisarmAlarm = true
+                        
+                        // *Wait until message has been received on other device or try again
+                        
+                        let waitForRemoteDisarm = dispatch_queue_create("waitForRemoteAlarm", nil)
+                        let waitingTime = 5
+                        var counter = 0
+                        dispatch_async(waitForRemoteDisarm, {
+                            while self.hubs.remoteDisarmAlarm == true && counter != waitingTime {
+                                dispatch_async(dispatch_get_main_queue()){
+                                    print("Waiting for remote alarm to be disarmed")
+                                    IJProgressView.shared.showProgressView(vc!.view)
+                                }
+                                
+                                sleep(1)
+                                ++counter
+                            }
+                            // Wait 5 seconds...and if still true try again
+                            if self.hubs.remoteDisarmAlarm == true {
+                                self.hubs.remoteDisarmAlarm = false
+                                IJProgressView.shared.hideProgressView()
+                            }
+                        })
+                    }
+                    else{
+                        self.userInteracted = false
+                    }
+                })
+
             }
             
             break

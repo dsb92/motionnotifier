@@ -51,7 +51,13 @@ class MainRegisterSettingsViewController: UITableViewController {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    var isAdvertising: Bool!
+    var menuOpen: Bool = false {
+        didSet{
+            if !menuOpen {
+                peerFoundHandler()
+            }
+        }
+    }
     
     var theme: SettingsTheme! {
         didSet {
@@ -95,6 +101,8 @@ class MainRegisterSettingsViewController: UITableViewController {
             setDefaults()
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuToggled:", name: "menuToggled", object: nil)
+        
         self.nameOfDeviceToNotifyTextField.becomeFirstResponder()
     }
     
@@ -127,12 +135,70 @@ class MainRegisterSettingsViewController: UITableViewController {
         }
         
         appDelegate.mpcManager.delegate = self
-        
+        startBrowsingPeers()
+    }
+    
+    func menuToggled(notification: NSNotification){
+        if notification.name == "menuToggled" {
+            let userInfo = notification.userInfo
+            let isOpen = userInfo!["open"] as! Bool
+            menuOpen = isOpen
+        }
+    }
+    
+    func startBrowsingPeers() {
         appDelegate.mpcManager.browser.startBrowsingForPeers()
-        
         appDelegate.mpcManager.advertiser.startAdvertisingPeer()
+    }
+    
+    func stopBrowsingPeers() {
+        appDelegate.mpcManager.browser.stopBrowsingForPeers()
+        appDelegate.mpcManager.advertiser.stopAdvertisingPeer()
+    }
+    
+    func peerFoundHandler() {
+
+        let peers = appDelegate.mpcManager.foundPeers
         
-        isAdvertising = true
+        // If there are any peers
+        if peers.count == 0 { return }
+        
+        // Prevent show peers dialog to many times
+        stopBrowsingPeers()
+        
+        findingDeviceSpinner.startAnimating()
+        var buttonTexts = [String]()
+        for peer in peers {
+            if !buttonTexts.contains(peer.displayName) {
+                buttonTexts.append(peer.displayName)
+            }
+        }
+        
+        buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
+        
+        let alertView = JSSAlertView().show(self, title: "Bluetooth", text: "Nearby device(s)", buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "bluetooth"))
+        
+        alertView.setTitleFont("ClearSans-Bold")
+        alertView.setTextFont("ClearSans")
+        alertView.setButtonFont("ClearSans-Light")
+        alertView.setTextTheme(.Golden)
+        
+        alertView.addAction({
+            self.findingDeviceSpinner.stopAnimating()
+            let peerIndex = alertView.getButtonId()
+            let deviceNameFound = peers[peerIndex-1].displayName
+            self.nameOfDeviceToNotifyTextField.text = deviceNameFound
+            
+            NSUserDefaults.standardUserDefaults().setObject(deviceNameFound, forKey: "kdeviceToNotiy")
+            // Dialog closed, you can start browsing again
+            self.startBrowsingPeers()
+        })
+        
+        alertView.addCancelAction({
+            self.findingDeviceSpinner.stopAnimating()
+            // Dialog closed, you can start browsing again
+            self.startBrowsingPeers()
+        })
 
     }
     
@@ -176,40 +242,10 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
     
     func foundPeer() {
         
-        findingDeviceSpinner.startAnimating()
-        
-        let peers = appDelegate.mpcManager.foundPeers
-        var buttonTexts = [String]()
- 
-        for peer in peers {
-            if !buttonTexts.contains(peer.displayName) {
-                buttonTexts.append(peer.displayName)
-            }
+        if !menuOpen {
+            peerFoundHandler()
         }
-        
-        buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
-        
-        let alertView = JSSAlertView().show(self, title: "Bluetooth", text: "Nearby device(s)", buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "bluetooth"))
-        
-        alertView.setTitleFont("ClearSans-Bold")
-        alertView.setTextFont("ClearSans")
-        alertView.setButtonFont("ClearSans-Light")
-        alertView.setTextTheme(.Golden)
-        
-        alertView.addAction({
-            self.findingDeviceSpinner.stopAnimating()
-            let peerIndex = alertView.getButtonId()
-            let deviceNameFound = peers[peerIndex-1].displayName
-            self.nameOfDeviceToNotifyTextField.text = deviceNameFound
-            
-            NSUserDefaults.standardUserDefaults().setObject(deviceNameFound, forKey: "kdeviceToNotiy")
-        })
-        
-        alertView.addCancelAction({
-            self.findingDeviceSpinner.stopAnimating()
-        })
     }
-    
     
     func lostPeer() {
         

@@ -44,13 +44,27 @@ class MainRegisterMenuViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let userInfo = ["open" : true]
+        NSNotificationCenter.defaultCenter().postNotificationName("menuToggled", object: self, userInfo: userInfo)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let userInfo = ["open" : false]
+        NSNotificationCenter.defaultCenter().postNotificationName("menuToggled", object: self, userInfo: userInfo)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         theme = SettingsTheme.theme01
-        
         setLayout()
         setSettings()
+        setupIAP()
     }
     
     private func setLayout() {
@@ -66,6 +80,11 @@ class MainRegisterMenuViewController: UITableViewController {
         removeAdsSwitch.setOn(savedRemoveAdsValue, animated: false)
     }
     
+    private func setupIAP() {
+        IAPManager.sharedInstance.purchaseProtocol = self
+        IAPManager.sharedInstance.vc = self
+    }
+    
     private func showPurchaseAlertView(productId : String) {
         if IAPManager.sharedInstance.canMakePayments {
             var titleString:String!
@@ -73,6 +92,11 @@ class MainRegisterMenuViewController: UITableViewController {
             
             var buttonTexts = [String]()
             
+            if IAPManager.sharedInstance.list.count == 0 {
+                JSSAlertView().danger(self, title: "Error", text: "Cannot connect to Apple's server. Check your connection and try again")
+                self.enableAds(true)
+                return;
+            }
             // For each in-app product: display a buy button with title and price labeled and call purchase function with the product identifier as argument.
             for product in IAPManager.sharedInstance.list {
                 
@@ -98,7 +122,6 @@ class MainRegisterMenuViewController: UITableViewController {
                         
                         break
                     }
-                    
                 }
             }
             
@@ -113,7 +136,8 @@ class MainRegisterMenuViewController: UITableViewController {
             
             alertView.addAction({
                 if alertView.getButtonId() == 1 && productId == IAPManager.sharedInstance.products.RemoveAds {
-                    IAPManager.sharedInstance.purchase(IAPManager.sharedInstance.products.RemoveAds, purchaseProtocol: self)
+                    IJProgressView.shared.showProgressView(self.view)
+                    IAPManager.sharedInstance.purchase(IAPManager.sharedInstance.products.RemoveAds)
                 }
             })
             
@@ -123,6 +147,9 @@ class MainRegisterMenuViewController: UITableViewController {
                     self.enableAds(true)
                 }
             })
+        }
+        else{
+            JSSAlertView().warning(self, title: "You're not authorized to make payments!")
         }
     }
     
@@ -157,14 +184,15 @@ class MainRegisterMenuViewController: UITableViewController {
     
     @IBAction
     func restorePurchasesButtonAction(sender: MonitorButton) {
-        sender.animateTouchUpInside { 
+        sender.animateTouchUpInside {
+            IJProgressView.shared.showProgressView(self.view)
             IAPManager.sharedInstance.restorePurchases()
         }
     }
     
     @IBAction
     func contactButtonAction(sender: MonitorButton) {
-        sender.animateTouchUpInside { 
+        sender.animateTouchUpInside {
             
         }
     }
@@ -185,16 +213,14 @@ extension MainRegisterMenuViewController : PurchaseProtocol {
             enableAds(true)
         }
         
-        JSSAlertView().danger(self, title: "Error", text: errorMsg, buttonText:"OK")
+        IJProgressView.shared.hideProgressView()
     }
     
     func successPurchase(productId: String) {
-        var productMessage : String!
         if productId == IAPManager.sharedInstance.products.RemoveAds {
             enableAds(false)
-            productMessage = "Ads are now removed from the app!"
         }
         
-        JSSAlertView().success(self, title: "Success", text: productMessage, buttonText:"OK")
+        IJProgressView.shared.hideProgressView()
     }
 }

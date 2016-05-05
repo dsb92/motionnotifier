@@ -99,7 +99,7 @@ class MainRegisterViewController: UIViewController {
         var deviceToNotify = settingsViewController.nameOfDeviceToNotifyTextField.text;
         
         if (deviceToNotify!.isEmpty) {
-            JSSAlertView().warning(self, title: "Please turn on bluetooth on both devices", buttonText: "OK")
+            JSSAlertView().warning(self, title: "Warning", text: "Please turn on bluetooth on both devices")
             settingsViewController.nameOfDeviceToNotifyTextField.becomeFirstResponder()
             return
         }
@@ -128,8 +128,6 @@ class MainRegisterViewController: UIViewController {
                         let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
                         
                         if !deviceRegistered {
-                            JSSAlertView().success(self, title: "Registered successfully!")
-                            
                             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
                         }
                         
@@ -153,7 +151,7 @@ class MainRegisterViewController: UIViewController {
             print("ERROR: Device token nil, cannot register...")
             
             self.spinner.stopAnimating()
-            self.appDelegate.hubs.MessageBox("Fail", message: "Failed to register")
+            JSSAlertView().danger(self, title: "Failed to register")
             self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
         }
     }

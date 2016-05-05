@@ -72,17 +72,17 @@ class DynamicFlyingBalls: UIView {
             vortex.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
             vortex.strength = 1
             
-            for label in self.balls {
+            for ball in self.balls {
                 
-                let randomWidth = (arc4random() % (UInt32(self.bounds.size.width) - UInt32(label.bounds.size.width)))
-                let randomHeight = (arc4random() % (UInt32(self.bounds.size.height) - UInt32(label.bounds.size.height)))
-                let xPos = UInt32(randomWidth) + UInt32(label.bounds.size.width/2)
-                let yPos = UInt32(randomHeight) + UInt32(label.bounds.size.height/2)
+                let randomWidth = (arc4random() % (UInt32(self.bounds.size.width) - UInt32(ball.bounds.size.width)))
+                let randomHeight = (arc4random() % (UInt32(self.bounds.size.height) - UInt32(ball.bounds.size.height)))
+                let xPos = UInt32(randomWidth) + UInt32(ball.bounds.size.width/2)
+                let yPos = UInt32(randomHeight) + UInt32(ball.bounds.size.height/2)
                 
-                label.center = CGPointMake(CGFloat(xPos), CGFloat(yPos))
+                ball.center = CGPointMake(CGFloat(xPos), CGFloat(yPos))
                 
-                radialGravity.addItem(label)
-                vortex.addItem(label)
+                radialGravity.addItem(ball)
+                vortex.addItem(ball)
             }
             
             let behavior1 = UIDynamicItemBehavior(items: balls)
@@ -105,9 +105,7 @@ class DynamicFlyingBalls: UIView {
             self.animator.addBehavior(vortex)
             self.animator.addBehavior(radialGravity)
             
-            #if DEBUG
-                self.animator.setValue(true, forKey: "debugEnabled")
-            #endif
+            //self.animator.setValue(Bool(kDebugLayout), forKey: "debugEnabled")
           
             framesSet = true
         }

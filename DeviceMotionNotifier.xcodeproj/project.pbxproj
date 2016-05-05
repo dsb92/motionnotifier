@@ -42,6 +42,7 @@
 		46B685291C8C8FFE009C5CD1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B685281C8C8FFE009C5CD1 /* SWRevealViewController.m */; };
 		46B6852B1C8C9E67009C5CD1 /* AlarmMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */; };
 		46D0A3651CC2A2160028DE2D /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D0A3641CC2A2160028DE2D /* Page.m */; };
+		46D7306F1CDB4C8100A0330C /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7306E1CDB4C8100A0330C /* IJProgressView.swift */; };
 		46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EC1CB57EEF0097197E /* IAPManager.swift */; };
 		46D9E3F01CB6C06F0097197E /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */; };
 		46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */; };
@@ -119,6 +120,7 @@
 		46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmMenuViewController.swift; sourceTree = "<group>"; };
 		46D0A3631CC2A2160028DE2D /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		46D0A3641CC2A2160028DE2D /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		46D7306E1CDB4C8100A0330C /* IJProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJProgressView.swift; sourceTree = "<group>"; };
 		46D9E3EC1CB57EEF0097197E /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterMenuViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		46B684FB1C84CB59009C5CD1 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				46D7306D1CDB4C6800A0330C /* IJProgressView */,
 				46D9E3F61CBD725D0097197E /* MPC */,
 				46D9E3F11CBC18C30097197E /* ARAudioRecognizer */,
 				46D9E3EE1CB59C6D0097197E /* JSSAlertView */,
@@ -327,6 +330,14 @@
 				46B6852A1C8C9E67009C5CD1 /* AlarmMenuViewController.swift */,
 			);
 			name = Alarm;
+			sourceTree = "<group>";
+		};
+		46D7306D1CDB4C6800A0330C /* IJProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				46D7306E1CDB4C8100A0330C /* IJProgressView.swift */,
+			);
+			name = IJProgressView;
 			sourceTree = "<group>";
 		};
 		46D9E3E81CB57E9F0097197E /* Purchases */ = {
@@ -630,6 +641,7 @@
 				466ECE811CCFE14600F1C01D /* NotificationTimer.swift in Sources */,
 				46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */,
 				46D9E3F81CBD726A0097197E /* MPCManager.swift in Sources */,
+				46D7306F1CDB4C8100A0330C /* IJProgressView.swift in Sources */,
 				460E56781CCE7D8D005BD3FC /* UIWindow+VisibleVC.swift in Sources */,
 				469A586B1CCA140A0070A145 /* RoundClock.swift in Sources */,
 				46B685011C8783B5009C5CD1 /* AVCamPreviewView.swift in Sources */,

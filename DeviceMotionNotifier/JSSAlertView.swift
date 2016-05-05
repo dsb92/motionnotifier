@@ -298,7 +298,12 @@ class JSSAlertView: UIViewController {
     func info(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         
         var buttonTexts = [String]()
-        buttonTexts.append(buttonText!)
+        if buttonText == nil {
+            buttonTexts.append("OK")
+        }
+        else{
+            buttonTexts.append(buttonText!)
+        }
         
         let alertview = self.show(viewController, title: title, text: text, buttonTexts: buttonTexts, cancelButtonText: cancelButtonText, color: UIColorFromHex(0x3498db, alpha: 1))
         alertview.setTextTheme(.Light)
@@ -308,7 +313,12 @@ class JSSAlertView: UIViewController {
     func success(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         
         var buttonTexts = [String]()
-        buttonTexts.append(buttonText!)
+        if buttonText == nil {
+            buttonTexts.append("OK")
+        }
+        else{
+            buttonTexts.append(buttonText!)
+        }
         
         return self.show(viewController, title: title, text: text, buttonTexts: buttonTexts, cancelButtonText: cancelButtonText, color: UIColorFromHex(0x2ecc71, alpha: 1))
     }
@@ -316,15 +326,25 @@ class JSSAlertView: UIViewController {
     func warning(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         
         var buttonTexts = [String]()
-        buttonTexts.append(buttonText!)
-        
+        if buttonText == nil {
+           buttonTexts.append("OK")
+        }
+        else{
+           buttonTexts.append(buttonText!)
+        }
+
         return self.show(viewController, title: title, text: text, buttonTexts: buttonTexts, cancelButtonText: cancelButtonText, color: UIColorFromHex(0xf1c40f, alpha: 1))
     }
     
     func danger(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         
         var buttonTexts = [String]()
-        buttonTexts.append(buttonText!)
+        if buttonText == nil {
+            buttonTexts.append("OK")
+        }
+        else{
+            buttonTexts.append(buttonText!)
+        }
         
         let alertview = self.show(viewController, title: title, text: text, buttonTexts: buttonTexts, cancelButtonText: cancelButtonText, color: UIColorFromHex(0xe74c3c, alpha: 1))
         alertview.setTextTheme(.Light)

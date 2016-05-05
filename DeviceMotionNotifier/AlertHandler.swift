@@ -92,11 +92,11 @@ class AlertHandler {
     
     func startFrontCamera() {
         
-        //alarmProtocol?.takePicture()
+        alarmOnDelegate?.takePicture()
     }
     
     func startCaptureVideo() {
-        //alarmProtocol?.recordVideo()
+        alarmOnDelegate?.recordVideo()
     }
     
     func stopCaptureVideo() {

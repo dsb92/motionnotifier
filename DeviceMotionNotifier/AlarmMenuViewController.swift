@@ -43,6 +43,7 @@ class AlarmMenuViewController: UITableViewController {
         theme = SettingsTheme.theme01
         
         setSettings()
+        setupIAP()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,6 +74,11 @@ class AlarmMenuViewController: UITableViewController {
         sensitivityTableCell.hidden = soundSwitch.on ? false : true
     }
     
+    private func setupIAP() {
+        IAPManager.sharedInstance.purchaseProtocol = self
+        IAPManager.sharedInstance.vc = self
+    }
+    
     private func showPurchaseAlertView(productId : String) {
         if IAPManager.sharedInstance.canMakePayments {
             var titleString:String!
@@ -80,6 +86,16 @@ class AlarmMenuViewController: UITableViewController {
             
             var buttonTexts = [String]()
             
+            if IAPManager.sharedInstance.list.count == 0 {
+                JSSAlertView().danger(self, title: "Error", text: "Cannot connect to Apple's server. Check your connection and try again")
+                if productId == IAPManager.sharedInstance.products.VideoCapture {
+                    enableVideo(false)
+                }
+                else if productId == IAPManager.sharedInstance.products.SoundRegonition {
+                    enableSound(false)
+                }
+                return
+            }
             // For each in-app product: display a buy button with title and price labeled and call purchase function with the product identifier as argument.
             for product in IAPManager.sharedInstance.list {
                 
@@ -126,11 +142,13 @@ class AlarmMenuViewController: UITableViewController {
             
             alertView.addAction({
                 
+                IJProgressView.shared.showProgressView(self.view)
+                
                 if alertView.getButtonId() == 1 && productId == IAPManager.sharedInstance.products.VideoCapture {
-                    IAPManager.sharedInstance.purchase(IAPManager.sharedInstance.products.VideoCapture, purchaseProtocol: self)
+                    IAPManager.sharedInstance.purchase(IAPManager.sharedInstance.products.VideoCapture)
                 }
                 else {
-                    IAPManager.sharedInstance.purchase(IAPManager.sharedInstance.products.SoundRegonition, purchaseProtocol: self)
+                    IAPManager.sharedInstance.purchase(IAPManager.sharedInstance.products.SoundRegonition)
                 }
                 
             })
@@ -144,6 +162,9 @@ class AlarmMenuViewController: UITableViewController {
                     self.enableSound(false)
                 }
             })
+        }
+        else{
+            JSSAlertView().warning(self, title: "You're not authorized to make payments!")
         }
     }
     
@@ -222,20 +243,17 @@ extension AlarmMenuViewController : PurchaseProtocol {
             enableSound(false)
         }
         
-        JSSAlertView().danger(self, title: "Error", text: errorMsg, buttonText:"OK")
+        IJProgressView.shared.hideProgressView()
     }
     
     func successPurchase(productId: String) {
-        var productMessage : String!
         if productId == IAPManager.sharedInstance.products.VideoCapture {
             enableVideo(true)
-            productMessage = "Video capture is now enabled!"
         }
         else if productId == IAPManager.sharedInstance.products.SoundRegonition {
             enableSound(true)
-            productMessage = "Sound recognition is now enabled!"
         }
         
-        JSSAlertView().success(self, title: "Success", text: productMessage, buttonText:"OK")
+        IJProgressView.shared.hideProgressView()
     }
 }

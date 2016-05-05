@@ -438,6 +438,7 @@ extension AlarmViewController : AlarmUIDelegate {
     
     func alerting() {
         previewView.hidden = false
+        
         numberPad.becomeFirstResponder()
 
         self.appDelegate.hubs.notificationMessage = "Intruder alert!";
@@ -510,14 +511,17 @@ extension AlarmViewController : AlarmOnDelegate {
     
     func takePicture(){
         
-        alarmManager.armedHandler.autoSnap.snapPhoto()
+        //alarmManager.armedHandler.autoSnap.snapPhoto()
+        let balls = dynamicBallsUIView.balls as! [UIButton]
+        balls[0].addSubview(previewView)
     }
     
     func recordVideo(){
         
-        if (!alarmManager.armedHandler.autoSnap.isRecording()) {
-            alarmManager.armedHandler.autoSnap.startRecording()
-        }
+//        if (!alarmManager.armedHandler.autoSnap.isRecording()) {
+//            alarmManager.armedHandler.autoSnap.startRecording()
+//        }
+        
     }
 }
 

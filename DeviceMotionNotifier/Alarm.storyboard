@@ -62,7 +62,7 @@
                                     <constraint firstAttribute="height" constant="55" id="3r5-fZ-VJ9"/>
                                     <constraint firstAttribute="width" constant="229" id="8Jr-QG-mdd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="27"/>
+                                <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="numberPadChanged:" destination="nP4-PY-7ab" eventType="editingChanged" id="64t-NZ-2NP"/>
@@ -366,6 +366,12 @@
                                                         <segment title="MODERATE"/>
                                                         <segment title="HIGH"/>
                                                     </segments>
+                                                    <color key="tintColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.93725490199999995" green="0.32549019610000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="ass-MP-xTx"/>

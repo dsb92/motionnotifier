@@ -5,9 +5,10 @@
 // Not used yet
 int APP_WEB_SERVICES_VERSION = 1;
 
-#if DEBUG 
+#if DEBUG || TEST
 #warning all modules in debug mode
     #define ADS_IN_TEST_MODE
+    #define LAYOUT_IN_TEST_MODE
 #endif
 
 #ifndef ADS_IN_TEST_MODE
@@ -19,6 +20,11 @@ int APP_WEB_SERVICES_VERSION = 1;
     NSString *const kConfigAdUnitInterstitialsId = @"ca-app-pub-3940256099942544/4411468910";
 #endif
 
+#ifndef LAYOUT_IN_TEST_MODE
+    const BOOL kDebugLayout = NO;
+#else
+    const BOOL kDebugLayout = YES;
+#endif
 
 @implementation Config
 
