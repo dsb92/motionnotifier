@@ -297,11 +297,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "484151698.698077"
+            timestampString = "484156994.724905"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "notifyRecipient()"
             landmarkType = "5">
             <Locations>

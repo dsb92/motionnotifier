@@ -22,7 +22,7 @@ class AVAutoSnap: NSObject {
     var videoDeviceInput: AVCaptureDeviceInput?
     var movieFileOutput: AVCaptureMovieFileOutput!
     var stillImageOutput: AVCaptureStillImageOutput?
-    
+    var previewView: AVCamPreviewView!
     
     var deviceAuthorized: Bool  = false
     var backgroundRecordId: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
@@ -35,12 +35,12 @@ class AVAutoSnap: NSObject {
     var runtimeErrorHandlingObserver: AnyObject?
     var lockInterfaceRotation: Bool = false
     
-    var vc: AlarmViewController!
+    var vc: UIViewController!
     
-    init(vc: AlarmViewController){
+    init(previewView: AVCamPreviewView){
         
-        self.vc = vc
-
+        self.previewView = previewView
+        self.vc = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.visibleViewController
     }
     
     func initializeOnViewDidLoad(){
@@ -48,7 +48,7 @@ class AVAutoSnap: NSObject {
         let session: AVCaptureSession = AVCaptureSession()
         self.session = session
         
-        vc.previewView.session = session
+        previewView!.session = session
         
         self.checkDeviceAuthorizationStatus()
         
@@ -90,8 +90,8 @@ class AVAutoSnap: NSObject {
                     
                     let orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: self.vc.interfaceOrientation.rawValue)!
 
-                    (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).videoGravity = AVLayerVideoGravityResize
-                    (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
+                    (self.previewView.layer as! AVCaptureVideoPreviewLayer).videoGravity = AVLayerVideoGravityResize
+                    (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
                 })
                 
             }
@@ -192,7 +192,7 @@ class AVAutoSnap: NSObject {
         dispatch_async(self.sessionQueue, {
             // Update the orientation on the still image output video connection before capturing.
             
-            let videoOrientation =  (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation
+            let videoOrientation =  (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation
             
             self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = videoOrientation
             
@@ -237,7 +237,7 @@ class AVAutoSnap: NSObject {
             }
             
             self.movieFileOutput!.connectionWithMediaType(AVMediaTypeVideo).videoOrientation =
-                AVCaptureVideoOrientation(rawValue: (self.vc.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
+                AVCaptureVideoOrientation(rawValue: (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
             
             // Turning OFF flash for video recording
             AVAutoSnap.setFlashMode(AVCaptureFlashMode.Off, device: self.videoDeviceInput!.device)
@@ -365,10 +365,10 @@ class AVAutoSnap: NSObject {
 
     func runStillImageCaptureAnimation(){
         dispatch_async(dispatch_get_main_queue(), {
-            self.vc.previewView.layer.opacity = 0.0
+            self.previewView.layer.opacity = 0.0
             print("opacity 0")
             UIView.animateWithDuration(0.25, animations: {
-                self.vc.previewView.layer.opacity = 1.0
+                self.previewView.layer.opacity = 1.0
                 print("opacity 1")
             })
         })

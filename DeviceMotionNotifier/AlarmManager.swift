@@ -28,9 +28,10 @@ class AlarmManager {
     var timerManager: TimerManager!
     var detectorManager: DetectorManager!
     
-    var armedHandler : AlertHandler!
-    var vc : AlarmViewController!
+    var alertHandler : AlertHandler!
     var alarmUIDelegate : AlarmUIDelegate!
+    
+    var preview : AVCamPreviewView!
     
     var state : State{
         didSet{
@@ -42,8 +43,8 @@ class AlarmManager {
                 print("Ready")
                 detectorManager?.stopDetectingMotions()
                 detectorManager?.stopDetectingNoise()
-                armedHandler?.stopMakingNoise()
-                armedHandler?.stopCaptureVideo()
+                alertHandler?.stopMakingNoise()
+                alertHandler?.stopCaptureVideo()
                 timerManager.countDownTmer.stop()
                 timerManager.delayTimer.stop()
                 timerManager.notificationTimer.stop()
@@ -89,21 +90,13 @@ class AlarmManager {
                 timerManager.notificationTimer.start()
                 break
             }
-            
         }
     }
     
     private init() {
         state = .Ready
-        armedHandler = AlertHandler()
-        timerManager = TimerManager(handler: armedHandler)
-    }
-    
-    func assoicateVC(vc: AlarmViewController){
-        self.vc = vc
-        armedHandler.alarmOnDelegate = vc
-        alarmUIDelegate = vc
-        self.detectorManager = DetectorManager(detectorProtocol: vc)
+        alertHandler = AlertHandler()
+        timerManager = TimerManager(handler: alertHandler)
     }
     
     func initialize() {
@@ -111,14 +104,14 @@ class AlarmManager {
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             // do some task
             
-            self.armedHandler.prepareToPlaySounds()
+            self.alertHandler.prepareToPlaySounds()
             
-            if self.armedHandler.autoSnap == nil {
-                self.armedHandler.autoSnap = AVAutoSnap(vc: self.vc)
+            if self.alertHandler.autoSnap == nil {
+                self.alertHandler.autoSnap = AVAutoSnap(previewView: self.preview)
             }
             
-            self.armedHandler.autoSnap?.initializeOnViewDidLoad()
-            self.armedHandler.autoSnap?.initializeOnViewWillAppear()
+            self.alertHandler.autoSnap?.initializeOnViewDidLoad()
+            self.alertHandler.autoSnap?.initializeOnViewWillAppear()
             
             dispatch_async(dispatch_get_main_queue()) {
                 // update some UI
@@ -127,8 +120,8 @@ class AlarmManager {
     }
     
     func deinitialize() {
-        armedHandler.autoSnap?.deinitialize()
-        armedHandler.autoSnap = nil
+        alertHandler.autoSnap?.deinitialize()
+        alertHandler.autoSnap = nil
     }
     
     func setAlarmState(state: State){

@@ -29,7 +29,8 @@ class MainRegisterViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.registerButton.setTitle(getButtonText(), forState: UIControlState.Normal)
+        registerButton.setTitle(getButtonText(), forState: UIControlState.Normal)
+        registerButton.enabled = true
     }
     
     override func viewDidLoad() {
@@ -105,6 +106,7 @@ class MainRegisterViewController: UIViewController {
         }
         
         registerButton.setTitle("", forState: UIControlState.Normal)
+        registerButton.enabled = false
         spinner.startAnimating()
 
         // trim the names

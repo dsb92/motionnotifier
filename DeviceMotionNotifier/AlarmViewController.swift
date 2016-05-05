@@ -35,9 +35,6 @@ class AlarmViewController: UIViewController {
     weak var touchIDButton: UIButton!
     
     @IBOutlet
-    weak var previewView: AVCamPreviewView!
-    
-    @IBOutlet
     weak var hiddenBlackView: UIView!
     
     @IBOutlet
@@ -45,6 +42,8 @@ class AlarmViewController: UIViewController {
     
     @IBOutlet
     weak var roundClockPlaceholder: UIView!
+    
+    var previewView: AVCamPreviewView!
     
     var dynamicBallsUIView: DynamicFlyingBalls!
     var roundClock: RoundClock!
@@ -58,6 +57,7 @@ class AlarmViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var interstitial: GADInterstitial!
+    var interstitialShowing: Bool!
     
     var passCode : String!
     
@@ -72,6 +72,8 @@ class AlarmViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Preinitilization before setting up managers
         setupNavigationBar()
         setupDynamic()
         setupSlidebarMenu()
@@ -141,9 +143,12 @@ class AlarmViewController: UIViewController {
     
     private func setupManagers() {
         alarmManager = AlarmManager.sharedInstance
+        alarmManager.alertHandler.alarmOnDelegate = self
+        alarmManager.alarmUIDelegate = self
+        alarmManager.preview = previewView
         timerManager = alarmManager.timerManager
         
-        alarmManager.assoicateVC(self)
+        alarmManager.detectorManager = DetectorManager(detectorProtocol: self)
         detectorManager = alarmManager.detectorManager
         
         alarmManager.setAlarmState(.Ready)
@@ -153,7 +158,7 @@ class AlarmViewController: UIViewController {
         dynamicBallsUIView = DynamicFlyingBalls(frame: self.view.bounds)
         dynamicBallsUIView.associateVC(self)
         self.view.addSubview(dynamicBallsUIView)
-        
+        previewView = AVCamPreviewView(frame: dynamicBallsUIView.balls[0].frame)
     }
     
     private func startClock() {
@@ -168,6 +173,7 @@ class AlarmViewController: UIViewController {
     
     private func stopClock() {
         roundClockPlaceholder.hidden = true
+        roundClock?.removeFromSuperview()
         roundClock?.stopCountDown()
         roundClock?.displayLink.invalidate()
         roundClock = nil
@@ -177,6 +183,7 @@ class AlarmViewController: UIViewController {
         let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
         
         if !removeAds {
+            interstitialShowing = false
             self.interstitial = createAndLoadInterstitial()
         }
     }
@@ -251,8 +258,11 @@ class AlarmViewController: UIViewController {
     
     private func showInterstitials() {
         if self.interstitial != nil && self.interstitial.isReady {
-            print("***INTERSTITIAL SHOWING***")
-            self.interstitial.presentFromRootViewController(self)
+            if !interstitialShowing {
+                print("***INTERSTITIAL SHOWING***")
+                self.interstitial.presentFromRootViewController(self)
+                interstitialShowing = true
+            }
         }
     }
     
@@ -266,6 +276,7 @@ class AlarmViewController: UIViewController {
             numberPad.resignFirstResponder()
             
             if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting {
+                previewView.removeFromSuperview()
                 setDynamicBall("DISARM", color: SettingsTheme.theme01.disarm, userinteractable: true)
             }
             else{
@@ -274,7 +285,9 @@ class AlarmViewController: UIViewController {
         }
         else{
             if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting  {
-                setDynamicBall("ARMED", color: SettingsTheme.theme01.arm, userinteractable: false)
+                let ball = dynamicBallsUIView.balls[0]
+                ball.addSubview(previewView)
+                //setDynamicBall("ARMED", color: SettingsTheme.theme01.arm, userinteractable: false)
             }
             else{
                 setDynamicBall("Ready", color: SettingsTheme.theme01.ready, userinteractable: false)
@@ -438,6 +451,8 @@ extension AlarmViewController : AlarmUIDelegate {
     
     func alerting() {
         previewView.hidden = false
+        let balls = dynamicBallsUIView.balls as! [UIButton]
+        balls[0].addSubview(previewView)
         
         numberPad.becomeFirstResponder()
 
@@ -512,8 +527,6 @@ extension AlarmViewController : AlarmOnDelegate {
     func takePicture(){
         
         //alarmManager.armedHandler.autoSnap.snapPhoto()
-        let balls = dynamicBallsUIView.balls as! [UIButton]
-        balls[0].addSubview(previewView)
     }
     
     func recordVideo(){
