@@ -54,7 +54,7 @@
             
             // page 5
             page5.mainLine = @"What do I do?";
-            page5.subLine = @"Install the app on two devices and then turn on bluetooth for maximum fun :)";
+            page5.subLine = @"Install the app on two devices and then turn on bluetooth. You can choose to skip which device to notfy and just use this as an alarm without notifications to other devices.";
             page5.imageName = @"page5.png";
             
             self.pages = [[NSArray alloc]initWithObjects:page1, page2, page3, page4, page5, nil];

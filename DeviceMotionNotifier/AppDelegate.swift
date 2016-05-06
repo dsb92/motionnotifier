@@ -92,10 +92,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get sender user name (Device with the alarm)
         let senderUserName = firstComponent.stringByReplacingOccurrencesOfString("From ", withString: "")
         
-        // Get the alert message
+        // Get the alert message, remove empty spaces
         let alertMessage = secondComponent.stringByReplacingOccurrencesOfString(" ", withString: "")
         
         let vc = UIWindow.getVisibleViewControllerFrom(window!.rootViewController)
+        
+        // e.g. Davids-iPhone with Davids iPhone
+        let msg = message.stringByReplacingOccurrencesOfString("-", withString: " ")
         
         print("Remote Notification received: " + message)
         
@@ -148,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 userInteracted = true
                 
                 let buttonTexts = ["Remote disarm alarm", "OK..."]
-                let alertView = JSSAlertView().show(vc!, title: "Alarm!", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "alert-icon"))
+                let alertView = JSSAlertView().show(vc!, title: "Alarm!", text: msg, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "alert-icon"))
                 
                 alertView.setTitleFont("ClearSans-Bold")
                 alertView.setTextFont("ClearSans")
@@ -171,20 +174,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let waitForRemoteDisarm = dispatch_queue_create("waitForRemoteAlarm", nil)
                         let waitingTime = 5
                         var counter = 0
+                        
+                        IJProgressView.shared.showProgressView(vc!.view)
                         dispatch_async(waitForRemoteDisarm, {
                             while self.hubs.remoteDisarmAlarm == true && counter != waitingTime {
-                                dispatch_async(dispatch_get_main_queue()){
-                                    print("Waiting for remote alarm to be disarmed")
-                                    IJProgressView.shared.showProgressView(vc!.view)
-                                }
+                                print("Waiting for remote alarm to be disarmed")
                                 
                                 sleep(1)
                                 ++counter
                             }
-                            // Wait 5 seconds...and if still true try again
-                            if self.hubs.remoteDisarmAlarm == true {
-                                self.hubs.remoteDisarmAlarm = false
-                                IJProgressView.shared.hideProgressView()
+                            
+                            
+                            dispatch_async(dispatch_get_main_queue()){
+                                // Wait 5 seconds...and if still true try again
+                                if self.hubs.remoteDisarmAlarm == true {
+                                    self.hubs.remoteDisarmAlarm = false
+                                    IJProgressView.shared.hideProgressView()
+                                }
                             }
                         })
                     }

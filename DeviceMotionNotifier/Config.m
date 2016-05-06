@@ -5,6 +5,8 @@
 // Not used yet
 int APP_WEB_SERVICES_VERSION = 1;
 
+NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/devicemotionnotifier";
+
 #if DEBUG || TEST
 #warning all modules in debug mode
     #define ADS_IN_TEST_MODE
@@ -22,15 +24,15 @@ int APP_WEB_SERVICES_VERSION = 1;
 #endif
 
 #ifndef LAYOUT_IN_TEST_MODE
-    const BOOL kDebugLayout = NO;
+    const BOOL kDebugLayout = NO; // live
 #else
-    const BOOL kDebugLayout = YES;
+    const BOOL kDebugLayout = YES; // test
 #endif
 
 #ifndef TIMER_LAY_TEST_MODE
-    const NSUInteger kCountDownDelay = 11;
+    const NSUInteger kCountDownDelay = 11; // live
 #else
-    const NSUInteger kCountDownDelay = 4;
+    const NSUInteger kCountDownDelay = 4; // test
 #endif
 
 @implementation Config

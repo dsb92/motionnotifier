@@ -193,7 +193,7 @@ class MainRegisterMenuViewController: UITableViewController {
     @IBAction
     func contactButtonAction(sender: MonitorButton) {
         sender.animateTouchUpInside {
-            
+            UIApplication.sharedApplication().openURL(NSURL(string: kAboutUrl)!)
         }
     }
     

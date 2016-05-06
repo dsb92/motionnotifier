@@ -84,7 +84,7 @@ class MainRegisterViewController: UIViewController {
     
     private func getButtonText() -> String {
         let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
-        let registerButtonTitle = deviceRegistered ? "CONTINUE" : "REGISTER"
+        let registerButtonTitle = deviceRegistered ? "CONTINUE" : "REGISTER ALARM"
         return registerButtonTitle
     }
     
@@ -93,6 +93,9 @@ class MainRegisterViewController: UIViewController {
 
     @IBAction
     func RegisterButtonAction(sender: UIButton) {
+        
+        // Dont let user press button more than once
+        registerButton.enabled = false
         
         // Register device here
         
@@ -106,12 +109,12 @@ class MainRegisterViewController: UIViewController {
         }
         
         registerButton.setTitle("", forState: UIControlState.Normal)
-        registerButton.enabled = false
+        
         spinner.startAnimating()
 
-        // trim the names
-        deviceToMonitor = deviceToMonitor?.stringByReplacingOccurrencesOfString(" ", withString: "")
-        deviceToNotify = deviceToNotify?.stringByReplacingOccurrencesOfString(" ", withString: "")
+        // set '-' on white spaces
+        deviceToMonitor = deviceToMonitor?.stringByReplacingOccurrencesOfString(" ", withString: "-")
+        deviceToNotify = deviceToNotify?.stringByReplacingOccurrencesOfString(" ", withString: "-")
         
         // OBS Password same as name of device
         let pass = deviceToMonitor
@@ -142,8 +145,9 @@ class MainRegisterViewController: UIViewController {
                         self.presentViewController(initialVC!, animated: true, completion: nil)
                     }
                     else{
-                        JSSAlertView().danger(self, title: "Failed to register")
+                        JSSAlertView().danger(self, title: "Failed to register, please try again")
                         self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
+                        self.registerButton.enabled = true
                     }
                 })
             }
@@ -153,8 +157,9 @@ class MainRegisterViewController: UIViewController {
             print("ERROR: Device token nil, cannot register...")
             
             self.spinner.stopAnimating()
-            JSSAlertView().danger(self, title: "Failed to register")
+            JSSAlertView().danger(self, title: "Failed to register, please try again")
             self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
+            registerButton.enabled = true
         }
     }
     

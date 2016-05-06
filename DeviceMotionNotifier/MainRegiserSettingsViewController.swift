@@ -120,10 +120,6 @@ class MainRegisterSettingsViewController: UITableViewController {
         let savedSilentValue = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
         
         silentSwitch.setOn(savedSilentValue, animated: false)
-        
-        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
-        
-        continueWithout.enabled = !deviceRegistered
     }
     
     private func setupDeviceNames() {
@@ -271,31 +267,4 @@ extension MainRegisterSettingsViewController : MPCManagerDelegate {
     func lostPeer() {
         
     }
-//
-//    func invitationWasReceived(fromPeer: String) {
-//        let alert = UIAlertController(title: "", message: "\(fromPeer) wants to chat with you.", preferredStyle: UIAlertControllerStyle.Alert)
-//        
-//        let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-//            self.appDelegate.mpcManager.invitationHandler(true, self.appDelegate.mpcManager.session)
-//        }
-//        
-//        let declineAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
-//            self.appDelegate.mpcManager.invitationHandler(false, self.appDelegate.mpcManager.session)
-//        }
-//        
-//        alert.addAction(acceptAction)
-//        alert.addAction(declineAction)
-//        
-//        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        }
-//    }
-//    
-//    
-//    func connectedWithPeer(peerID: MCPeerID) {
-//        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-//            self.performSegueWithIdentifier("idSegueChat", sender: self)
-//        }
-//    }
-
 }

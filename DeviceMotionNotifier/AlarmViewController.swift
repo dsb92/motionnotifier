@@ -87,12 +87,19 @@ class AlarmViewController: UIViewController {
         theme = SettingsTheme.theme01
         self.numberPad.becomeFirstResponder()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
         NSNotificationCenter().addObserver(self, selector: #selector(setupAds), name: "onAdsEnabled", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         showInterstitial = false
         alarmManager.setAlarmState(.Ready)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc private func setupAds() {
@@ -447,6 +454,7 @@ extension AlarmViewController : AlarmUIDelegate {
     func alert() {
         startClock()
         self.hiddenBlackView.hidden = true;
+        self.hideButton.hidden = true
     }
     
     func alerting() {
