@@ -3,7 +3,37 @@
   <testsuite name="fastlane.lanes">
     
       
-      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.783053">
+      <testcase classname="fastlane.lanes" name="0: get_version_number" time="1.487641">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: team_id" time="0.000666">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: prompt" time="1.172892">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: prompt" time="6.295931">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: prompt" time="12.576526">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: register_devices" time="8.664911">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: sigh" time="18.195457">
         
       </testcase>
     

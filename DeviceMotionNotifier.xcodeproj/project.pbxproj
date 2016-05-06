@@ -45,6 +45,8 @@
 		46D7306F1CDB4C8100A0330C /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7306E1CDB4C8100A0330C /* IJProgressView.swift */; };
 		46D730741CDBAB2800A0330C /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */; };
 		46D730781CDBBCD400A0330C /* bluetooth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46D730771CDBBCD400A0330C /* bluetooth.gif */; };
+		46D730801CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */; };
+		46D730891CDD2DFF00A0330C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */; };
 		46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EC1CB57EEF0097197E /* IAPManager.swift */; };
 		46D9E3F01CB6C06F0097197E /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */; };
 		46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */; };
@@ -61,14 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		46DEED431C7E3BA0009B30E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46DEED261C7E3B9F009B30E3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 46DEED2D1C7E3B9F009B30E3;
-			remoteInfo = DeviceMotionNotifier;
-		};
-		46DEED4E1C7E3BA0009B30E3 /* PBXContainerItemProxy */ = {
+		46D730821CDD2DD900A0330C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46DEED261C7E3B9F009B30E3 /* Project object */;
 			proxyType = 1;
@@ -126,6 +121,10 @@
 		46D730721CDBAB2800A0330C /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		46D730771CDBBCD400A0330C /* bluetooth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bluetooth.gif; sourceTree = "<group>"; };
+		46D7307D1CDD2DD800A0330C /* DeviceMotionNotifierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceMotionNotifierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionNotifierUITests.swift; sourceTree = "<group>"; };
+		46D730811CDD2DD900A0330C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		46D9E3EC1CB57EEF0097197E /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterMenuViewController.swift; sourceTree = "<group>"; };
@@ -135,8 +134,6 @@
 		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainRegister.storyboard; sourceTree = "<group>"; };
 		46DEED381C7E3BA0009B30E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46DEED3D1C7E3BA0009B30E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46DEED421C7E3BA0009B30E3 /* DeviceMotionNotifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceMotionNotifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46DEED4D1C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceMotionNotifierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceMotionNotifier-Bridging-Header.h"; sourceTree = "<group>"; };
 		46DEED601C7E417F009B30E3 /* RegisterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterClient.m; sourceTree = "<group>"; };
 		46DEED621C7E41D7009B30E3 /* RegisterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterClient.h; path = ../RegisterClient.h; sourceTree = "<group>"; };
@@ -150,26 +147,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		46D7307A1CDD2DD800A0330C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46DEED2B1C7E3B9F009B30E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				46DEED641C7E425A009B30E3 /* WindowsAzureMessaging.framework in Frameworks */,
 				DE7BED7EE9EF2B74C1086956 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46DEED3F1C7E3BA0009B30E3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46DEED4A1C7E3BA0009B30E3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +338,16 @@
 			name = IJProgressView;
 			sourceTree = "<group>";
 		};
+		46D7307E1CDD2DD900A0330C /* DeviceMotionNotifierUITests */ = {
+			isa = PBXGroup;
+			children = (
+				46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */,
+				46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */,
+				46D730811CDD2DD900A0330C /* Info.plist */,
+			);
+			path = DeviceMotionNotifierUITests;
+			sourceTree = "<group>";
+		};
 		46D9E3E81CB57E9F0097197E /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +387,7 @@
 			children = (
 				46DEED631C7E425A009B30E3 /* WindowsAzureMessaging.framework */,
 				46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */,
+				46D7307E1CDD2DD900A0330C /* DeviceMotionNotifierUITests */,
 				46DEED2F1C7E3B9F009B30E3 /* Products */,
 				AF9D9FB62DCC889A06B15D28 /* Pods */,
 				32ED9D0A01F487AA6CE402A4 /* Frameworks */,
@@ -397,8 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */,
-				46DEED421C7E3BA0009B30E3 /* DeviceMotionNotifierTests.xctest */,
-				46DEED4D1C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.xctest */,
+				46D7307D1CDD2DD800A0330C /* DeviceMotionNotifierUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,6 +438,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		46D7307C1CDD2DD800A0330C /* DeviceMotionNotifierUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierUITests" */;
+			buildPhases = (
+				46D730791CDD2DD800A0330C /* Sources */,
+				46D7307A1CDD2DD800A0330C /* Frameworks */,
+				46D7307B1CDD2DD800A0330C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46D730831CDD2DD900A0330C /* PBXTargetDependency */,
+			);
+			name = DeviceMotionNotifierUITests;
+			productName = DeviceMotionNotifierUITests;
+			productReference = 46D7307D1CDD2DD800A0330C /* DeviceMotionNotifierUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifier" */;
@@ -459,52 +477,21 @@
 			productReference = 46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */;
 			productType = "com.apple.product-type.application";
 		};
-		46DEED411C7E3BA0009B30E3 /* DeviceMotionNotifierTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46DEED591C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierTests" */;
-			buildPhases = (
-				46DEED3E1C7E3BA0009B30E3 /* Sources */,
-				46DEED3F1C7E3BA0009B30E3 /* Frameworks */,
-				46DEED401C7E3BA0009B30E3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				46DEED441C7E3BA0009B30E3 /* PBXTargetDependency */,
-			);
-			name = DeviceMotionNotifierTests;
-			productName = DeviceMotionNotifierTests;
-			productReference = 46DEED421C7E3BA0009B30E3 /* DeviceMotionNotifierTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		46DEED4C1C7E3BA0009B30E3 /* DeviceMotionNotifierUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46DEED5C1C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierUITests" */;
-			buildPhases = (
-				46DEED491C7E3BA0009B30E3 /* Sources */,
-				46DEED4A1C7E3BA0009B30E3 /* Frameworks */,
-				46DEED4B1C7E3BA0009B30E3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				46DEED4F1C7E3BA0009B30E3 /* PBXTargetDependency */,
-			);
-			name = DeviceMotionNotifierUITests;
-			productName = DeviceMotionNotifierUITests;
-			productReference = 46DEED4D1C7E3BA0009B30E3 /* DeviceMotionNotifierUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		46DEED261C7E3B9F009B30E3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "David Buhauer";
 				TargetAttributes = {
+					46D7307C1CDD2DD800A0330C = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = WC3CDPK7H2;
+						TestTargetID = 46DEED2D1C7E3B9F009B30E3;
+					};
 					46DEED2D1C7E3B9F009B30E3 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = WC3CDPK7H2;
@@ -513,14 +500,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					46DEED411C7E3BA0009B30E3 = {
-						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = 46DEED2D1C7E3B9F009B30E3;
-					};
-					46DEED4C1C7E3BA0009B30E3 = {
-						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = 46DEED2D1C7E3B9F009B30E3;
 					};
 				};
 			};
@@ -538,13 +517,19 @@
 			projectRoot = "";
 			targets = (
 				46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */,
-				46DEED411C7E3BA0009B30E3 /* DeviceMotionNotifierTests */,
-				46DEED4C1C7E3BA0009B30E3 /* DeviceMotionNotifierUITests */,
+				46D7307C1CDD2DD800A0330C /* DeviceMotionNotifierUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		46D7307B1CDD2DD800A0330C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46DEED2C1C7E3B9F009B30E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -559,20 +544,6 @@
 				46419A571CC26BC600F043EA /* APPChildViewController.xib in Resources */,
 				46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */,
 				46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46DEED401C7E3BA0009B30E3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46DEED4B1C7E3BA0009B30E3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +611,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		46D730791CDD2DD800A0330C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46D730801CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift in Sources */,
+				46D730891CDD2DFF00A0330C /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46DEED2A1C7E3B9F009B30E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,32 +666,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		46DEED3E1C7E3BA0009B30E3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46DEED491C7E3BA0009B30E3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		46DEED441C7E3BA0009B30E3 /* PBXTargetDependency */ = {
+		46D730831CDD2DD900A0330C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */;
-			targetProxy = 46DEED431C7E3BA0009B30E3 /* PBXContainerItemProxy */;
-		};
-		46DEED4F1C7E3BA0009B30E3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */;
-			targetProxy = 46DEED4E1C7E3BA0009B30E3 /* PBXContainerItemProxy */;
+			targetProxy = 46D730821CDD2DD900A0330C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -727,6 +688,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		46D730851CDD2DD900A0330C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = DeviceMotionNotifier;
+			};
+			name = Debug;
+		};
+		46D730861CDD2DD900A0330C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = DeviceMotionNotifier;
+			};
+			name = Release;
+		};
+		46D730871CDD2DD900A0330C /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = DeviceMotionNotifier;
+			};
+			name = Test;
+		};
 		46DEED541C7E3BA0009B30E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -882,54 +891,6 @@
 			};
 			name = Release;
 		};
-		46DEED5A1C7E3BA0009B30E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DeviceMotionNotifierTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeviceMotionNotifier.app/DeviceMotionNotifier";
-			};
-			name = Debug;
-		};
-		46DEED5B1C7E3BA0009B30E3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DeviceMotionNotifierTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeviceMotionNotifier.app/DeviceMotionNotifier";
-			};
-			name = Release;
-		};
-		46DEED5D1C7E3BA0009B30E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = DeviceMotionNotifier;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		46DEED5E1C7E3BA0009B30E3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = DeviceMotionNotifier;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 		46DF5AB21CD9179A00449517 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1004,33 +965,18 @@
 			};
 			name = Test;
 		};
-		46DF5AB41CD9179A00449517 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DeviceMotionNotifierTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeviceMotionNotifier.app/DeviceMotionNotifier";
-			};
-			name = Test;
-		};
-		46DF5AB51CD9179A00449517 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = DeviceMotionNotifier;
-				USES_XCTRUNNER = YES;
-			};
-			name = Test;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46D730851CDD2DD900A0330C /* Debug */,
+				46D730861CDD2DD900A0330C /* Release */,
+				46D730871CDD2DD900A0330C /* Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		46DEED291C7E3B9F009B30E3 /* Build configuration list for PBXProject "DeviceMotionNotifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1047,26 +993,6 @@
 				46DEED571C7E3BA0009B30E3 /* Debug */,
 				46DEED581C7E3BA0009B30E3 /* Release */,
 				46DF5AB31CD9179A00449517 /* Test */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		46DEED591C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46DEED5A1C7E3BA0009B30E3 /* Debug */,
-				46DEED5B1C7E3BA0009B30E3 /* Release */,
-				46DF5AB41CD9179A00449517 /* Test */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		46DEED5C1C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46DEED5D1C7E3BA0009B30E3 /* Debug */,
-				46DEED5E1C7E3BA0009B30E3 /* Release */,
-				46DF5AB51CD9179A00449517 /* Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
