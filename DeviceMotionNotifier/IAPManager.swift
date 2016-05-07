@@ -234,6 +234,8 @@ extension IAPManager : SKPaymentTransactionObserver {
     func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
         print("In-AppPurchase: transactions restored")
         
+        IJProgressView.shared.hideProgressView()
+        
         for transaction in queue.transactions {
             let t: SKPaymentTransaction = transaction
             
@@ -246,6 +248,8 @@ extension IAPManager : SKPaymentTransactionObserver {
     
     func paymentQueue(queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: NSError) {
         print("In-AppPurchase: transactions failed to restore")
+        
+        IJProgressView.shared.hideProgressView()
         
         for transaction in queue.transactions {
             let t: SKPaymentTransaction = transaction

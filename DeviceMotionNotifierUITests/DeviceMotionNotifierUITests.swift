@@ -31,61 +31,88 @@ class DeviceMotionNotifierUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testWelcome() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        XCUIDevice.sharedDevice().orientation = .FaceUp
-        XCUIDevice.sharedDevice().orientation = .FaceUp
-        
-        let app = XCUIApplication()
-        app.alerts["“DeviceMotionNotifier” vil gerne sende dig meddelelser"].collectionViews.buttons["OK"].tap()
-        app.images["page1.png"].swipeLeft()
-        app.images["page2.png"].tap()
-        
-        let window = app.childrenMatchingType(.Window).elementBoundByIndex(0)
-        let element = window.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
-        element.childrenMatchingType(.Other).element.tap()
-        app.images["page4.jpg"].swipeLeft()
-        app.buttons["Ok, Let's begin"].tap()
-        element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
-        app.tables.buttons["Continue without notifications"].tap()
-        window.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.tap()
-        app.navigationBars["Alarm"].buttons["Menu icn"].tap()
-        
-    }
+//    func testWelcome() {
+//        // Use recording to get started writing UI tests.
+//        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//        
+//        XCUIDevice.sharedDevice().orientation = .FaceUp
+//        XCUIDevice.sharedDevice().orientation = .FaceUp
+//        
+//        snapshot("01")
+//        
+//        let app = XCUIApplication()
+//        app.alerts["“DeviceMotionNotifier” vil gerne sende dig meddelelser"].collectionViews.buttons["OK"].tap()
+//        app.images["page1.png"].swipeLeft()
+//        app.images["page2.png"].tap()
+//        
+//        let window = app.childrenMatchingType(.Window).elementBoundByIndex(0)
+//        let element = window.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
+//        element.childrenMatchingType(.Other).element.tap()
+//        app.images["page4.jpg"].swipeLeft()
+//        app.buttons["Ok, Let's begin"].tap()
+//        
+//        snapshot("02")
+//        
+//        element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
+//        app.tables.buttons["Continue without notifications"].tap()
+//        
+//        snapshot("03")
+//        
+//        window.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.tap()
+//        app.navigationBars["Alarm"].buttons["Menu icn"].tap()
+//        
+//    }
     
     func testNotWelcome() {
         XCUIDevice.sharedDevice().orientation = .FaceUp
         
+        snapshot("01")
+        
         let app = XCUIApplication()
-        let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
-        element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
+
         app.tables.buttons["Continue without notifications"].tap()
-        element.tap()
+        
+        sleep(5)
+        snapshot("02")
         app.navigationBars["Alarm"].buttons["Menu icn"].tap()
+        
+        sleep(2)
+        snapshot("03")
         
     }
     
     func testDeviceDetected() {
         
         let app = XCUIApplication()
-        XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Button).elementBoundByIndex(1).pressForDuration(0.8);
+
+        sleep(2)
+        snapshot("01")
         
         app.tables.buttons["Continue without notifications"].tap()
         
+        sleep(3)
+        snapshot("02")
         app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.tap()
         app.navigationBars["Alarm"].buttons["Menu icn"].tap()
         
-        
+        sleep(2)
+        snapshot("03")
     }
     
     func testDeviceNotDetected() {
         
         let app = XCUIApplication()
+        
+        snapshot("01")
         app.tables.buttons["Continue without notifications"].tap()
+        
+        sleep(5)
+        snapshot("02")
         
         app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.tap()
         app.navigationBars["Alarm"].buttons["Menu icn"].tap()
+        
+        sleep(2)
+        snapshot("03")
     }
 }

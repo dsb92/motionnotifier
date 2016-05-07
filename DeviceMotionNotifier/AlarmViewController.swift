@@ -278,7 +278,7 @@ class AlarmViewController: UIViewController {
         let codeFromPad = numberPad.text;
         
         // How many digits should the code have?
-        let digits = 8
+        let digits = 6
         
         if codeFromPad?.characters.count >= digits {
             numberPad.resignFirstResponder()

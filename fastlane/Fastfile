@@ -86,7 +86,7 @@ lane :crashlytics_beta do
 
     cert(development: true, output_path: "./certificates/")
     sigh(development: true, output_path: "./fastlane/certificates/")
-    build_app("Test", dataSource, nil)
+    build_app("Test", dataSource)
     crashlytics(
       crashlytics_path: './Pods/Crashlytics/iOS/Crashlytics.framework',
       api_token: '31c24a769e20f5da0788a7e0fca7c731512e4dce',
@@ -128,12 +128,16 @@ lane :appstore do
       output_path: "./fastlane/certificates/")
 
     version = get_version_number()
-    build_app("Release", "DeviceMotionNotifier_appstore #{version}")
-
-    # commit_deployed_version()
-    # if branch != "prod"
-    #   merge_to_branch("stage", "prod")
-    # end
+    build_app("Release")
+    deliver(
+      skip_screenshots: false, 
+      skip_metadata: true, 
+      submit_for_review: false)
+      
+    commit_deployed_version()
+      if branch != "prod"
+        merge_to_branch("stage", "prod")
+      end
   end
 end
 
@@ -198,11 +202,11 @@ lane :updatefastlane do
   # Run the lane
 end
 
-def build_app(configuration, ipaName)
-   build_app(configuration, nil, ipaName)
+def build_app(configuration)
+   build_app(configuration, nil)
 end
 
-def build_app(configuration, dataSource, ipaName)
+def build_app(configuration, dataSource)
   dataArgs = ""
   if dataSource != nil
     dataArgs = "GCC_PREPROCESSOR_DEFINITIONS='$(inherited) DATA_#{dataSource}' OTHER_SWIFT_FLAGS='$(inherited) -DDATA_#{dataSource}'"
@@ -214,7 +218,6 @@ def build_app(configuration, dataSource, ipaName)
    silent: true,
    clean: true,
    output_directory: "./fastlane/certificates/",
-   output_name: ipaName,
    xcargs: dataArgs)
 end
 
