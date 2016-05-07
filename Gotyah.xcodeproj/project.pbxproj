@@ -129,7 +129,7 @@
 		46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterMenuViewController.swift; sourceTree = "<group>"; };
 		46D9E3F71CBD726A0097197E /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
-		46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceMotionNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gotyah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DEED361C7E3B9F009B30E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainRegister.storyboard; sourceTree = "<group>"; };
 		46DEED381C7E3BA0009B30E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 		46DEED2F1C7E3B9F009B30E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */,
+				46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */,
 				46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */,
 			);
 			name = Products;
@@ -474,7 +474,7 @@
 			);
 			name = Gotyah;
 			productName = DeviceMotionNotifier;
-			productReference = 46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */;
+			productReference = 46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -829,7 +829,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1003;
+				CURRENT_PROJECT_VERSION = 1004;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
@@ -867,7 +867,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1003;
+				CURRENT_PROJECT_VERSION = 1004;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -941,7 +941,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1003;
+				CURRENT_PROJECT_VERSION = 1004;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = YES;
