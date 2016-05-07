@@ -5,7 +5,7 @@
 // Not used yet
 int APP_WEB_SERVICES_VERSION = 1;
 
-NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/devicemotionnotifier";
+NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/gotyah";
 
 #if DEBUG || TEST
 #warning all modules in debug mode
