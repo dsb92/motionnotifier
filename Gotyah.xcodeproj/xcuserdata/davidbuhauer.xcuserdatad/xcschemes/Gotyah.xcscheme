@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "46DEED2D1C7E3B9F009B30E3"
-               BuildableName = "DeviceMotionNotifier.app"
-               BlueprintName = "DeviceMotionNotifier"
-               ReferencedContainer = "container:DeviceMotionNotifier.xcodeproj">
+               BuildableName = "Gotyah.app"
+               BlueprintName = "Gotyah"
+               ReferencedContainer = "container:Gotyah.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46D7307C1CDD2DD800A0330C"
-               BuildableName = "DeviceMotionNotifierUITests.xctest"
-               BlueprintName = "DeviceMotionNotifierUITests"
-               ReferencedContainer = "container:DeviceMotionNotifier.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46DEED2D1C7E3B9F009B30E3"
-            BuildableName = "DeviceMotionNotifier.app"
-            BlueprintName = "DeviceMotionNotifier"
-            ReferencedContainer = "container:DeviceMotionNotifier.xcodeproj">
+            BuildableName = "Gotyah.app"
+            BlueprintName = "Gotyah"
+            ReferencedContainer = "container:Gotyah.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46DEED2D1C7E3B9F009B30E3"
-            BuildableName = "DeviceMotionNotifier.app"
-            BlueprintName = "DeviceMotionNotifier"
-            ReferencedContainer = "container:DeviceMotionNotifier.xcodeproj">
+            BuildableName = "Gotyah.app"
+            BlueprintName = "Gotyah"
+            ReferencedContainer = "container:Gotyah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46DEED2D1C7E3B9F009B30E3"
-            BuildableName = "DeviceMotionNotifier.app"
-            BlueprintName = "DeviceMotionNotifier"
-            ReferencedContainer = "container:DeviceMotionNotifier.xcodeproj">
+            BuildableName = "Gotyah.app"
+            BlueprintName = "Gotyah"
+            ReferencedContainer = "container:Gotyah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -8,7 +8,7 @@
 
 #import "APPViewController.h"
 #import "APPChildViewController.h"
-#import "DeviceMotionNotifier-Swift.h"
+#import "Gotyah-Swift.h"
 
 NSUInteger maxPages = 5;
 

@@ -7,7 +7,7 @@
 //
 
 #import "APPChildViewController.h"
-#import "DeviceMotionNotifier-Swift.h"
+#import "Gotyah-Swift.h"
 #import "Page.h"
 
 @interface APPChildViewController ()

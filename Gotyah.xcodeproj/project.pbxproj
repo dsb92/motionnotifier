@@ -121,7 +121,7 @@
 		46D730721CDBAB2800A0330C /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		46D730771CDBBCD400A0330C /* bluetooth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bluetooth.gif; sourceTree = "<group>"; };
-		46D7307D1CDD2DD800A0330C /* DeviceMotionNotifierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceMotionNotifierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GotyahUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionNotifierUITests.swift; sourceTree = "<group>"; };
 		46D730811CDD2DD900A0330C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */,
-				46D7307D1CDD2DD800A0330C /* DeviceMotionNotifierUITests.xctest */,
+				46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,9 +438,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		46D7307C1CDD2DD800A0330C /* DeviceMotionNotifierUITests */ = {
+		46D7307C1CDD2DD800A0330C /* GotyahUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierUITests" */;
+			buildConfigurationList = 46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "GotyahUITests" */;
 			buildPhases = (
 				46D730791CDD2DD800A0330C /* Sources */,
 				46D7307A1CDD2DD800A0330C /* Frameworks */,
@@ -451,14 +451,14 @@
 			dependencies = (
 				46D730831CDD2DD900A0330C /* PBXTargetDependency */,
 			);
-			name = DeviceMotionNotifierUITests;
+			name = GotyahUITests;
 			productName = DeviceMotionNotifierUITests;
-			productReference = 46D7307D1CDD2DD800A0330C /* DeviceMotionNotifierUITests.xctest */;
+			productReference = 46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */ = {
+		46DEED2D1C7E3B9F009B30E3 /* Gotyah */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifier" */;
+			buildConfigurationList = 46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "Gotyah" */;
 			buildPhases = (
 				11AF9316BFDC5BE37AC04E1C /* Check Pods Manifest.lock */,
 				46DEED2A1C7E3B9F009B30E3 /* Sources */,
@@ -472,7 +472,7 @@
 			);
 			dependencies = (
 			);
-			name = DeviceMotionNotifier;
+			name = Gotyah;
 			productName = DeviceMotionNotifier;
 			productReference = 46DEED2E1C7E3B9F009B30E3 /* DeviceMotionNotifier.app */;
 			productType = "com.apple.product-type.application";
@@ -503,7 +503,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 46DEED291C7E3B9F009B30E3 /* Build configuration list for PBXProject "DeviceMotionNotifier" */;
+			buildConfigurationList = 46DEED291C7E3B9F009B30E3 /* Build configuration list for PBXProject "Gotyah" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -516,8 +516,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */,
-				46D7307C1CDD2DD800A0330C /* DeviceMotionNotifierUITests */,
+				46DEED2D1C7E3B9F009B30E3 /* Gotyah */,
+				46D7307C1CDD2DD800A0330C /* GotyahUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -671,7 +671,7 @@
 /* Begin PBXTargetDependency section */
 		46D730831CDD2DD900A0330C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 46DEED2D1C7E3B9F009B30E3 /* DeviceMotionNotifier */;
+			target = 46DEED2D1C7E3B9F009B30E3 /* Gotyah */;
 			targetProxy = 46D730821CDD2DD900A0330C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -846,7 +846,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
@@ -883,7 +883,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
@@ -958,7 +958,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
@@ -970,7 +970,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "DeviceMotionNotifierUITests" */ = {
+		46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "GotyahUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46D730851CDD2DD900A0330C /* Debug */,
@@ -980,7 +980,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46DEED291C7E3B9F009B30E3 /* Build configuration list for PBXProject "DeviceMotionNotifier" */ = {
+		46DEED291C7E3B9F009B30E3 /* Build configuration list for PBXProject "Gotyah" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46DEED541C7E3BA0009B30E3 /* Debug */,
@@ -990,7 +990,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "DeviceMotionNotifier" */ = {
+		46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "Gotyah" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46DEED571C7E3BA0009B30E3 /* Debug */,
