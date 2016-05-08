@@ -214,6 +214,7 @@ def build_app(configuration, dataSource)
 
   gym(
    scheme: "DeviceMotionNotifier",
+   use_legacy_build_api: true,
    configuration: configuration,
    silent: true,
    clean: true,
