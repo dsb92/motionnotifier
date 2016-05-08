@@ -996,6 +996,7 @@
 				46FFBDD61CDF6E7900EFF2D0 /* Test */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
