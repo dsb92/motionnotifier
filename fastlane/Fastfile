@@ -128,7 +128,7 @@ lane :appstore do
       output_path: "./fastlane/certificates/")
 
     version = get_version_number()
-    build_app("Release")
+    build_app("Release", nil)
     deliver(
       skip_screenshots: false, 
       skip_metadata: true, 
