@@ -786,6 +786,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1005;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -801,9 +802,9 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				PROVISIONING_PROFILE = "5fd80dba-ccbe-428e-9bec-661c64dc6df6";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -820,9 +821,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Buhauer (WC3CDPK7H2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1005;
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -838,9 +840,9 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				PROVISIONING_PROFILE = "5fd80dba-ccbe-428e-9bec-661c64dc6df6";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -897,6 +899,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: David Buhauer (L8W6E2RRGK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1005;
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = YES;
@@ -913,9 +916,9 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				PROVISIONING_PROFILE = "5fd80dba-ccbe-428e-9bec-661c64dc6df6";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

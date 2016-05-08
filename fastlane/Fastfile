@@ -47,19 +47,6 @@ lane :crashlytics_beta do
     increment_build_number()
     update_version_number()
 
-    dataSource = prompt(text: "Which data: Dev, Stage or Prod? (d/s/p)")
-    if dataSource != "d" && dataSource != "s" && dataSource != "p"
-      raise "Invalid option - must be 'd', 's' or 'p'"
-    else 
-      if dataSource == "p"
-        dataSource = "PROD"
-      elsif dataSource == "s"
-        dataSource = "TEST"
-      else dataSource == "d"
-        dataSource = "DEV"
-      end
-    end
-
     customEmails = ""
     testTarget = prompt(text: "Is it for internal, external, self or custom test? (i/e/s/c - you can choose multiple)")
     if !(testTarget.include?("i") or testTarget.include?("e") or testTarget.include?("s") or testTarget.include? ("c"))
@@ -86,7 +73,7 @@ lane :crashlytics_beta do
 
     cert(development: true, output_path: "./certificates/")
     sigh(development: true, output_path: "./fastlane/certificates/")
-    build_app("Test", dataSource)
+    build_app("Test")
     crashlytics(
       crashlytics_path: './Pods/Crashlytics/iOS/Crashlytics.framework',
       api_token: '31c24a769e20f5da0788a7e0fca7c731512e4dce',
@@ -128,9 +115,9 @@ lane :appstore do
       output_path: "./fastlane/certificates/")
 
     version = get_version_number()
-    build_app("Release", nil)
+    build_app("Release")
     deliver(
-      skip_screenshots: false, 
+      skip_screenshots: true, 
       skip_metadata: true, 
       submit_for_review: false)
       
@@ -203,23 +190,13 @@ lane :updatefastlane do
 end
 
 def build_app(configuration)
-   build_app(configuration, nil)
-end
-
-def build_app(configuration, dataSource)
-  dataArgs = ""
-  if dataSource != nil
-    dataArgs = "GCC_PREPROCESSOR_DEFINITIONS='$(inherited) DATA_#{dataSource}' OTHER_SWIFT_FLAGS='$(inherited) -DDATA_#{dataSource}'"
-  end
-
   gym(
    scheme: "DeviceMotionNotifier",
    use_legacy_build_api: true,
    configuration: configuration,
    silent: true,
    clean: true,
-   output_directory: "./fastlane/certificates/",
-   xcargs: dataArgs)
+   output_directory: "./fastlane/certificates/")
 end
 
 def produce_itc(username)
