@@ -49,7 +49,7 @@
             
             // page 4
             page4.mainLine = @"Useful for what exactly?";
-            page4.subLine = @"Catch thieves in the act or let yourself know when your baby starts to cry!";
+            page4.subLine = @"Catch thieves in the act or let yourself know when your baby starts crying!";
             page4.imageName = @"page4.jpg";
             
             // page 5

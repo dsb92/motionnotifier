@@ -70,8 +70,16 @@ class AlarmViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("viewWillAppear")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("viewDidLoad")
         
         // Preinitilization before setting up managers
         setupNavigationBar()
@@ -274,7 +282,7 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    @IBAction func numberPadChanged(sender: UITextField) {
+    private func numberPadChanged() {
         let codeFromPad = numberPad.text;
         
         // How many digits should the code have?
@@ -295,12 +303,16 @@ class AlarmViewController: UIViewController {
             if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting  {
                 let ball = dynamicBallsUIView.balls[0]
                 ball.addSubview(previewView)
-                //setDynamicBall("ARMED", color: SettingsTheme.theme01.arm, userinteractable: false)
+                //setDynamicBall("GOTYAH", color: SettingsTheme.theme01.arm, userinteractable: false)
             }
             else{
                 setDynamicBall("Ready", color: SettingsTheme.theme01.ready, userinteractable: false)
             }
         }
+    }
+    
+    @IBAction func numberPadChanged(sender: UITextField) {
+        numberPadChanged()
     }
     
     @IBAction func AlarmButtonAction(sender: UIButton) {
@@ -418,7 +430,7 @@ extension AlarmViewController : AlarmUIDelegate {
             self.hideButton.hidden = true
         })
         
-        appDelegate.hubs.notificationMessage = "Intruder alert!";
+        appDelegate.hubs.notificationMessage = Constants.Notifications.IntruderMessage
     }
     
     func arming() {
@@ -468,21 +480,21 @@ extension AlarmViewController : AlarmUIDelegate {
         }
         numberPad.becomeFirstResponder()
 
-        self.appDelegate.hubs.notificationMessage = "Intruder alert!";
+        self.appDelegate.hubs.notificationMessage = Constants.Notifications.IntruderMessage
     }
 }
 
 extension AlarmViewController : DetectorProtol {
     func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!) {
         
-        if (accelerometerData != nil){
+        if (accelerometerData != nil && detectorManager.accelerometerData != nil){
             // Compare saved motion with current acceleration data
             if (accelerometerData! > detectorManager.accelerometerData) {
                 intruderAlert()
             }
         }
         
-        if (gyroData != nil){
+        if (gyroData != nil && detectorManager.gyroData != nil){
             // Compare saved motion with current rotation data
             if (gyroData!.rotationRate > detectorManager.gyroData.rotationRate){
                 intruderAlert()
@@ -538,15 +550,20 @@ extension AlarmViewController : AlarmOnDelegate {
     
     func takePicture(){
         
+        setDynamicBall("GOTYAH", color: SettingsTheme.theme01.arm, userinteractable: false)
         alarmManager.alertHandler.autoSnap.snapPhoto()
+        numberPadChanged()
     }
     
     func recordVideo(){
+        
+        setDynamicBall("GOTYAH", color: SettingsTheme.theme01.arm, userinteractable: false)
         
         if (!alarmManager.alertHandler.autoSnap.isRecording()) {
             alarmManager.alertHandler.autoSnap.startRecording()
         }
         
+        numberPadChanged()
     }
 }
 

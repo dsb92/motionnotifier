@@ -110,8 +110,13 @@ class AlarmManager {
                 self.alertHandler.autoSnap = AVAutoSnap(previewView: self.preview)
             }
             
-            self.alertHandler.autoSnap?.initializeOnViewDidLoad()
-            self.alertHandler.autoSnap?.initializeOnViewWillAppear()
+            do {
+                try self.alertHandler.autoSnap?.initializeOnViewDidLoad()
+                try self.alertHandler.autoSnap?.initializeOnViewWillAppear()
+            }
+            catch {
+                print("Error could not initialie AVAutoSnap : \(error)")
+            }
             
             dispatch_async(dispatch_get_main_queue()) {
                 // update some UI

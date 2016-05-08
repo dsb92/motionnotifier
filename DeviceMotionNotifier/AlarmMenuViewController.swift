@@ -28,6 +28,9 @@ class AlarmMenuViewController: UITableViewController {
     @IBOutlet
     weak var sensitivityTableCell: UITableViewCell!
     
+    @IBOutlet
+    weak var sensitivitySegmentControl: UISegmentedControl!
+    
     var theme: SettingsTheme! {
         didSet {
             tableView.separatorColor = theme.separatorColor
@@ -63,7 +66,8 @@ class AlarmMenuViewController: UITableViewController {
         let savedPhotoSwitchValue = userDefaults.boolForKey("kPhotoSwitchValue")
         let savedVideoSwitchValue = userDefaults.boolForKey("kVideoSwitchValue")
         let savedSoundSwitchValue = userDefaults.boolForKey("kSoundSwitchValue")
-
+        let savedSensitivityValue = userDefaults.integerForKey("kSensitivityIndex")
+        
         photoSwitch.setOn(savedPhotoSwitchValue, animated: false)
         videoSwitch.setOn(savedVideoSwitchValue, animated: false)
         soundSwitch.setOn(savedSoundSwitchValue, animated: false)
@@ -72,6 +76,7 @@ class AlarmMenuViewController: UITableViewController {
         videoSwitch.enabled = photoSwitch.on ? false : true
         
         sensitivityTableCell.hidden = soundSwitch.on ? false : true
+        sensitivitySegmentControl.selectedSegmentIndex = savedSensitivityValue
     }
     
     private func setupIAP() {

@@ -138,7 +138,7 @@ class MainRegisterViewController: UIViewController {
                         
                         self.appDelegate.hubs.userName = deviceToMonitor
                         self.appDelegate.hubs.recipientName = deviceToNotify
-                        self.appDelegate.hubs.notificationMessage = "Intruder alert!";
+                        self.appDelegate.hubs.notificationMessage = Constants.Notifications.IntruderMessage
                         
                         let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
                         let initialVC = alarmSB.instantiateInitialViewController()

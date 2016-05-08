@@ -39,7 +39,6 @@ class AlertHandler {
             dispatch_async(dispatch_get_global_queue(priority, 0)){
                 
                 if self.intruderSoundPlayer.playing == false {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.intruderSoundPlayer.play()
                 }
             }
@@ -55,7 +54,6 @@ class AlertHandler {
     }
     
     func startBeep() {
-        
         let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
         
         if !silent {
@@ -63,7 +61,7 @@ class AlertHandler {
             dispatch_async(dispatch_get_global_queue(priority, 0)){
                 
                 if self.beepSoundPlayer.playing == false {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    
                     self.beepSoundPlayer.play()
                 }
             }
@@ -81,7 +79,6 @@ class AlertHandler {
             dispatch_async(dispatch_get_global_queue(priority, 0)){
                 
                 if self.toneSoundPlayer.playing == false {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.toneSoundPlayer.play()
                 }
             }

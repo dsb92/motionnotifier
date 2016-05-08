@@ -70,6 +70,8 @@ class DetectorManager: NSObject {
     }
     
     func stopDetectingMotions(){
+        self.accelerometerData = nil
+        self.gyroData = nil
         movementManager?.stopAccelerometerUpdates()
         movementManager?.stopGyroUpdates()
     }

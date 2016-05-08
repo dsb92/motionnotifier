@@ -45,8 +45,6 @@
 		46D7306F1CDB4C8100A0330C /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7306E1CDB4C8100A0330C /* IJProgressView.swift */; };
 		46D730741CDBAB2800A0330C /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */; };
 		46D730781CDBBCD400A0330C /* bluetooth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46D730771CDBBCD400A0330C /* bluetooth.gif */; };
-		46D730801CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */; };
-		46D730891CDD2DFF00A0330C /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */; };
 		46D9E3ED1CB57EEF0097197E /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EC1CB57EEF0097197E /* IAPManager.swift */; };
 		46D9E3F01CB6C06F0097197E /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */; };
 		46D9E3F51CBC25880097197E /* MainRegisterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */; };
@@ -59,16 +57,19 @@
 		46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED671C7E42DC009B30E3 /* Hubs.m */; };
 		46DEED711C7F9E7D009B30E3 /* MainRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */; };
 		46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */; };
+		46FFBDC71CDF359000EFF2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDC61CDF359000EFF2D0 /* Constants.swift */; };
+		46FFBDCF1CDF6E7900EFF2D0 /* GotyahUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */; };
+		46FFBDD81CDF6E9000EFF2D0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */; };
 		DE7BED7EE9EF2B74C1086956 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FACADB5EF57F0D10C699E224 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		46D730821CDD2DD900A0330C /* PBXContainerItemProxy */ = {
+		46FFBDD11CDF6E7900EFF2D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46DEED261C7E3B9F009B30E3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 46DEED2D1C7E3B9F009B30E3;
-			remoteInfo = DeviceMotionNotifier;
+			remoteInfo = Gotyah;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -121,10 +122,6 @@
 		46D730721CDBAB2800A0330C /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		46D730731CDBAB2800A0330C /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		46D730771CDBBCD400A0330C /* bluetooth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bluetooth.gif; sourceTree = "<group>"; };
-		46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GotyahUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionNotifierUITests.swift; sourceTree = "<group>"; };
-		46D730811CDD2DD900A0330C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		46D9E3EC1CB57EEF0097197E /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		46D9E3EF1CB6C06F0097197E /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		46D9E3F41CBC25880097197E /* MainRegisterMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterMenuViewController.swift; sourceTree = "<group>"; };
@@ -143,23 +140,28 @@
 		46DEED671C7E42DC009B30E3 /* Hubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hubs.m; sourceTree = "<group>"; };
 		46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterViewController.swift; sourceTree = "<group>"; };
 		46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		46FFBDC61CDF359000EFF2D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GotyahUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotyahUITests.swift; sourceTree = "<group>"; };
+		46FFBDD01CDF6E7900EFF2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		FACADB5EF57F0D10C699E224 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		46D7307A1CDD2DD800A0330C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		46DEED2B1C7E3B9F009B30E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				46DEED641C7E425A009B30E3 /* WindowsAzureMessaging.framework in Frameworks */,
 				DE7BED7EE9EF2B74C1086956 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46FFBDC91CDF6E7900EFF2D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,16 +340,6 @@
 			name = IJProgressView;
 			sourceTree = "<group>";
 		};
-		46D7307E1CDD2DD900A0330C /* DeviceMotionNotifierUITests */ = {
-			isa = PBXGroup;
-			children = (
-				46D7307F1CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift */,
-				46D730881CDD2DFF00A0330C /* SnapshotHelper.swift */,
-				46D730811CDD2DD900A0330C /* Info.plist */,
-			);
-			path = DeviceMotionNotifierUITests;
-			sourceTree = "<group>";
-		};
 		46D9E3E81CB57E9F0097197E /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +379,7 @@
 			children = (
 				46DEED631C7E425A009B30E3 /* WindowsAzureMessaging.framework */,
 				46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */,
-				46D7307E1CDD2DD900A0330C /* DeviceMotionNotifierUITests */,
+				46FFBDCD1CDF6E7900EFF2D0 /* GotyahUITests */,
 				46DEED2F1C7E3B9F009B30E3 /* Products */,
 				AF9D9FB62DCC889A06B15D28 /* Pods */,
 				32ED9D0A01F487AA6CE402A4 /* Frameworks */,
@@ -398,7 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */,
-				46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */,
+				46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -419,11 +411,22 @@
 				46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */,
 				467FC8E01CD14A52003D7FF7 /* Config.h */,
 				467FC8E11CD14A52003D7FF7 /* Config.m */,
+				46FFBDC61CDF359000EFF2D0 /* Constants.swift */,
 				46DEED381C7E3BA0009B30E3 /* Assets.xcassets */,
 				46DEED3D1C7E3BA0009B30E3 /* Info.plist */,
 				46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */,
 			);
 			path = DeviceMotionNotifier;
+			sourceTree = "<group>";
+		};
+		46FFBDCD1CDF6E7900EFF2D0 /* GotyahUITests */ = {
+			isa = PBXGroup;
+			children = (
+				46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */,
+				46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */,
+				46FFBDD01CDF6E7900EFF2D0 /* Info.plist */,
+			);
+			path = GotyahUITests;
 			sourceTree = "<group>";
 		};
 		AF9D9FB62DCC889A06B15D28 /* Pods */ = {
@@ -438,24 +441,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		46D7307C1CDD2DD800A0330C /* GotyahUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "GotyahUITests" */;
-			buildPhases = (
-				46D730791CDD2DD800A0330C /* Sources */,
-				46D7307A1CDD2DD800A0330C /* Frameworks */,
-				46D7307B1CDD2DD800A0330C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				46D730831CDD2DD900A0330C /* PBXTargetDependency */,
-			);
-			name = GotyahUITests;
-			productName = DeviceMotionNotifierUITests;
-			productReference = 46D7307D1CDD2DD800A0330C /* GotyahUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		46DEED2D1C7E3B9F009B30E3 /* Gotyah */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "Gotyah" */;
@@ -477,6 +462,24 @@
 			productReference = 46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */;
 			productType = "com.apple.product-type.application";
 		};
+		46FFBDCB1CDF6E7900EFF2D0 /* GotyahUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46FFBDD31CDF6E7900EFF2D0 /* Build configuration list for PBXNativeTarget "GotyahUITests" */;
+			buildPhases = (
+				46FFBDC81CDF6E7900EFF2D0 /* Sources */,
+				46FFBDC91CDF6E7900EFF2D0 /* Frameworks */,
+				46FFBDCA1CDF6E7900EFF2D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46FFBDD21CDF6E7900EFF2D0 /* PBXTargetDependency */,
+			);
+			name = GotyahUITests;
+			productName = GotyahUITests;
+			productReference = 46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -487,11 +490,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "David Buhauer";
 				TargetAttributes = {
-					46D7307C1CDD2DD800A0330C = {
-						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = WC3CDPK7H2;
-						TestTargetID = 46DEED2D1C7E3B9F009B30E3;
-					};
 					46DEED2D1C7E3B9F009B30E3 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = WC3CDPK7H2;
@@ -500,6 +498,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					46FFBDCB1CDF6E7900EFF2D0 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 46DEED2D1C7E3B9F009B30E3;
 					};
 				};
 			};
@@ -517,19 +519,12 @@
 			projectRoot = "";
 			targets = (
 				46DEED2D1C7E3B9F009B30E3 /* Gotyah */,
-				46D7307C1CDD2DD800A0330C /* GotyahUITests */,
+				46FFBDCB1CDF6E7900EFF2D0 /* GotyahUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		46D7307B1CDD2DD800A0330C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		46DEED2C1C7E3B9F009B30E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -544,6 +539,13 @@
 				46419A571CC26BC600F043EA /* APPChildViewController.xib in Resources */,
 				46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */,
 				46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46FFBDCA1CDF6E7900EFF2D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,15 +613,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		46D730791CDD2DD800A0330C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46D730801CDD2DD900A0330C /* DeviceMotionNotifierUITests.swift in Sources */,
-				46D730891CDD2DFF00A0330C /* SnapshotHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		46DEED2A1C7E3B9F009B30E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -639,6 +632,7 @@
 				46B685291C8C8FFE009C5CD1 /* SWRevealViewController.m in Sources */,
 				46D730741CDBAB2800A0330C /* UIImage+animatedGIF.m in Sources */,
 				46419A561CC26BC600F043EA /* APPChildViewController.m in Sources */,
+				46FFBDC71CDF359000EFF2D0 /* Constants.swift in Sources */,
 				46B6851D1C8B4A36009C5CD1 /* UIView+IBInspectable.swift in Sources */,
 				46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */,
 				467FC8E21CD14A52003D7FF7 /* Config.m in Sources */,
@@ -666,13 +660,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46FFBDC81CDF6E7900EFF2D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46FFBDCF1CDF6E7900EFF2D0 /* GotyahUITests.swift in Sources */,
+				46FFBDD81CDF6E9000EFF2D0 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		46D730831CDD2DD900A0330C /* PBXTargetDependency */ = {
+		46FFBDD21CDF6E7900EFF2D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46DEED2D1C7E3B9F009B30E3 /* Gotyah */;
-			targetProxy = 46D730821CDD2DD900A0330C /* PBXContainerItemProxy */;
+			targetProxy = 46FFBDD11CDF6E7900EFF2D0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -688,54 +691,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		46D730851CDD2DD900A0330C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_TARGET_NAME = DeviceMotionNotifier;
-			};
-			name = Debug;
-		};
-		46D730861CDD2DD900A0330C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_TARGET_NAME = DeviceMotionNotifier;
-			};
-			name = Release;
-		};
-		46D730871CDD2DD900A0330C /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = DeviceMotionNotifierUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifierUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_TARGET_NAME = DeviceMotionNotifier;
-			};
-			name = Test;
-		};
 		46DEED541C7E3BA0009B30E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -967,19 +922,52 @@
 			};
 			name = Test;
 		};
+		46FFBDD41CDF6E7900EFF2D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = GotyahUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				TEST_TARGET_NAME = Gotyah;
+			};
+			name = Debug;
+		};
+		46FFBDD51CDF6E7900EFF2D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = GotyahUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				TEST_TARGET_NAME = Gotyah;
+			};
+			name = Release;
+		};
+		46FFBDD61CDF6E7900EFF2D0 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = GotyahUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				TEST_TARGET_NAME = Gotyah;
+			};
+			name = Test;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		46D730841CDD2DD900A0330C /* Build configuration list for PBXNativeTarget "GotyahUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46D730851CDD2DD900A0330C /* Debug */,
-				46D730861CDD2DD900A0330C /* Release */,
-				46D730871CDD2DD900A0330C /* Test */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		46DEED291C7E3B9F009B30E3 /* Build configuration list for PBXProject "Gotyah" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -999,6 +987,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		46FFBDD31CDF6E7900EFF2D0 /* Build configuration list for PBXNativeTarget "GotyahUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46FFBDD41CDF6E7900EFF2D0 /* Debug */,
+				46FFBDD51CDF6E7900EFF2D0 /* Release */,
+				46FFBDD61CDF6E7900EFF2D0 /* Test */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

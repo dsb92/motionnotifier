@@ -43,7 +43,7 @@ class AVAutoSnap: NSObject {
         self.vc = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.visibleViewController
     }
     
-    func initializeOnViewDidLoad(){
+    func initializeOnViewDidLoad() throws{
         
         let session: AVCaptureSession = AVCaptureSession()
         self.session = session
@@ -150,7 +150,7 @@ class AVAutoSnap: NSObject {
         
     }
     
-    func initializeOnViewWillAppear(){
+    func initializeOnViewWillAppear() throws{
         dispatch_async(self.sessionQueue, {
             
             self.addObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", options: [.Old , .New] , context: &SessionRunningAndDeviceAuthorizedContext)
@@ -182,9 +182,22 @@ class AVAutoSnap: NSObject {
     }
     
     func deinitialize() {
-        self.removeObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized")
-        self.removeObserver(self, forKeyPath: "stillImageOutput.capturingStillImage")
-        self.removeObserver(self, forKeyPath: "movieFileOutput.recording")
+        dispatch_async(self.sessionQueue, {
+            
+            if let sess = self.session{
+                sess.stopRunning()
+                
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
+                NSNotificationCenter.defaultCenter().removeObserver(self.runtimeErrorHandlingObserver!)
+                
+                self.removeObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", context: &SessionRunningAndDeviceAuthorizedContext)
+                
+                self.removeObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", context: &CapturingStillImageContext)
+                self.removeObserver(self, forKeyPath: "movieFileOutput.recording", context: &RecordingContext)
+                
+                
+            }
+        })
     }
     
     func snapPhoto(){
@@ -238,6 +251,8 @@ class AVAutoSnap: NSObject {
             
             self.movieFileOutput!.connectionWithMediaType(AVMediaTypeVideo).videoOrientation =
                 AVCaptureVideoOrientation(rawValue: (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
+            
+            print(self.movieFileOutput.description)
             
             // Turning OFF flash for video recording
             AVAutoSnap.setFlashMode(AVCaptureFlashMode.Off, device: self.videoDeviceInput!.device)

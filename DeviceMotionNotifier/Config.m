@@ -30,9 +30,13 @@ NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/gotyah";
 #endif
 
 #ifndef TIMER_LAY_TEST_MODE
+    const NSUInteger kNotificationExpiration = 31;
     const NSUInteger kCountDownDelay = 11; // live
+    const NSUInteger kDelayCountDown = 4;
 #else
     const NSUInteger kCountDownDelay = 4; // test
+    const NSUInteger kDelayCountDown = 4;
+    const NSUInteger kNotificationExpiration = 10;
 #endif
 
 @implementation Config

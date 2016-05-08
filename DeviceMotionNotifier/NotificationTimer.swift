@@ -9,10 +9,10 @@
 import UIKit
 
 class NotificationTimer: NSObject, TimerDelegate {
-    let startValue = UINT16_MAX
+    let startValue = Int(kNotificationExpiration)
     var notificationTimer: NSTimer!
     var handler: AlertHandler!
-    var notifyTo: Int32 {
+    var notifyTo: Int {
         didSet {
             if notifyTo == 0 {
                 stop()
@@ -25,7 +25,7 @@ class NotificationTimer: NSObject, TimerDelegate {
     }
     
     func start(){
-        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(NotificationTimer.update), userInfo: nil, repeats: true)
+        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(NotificationTimer.update), userInfo: nil, repeats: true)
     }
     
     func stop() {
@@ -35,7 +35,7 @@ class NotificationTimer: NSObject, TimerDelegate {
     }
     
     func reset() {
-        notifyTo = UINT16_MAX
+        notifyTo = startValue
     }
     
     func update() {
