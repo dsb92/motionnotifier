@@ -93,7 +93,9 @@ end
 
 desc "Deploy to AppStore"
 lane :appstore do
+  set_prod_context()
 
+  
     deliver(
       skip_screenshots: true, 
       skip_metadata: true, 
