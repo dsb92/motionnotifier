@@ -93,29 +93,7 @@ end
 
 desc "Deploy to AppStore"
 lane :appstore do
-  set_prod_context()
 
-  branch = git_branch
-  if branch != "stage" && branch != "prod"
-    raise "Not allowed to deploy '#{branch}' directly to 'prod'"
-  elsif prompt(text: "Do you want to deploy '#{branch}' to 'prod' and build ipa for AppStore? (y/n)") == "y"
-
-    ensure_git_branch(branch: branch)
-    ensure_git_status_clean #if it fails you can undo changes with: git checkout *
-    if branch == "prod"
-      increment_build_number()
-      update_version_number()
-    end
-
-    cert(
-      username: ENV["PROD_DEVCENTER"],
-      output_path: "./certificates/")
-    produce_devcenter(ENV["PROD_DEVCENTER"]) #produce must be before sigh to make sure appId is created
-    sigh(username: ENV["PROD_DEVCENTER"],
-      output_path: "./fastlane/certificates/")
-
-    version = get_version_number()
-    build_app("Release")
     deliver(
       skip_screenshots: true, 
       skip_metadata: true, 
@@ -125,7 +103,7 @@ lane :appstore do
       if branch != "prod"
         merge_to_branch("stage", "prod")
       end
-  end
+  
 end
 
 desc "Manuel Deploy to AppStore - merge branches"
