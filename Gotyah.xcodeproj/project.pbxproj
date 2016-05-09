@@ -804,7 +804,7 @@
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5fd80dba-ccbe-428e-9bec-661c64dc6df6";
+				PROVISIONING_PROFILE = "0d27be72-2fda-4400-aa11-9f219bf08b68";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -842,7 +842,7 @@
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5fd80dba-ccbe-428e-9bec-661c64dc6df6";
+				PROVISIONING_PROFILE = "0d27be72-2fda-4400-aa11-9f219bf08b68";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -918,7 +918,7 @@
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5fd80dba-ccbe-428e-9bec-661c64dc6df6";
+				PROVISIONING_PROFILE = "0d27be72-2fda-4400-aa11-9f219bf08b68";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
