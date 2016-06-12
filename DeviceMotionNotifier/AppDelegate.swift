@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Fabric
 import Crashlytics
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mpcManager: MPCManager!
     var userInteracted: Bool!
     
+    let locationManager = CLLocationManager()
+    
     enum AlertMessage : String {
         case ARM = "__ARM__"
         case DISARM = "__DISARM__"
@@ -31,14 +34,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        Fabric.with([Crashlytics.self])
+        setFabric()
+        setApplicationRegistrations()
+        
+        initializeNotificationHub()
+        initializeAudio()
+        initializeMPCManager()
+        startIAPCheck()
 
+        setFirstTimeLaunch()
+        setLocationManager()
+        
+        userInteracted = false;
+
+        return true
+    }
+    
+    private func setFabric() {
+        Fabric.with([Crashlytics.self])
+    }
+    
+    private func setApplicationRegistrations() {
         let settings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Sound, UIUserNotificationType.Alert, UIUserNotificationType.Badge], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
-        
+    }
+    
+    private func initializeNotificationHub() {
         hubs = Hubs()
-        
+    }
+    
+    private func initializeAudio() {
         do{
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -46,11 +72,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         catch {
             print(error)
         }
-        
-        IAPManager.sharedInstance.startIAPCheck()
-        
+    }
+    
+    private func initializeMPCManager() {
         mpcManager = MPCManager()
-        
+    }
+    
+    private func startIAPCheck() {
+        IAPManager.sharedInstance.startIAPCheck()
+    }
+    
+    private func setFirstTimeLaunch() {
         let hasLaunchedBefore = NSUserDefaults.standardUserDefaults().boolForKey("kFirstTimeLaunch")
         
         if !hasLaunchedBefore {
@@ -62,10 +94,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kFirstTimeLaunch")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
+    }
+    
+    private func setLocationManager() {
+        locationManager.requestAlwaysAuthorization()
         
-        userInteracted = false;
-        
-        return true
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.distanceFilter = kCLDistanceFilterNone
+            locationManager.allowsBackgroundLocationUpdates = true
+        }
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -239,6 +277,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        locationManager.stopUpdatingLocation()
     }
     
     func applicationWillTerminate(application: UIApplication) {

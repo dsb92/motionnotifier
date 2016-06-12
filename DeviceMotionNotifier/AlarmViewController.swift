@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import CoreMotion
+import CoreLocation
 import LocalAuthentication
 import GoogleMobileAds
 
@@ -74,6 +75,8 @@ class AlarmViewController: UIViewController {
         super.viewWillAppear(animated)
         
         print("viewWillAppear")
+        
+        appDelegate.locationManager.delegate = self
     }
     
     override func viewDidLoad() {
@@ -579,6 +582,36 @@ extension AlarmViewController : RoundClockProtocol {
     }
 }
 
+extension AlarmViewController: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        let message = "locations = \(locValue.latitude) \(locValue.longitude)"
+        NSLog("%@", message);
+        
+        // If alarm is set
+        if alarmManager.getAlarmState() == .Armed {
+            
+            // And app is in background
+            if UIApplication.sharedApplication().applicationState == .Background {
+                
+                // If current location has not yet been requested
+                if detectorManager?.currentLocation == nil {
+                    detectorManager.currentLocation = manager.location
+                }
+                
+                // If current location when alarm was set is different from the location update, it means the device has been moved...
+                if manager.location != detectorManager?.currentLocation {
+                    intruderAlert()
+                }
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error.localizedDescription)
+    }
+}
+
 func >(newCMAccelData: CMAccelerometerData, oldCMAccelData: CMAccelerometerData) -> Bool {
     return (abs(newCMAccelData.acceleration.x - oldCMAccelData.acceleration.x) > motionThreshold) ||
         (abs(newCMAccelData.acceleration.y - oldCMAccelData.acceleration.y) > motionThreshold) ||
@@ -589,4 +622,8 @@ func >(newCMRotData: CMRotationRate, oldCMRotData: CMRotationRate) -> Bool {
     return (abs(newCMRotData.x - oldCMRotData.x) > motionThreshold) ||
         (abs(newCMRotData.y - oldCMRotData.y) > motionThreshold) ||
         (abs(newCMRotData.z - oldCMRotData.z) > motionThreshold)
+}
+
+func !=(newLocation: CLLocation?, oldLocation: CLLocation?) -> Bool {
+    return (newLocation!.coordinate.latitude != oldLocation!.coordinate.latitude) || (newLocation!.coordinate.longitude != oldLocation!.coordinate.longitude)
 }

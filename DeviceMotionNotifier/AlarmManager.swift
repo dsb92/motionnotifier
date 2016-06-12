@@ -43,6 +43,8 @@ class AlarmManager {
                 print("Ready")
                 detectorManager?.stopDetectingMotions()
                 detectorManager?.stopDetectingNoise()
+                detectorManager?.currentLocation = nil
+                detectorManager?.appDelegate.locationManager.stopUpdatingLocation()
                 alertHandler?.stopMakingNoise()
                 alertHandler?.stopCaptureVideo()
                 timerManager.countDownTmer.stop()
@@ -76,6 +78,8 @@ class AlarmManager {
                     detectorManager.startDetectingNoise()
                 }
                 
+                detectorManager.appDelegate.locationManager.startUpdatingLocation()
+
                 alarmUIDelegate?.armed()
                 break
                 

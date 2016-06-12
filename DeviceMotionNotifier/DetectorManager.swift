@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreMotion
+import CoreLocation
 
 protocol DetectorProtol {
     func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!)
@@ -27,6 +28,9 @@ class DetectorManager: NSObject {
     var timesAudioRecognized = 0
     var audioRecognizedThreshold = 10
 
+    var currentLocation: CLLocation?
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     init(detectorProtocol: DetectorProtol){
         self.detectorProtocol = detectorProtocol
         movementManager = CMMotionManager()
