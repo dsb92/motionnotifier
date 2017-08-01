@@ -63,9 +63,9 @@ class RoundClock: UIView {
         
         let borderRect = CGRectInset(rect, 2, 2)
         let context = UIGraphicsGetCurrentContext()
-        CGContextClearRect(context, borderRect)
+        CGContextClearRect(context!, borderRect)
         
-        CGContextSetFillColorWithColor(context, SettingsTheme.theme01.arm.CGColor)
+        CGContextSetFillColorWithColor(context!, SettingsTheme.theme01.arm.CGColor)
         
         let x = borderRect.origin.x + borderRect.size.width/2
         let y = borderRect.origin.y + borderRect.size.height/2
@@ -74,8 +74,8 @@ class RoundClock: UIView {
         let timeLeft = stoptimeInSec - starttimeInSec
         
         let currentFill = 2*M_PI * (currentTimeSpend / timeLeft) - M_PI_2
-        CGContextMoveToPoint(context, x, y)
-        CGContextAddArc(context, x, y, rect.size.width/2, CGFloat(-M_PI_2), CGFloat(currentFill), 1)
-        CGContextFillPath(context)
+        CGContextMoveToPoint(context!, x, y)
+        CGContextAddArc(context!, x, y, rect.size.width/2, CGFloat(-M_PI_2), CGFloat(currentFill), 1)
+        CGContextFillPath(context!)
     }
 }

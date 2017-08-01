@@ -4,17 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-Gotyah.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>86C1B885C24BCAB97E69B05E688C8BBB</key>
+		<key>91DB0DDA26CC014CA5A7F123AC513224</key>
 		<dict>
 			<key>primary</key>
 			<true/>

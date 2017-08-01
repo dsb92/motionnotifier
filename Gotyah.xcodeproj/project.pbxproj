@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281153D137A7716D9E9CB496 /* Pods_Gotyah.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D220D14554025138504BCEF /* Pods_Gotyah.framework */; };
 		460E56781CCE7D8D005BD3FC /* UIWindow+VisibleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E56771CCE7D8D005BD3FC /* UIWindow+VisibleVC.swift */; };
 		46419A101CC2558E00F043EA /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46419A0F1CC2558E00F043EA /* beep.wav */; };
 		46419A121CC25CBC00F043EA /* tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46419A111CC25CBC00F043EA /* tone.wav */; };
@@ -60,7 +61,6 @@
 		46FFBDC71CDF359000EFF2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDC61CDF359000EFF2D0 /* Constants.swift */; };
 		46FFBDCF1CDF6E7900EFF2D0 /* GotyahUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */; };
 		46FFBDD81CDF6E9000EFF2D0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */; };
-		DE7BED7EE9EF2B74C1086956 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FACADB5EF57F0D10C699E224 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1E215A39599922A0C783135D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		3E3D137C92CCB485B3136429 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		038805A94F28F749B8111355 /* Pods-Gotyah.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotyah.test.xcconfig"; path = "Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah.test.xcconfig"; sourceTree = "<group>"; };
+		0D220D14554025138504BCEF /* Pods_Gotyah.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gotyah.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE50CFFF5D2D52EF413E05E /* Pods-Gotyah.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotyah.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah.release.xcconfig"; sourceTree = "<group>"; };
 		460E56771CCE7D8D005BD3FC /* UIWindow+VisibleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+VisibleVC.swift"; sourceTree = "<group>"; };
 		46419A0F1CC2558E00F043EA /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		46419A111CC25CBC00F043EA /* tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tone.wav; sourceTree = "<group>"; };
@@ -140,12 +141,13 @@
 		46DEED671C7E42DC009B30E3 /* Hubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hubs.m; sourceTree = "<group>"; };
 		46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterViewController.swift; sourceTree = "<group>"; };
 		46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		46F926F81F307E8300D383D2 /* Gotyah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gotyah.entitlements; sourceTree = "<group>"; };
 		46FFBDC61CDF359000EFF2D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GotyahUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotyahUITests.swift; sourceTree = "<group>"; };
 		46FFBDD01CDF6E7900EFF2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		FACADB5EF57F0D10C699E224 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDB9FEF5C4568892814BA521 /* Pods-Gotyah.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotyah.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46DEED641C7E425A009B30E3 /* WindowsAzureMessaging.framework in Frameworks */,
-				DE7BED7EE9EF2B74C1086956 /* libPods.a in Frameworks */,
+				281153D137A7716D9E9CB496 /* Pods_Gotyah.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,10 +170,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		32ED9D0A01F487AA6CE402A4 /* Frameworks */ = {
+		04E9903FBBFEA69305C767BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FACADB5EF57F0D10C699E224 /* libPods.a */,
+				0D220D14554025138504BCEF /* Pods_Gotyah.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -377,12 +379,13 @@
 		46DEED251C7E3B9F009B30E3 = {
 			isa = PBXGroup;
 			children = (
+				46F926F81F307E8300D383D2 /* Gotyah.entitlements */,
 				46DEED631C7E425A009B30E3 /* WindowsAzureMessaging.framework */,
 				46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */,
 				46FFBDCD1CDF6E7900EFF2D0 /* GotyahUITests */,
 				46DEED2F1C7E3B9F009B30E3 /* Products */,
-				AF9D9FB62DCC889A06B15D28 /* Pods */,
-				32ED9D0A01F487AA6CE402A4 /* Frameworks */,
+				8406BC53189A92EE03E38410 /* Pods */,
+				04E9903FBBFEA69305C767BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -429,11 +432,12 @@
 			path = GotyahUITests;
 			sourceTree = "<group>";
 		};
-		AF9D9FB62DCC889A06B15D28 /* Pods */ = {
+		8406BC53189A92EE03E38410 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3E3D137C92CCB485B3136429 /* Pods.debug.xcconfig */,
-				1E215A39599922A0C783135D /* Pods.release.xcconfig */,
+				DDB9FEF5C4568892814BA521 /* Pods-Gotyah.debug.xcconfig */,
+				2CE50CFFF5D2D52EF413E05E /* Pods-Gotyah.release.xcconfig */,
+				038805A94F28F749B8111355 /* Pods-Gotyah.test.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -445,13 +449,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46DEED561C7E3BA0009B30E3 /* Build configuration list for PBXNativeTarget "Gotyah" */;
 			buildPhases = (
-				11AF9316BFDC5BE37AC04E1C /* Check Pods Manifest.lock */,
+				3EED797B0D19B08812F347FA /* [CP] Check Pods Manifest.lock */,
 				46DEED2A1C7E3B9F009B30E3 /* Sources */,
 				46DEED2B1C7E3B9F009B30E3 /* Frameworks */,
 				46DEED2C1C7E3B9F009B30E3 /* Resources */,
-				74196F832F02344288837127 /* Embed Pods Frameworks */,
-				5DBCDB9FCA5E1BDC404E5298 /* Copy Pods Resources */,
 				46DF5AAD1CD9081500449517 /* ShellScript */,
+				302D12647D14B99CA889E38E /* [CP] Embed Pods Frameworks */,
+				118FE5060804D1D2B4FB2BC4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -487,14 +491,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "David Buhauer";
 				TargetAttributes = {
 					46DEED2D1C7E3B9F009B30E3 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = WC3CDPK7H2;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -552,19 +560,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11AF9316BFDC5BE37AC04E1C /* Check Pods Manifest.lock */ = {
+		118FE5060804D1D2B4FB2BC4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		302D12647D14B99CA889E38E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EED797B0D19B08812F347FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		46DF5AAD1CD9081500449517 /* ShellScript */ = {
@@ -579,36 +617,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 31c24a769e20f5da0788a7e0fca7c731512e4dce c03978db58fa2faf73ab180afc4eb741e89db42e0c304f4aab504b113f266876";
-		};
-		5DBCDB9FCA5E1BDC404E5298 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74196F832F02344288837127 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -704,8 +712,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -748,8 +758,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -769,25 +781,28 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		46DEED571C7E3BA0009B30E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E3D137C92CCB485B3136429 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = DDB9FEF5C4568892814BA521 /* Pods-Gotyah.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_ICON_NAME = "Icon-beta";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Gotyah.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1007;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = WC3CDPK7H2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -804,9 +819,11 @@
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cec7499f-3b4c-4c09-baa3-6c6215e22423";
+				PROVISIONING_PROFILE_SPECIFIER = "Gotyah dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -814,18 +831,20 @@
 		};
 		46DEED581C7E3BA0009B30E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E215A39599922A0C783135D /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2CE50CFFF5D2D52EF413E05E /* Pods-Gotyah.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_ICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Gotyah.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1007;
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = WC3CDPK7H2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -842,8 +861,10 @@
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "162e8837-a970-4d92-84dd-a6ac711ff185";
+				PROVISIONING_PROFILE_SPECIFIER = "Gotyah dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -862,8 +883,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -889,18 +912,20 @@
 		};
 		46DF5AB31CD9179A00449517 /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E215A39599922A0C783135D /* Pods.release.xcconfig */;
+			baseConfigurationReference = 038805A94F28F749B8111355 /* Pods-Gotyah.test.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_ICON_NAME = "Icon-beta";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Gotyah.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1007;
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -920,6 +945,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -936,6 +962,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Gotyah;
 			};
 			name = Debug;
@@ -950,6 +977,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Gotyah;
 			};
 			name = Release;
@@ -964,6 +992,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Gotyah;
 			};
 			name = Test;

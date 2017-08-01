@@ -15,8 +15,8 @@ NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/gotyah";
 #endif
 
 #ifndef ADS_IN_TEST_MODE
-    NSString *const kConfigAdUnitBannerId = @"ca-app-pub-2595377837159656/1504782129";  // live
-    NSString *const kConfigAdUnitInterstitialsId = @"ca-app-pub-2595377837159656/4903743727";
+    NSString *const kConfigAdUnitBannerId = @"ca-app-pub-9818395476815781/2955409368";  // live
+    NSString *const kConfigAdUnitInterstitialsId = @"ca-app-pub-9818395476815781/6675162529";
 #else
     #warning ADS in debug mode:
     NSString *const kConfigAdUnitBannerId = @"ca-app-pub-3940256099942544/2934735716";  // test

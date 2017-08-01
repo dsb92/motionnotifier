@@ -86,15 +86,14 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     
     
     // MARK: MCNearbyServiceAdvertiserDelegate method implementation
-    
-    // Invitation Received
-    func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: ((Bool, MCSession) -> Void)) {
+    func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: (Bool, MCSession?) -> Void) {
+        
         self.invitationHandler = invitationHandler
         
         //delegate?.invitationWasReceived(peerID.displayName)
     }
     
-    
+    // Invitation Received
     func advertiser(advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: NSError) {
         print(error.localizedDescription)
     }

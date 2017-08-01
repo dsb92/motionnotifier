@@ -599,10 +599,10 @@ extension AlarmViewController: CLLocationManagerDelegate {
                     detectorManager.currentLocation = manager.location
                 }
                 
-                // If current location when alarm was set is different from the location update, it means the device has been moved...
-                if manager.location != detectorManager?.currentLocation {
-                    intruderAlert()
-                }
+//                // If current location when alarm was set is different from the location update, it means the device has been moved...
+//                if manager.location != detectorManager?.currentLocation {
+//                    intruderAlert()
+//                }
             }
         }
     }

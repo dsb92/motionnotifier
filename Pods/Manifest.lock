@@ -1,8 +1,8 @@
 PODS:
-  - Crashlytics (3.7.0):
+  - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - Google-Mobile-Ads-SDK (7.7.1)
+  - Fabric (1.6.12)
+  - Google-Mobile-Ads-SDK (7.21.0)
 
 DEPENDENCIES:
   - Crashlytics
@@ -10,8 +10,10 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 7.0)
 
 SPEC CHECKSUMS:
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Google-Mobile-Ads-SDK: e27569901b58881d9a94b42f2c642739cfe3970a
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
+  Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: f33902d37a42b483c06acdb68417c4b52d05b6ed
+
+COCOAPODS: 1.2.1

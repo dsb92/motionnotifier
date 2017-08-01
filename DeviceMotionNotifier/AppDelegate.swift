@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func initializeAudio() {
         do{
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.MixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
         }
         catch {

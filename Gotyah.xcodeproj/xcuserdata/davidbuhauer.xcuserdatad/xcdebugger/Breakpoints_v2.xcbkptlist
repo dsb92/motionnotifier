@@ -80,7 +80,7 @@
             startingLineNumber = "230"
             endingLineNumber = "230"
             landmarkName = "-parserDidStartDocument:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -96,7 +96,7 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-generateSasToken:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,7 +112,7 @@
             startingLineNumber = "213"
             endingLineNumber = "213"
             landmarkName = "-SendNotificationRESTAPI"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,7 +128,7 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "-initWithEndpoint:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,7 +144,7 @@
             startingLineNumber = "237"
             endingLineNumber = "237"
             landmarkName = "-parser:didStartElement:namespaceURI:qualifiedName:attributes:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -293,69 +293,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DeviceMotionNotifier/AlarmViewController.swift"
-            timestampString = "487452664.223679"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
-            landmarkName = "notifyRecipient()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeviceMotionNotifier.AlarmViewController.notifyRecipient (DeviceMotionNotifier.AlarmViewController)() -&gt; ()"
-                  moduleName = "DeviceMotionNotifier"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/davidbuhauer/Box%20Sync/MyProjects/XCodeProjects/Projects/DeviceMotionNotifier/DeviceMotionNotifier/AlarmViewController.swift"
-                  timestampString = "478980766.943772"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "415"
-                  endingLineNumber = "415"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "protocol witness for DeviceMotionNotifier.AlarmProtocol.notifyRecipient &lt;A where A: DeviceMotionNotifier.AlarmProtocol&gt; (A)() -&gt; () in conformance DeviceMotionNotifier.AlarmViewController : DeviceMotionNotifier.AlarmProtocol in DeviceMotionNotifier"
-                  moduleName = "DeviceMotionNotifier"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/davidbuhauer/Box%20Sync/MyProjects/XCodeProjects/Projects/DeviceMotionNotifier/DeviceMotionNotifier/AlarmViewController.swift"
-                  timestampString = "478980766.944198"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "414"
-                  endingLineNumber = "414"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "dynamic DeviceMotionNotifier.AlarmViewController.notifyRecipient (DeviceMotionNotifier.AlarmViewController)() -&gt; ()"
-                  moduleName = "DeviceMotionNotifier"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/davidbuhauer/Box%20Sync/MyProjects/XCodeProjects/Projects/DeviceMotionNotifier/DeviceMotionNotifier/AlarmViewController.swift"
-                  timestampString = "478980766.944593"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "414"
-                  endingLineNumber = "414"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -446,7 +383,7 @@
             startingLineNumber = "294"
             endingLineNumber = "294"
             landmarkName = "viewDidLayoutSubviews()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

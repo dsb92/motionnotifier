@@ -35,12 +35,8 @@ class AlertHandler {
         let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
         
         if !silent {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)){
-                
-                if self.intruderSoundPlayer.playing == false {
-                    self.intruderSoundPlayer.play()
-                }
+            if self.intruderSoundPlayer.playing == false {
+                self.intruderSoundPlayer.play()
             }
         }
         
