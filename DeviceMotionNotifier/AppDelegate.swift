@@ -11,6 +11,7 @@ import AVFoundation
 import Fabric
 import Crashlytics
 import CoreLocation
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mpcManager: MPCManager!
     var userInteracted: Bool!
     
-    let locationManager = CLLocationManager()
-    
     enum AlertMessage : String {
         case ARM = "__ARM__"
         case DISARM = "__DISARM__"
@@ -31,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case DISARMED = "__DISARMED__"
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         setFabric()
@@ -43,30 +42,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startIAPCheck()
 
         setFirstTimeLaunch()
-        setLocationManager()
         
         userInteracted = false;
 
+        FirebaseApp.configure()
+        GADMobileAds.configure(withApplicationID: kConfigAdAppId)
+        
         return true
     }
     
-    private func setFabric() {
+    fileprivate func setFabric() {
         Fabric.with([Crashlytics.self])
     }
     
-    private func setApplicationRegistrations() {
-        let settings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Sound, UIUserNotificationType.Alert, UIUserNotificationType.Badge], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+    fileprivate func setApplicationRegistrations() {
+        let settings = UIUserNotificationSettings(types: [UIUserNotificationType.sound, UIUserNotificationType.alert, UIUserNotificationType.badge], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
-    private func initializeNotificationHub() {
+    fileprivate func initializeNotificationHub() {
         hubs = Hubs()
     }
     
-    private func initializeAudio() {
+    fileprivate func initializeAudio() {
         do{
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.MixWithOthers)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
         }
         catch {
@@ -74,69 +75,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    private func initializeMPCManager() {
+    fileprivate func initializeMPCManager() {
         mpcManager = MPCManager()
     }
     
-    private func startIAPCheck() {
+    fileprivate func startIAPCheck() {
         IAPManager.sharedInstance.startIAPCheck()
     }
     
-    private func setFirstTimeLaunch() {
-        let hasLaunchedBefore = NSUserDefaults.standardUserDefaults().boolForKey("kFirstTimeLaunch")
+    fileprivate func setFirstTimeLaunch() {
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "kFirstTimeLaunch")
         
         if !hasLaunchedBefore {
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
             self.viewController = APPViewController(nibName: "APPViewController", bundle: nil);
             self.window?.rootViewController = self.viewController
             self.window?.makeKeyAndVisible()
             
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kFirstTimeLaunch")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(true, forKey: "kFirstTimeLaunch")
+            UserDefaults.standard.synchronize()
         }
     }
     
-    private func setLocationManager() {
-        locationManager.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.distanceFilter = kCLDistanceFilterNone
-            locationManager.allowsBackgroundLocationUpdates = true
-        }
-    }
-    
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         hubs.deviceToken = deviceToken;
         
         print("Device token: \(deviceToken)")
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // If the message has to do with alarm alerting
-        if let message = (userInfo as NSDictionary).objectForKey("aps")!.valueForKey("alert"){
+        if let message = ((userInfo as NSDictionary).object(forKey: "aps")! as AnyObject).value(forKey: "alert"){
             handleAlert(message as! String)
         }
         
     }
     
-    func handleAlert(message: String){
+    func handleAlert(_ message: String){
         // Seperate the message into sender and what message
-        let fullMessage = message.componentsSeparatedByString(":")
+        let fullMessage = message.components(separatedBy: ":")
         let firstComponent = fullMessage[0]
         let secondComponent = fullMessage[1]
         
         // Get sender user name (Device with the alarm)
-        let senderUserName = firstComponent.stringByReplacingOccurrencesOfString("From ", withString: "")
+        let senderUserName = firstComponent.replacingOccurrences(of: "From ", with: "")
         
         // Get the alert message, remove empty spaces
-        let alertMessage = secondComponent.stringByReplacingOccurrencesOfString(" ", withString: "")
+        let alertMessage = secondComponent.replacingOccurrences(of: " ", with: "")
         
         let vc = UIWindow.getVisibleViewControllerFrom(window!.rootViewController)
         
         // e.g. Davids-iPhone with Davids iPhone
-        let msg = message.stringByReplacingOccurrencesOfString("-", withString: " ")
+        let msg = message.replacingOccurrences(of: "-", with: " ")
         
         print("Remote Notification received: " + message)
         
@@ -151,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.hubs.recipientName = senderUserName
             self.hubs.notificationMessage = AlertMessage.DISARMED.rawValue
-            self.hubs.SendToEnabledPlatforms()
+            self.hubs.sendToEnabledPlatforms()
             
             break
             
@@ -174,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 alertView.setTitleFont("ClearSans-Bold")
                 alertView.setTextFont("ClearSans")
                 alertView.setButtonFont("ClearSans-Light")
-                alertView.setTextTheme(.Golden)
+                alertView.setTextTheme(.golden)
                 
                 alertView.addAction({
                     self.userInteracted = false
@@ -189,12 +180,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 userInteracted = true
                 
                 let buttonTexts = ["Remote disarm alarm", "OK..."]
-                let alertView = JSSAlertView().show(vc!, title: "Alarm!", text: msg, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: UIImage(named: "alert-icon"))
+                let alertView = JSSAlertView().show(vc!, title: "Alarm!", text: msg, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.withAlphaComponent(0.7), iconImage: UIImage(named: "alert-icon"))
                 
                 alertView.setTitleFont("ClearSans-Bold")
                 alertView.setTextFont("ClearSans")
                 alertView.setButtonFont("ClearSans-Light")
-                alertView.setTextTheme(.Golden)
+                alertView.setTextTheme(.golden)
                 
                 alertView.addAction({
                     if alertView.getButtonId() == 1{
@@ -202,28 +193,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         // Send push message back to sender(Device with the alarm)
                         self.hubs.recipientName = senderUserName
                         self.hubs.notificationMessage = AlertMessage.DISARM.rawValue
-                        self.hubs.SendToEnabledPlatforms()
+                        self.hubs.sendToEnabledPlatforms()
                         
                         self.userInteracted = false
                         self.hubs.remoteDisarmAlarm = true
                         
                         // *Wait until message has been received on other device or try again
                         
-                        let waitForRemoteDisarm = dispatch_queue_create("waitForRemoteAlarm", nil)
+                        let waitForRemoteDisarm = DispatchQueue(label: "waitForRemoteAlarm", attributes: [])
                         let waitingTime = 5
                         var counter = 0
                         
                         IJProgressView.shared.showProgressView(vc!.view)
-                        dispatch_async(waitForRemoteDisarm, {
+                        waitForRemoteDisarm.async(execute: {
                             while self.hubs.remoteDisarmAlarm == true && counter != waitingTime {
                                 print("Waiting for remote alarm to be disarmed")
                                 
                                 sleep(1)
-                                ++counter
+                                counter += 1
                             }
                             
                             
-                            dispatch_async(dispatch_get_main_queue()){
+                            DispatchQueue.main.async{
                                 // Wait 5 seconds...and if still true try again
                                 if self.hubs.remoteDisarmAlarm == true {
                                     self.hubs.remoteDisarmAlarm = false
@@ -243,11 +234,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    class func simpleMessage(title title:String, message:String, image: UIImage?, uiViewController:UIViewController) {
+    class func simpleMessage(title:String, message:String, image: UIImage?, uiViewController:UIViewController) {
         
         // The Custom iOS Alert
         
-        let alertView = JSSAlertView().show(uiViewController, title: title, text: message, buttonTexts: ["OK"], color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7), iconImage: image)
+        let alertView = JSSAlertView().show(uiViewController, title: title, text: message, buttonTexts: ["OK"], color: SettingsTheme.theme01.blueColor.withAlphaComponent(0.7), iconImage: image)
         
         alertView.addAction({
             
@@ -258,29 +249,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         alertView.setTitleFont("ClearSans-Bold")
         alertView.setTextFont("ClearSans")
         alertView.setButtonFont("ClearSans-Light")
-        alertView.setTextTheme(.Golden)
+        alertView.setTextTheme(.golden)
     }
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
     
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        locationManager.stopUpdatingLocation()
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     

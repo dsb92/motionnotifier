@@ -44,7 +44,6 @@ class AlarmManager {
                 detectorManager?.stopDetectingMotions()
                 detectorManager?.stopDetectingNoise()
                 detectorManager?.currentLocation = nil
-                detectorManager?.appDelegate.locationManager.stopUpdatingLocation()
                 alertHandler?.stopMakingNoise()
                 alertHandler?.stopCaptureVideo()
                 timerManager.countDownTmer.stop()
@@ -73,12 +72,10 @@ class AlarmManager {
                 detectorManager?.startDetectingMotion()
                 
                 // Start detecting noise if enabled
-                let detectNoise = NSUserDefaults.standardUserDefaults().boolForKey("kSoundSwitchValue")
+                let detectNoise = UserDefaults.standard.bool(forKey: "kSoundSwitchValue")
                 if detectNoise {
                     detectorManager.startDetectingNoise()
                 }
-                
-                detectorManager.appDelegate.locationManager.startUpdatingLocation()
 
                 alarmUIDelegate?.armed()
                 break
@@ -97,15 +94,15 @@ class AlarmManager {
         }
     }
     
-    private init() {
+    fileprivate init() {
         state = .Ready
         alertHandler = AlertHandler()
         timerManager = TimerManager(handler: alertHandler)
     }
     
     func initialize() {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        let priority = DispatchQueue.GlobalQueuePriority.default
+        DispatchQueue.global(priority: priority).async {
             // do some task
             
             self.alertHandler.prepareToPlaySounds()
@@ -122,7 +119,7 @@ class AlarmManager {
                 print("Error could not initialie AVAutoSnap : \(error)")
             }
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 // update some UI
             }
         }
@@ -133,7 +130,7 @@ class AlarmManager {
         alertHandler.autoSnap = nil
     }
     
-    func setAlarmState(state: State){
+    func setAlarmState(_ state: State){
         self.state = state
     }
     

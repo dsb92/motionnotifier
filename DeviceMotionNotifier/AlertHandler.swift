@@ -32,10 +32,10 @@ class AlertHandler {
     
     func startMakingNoise(){
         
-        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        let silent = UserDefaults.standard.bool(forKey: "kSilentValue")
         
         if !silent {
-            if self.intruderSoundPlayer.playing == false {
+            if self.intruderSoundPlayer != nil && self.intruderSoundPlayer.isPlaying == false {
                 self.intruderSoundPlayer.play()
             }
         }
@@ -50,13 +50,13 @@ class AlertHandler {
     }
     
     func startBeep() {
-        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        let silent = UserDefaults.standard.bool(forKey: "kSilentValue")
         
         if !silent {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)){
+            let priority = DispatchQueue.GlobalQueuePriority.default
+            DispatchQueue.global(priority: priority).async{
                 
-                if self.beepSoundPlayer.playing == false {
+                if self.beepSoundPlayer != nil && self.beepSoundPlayer.isPlaying == false {
                     
                     self.beepSoundPlayer.play()
                 }
@@ -68,13 +68,13 @@ class AlertHandler {
     
     func startTone() {
         
-        let silent = NSUserDefaults.standardUserDefaults().boolForKey("kSilentValue")
+        let silent = UserDefaults.standard.bool(forKey: "kSilentValue")
         
         if !silent {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)){
+            let priority = DispatchQueue.GlobalQueuePriority.default
+            DispatchQueue.global(priority: priority).async{
                 
-                if self.toneSoundPlayer.playing == false {
+                if self.toneSoundPlayer != nil && self.toneSoundPlayer.isPlaying == false {
                     self.toneSoundPlayer.play()
                 }
             }
@@ -98,10 +98,10 @@ class AlertHandler {
     
     func prepareToPlaySounds() {
         if (self.intruderSoundPlayer == nil){
-            let intruderSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("intruder_alarm", ofType: "wav")!)
+            let intruderSound = URL(fileURLWithPath: Bundle.main.path(forResource: "intruder_alarm", ofType: "wav")!)
             
             do {
-                self.intruderSoundPlayer = try AVAudioPlayer(contentsOfURL: intruderSound)
+                self.intruderSoundPlayer = try AVAudioPlayer(contentsOf: intruderSound)
                 self.intruderSoundPlayer.volume = 1.0
                 self.intruderSoundPlayer.prepareToPlay()
             }
@@ -111,10 +111,10 @@ class AlertHandler {
         }
         
         if (self.beepSoundPlayer == nil){
-            let beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
+            let beepSound = URL(fileURLWithPath: Bundle.main.path(forResource: "beep", ofType: "wav")!)
             
             do {
-                self.beepSoundPlayer = try AVAudioPlayer(contentsOfURL: beepSound)
+                self.beepSoundPlayer = try AVAudioPlayer(contentsOf: beepSound)
                 self.beepSoundPlayer.volume = 1.0
                 self.beepSoundPlayer.prepareToPlay()
             }
@@ -124,10 +124,10 @@ class AlertHandler {
         }
         
         if (self.toneSoundPlayer == nil){
-            let toneSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tone", ofType: "wav")!)
+            let toneSound = URL(fileURLWithPath: Bundle.main.path(forResource: "tone", ofType: "wav")!)
             
             do {
-                self.toneSoundPlayer = try AVAudioPlayer(contentsOfURL: toneSound)
+                self.toneSoundPlayer = try AVAudioPlayer(contentsOf: toneSound)
                 self.toneSoundPlayer.volume = 1.0
                 self.toneSoundPlayer.prepareToPlay()
             }

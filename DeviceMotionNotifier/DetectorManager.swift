@@ -11,7 +11,7 @@ import CoreMotion
 import CoreLocation
 
 protocol DetectorProtol {
-    func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!)
+    func detectMotion(_ accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!)
     func detectNoise()
 }
 
@@ -29,7 +29,7 @@ class DetectorManager: NSObject {
     var audioRecognizedThreshold = 10
 
     var currentLocation: CLLocation?
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     init(detectorProtocol: DetectorProtol){
         self.detectorProtocol = detectorProtocol
@@ -39,7 +39,7 @@ class DetectorManager: NSObject {
     
     func startDetectingMotion(){
         
-        movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+        movementManager.startAccelerometerUpdates(to: OperationQueue.main) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
         
             if(NSError != nil) {
                 print("\(NSError)")
@@ -49,7 +49,7 @@ class DetectorManager: NSObject {
                 self.accelerometerData = accelerometerData
             }
    
-            dispatch_async(dispatch_get_main_queue()){
+            DispatchQueue.main.async{
 //                print(accelerometerData!.acceleration.x)
 //                print(accelerometerData!.acceleration.y)
 //                print(accelerometerData!.acceleration.z)
@@ -57,7 +57,7 @@ class DetectorManager: NSObject {
             }
         }
         
-        movementManager.startGyroUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
+        movementManager.startGyroUpdates(to: OperationQueue.main, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
             
             if (NSError != nil){
                 print("\(NSError)")
@@ -67,7 +67,7 @@ class DetectorManager: NSObject {
                 self.gyroData = gyroData
             }
             
-            dispatch_async(dispatch_get_main_queue()){
+            DispatchQueue.main.async{
                 self.detectorProtocol?.detectMotion(nil, gyroData: gyroData)
             }
         })
@@ -93,8 +93,8 @@ class DetectorManager: NSObject {
 }
 
 extension DetectorManager: ARAudioRecognizerDelegate {
-    func audioRecognized(recognizer: ARAudioRecognizer!) {
-        ++timesAudioRecognized
+    func audioRecognized(_ recognizer: ARAudioRecognizer!) {
+        timesAudioRecognized += 1
         
         if timesAudioRecognized == audioRecognizedThreshold {
             self.detectorProtocol?.detectNoise()

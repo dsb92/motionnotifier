@@ -10,7 +10,7 @@ import UIKit
 
 class DelayTimer : NSObject, TimerDelegate {
     let startValue = Int(kDelayCountDown)
-    var delayTimer: NSTimer!
+    var delayTimer: Foundation.Timer!
     var handler: AlertHandler!
     var delayDown: Int {
         didSet {
@@ -25,7 +25,7 @@ class DelayTimer : NSObject, TimerDelegate {
     }
     
     func start() {
-        self.delayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(DelayTimer.update), userInfo: nil, repeats: true)
+        self.delayTimer = Foundation.Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(DelayTimer.update), userInfo: nil, repeats: true)
     }
     
     func stop() {

@@ -14,7 +14,7 @@ import UIKit
 class AlarmMenuViewController: UITableViewController {
 
     @IBOutlet
-    private var cellTitleLabels: [UILabel]!
+    fileprivate var cellTitleLabels: [UILabel]!
     
     @IBOutlet
     weak var photoSwitch: UISwitch!
@@ -49,7 +49,7 @@ class AlarmMenuViewController: UITableViewController {
         setupIAP()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
 //        tableView.contentInset = UIEdgeInsets(top: tableViewOffset, left: 0, bottom: 0, right: 0)
@@ -60,31 +60,31 @@ class AlarmMenuViewController: UITableViewController {
 //        })
     }
     
-    private func setSettings() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    fileprivate func setSettings() {
+        let userDefaults = UserDefaults.standard
 
-        let savedPhotoSwitchValue = userDefaults.boolForKey("kPhotoSwitchValue")
-        let savedVideoSwitchValue = userDefaults.boolForKey("kVideoSwitchValue")
-        let savedSoundSwitchValue = userDefaults.boolForKey("kSoundSwitchValue")
-        let savedSensitivityValue = userDefaults.integerForKey("kSensitivityIndex")
+        let savedPhotoSwitchValue = userDefaults.bool(forKey: "kPhotoSwitchValue")
+        let savedVideoSwitchValue = userDefaults.bool(forKey: "kVideoSwitchValue")
+        let savedSoundSwitchValue = userDefaults.bool(forKey: "kSoundSwitchValue")
+        let savedSensitivityValue = userDefaults.integer(forKey: "kSensitivityIndex")
         
         photoSwitch.setOn(savedPhotoSwitchValue, animated: false)
         videoSwitch.setOn(savedVideoSwitchValue, animated: false)
         soundSwitch.setOn(savedSoundSwitchValue, animated: false)
         
-        photoSwitch.enabled = videoSwitch.on ? false : true
-        videoSwitch.enabled = photoSwitch.on ? false : true
+        photoSwitch.isEnabled = videoSwitch.isOn ? false : true
+        videoSwitch.isEnabled = photoSwitch.isOn ? false : true
         
-        sensitivityTableCell.hidden = soundSwitch.on ? false : true
+        sensitivityTableCell.isHidden = soundSwitch.isOn ? false : true
         sensitivitySegmentControl.selectedSegmentIndex = savedSensitivityValue
     }
     
-    private func setupIAP() {
+    fileprivate func setupIAP() {
         IAPManager.sharedInstance.purchaseProtocol = self
         IAPManager.sharedInstance.vc = self
     }
     
-    private func showPurchaseAlertView(productId : String) {
+    fileprivate func showPurchaseAlertView(_ productId : String) {
         if IAPManager.sharedInstance.canMakePayments {
             var titleString:String!
             var message:String!
@@ -108,12 +108,12 @@ class AlarmMenuViewController: UITableViewController {
                 let title = product.localizedTitle
                 
                 // Format the price to local currency price
-                let formatter = NSNumberFormatter()
-                formatter.numberStyle = .CurrencyStyle
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .currency
                 formatter.locale = product.priceLocale
                 
                 // The localized price
-                let price = formatter.stringFromNumber(product.price)
+                let price = formatter.string(from: product.price)
                 
                 titleString = title + "\t" + price!
                 
@@ -138,12 +138,12 @@ class AlarmMenuViewController: UITableViewController {
             
             buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
             
-            let alertView = JSSAlertView().show(self, title: "Store", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7))
+            let alertView = JSSAlertView().show(self, title: "Store", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.withAlphaComponent(0.7))
             
             alertView.setTitleFont("ClearSans-Bold")
             alertView.setTextFont("ClearSans")
             alertView.setButtonFont("ClearSans-Light")
-            alertView.setTextTheme(.Golden)
+            alertView.setTextTheme(.golden)
             
             alertView.addAction({
                 
@@ -173,74 +173,74 @@ class AlarmMenuViewController: UITableViewController {
         }
     }
     
-    private func enableVideo(enable: Bool) {
+    fileprivate func enableVideo(_ enable: Bool) {
         videoSwitch.setOn(enable, animated: true)
-        photoSwitch.enabled = !enable
+        photoSwitch.isEnabled = !enable
         
-        NSUserDefaults.standardUserDefaults().setObject(enable, forKey: "kVideoSwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(enable, forKey: "kVideoSwitchValue")
+        UserDefaults.standard.synchronize()
     }
     
-    private func enableSound(enable: Bool) {
+    fileprivate func enableSound(_ enable: Bool) {
         soundSwitch.setOn(enable, animated: true)
-        sensitivityTableCell.hidden = !enable
+        sensitivityTableCell.isHidden = !enable
         
-        NSUserDefaults.standardUserDefaults().setObject(enable, forKey: "kSoundSwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(enable, forKey: "kSoundSwitchValue")
+        UserDefaults.standard.synchronize()
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = theme.backgroundColor
     }
     
     @IBAction
-    func photoSwitchValueChanged(sender: UISwitch) {
-        NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kPhotoSwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
+    func photoSwitchValueChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "kPhotoSwitchValue")
+        UserDefaults.standard.synchronize()
         
-        videoSwitch.enabled = sender.on ? false : true
+        videoSwitch.isEnabled = sender.isOn ? false : true
     }
     
     @IBAction
-    func videoSwitchValueChanged(sender: UISwitch) {
+    func videoSwitchValueChanged(_ sender: UISwitch) {
         
-        let videoCaptureEnabled = IAPManager.sharedInstance.userDefaults.boolForKey("videocapture_enabled")
+        let videoCaptureEnabled = IAPManager.sharedInstance.userDefaults.bool(forKey: "videocapture_enabled")
         
         if !videoCaptureEnabled {
             showPurchaseAlertView(IAPManager.sharedInstance.products.VideoCapture)
         }
         else {
-            NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kVideoSwitchValue")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(sender.isOn, forKey: "kVideoSwitchValue")
+            UserDefaults.standard.synchronize()
             
-            photoSwitch.enabled = sender.on ? false : true
+            photoSwitch.isEnabled = sender.isOn ? false : true
         }
     }
     
     @IBAction
-    func soundSwitchValueChanged(sender: UISwitch) {
+    func soundSwitchValueChanged(_ sender: UISwitch) {
         
-        let soundRecognitionEnabled = IAPManager.sharedInstance.userDefaults.boolForKey("soundrecognition_enabled")
+        let soundRecognitionEnabled = IAPManager.sharedInstance.userDefaults.bool(forKey: "soundrecognition_enabled")
         
         if !soundRecognitionEnabled {
             showPurchaseAlertView(IAPManager.sharedInstance.products.SoundRegonition)
         }
         else{
-            NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kSoundSwitchValue")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(sender.isOn, forKey: "kSoundSwitchValue")
+            UserDefaults.standard.synchronize()
             
-            sensitivityTableCell.hidden = !sender.on
+            sensitivityTableCell.isHidden = !sender.isOn
         }
     }
     
     @IBAction
-    func sensitivityValueChanged(sender: UISegmentedControl) {
-        NSUserDefaults.standardUserDefaults().setObject(sender.selectedSegmentIndex, forKey: "kSensitivityIndex")
-        NSUserDefaults.standardUserDefaults().synchronize()
+    func sensitivityValueChanged(_ sender: UISegmentedControl) {
+        UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "kSensitivityIndex")
+        UserDefaults.standard.synchronize()
     }
 }
 extension AlarmMenuViewController : PurchaseProtocol {
-    func errorPurchase(productId: String, errorMsg: String) {
+    func errorPurchase(_ productId: String, errorMsg: String) {
         if productId == IAPManager.sharedInstance.products.VideoCapture {
             enableVideo(false)
         }
@@ -251,7 +251,7 @@ extension AlarmMenuViewController : PurchaseProtocol {
         IJProgressView.shared.hideProgressView()
     }
     
-    func successPurchase(productId: String) {
+    func successPurchase(_ productId: String) {
         if productId == IAPManager.sharedInstance.products.VideoCapture {
             enableVideo(true)
         }

@@ -17,19 +17,19 @@ class RoundClock: UIView {
     var displayLink: CADisplayLink!
 
     var duration: Double!
-    var starttimeInSec: NSTimeInterval!
-    var stoptimeInSec: NSTimeInterval!
-    var timer: NSTimer!
+    var starttimeInSec: TimeInterval!
+    var stoptimeInSec: TimeInterval!
+    var timer: Foundation.Timer!
     
     var roundClockProtocol : RoundClockProtocol!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        displayLink = CADisplayLink(target: self, selector: #selector(setNeedsDisplay))
-        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        displayLink = CADisplayLink(target: self, selector: #selector(setNeedsDisplay(_:)))
+        displayLink.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
 
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
     }
     
     func startCountDown() {
@@ -37,9 +37,9 @@ class RoundClock: UIView {
             timer.invalidate()
         }
       
-        starttimeInSec = NSDate.timeIntervalSinceReferenceDate()
+        starttimeInSec = Date.timeIntervalSinceReferenceDate
         stoptimeInSec = starttimeInSec + duration
-        timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false)
+        timer = Foundation.Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false)
     }
     
     func stopCountDown() {
@@ -58,24 +58,26 @@ class RoundClock: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
-        let borderRect = CGRectInset(rect, 2, 2)
+        let borderRect = rect.insetBy(dx: 2, dy: 2)
         let context = UIGraphicsGetCurrentContext()
-        CGContextClearRect(context!, borderRect)
+        context!.clear(borderRect)
         
-        CGContextSetFillColorWithColor(context!, SettingsTheme.theme01.arm.CGColor)
+        context!.setFillColor(SettingsTheme.theme01.arm.cgColor)
         
         let x = borderRect.origin.x + borderRect.size.width/2
         let y = borderRect.origin.y + borderRect.size.height/2
         
-        let currentTimeSpend = NSDate.timeIntervalSinceReferenceDate() - starttimeInSec
+        let currentTimeSpend = Date.timeIntervalSinceReferenceDate - starttimeInSec
         let timeLeft = stoptimeInSec - starttimeInSec
         
         let currentFill = 2*M_PI * (currentTimeSpend / timeLeft) - M_PI_2
-        CGContextMoveToPoint(context!, x, y)
-        CGContextAddArc(context!, x, y, rect.size.width/2, CGFloat(-M_PI_2), CGFloat(currentFill), 1)
-        CGContextFillPath(context!)
+        context!.move(to: CGPoint(x: x, y: y))
+        context!.addArc(center: CGPoint(x: x, y: y), radius: rect.size.width/2,
+                    startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(currentFill), clockwise: true)
+        
+        context!.fillPath()
     }
 }

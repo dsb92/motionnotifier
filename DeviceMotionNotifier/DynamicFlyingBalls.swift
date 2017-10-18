@@ -21,18 +21,18 @@ class DynamicFlyingBalls: UIView {
         self.balls = [UIView]()
         
         // Initialize amount of balls
-        let button = UIButton(type: UIButtonType.Custom)
-        button.frame = CGRectMake(0, 0, 160, 160)
-        button.backgroundColor = UIColor.greenColor()
-        button.titleLabel?.textColor = UIColor.greenColor()
-        button.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        button.titleLabel?.textAlignment = NSTextAlignment.Center
+        let button = UIButton(type: UIButtonType.custom)
+        button.frame = CGRect(x: 0, y: 0, width: 160, height: 160)
+        button.backgroundColor = UIColor.green
+        button.titleLabel?.textColor = UIColor.green
+        button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        button.titleLabel?.textAlignment = NSTextAlignment.center
         button.titleLabel?.font = UIFont(name: "GothamPro", size: 20)
-        button.setTitle("Ready", forState: UIControlState.Normal)
+        button.setTitle("Ready", for: UIControlState())
         button.layer.cornerRadius = button.frame.width/2 // or height
         button.clipsToBounds = true
         button.alpha = 1.0
-        button.userInteractionEnabled = false
+        button.isUserInteractionEnabled = false
         
         self.addSubview(button)
         self.balls.append(button)
@@ -42,11 +42,11 @@ class DynamicFlyingBalls: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func associateVC(vc: AlarmViewController){
+    func associateVC(_ vc: AlarmViewController){
         self.vc = vc
         
         for ball in self.balls as! [UIButton]{
-            ball.addTarget(vc, action: Selector("AlarmButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            ball.addTarget(vc, action: Selector("AlarmButtonAction:"), for: UIControlEvents.touchUpInside)
         }
         
         self.addSubview(vc.numberPad)
@@ -62,14 +62,14 @@ class DynamicFlyingBalls: UIView {
         if framesSet == false {
             animator = UIDynamicAnimator(referenceView: self)
             
-            let radialGravity = UIFieldBehavior.noiseFieldWithSmoothness(1.0, animationSpeed: 0.5)
+            let radialGravity = UIFieldBehavior.noiseField(smoothness: 1.0, animationSpeed: 0.5)
             radialGravity.region = UIRegion(size: self.bounds.size)
-            radialGravity.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
+            radialGravity.position = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
             radialGravity.strength = 1.5
             
             let vortex = UIFieldBehavior.vortexField()
             vortex.region = UIRegion(radius: self.bounds.size.width/2)
-            vortex.position = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
+            vortex.position = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
             vortex.strength = 1
             
             for ball in self.balls {
@@ -79,7 +79,7 @@ class DynamicFlyingBalls: UIView {
                 let xPos = UInt32(randomWidth) + UInt32(ball.bounds.size.width/2)
                 let yPos = UInt32(randomHeight) + UInt32(ball.bounds.size.height/2)
                 
-                ball.center = CGPointMake(CGFloat(xPos), CGFloat(yPos))
+                ball.center = CGPoint(x: CGFloat(xPos), y: CGFloat(yPos))
                 
                 radialGravity.addItem(ball)
                 vortex.addItem(ball)
@@ -91,14 +91,14 @@ class DynamicFlyingBalls: UIView {
             self.animator.addBehavior(behavior1)
             
             let behavior2 = UIDynamicItemBehavior(items: [self.vc.alarmCountDownLabel, self.vc.numberPad, self.vc.hideButton])
-            behavior2.anchored = true
+            behavior2.isAnchored = true
             self.animator.addBehavior(behavior2)
             
             // Create a new array to keep balls array ALL of same type (UIButton)
             var collisionArray = self.balls
-            collisionArray.append(self.vc.numberPad)
+            collisionArray?.append(self.vc.numberPad)
             
-            let collision = UICollisionBehavior(items: collisionArray)
+            let collision = UICollisionBehavior(items: collisionArray!)
             collision.translatesReferenceBoundsIntoBoundary = true
             self.animator.addBehavior(collision)
             

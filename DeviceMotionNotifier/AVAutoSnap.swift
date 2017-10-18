@@ -17,7 +17,7 @@ var RecordingContext = "RecordingContext"
 class AVAutoSnap: NSObject {
     // MARK: property
     
-    var sessionQueue: dispatch_queue_t!
+    var sessionQueue: DispatchQueue!
     var session: AVCaptureSession?
     var videoDeviceInput: AVCaptureDeviceInput?
     var movieFileOutput: AVCaptureMovieFileOutput!
@@ -28,7 +28,7 @@ class AVAutoSnap: NSObject {
     var backgroundRecordId: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     var sessionRunningAndDeviceAuthorized: Bool {
         get {
-            return (self.session?.running != nil && self.deviceAuthorized )
+            return (self.session?.isRunning != nil && self.deviceAuthorized )
         }
     }
     
@@ -40,7 +40,7 @@ class AVAutoSnap: NSObject {
     init(previewView: AVCamPreviewView){
         
         self.previewView = previewView
-        self.vc = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.visibleViewController
+        self.vc = (UIApplication.shared.delegate as! AppDelegate).window?.visibleViewController
     }
     
     func initializeOnViewDidLoad() throws{
@@ -52,13 +52,13 @@ class AVAutoSnap: NSObject {
         
         self.checkDeviceAuthorizationStatus()
         
-        let sessionQueue: dispatch_queue_t = dispatch_queue_create("session queue",DISPATCH_QUEUE_SERIAL)
+        let sessionQueue: DispatchQueue = DispatchQueue(label: "session queue",attributes: [])
         
         self.sessionQueue = sessionQueue
-        dispatch_async(sessionQueue, {
+        sessionQueue.async(execute: {
             self.backgroundRecordId = UIBackgroundTaskInvalid
             
-            let videoDevice: AVCaptureDevice! = AVAutoSnap.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: AVCaptureDevicePosition.Front)
+            let videoDevice: AVCaptureDevice! = AVAutoSnap.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: AVCaptureDevicePosition.front)
             var error: NSError? = nil
             
             var videoDeviceInput: AVCaptureDeviceInput?
@@ -74,16 +74,16 @@ class AVAutoSnap: NSObject {
             if (error != nil) {
                 print(error)
                 let alert = UIAlertController(title: "Error", message: error!.localizedDescription
-                    , preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.vc.presentViewController(alert, animated: true, completion: nil)
+                    , preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.vc.present(alert, animated: true, completion: nil)
             }
             
             if session.canAddInput(videoDeviceInput){
                 session.addInput(videoDeviceInput)
                 self.videoDeviceInput = videoDeviceInput
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     // Why are we dispatching this to the main queue?
                     // Because AVCaptureVideoPreviewLayer is the backing layer for AVCamPreviewView and UIView can only be manipulated on main thread.
                     // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
@@ -97,7 +97,7 @@ class AVAutoSnap: NSObject {
             }
             
             
-            let audioDevice: AVCaptureDevice = AVCaptureDevice.devicesWithMediaType(AVMediaTypeAudio).first as! AVCaptureDevice
+            let audioDevice: AVCaptureDevice = AVCaptureDevice.devices(withMediaType: AVMediaTypeAudio).first as! AVCaptureDevice
             
             var audioDeviceInput: AVCaptureDeviceInput?
             
@@ -113,9 +113,9 @@ class AVAutoSnap: NSObject {
             if error != nil{
                 print(error)
                 let alert = UIAlertController(title: "Error", message: error!.localizedDescription
-                    , preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.vc.presentViewController(alert, animated: true, completion: nil)
+                    , preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.vc.present(alert, animated: true, completion: nil)
             }
             if session.canAddInput(audioDeviceInput){
                 session.addInput(audioDeviceInput)
@@ -128,8 +128,8 @@ class AVAutoSnap: NSObject {
                 session.addOutput(movieFileOutput)
                 
                 
-                let connection: AVCaptureConnection? = movieFileOutput.connectionWithMediaType(AVMediaTypeVideo)
-                let stab = connection?.supportsVideoStabilization
+                let connection: AVCaptureConnection? = movieFileOutput.connection(withMediaType: AVMediaTypeVideo)
+                let stab = connection?.isVideoStabilizationSupported
                 if (stab != nil) {
                     //connection!.preferredVideoStabilizationMode = true
                 }
@@ -151,21 +151,21 @@ class AVAutoSnap: NSObject {
     }
     
     func initializeOnViewWillAppear() throws{
-        dispatch_async(self.sessionQueue, {
+        self.sessionQueue.async(execute: {
             
-            self.addObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", options: [.Old , .New] , context: &SessionRunningAndDeviceAuthorizedContext)
-            self.addObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", options:[.Old , .New], context: &CapturingStillImageContext)
-            self.addObserver(self, forKeyPath: "movieFileOutput.recording", options: [.Old , .New], context: &RecordingContext)
+            self.addObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", options: [.old , .new] , context: &SessionRunningAndDeviceAuthorizedContext)
+            self.addObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", options:[.old , .new], context: &CapturingStillImageContext)
+            self.addObserver(self, forKeyPath: "movieFileOutput.recording", options: [.old , .new], context: &RecordingContext)
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("subjectAreaDidChange:"), name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
+            NotificationCenter.default.addObserver(self, selector: Selector("subjectAreaDidChange:"), name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: self.videoDeviceInput?.device)
             
             
             weak var weakSelf = self
             
-            self.runtimeErrorHandlingObserver = NSNotificationCenter.defaultCenter().addObserverForName(AVCaptureSessionRuntimeErrorNotification, object: self.session, queue: nil, usingBlock: {
-                (note: NSNotification?) in
+            self.runtimeErrorHandlingObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVCaptureSessionRuntimeError, object: self.session, queue: nil, using: {
+                (note: Notification?) in
                 let strongSelf: AVAutoSnap = weakSelf!
-                dispatch_async(strongSelf.sessionQueue, {
+                strongSelf.sessionQueue.async(execute: {
                     //                    strongSelf.session?.startRunning()
                     if let sess = strongSelf.session{
                         sess.startRunning()
@@ -182,13 +182,13 @@ class AVAutoSnap: NSObject {
     }
     
     func deinitialize() {
-        dispatch_async(self.sessionQueue, {
+        self.sessionQueue.async(execute: {
             
             if let sess = self.session{
                 sess.stopRunning()
                 
-                NSNotificationCenter.defaultCenter().removeObserver(self, name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
-                NSNotificationCenter.defaultCenter().removeObserver(self.runtimeErrorHandlingObserver!)
+                NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: self.videoDeviceInput?.device)
+                NotificationCenter.default.removeObserver(self.runtimeErrorHandlingObserver!)
                 
                 self.removeObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", context: &SessionRunningAndDeviceAuthorizedContext)
                 
@@ -202,26 +202,26 @@ class AVAutoSnap: NSObject {
     
     func snapPhoto(){
         print("snapStillImage")
-        dispatch_async(self.sessionQueue, {
+        self.sessionQueue.async(execute: {
             // Update the orientation on the still image output video connection before capturing.
             
             let videoOrientation =  (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation
             
-            self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = videoOrientation
+            self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo).videoOrientation = videoOrientation
             
             // Flash set to Auto for Still Capture
-            AVAutoSnap.setFlashMode(AVCaptureFlashMode.Auto, device: self.videoDeviceInput!.device)
+            AVAutoSnap.setFlashMode(AVCaptureFlashMode.auto, device: self.videoDeviceInput!.device)
             
-            self.stillImageOutput!.captureStillImageAsynchronouslyFromConnection(self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo), completionHandler: {
-                (imageDataSampleBuffer: CMSampleBuffer!, error: NSError!) in
+            self.stillImageOutput!.captureStillImageAsynchronously(from: self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo), completionHandler: {
+                (imageDataSampleBuffer: CMSampleBuffer?, error: Error?) in
                 
                 if error == nil {
-                    let data:NSData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+                    let data:Data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
                     let image:UIImage = UIImage( data: data)!
                     
                     let libaray:ALAssetsLibrary = ALAssetsLibrary()
                     let orientation: ALAssetOrientation = ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!
-                    libaray.writeImageToSavedPhotosAlbum(image.CGImage, orientation: orientation, completionBlock: nil)
+                    libaray.writeImage(toSavedPhotosAlbum: image.cgImage, orientation: orientation, completionBlock: nil)
                     
                     print("save to album")
                     
@@ -241,28 +241,28 @@ class AVAutoSnap: NSObject {
     }
     
     func startRecording() {
-        dispatch_async(self.sessionQueue, {
+        self.sessionQueue.async(execute: {
             self.lockInterfaceRotation = true
             
-            if UIDevice.currentDevice().multitaskingSupported {
-                self.backgroundRecordId = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({})
+            if UIDevice.current.isMultitaskingSupported {
+                self.backgroundRecordId = UIApplication.shared.beginBackgroundTask(expirationHandler: {})
                 
             }
             
-            self.movieFileOutput!.connectionWithMediaType(AVMediaTypeVideo).videoOrientation =
+            self.movieFileOutput!.connection(withMediaType: AVMediaTypeVideo).videoOrientation =
                 AVCaptureVideoOrientation(rawValue: (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
             
             print(self.movieFileOutput.description)
             
             // Turning OFF flash for video recording
-            AVAutoSnap.setFlashMode(AVCaptureFlashMode.Off, device: self.videoDeviceInput!.device)
+            AVAutoSnap.setFlashMode(AVCaptureFlashMode.off, device: self.videoDeviceInput!.device)
             
             let outputFilePath  =
-            NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("movie.mov")
+            URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mov")
             
             //NSTemporaryDirectory().stringByAppendingPathComponent( "movie".stringByAppendingPathExtension("mov")!)
             
-            self.movieFileOutput!.startRecordingToOutputFileURL( outputFilePath, recordingDelegate: self)
+            self.movieFileOutput!.startRecording( toOutputFileURL: outputFilePath, recordingDelegate: self)
         })
     }
     
@@ -274,7 +274,7 @@ class AVAutoSnap: NSObject {
     
     func isRecording() -> Bool{
         if self.movieFileOutput != nil {
-            self.movieFileOutput.recording
+            self.movieFileOutput.isRecording
         }
         
         return false
@@ -283,25 +283,25 @@ class AVAutoSnap: NSObject {
     func checkDeviceAuthorizationStatus(){
         let mediaType:String = AVMediaTypeVideo;
         
-        AVCaptureDevice.requestAccessForMediaType(mediaType, completionHandler: { (granted: Bool) in
+        AVCaptureDevice.requestAccess(forMediaType: mediaType, completionHandler: { (granted: Bool) in
             if granted{
                 self.deviceAuthorized = true;
             }else{
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     let alert: UIAlertController = UIAlertController(
                         title: "AVCam",
                         message: "AVCam does not have permission to access camera",
-                        preferredStyle: UIAlertControllerStyle.Alert);
+                        preferredStyle: UIAlertControllerStyle.alert);
                     
-                    let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                    let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                         (action2: UIAlertAction) in
                         exit(0);
                     } );
                     
                     alert.addAction(action);
                     
-                    self.vc.presentViewController(alert, animated: true, completion: nil);
+                    self.vc.present(alert, animated: true, completion: nil);
                 })
                 
                 self.deviceAuthorized = false;
@@ -310,13 +310,13 @@ class AVAutoSnap: NSObject {
         
     }
     
-    class func deviceWithMediaType(mediaType: String, preferringPosition:AVCaptureDevicePosition)->AVCaptureDevice{
+    class func deviceWithMediaType(_ mediaType: String, preferringPosition:AVCaptureDevicePosition)->AVCaptureDevice{
         
-        var devices = AVCaptureDevice.devicesWithMediaType(mediaType);
-        var captureDevice: AVCaptureDevice = devices[0] as! AVCaptureDevice;
+        var devices = AVCaptureDevice.devices(withMediaType: mediaType);
+        var captureDevice: AVCaptureDevice = devices![0] as! AVCaptureDevice;
         
-        for device in devices{
-            if device.position == preferringPosition{
+        for device in devices!{
+            if (device as AnyObject).position == preferringPosition{
                 captureDevice = device as! AVCaptureDevice
                 break
             }
@@ -327,7 +327,7 @@ class AVAutoSnap: NSObject {
         
     }
     
-    class func setFlashMode(flashMode: AVCaptureFlashMode, device: AVCaptureDevice){
+    class func setFlashMode(_ flashMode: AVCaptureFlashMode, device: AVCaptureDevice){
         
         if device.hasFlash && device.isFlashModeSupported(flashMode) {
             var error: NSError? = nil
@@ -345,18 +345,18 @@ class AVAutoSnap: NSObject {
     }
     
     //    observeValueForKeyPath:ofObject:change:context:
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
   
         if context == &CapturingStillImageContext{
-            let isCapturingStillImage: Bool = change![NSKeyValueChangeNewKey]!.boolValue
+            let isCapturingStillImage: Bool = (change![NSKeyValueChangeKey.newKey]! as AnyObject).boolValue
             if isCapturingStillImage {
                 self.runStillImageCaptureAnimation()
             }
             
         }else if context  == &RecordingContext{
-            let isRecording: Bool = change![NSKeyValueChangeNewKey]!.boolValue
+            let isRecording: Bool = (change![NSKeyValueChangeKey.newKey]! as AnyObject).boolValue
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if isRecording {
                     
@@ -373,16 +373,16 @@ class AVAutoSnap: NSObject {
         }
             
         else{
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
         
     }
 
     func runStillImageCaptureAnimation(){
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.previewView.layer.opacity = 0.0
             print("opacity 0")
-            UIView.animateWithDuration(0.25, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 self.previewView.layer.opacity = 1.0
                 print("opacity 1")
             })
@@ -393,7 +393,7 @@ class AVAutoSnap: NSObject {
 
 extension AVAutoSnap: AVCaptureFileOutputRecordingDelegate{
     // MARK: File Output Delegate
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         
         if(error != nil){
             print(error)
@@ -406,20 +406,20 @@ extension AVAutoSnap: AVCaptureFileOutputRecordingDelegate{
         let backgroundRecordId: UIBackgroundTaskIdentifier = self.backgroundRecordId
         self.backgroundRecordId = UIBackgroundTaskInvalid
         
-        ALAssetsLibrary().writeVideoAtPathToSavedPhotosAlbum(outputFileURL, completionBlock: {
-            (assetURL:NSURL!, error:NSError!) in
+        ALAssetsLibrary().writeVideoAtPath(toSavedPhotosAlbum: outputFileURL, completionBlock: {
+            (assetURL:URL?, error:Error?) in
             if error != nil{
                 print(error)
                 
             }
             
             do {
-                try NSFileManager.defaultManager().removeItemAtURL(outputFileURL)
+                try FileManager.default.removeItem(at: outputFileURL)
             } catch _ {
             }
             
             if backgroundRecordId != UIBackgroundTaskInvalid {
-                UIApplication.sharedApplication().endBackgroundTask(backgroundRecordId)
+                UIApplication.shared.endBackgroundTask(backgroundRecordId)
             }
             
         })

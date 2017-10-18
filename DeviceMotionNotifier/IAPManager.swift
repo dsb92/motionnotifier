@@ -13,8 +13,8 @@ import StoreKit
 let sharedIAP = IAPManager()
 
 protocol PurchaseProtocol {
-    func errorPurchase(productId: String, errorMsg: String)
-    func successPurchase(productId: String)
+    func errorPurchase(_ productId: String, errorMsg: String)
+    func successPurchase(_ productId: String)
 }
 
 class IAPManager: NSObject {
@@ -26,7 +26,7 @@ class IAPManager: NSObject {
     }
     
     // Save non-consumable in-app purchases
-    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaults = UserDefaults.standard
     
     // Bool to determine whether IAP is enabled e.g. user is allowed to make payments.
     var canMakePayments : Bool = Bool()
@@ -70,7 +70,7 @@ class IAPManager: NSObject {
     }
     
     /* PUBLIC PURCHASE PRODUCT */
-    func purchase(productToPurchase: String){
+    func purchase(_ productToPurchase: String){
         for product in list {
             let prodID = product.productIdentifier
             if ( (prodID == products.VideoCapture && productToPurchase == products.VideoCapture) ||
@@ -84,16 +84,16 @@ class IAPManager: NSObject {
     }
     
     /* PRIVATE IN-APP PURCHASE FUNCTIONS TO BE RUN */
-    private func buyProduct() {
+    fileprivate func buyProduct() {
         print("In-AppPurchase: buy " + p.productIdentifier)
         
         let pay = SKPayment(product: p)
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-        SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(pay as SKPayment)
     }
     
     // The buy transaction being processed
-    private func buyTransaction(productID: String) {
+    fileprivate func buyTransaction(_ productID: String) {
         if purchaseProtocol == nil {
             print("Purchase protocol not implemented")
         }
@@ -120,7 +120,7 @@ class IAPManager: NSObject {
         }
     }
     
-    private func errorBuyingTransaction(productID: String, errorMsg: String){
+    fileprivate func errorBuyingTransaction(_ productID: String, errorMsg: String){
         if (productID == products.VideoCapture){
             JSSAlertView().danger(self.vc!, title: "Error", text: "Could not restore video capture purchase")
         }
@@ -141,36 +141,36 @@ class IAPManager: NSObject {
     }
     
     func restorePurchases(){
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-        SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     /* PRODUCTS */
     
-    private func enableVideoCapture(productID: String){
+    fileprivate func enableVideoCapture(_ productID: String){
         print("In-AppPurchase: enabling video capture to your account!")
-        userDefaults.setBool(true, forKey: "videocapture_enabled")
+        userDefaults.set(true, forKey: "videocapture_enabled")
         JSSAlertView().success(self.vc!, title: "Success", text: "Video capturing is enabled!")
         purchaseProtocol?.successPurchase(productID)
     }
     
-    private func enableSoundRecognition(productID: String){
+    fileprivate func enableSoundRecognition(_ productID: String){
         print("In-AppPurchase: enabling sound recognition to your account!")
-        userDefaults.setBool(true, forKey: "soundrecognition_enabled")
+        userDefaults.set(true, forKey: "soundrecognition_enabled")
         JSSAlertView().success(self.vc!, title: "Success", text: "Sound recognition is enabled!")
         purchaseProtocol?.successPurchase(productID)
     }
     
-    private func removeAds(productID: String) {
+    fileprivate func removeAds(_ productID: String) {
         print("In-AppPurchase: enabling remove ads to your account!")
-        userDefaults.setBool(true, forKey: "removeads_enabled")
+        userDefaults.set(true, forKey: "removeads_enabled")
         JSSAlertView().success(self.vc!, title: "Success", text: "Ads are removed!")
         purchaseProtocol?.successPurchase(productID)
     }
 }
 
 extension IAPManager : SKProductsRequestDelegate {
-    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("In-AppPurchase: product request")
         let myProduct = response.products
         
@@ -185,7 +185,7 @@ extension IAPManager : SKProductsRequestDelegate {
         }
         
         // Sort the list price ascending order
-        list.sortInPlace({$0.price.compare($1.price) == NSComparisonResult.OrderedAscending})
+        list.sort(by: {$0.price.compare($1.price) == ComparisonResult.orderedAscending})
         
         print("In-AppPurchase: IAP is enabled..success")
     }
@@ -193,7 +193,7 @@ extension IAPManager : SKProductsRequestDelegate {
 
 extension IAPManager : SKPaymentTransactionObserver {
     // Cancel or buy code to be run
-    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         print("In-AppPurchase: add payment")
         
         for transaction:AnyObject in transactions{
@@ -201,14 +201,14 @@ extension IAPManager : SKPaymentTransactionObserver {
             print(trans.error)
             
             switch trans.transactionState{
-            case .Purchased:
+            case .purchased:
                 print("In-AppPurchase: buy, ok unlock iap here")
                 print(p.productIdentifier)
                 let prodID = p.productIdentifier as String
                 buyTransaction(prodID)
                 queue.finishTransaction(trans)
                 break
-            case .Failed:
+            case .failed:
                 print("In-AppPurchase: buy error")
                 JSSAlertView().danger(self.vc!, title: "Error", text: trans.error!.localizedDescription)
                 purchaseProtocol?.errorPurchase(p.productIdentifier, errorMsg: trans.error!.localizedDescription)
@@ -222,16 +222,16 @@ extension IAPManager : SKPaymentTransactionObserver {
         }
     }
     
-    func finishTransaction(trans:SKPaymentTransaction){
+    func finishTransaction(_ trans:SKPaymentTransaction){
         print("In-AppPurchase: finished trans")
     }
     
-    func paymentQueue(queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
         print("In-AppPurchase: removed trans")
         
     }
     
-    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         print("In-AppPurchase: transactions restored")
         
         IJProgressView.shared.hideProgressView()
@@ -246,7 +246,7 @@ extension IAPManager : SKPaymentTransactionObserver {
         }
     }
     
-    func paymentQueue(queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: NSError) {
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         print("In-AppPurchase: transactions failed to restore")
         
         IJProgressView.shared.hideProgressView()

@@ -58,20 +58,12 @@
 		46DEED6F1C7F9E15009B30E3 /* Hubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED671C7E42DC009B30E3 /* Hubs.m */; };
 		46DEED711C7F9E7D009B30E3 /* MainRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */; };
 		46DEED771C7FA45F009B30E3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */; };
+		46E06B831F98148C0022B5F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E06B821F98148B0022B5F1 /* GoogleService-Info.plist */; };
+		46E06B851F9816540022B5F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E06B841F9816540022B5F1 /* LaunchScreen.storyboard */; };
+		46E3476F1F98121D007D3253 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E3476D1F98121C007D3253 /* Crashlytics.framework */; };
+		46E347701F98121D007D3253 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E3476E1F98121C007D3253 /* Fabric.framework */; };
 		46FFBDC71CDF359000EFF2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDC61CDF359000EFF2D0 /* Constants.swift */; };
-		46FFBDCF1CDF6E7900EFF2D0 /* GotyahUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */; };
-		46FFBDD81CDF6E9000EFF2D0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		46FFBDD11CDF6E7900EFF2D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46DEED261C7E3B9F009B30E3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 46DEED2D1C7E3B9F009B30E3;
-			remoteInfo = Gotyah;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		038805A94F28F749B8111355 /* Pods-Gotyah.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotyah.test.xcconfig"; path = "Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah.test.xcconfig"; sourceTree = "<group>"; };
@@ -141,12 +133,12 @@
 		46DEED671C7E42DC009B30E3 /* Hubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hubs.m; sourceTree = "<group>"; };
 		46DEED701C7F9E7D009B30E3 /* MainRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegisterViewController.swift; sourceTree = "<group>"; };
 		46DEED761C7FA45F009B30E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		46E06B821F98148B0022B5F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		46E06B841F9816540022B5F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		46E3476D1F98121C007D3253 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		46E3476E1F98121C007D3253 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		46F926F81F307E8300D383D2 /* Gotyah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gotyah.entitlements; sourceTree = "<group>"; };
 		46FFBDC61CDF359000EFF2D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GotyahUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotyahUITests.swift; sourceTree = "<group>"; };
-		46FFBDD01CDF6E7900EFF2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		DDB9FEF5C4568892814BA521 /* Pods-Gotyah.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotyah.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,14 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				46DEED641C7E425A009B30E3 /* WindowsAzureMessaging.framework in Frameworks */,
+				46E3476F1F98121D007D3253 /* Crashlytics.framework in Frameworks */,
 				281153D137A7716D9E9CB496 /* Pods_Gotyah.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46FFBDC91CDF6E7900EFF2D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				46E347701F98121D007D3253 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,10 +366,11 @@
 		46DEED251C7E3B9F009B30E3 = {
 			isa = PBXGroup;
 			children = (
+				46E3476D1F98121C007D3253 /* Crashlytics.framework */,
+				46E3476E1F98121C007D3253 /* Fabric.framework */,
 				46F926F81F307E8300D383D2 /* Gotyah.entitlements */,
 				46DEED631C7E425A009B30E3 /* WindowsAzureMessaging.framework */,
 				46DEED301C7E3B9F009B30E3 /* DeviceMotionNotifier */,
-				46FFBDCD1CDF6E7900EFF2D0 /* GotyahUITests */,
 				46DEED2F1C7E3B9F009B30E3 /* Products */,
 				8406BC53189A92EE03E38410 /* Pods */,
 				04E9903FBBFEA69305C767BD /* Frameworks */,
@@ -393,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */,
-				46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -413,23 +400,15 @@
 				46B684ED1C8393BB009C5CD1 /* Model */,
 				46DEED311C7E3B9F009B30E3 /* AppDelegate.swift */,
 				467FC8E01CD14A52003D7FF7 /* Config.h */,
+				46E06B821F98148B0022B5F1 /* GoogleService-Info.plist */,
 				467FC8E11CD14A52003D7FF7 /* Config.m */,
 				46FFBDC61CDF359000EFF2D0 /* Constants.swift */,
 				46DEED381C7E3BA0009B30E3 /* Assets.xcassets */,
 				46DEED3D1C7E3BA0009B30E3 /* Info.plist */,
 				46DEED5F1C7E417E009B30E3 /* DeviceMotionNotifier-Bridging-Header.h */,
+				46E06B841F9816540022B5F1 /* LaunchScreen.storyboard */,
 			);
 			path = DeviceMotionNotifier;
-			sourceTree = "<group>";
-		};
-		46FFBDCD1CDF6E7900EFF2D0 /* GotyahUITests */ = {
-			isa = PBXGroup;
-			children = (
-				46FFBDD71CDF6E9000EFF2D0 /* SnapshotHelper.swift */,
-				46FFBDCE1CDF6E7900EFF2D0 /* GotyahUITests.swift */,
-				46FFBDD01CDF6E7900EFF2D0 /* Info.plist */,
-			);
-			path = GotyahUITests;
 			sourceTree = "<group>";
 		};
 		8406BC53189A92EE03E38410 /* Pods */ = {
@@ -453,9 +432,9 @@
 				46DEED2A1C7E3B9F009B30E3 /* Sources */,
 				46DEED2B1C7E3B9F009B30E3 /* Frameworks */,
 				46DEED2C1C7E3B9F009B30E3 /* Resources */,
-				46DF5AAD1CD9081500449517 /* ShellScript */,
 				302D12647D14B99CA889E38E /* [CP] Embed Pods Frameworks */,
 				118FE5060804D1D2B4FB2BC4 /* [CP] Copy Pods Resources */,
+				46E3476C1F981170007D3253 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -466,24 +445,6 @@
 			productReference = 46DEED2E1C7E3B9F009B30E3 /* Gotyah.app */;
 			productType = "com.apple.product-type.application";
 		};
-		46FFBDCB1CDF6E7900EFF2D0 /* GotyahUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46FFBDD31CDF6E7900EFF2D0 /* Build configuration list for PBXNativeTarget "GotyahUITests" */;
-			buildPhases = (
-				46FFBDC81CDF6E7900EFF2D0 /* Sources */,
-				46FFBDC91CDF6E7900EFF2D0 /* Frameworks */,
-				46FFBDCA1CDF6E7900EFF2D0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				46FFBDD21CDF6E7900EFF2D0 /* PBXTargetDependency */,
-			);
-			name = GotyahUITests;
-			productName = GotyahUITests;
-			productReference = 46FFBDCC1CDF6E7900EFF2D0 /* GotyahUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -491,12 +452,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "David Buhauer";
 				TargetAttributes = {
 					46DEED2D1C7E3B9F009B30E3 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = WC3CDPK7H2;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -506,10 +468,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					46FFBDCB1CDF6E7900EFF2D0 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 46DEED2D1C7E3B9F009B30E3;
 					};
 				};
 			};
@@ -527,7 +485,6 @@
 			projectRoot = "";
 			targets = (
 				46DEED2D1C7E3B9F009B30E3 /* Gotyah */,
-				46FFBDCB1CDF6E7900EFF2D0 /* GotyahUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -544,16 +501,11 @@
 				46419A121CC25CBC00F043EA /* tone.wav in Resources */,
 				46DEED391C7E3BA0009B30E3 /* Assets.xcassets in Resources */,
 				46419A101CC2558E00F043EA /* beep.wav in Resources */,
+				46E06B831F98148C0022B5F1 /* GoogleService-Info.plist in Resources */,
 				46419A571CC26BC600F043EA /* APPChildViewController.xib in Resources */,
+				46E06B851F9816540022B5F1 /* LaunchScreen.storyboard in Resources */,
 				46DEED371C7E3B9F009B30E3 /* MainRegister.storyboard in Resources */,
 				46B685201C8C3BFC009C5CD1 /* Alarm.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46FFBDCA1CDF6E7900EFF2D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,9 +533,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Gotyah/Pods-Gotyah-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -596,16 +553,19 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gotyah-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		46DF5AAD1CD9081500449517 /* ShellScript */ = {
+		46E3476C1F981170007D3253 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -616,7 +576,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 31c24a769e20f5da0788a7e0fca7c731512e4dce c03978db58fa2faf73ab180afc4eb741e89db42e0c304f4aab504b113f266876";
+			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" 31c24a769e20f5da0788a7e0fca7c731512e4dce c03978db58fa2faf73ab180afc4eb741e89db42e0c304f4aab504b113f266876";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -668,24 +628,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		46FFBDC81CDF6E7900EFF2D0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46FFBDCF1CDF6E7900EFF2D0 /* GotyahUITests.swift in Sources */,
-				46FFBDD81CDF6E9000EFF2D0 /* SnapshotHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		46FFBDD21CDF6E7900EFF2D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 46DEED2D1C7E3B9F009B30E3 /* Gotyah */;
-			targetProxy = 46FFBDD11CDF6E7900EFF2D0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		46DEED351C7E3B9F009B30E3 /* MainRegister.storyboard */ = {
@@ -707,14 +650,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -753,14 +702,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -793,7 +748,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_ICON_NAME = "Icon-beta";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Gotyah.entitlements;
@@ -812,7 +766,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = DeviceMotionNotifier/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -823,7 +777,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Gotyah dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -836,7 +790,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_ICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Gotyah.entitlements;
@@ -854,17 +807,17 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = DeviceMotionNotifier/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e19b5d19-71df-4d5a-b4e1-53e7b730c8d8";
+				PROVISIONING_PROFILE = "88865dd8-3842-4744-be1c-299013e6a8db";
 				PROVISIONING_PROFILE_SPECIFIER = "Gotyah dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -878,14 +831,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -917,7 +876,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_ICON_NAME = "Icon-beta";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier.test;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Gotyah.entitlements;
@@ -925,7 +883,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1007;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WC3CDPK7H2;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -936,64 +894,19 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = DeviceMotionNotifier/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.DeviceMotionNotifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "efbd1d03-75ab-434e-85e7-c5594dd5af8f";
+				PROVISIONING_PROFILE_SPECIFIER = "Gotyah dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "DeviceMotionNotifier/DeviceMotionNotifier-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Test;
-		};
-		46FFBDD41CDF6E7900EFF2D0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = GotyahUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Gotyah;
-			};
-			name = Debug;
-		};
-		46FFBDD51CDF6E7900EFF2D0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = GotyahUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Gotyah;
-			};
-			name = Release;
-		};
-		46FFBDD61CDF6E7900EFF2D0 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = GotyahUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dabdeveloper.GotyahUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e1206fe-0bec-491a-8ed7-5faf4afa50c4";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Gotyah;
 			};
 			name = Test;
 		};
@@ -1016,16 +929,6 @@
 				46DEED571C7E3BA0009B30E3 /* Debug */,
 				46DEED581C7E3BA0009B30E3 /* Release */,
 				46DF5AB31CD9179A00449517 /* Test */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		46FFBDD31CDF6E7900EFF2D0 /* Build configuration list for PBXNativeTarget "GotyahUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46FFBDD41CDF6E7900EFF2D0 /* Debug */,
-				46FFBDD51CDF6E7900EFF2D0 /* Release */,
-				46FFBDD61CDF6E7900EFF2D0 /* Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

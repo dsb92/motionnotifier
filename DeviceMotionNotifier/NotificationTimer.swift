@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationTimer: NSObject, TimerDelegate {
     let startValue = Int(kNotificationExpiration)
-    var notificationTimer: NSTimer!
+    var notificationTimer: Foundation.Timer!
     var handler: AlertHandler!
     var notifyTo: Int {
         didSet {
@@ -25,7 +25,7 @@ class NotificationTimer: NSObject, TimerDelegate {
     }
     
     func start(){
-        self.notificationTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(NotificationTimer.update), userInfo: nil, repeats: true)
+        self.notificationTimer = Foundation.Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(NotificationTimer.update), userInfo: nil, repeats: true)
     }
     
     func stop() {
@@ -43,8 +43,8 @@ class NotificationTimer: NSObject, TimerDelegate {
         handler.startNotifyingRecipient()
         handler.startMakingNoise()
         
-        let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
-        let startVideo = NSUserDefaults.standardUserDefaults().boolForKey("kVideoSwitchValue")
+        let startCamera = UserDefaults.standard.bool(forKey: "kPhotoSwitchValue")
+        let startVideo = UserDefaults.standard.bool(forKey: "kVideoSwitchValue")
         if startCamera {
             handler.startFrontCamera()
         }

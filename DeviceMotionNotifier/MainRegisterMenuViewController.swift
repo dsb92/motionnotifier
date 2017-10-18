@@ -11,7 +11,7 @@ import UIKit
 class MainRegisterMenuViewController: UITableViewController {
     
     @IBOutlet
-    private var cellTitleLabels: [UILabel]!
+    fileprivate var cellTitleLabels: [UILabel]!
     
     @IBOutlet
     weak var removeAdsSwitch: UISwitch!
@@ -33,29 +33,29 @@ class MainRegisterMenuViewController: UITableViewController {
             tableView.separatorColor = theme.separatorColor
             tableView.backgroundColor = theme.backgroundColor
             restorePurchasesButton.borderColor = theme.blueColor
-            restorePurchasesButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
+            restorePurchasesButton.setTitleColor(theme.blackColor, for: UIControlState())
             aboutButton.borderColor = theme.blueColor
-            aboutButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
+            aboutButton.setTitleColor(theme.blackColor, for: UIControlState())
             contactButton.borderColor = theme.blueColor
-            contactButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
+            contactButton.setTitleColor(theme.blackColor, for: UIControlState())
             for label in cellTitleLabels { label.textColor = theme.cellTitleColor }
             
             tableView.reloadData()
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let userInfo = ["open" : true]
-        NSNotificationCenter.defaultCenter().postNotificationName("menuToggled", object: self, userInfo: userInfo)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "menuToggled"), object: self, userInfo: userInfo)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         let userInfo = ["open" : false]
-        NSNotificationCenter.defaultCenter().postNotificationName("menuToggled", object: self, userInfo: userInfo)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "menuToggled"), object: self, userInfo: userInfo)
     }
     
     override func viewDidLoad() {
@@ -67,25 +67,25 @@ class MainRegisterMenuViewController: UITableViewController {
         setupIAP()
     }
     
-    private func setLayout() {
+    fileprivate func setLayout() {
         self.logoImage.clipsToBounds = true
         self.logoImage.layer.cornerRadius = self.logoImage.frame.size.width/2
     }
     
-    private func setSettings() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    fileprivate func setSettings() {
+        let userDefaults = UserDefaults.standard
         
-        let savedRemoveAdsValue = userDefaults.boolForKey("kRemoveAdsSwitchValue")
+        let savedRemoveAdsValue = userDefaults.bool(forKey: "kRemoveAdsSwitchValue")
         
         removeAdsSwitch.setOn(savedRemoveAdsValue, animated: false)
     }
     
-    private func setupIAP() {
+    fileprivate func setupIAP() {
         IAPManager.sharedInstance.purchaseProtocol = self
         IAPManager.sharedInstance.vc = self
     }
     
-    private func showPurchaseAlertView(productId : String) {
+    fileprivate func showPurchaseAlertView(_ productId : String) {
         if IAPManager.sharedInstance.canMakePayments {
             var titleString:String!
             var message:String!
@@ -104,12 +104,12 @@ class MainRegisterMenuViewController: UITableViewController {
                 let title = product.localizedTitle
                 
                 // Format the price to local currency price
-                let formatter = NSNumberFormatter()
-                formatter.numberStyle = .CurrencyStyle
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .currency
                 formatter.locale = product.priceLocale
                 
                 // The localized price
-                let price = formatter.stringFromNumber(product.price)
+                let price = formatter.string(from: product.price)
                 
                 titleString = title + "\t" + price!
                 
@@ -127,12 +127,12 @@ class MainRegisterMenuViewController: UITableViewController {
             
             buttonTexts.append(NSLocalizedString("Cancel", comment: "Cancel"))
             
-            let alertView = JSSAlertView().show(self, title: "Store", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7))
+            let alertView = JSSAlertView().show(self, title: "Store", text: message, buttonTexts: buttonTexts, color: SettingsTheme.theme01.blueColor.withAlphaComponent(0.7))
             
             alertView.setTitleFont("ClearSans-Bold")
             alertView.setTextFont("ClearSans")
             alertView.setButtonFont("ClearSans-Light")
-            alertView.setTextTheme(.Golden)
+            alertView.setTextTheme(.golden)
             
             alertView.addAction({
                 if alertView.getButtonId() == 1 && productId == IAPManager.sharedInstance.products.RemoveAds {
@@ -153,37 +153,37 @@ class MainRegisterMenuViewController: UITableViewController {
         }
     }
     
-    private func enableAds(enable: Bool) {
+    fileprivate func enableAds(_ enable: Bool) {
         removeAdsSwitch.setOn(!enable, animated: true)
         
-        NSUserDefaults.standardUserDefaults().setObject(!enable, forKey: "kRemoveAdsSwitchValue")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(!enable, forKey: "kRemoveAdsSwitchValue")
+        UserDefaults.standard.synchronize()
         
-        NSNotificationCenter().postNotificationName("onAdsEnabled", object: nil)
+        NotificationCenter().post(name: Notification.Name(rawValue: "onAdsEnabled"), object: nil)
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = theme.backgroundColor
     }
     
     @IBAction
-    func removeAdsSwitchValueChanged(sender: UISwitch) {
+    func removeAdsSwitchValueChanged(_ sender: UISwitch) {
         
-        let removeAdsEnabled = IAPManager.sharedInstance.userDefaults.boolForKey("removeads_enabled")
+        let removeAdsEnabled = IAPManager.sharedInstance.userDefaults.bool(forKey: "removeads_enabled")
         
         if !removeAdsEnabled {
             showPurchaseAlertView(IAPManager.sharedInstance.products.RemoveAds)
         }
         else {
-            NSUserDefaults.standardUserDefaults().setObject(sender.on, forKey: "kRemoveAdsSwitchValue")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(sender.isOn, forKey: "kRemoveAdsSwitchValue")
+            UserDefaults.standard.synchronize()
             
-            NSNotificationCenter().postNotificationName("onAdsEnabled", object: nil)
+            NotificationCenter().post(name: Notification.Name(rawValue: "onAdsEnabled"), object: nil)
         }
     }
     
     @IBAction
-    func restorePurchasesButtonAction(sender: MonitorButton) {
+    func restorePurchasesButtonAction(_ sender: MonitorButton) {
         sender.animateTouchUpInside {
             IJProgressView.shared.showProgressView(self.view)
             IAPManager.sharedInstance.restorePurchases()
@@ -191,24 +191,24 @@ class MainRegisterMenuViewController: UITableViewController {
     }
     
     @IBAction
-    func contactButtonAction(sender: MonitorButton) {
+    func contactButtonAction(_ sender: MonitorButton) {
         sender.animateTouchUpInside {
-            UIApplication.sharedApplication().openURL(NSURL(string: kAboutUrl)!)
+            UIApplication.shared.openURL(URL(string: kAboutUrl)!)
         }
     }
     
     @IBAction
-    func aboutButtonAction(sender: MonitorButton) {
+    func aboutButtonAction(_ sender: MonitorButton) {
         sender.animateTouchUpInside {
             // Show welcome screen
             let welcomeVC = APPViewController(nibName: "APPViewController", bundle: nil);
-            self.presentViewController(welcomeVC, animated: true, completion: nil)
+            self.present(welcomeVC, animated: true, completion: nil)
         }
     }
 }
 
 extension MainRegisterMenuViewController : PurchaseProtocol {
-    func errorPurchase(productId: String, errorMsg: String) {
+    func errorPurchase(_ productId: String, errorMsg: String) {
         if productId == IAPManager.sharedInstance.products.RemoveAds {
             enableAds(true)
         }
@@ -216,7 +216,7 @@ extension MainRegisterMenuViewController : PurchaseProtocol {
         IJProgressView.shared.hideProgressView()
     }
     
-    func successPurchase(productId: String) {
+    func successPurchase(_ productId: String) {
         if productId == IAPManager.sharedInstance.products.RemoveAds {
             enableAds(false)
         }

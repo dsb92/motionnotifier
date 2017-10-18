@@ -10,7 +10,7 @@ import UIKit
 
 class CountDownTimer : NSObject, TimerDelegate {
     let startValue = Int(kCountDownDelay)
-    var countTimer: NSTimer!
+    var countTimer: Foundation.Timer!
     var handler: AlertHandler!
     
     var countDown: Int {
@@ -26,7 +26,7 @@ class CountDownTimer : NSObject, TimerDelegate {
     }
     
     func start() {
-        countTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CountDownTimer.update), userInfo: nil, repeats: true)
+        countTimer = Foundation.Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(CountDownTimer.update), userInfo: nil, repeats: true)
     }
     
     func stop(){

@@ -27,37 +27,37 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 import UIKit
 
-public class IJProgressView {
+open class IJProgressView {
     
     var containerView = UIView()
     var progressView = UIView()
     var activityIndicator = UIActivityIndicatorView()
     var viewController : UIViewController? = nil
     
-    public class var shared: IJProgressView {
+    open class var shared: IJProgressView {
         struct Static {
             static let instance: IJProgressView = IJProgressView()
         }
         return Static.instance
     }
     
-    public func showProgressView(view: UIView) {
+    open func showProgressView(_ view: UIView) {
         
         containerView.frame = view.frame
         containerView.center = view.center
         containerView.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.3)
         
-        progressView.frame = CGRectMake(0, 0, 80, 80)
+        progressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         progressView.center = view.center
-        progressView.backgroundColor = SettingsTheme.theme01.blueColor.colorWithAlphaComponent(0.7)
+        progressView.backgroundColor = SettingsTheme.theme01.blueColor.withAlphaComponent(0.7)
         progressView.clipsToBounds = true
         progressView.layer.cornerRadius = 10
 
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
         activityIndicator.color = SettingsTheme.theme01.backgroundColor
         //activityIndicator.center = CGPointMake(progressView.bounds.width / 2, progressView.bounds.height / 2)
-        activityIndicator.center = CGPointMake(view.bounds.width / 2, view.bounds.height / 2)
+        activityIndicator.center = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2)
 
         progressView.addSubview(activityIndicator)
         containerView.addSubview(progressView)
@@ -67,11 +67,11 @@ public class IJProgressView {
         activityIndicator.startAnimating()
     }
     
-    public func hideProgressView() {
+    open func hideProgressView() {
         
         if viewController != nil {
             
-            viewController!.navigationItem.rightBarButtonItem?.enabled = true
+            viewController!.navigationItem.rightBarButtonItem?.isEnabled = true
             
         }
         

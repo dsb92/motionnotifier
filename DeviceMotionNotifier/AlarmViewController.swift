@@ -12,6 +12,30 @@ import CoreMotion
 import CoreLocation
 import LocalAuthentication
 import GoogleMobileAds
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 protocol SystemProtocol {
     func idle()
@@ -55,7 +79,7 @@ class AlarmViewController: UIViewController {
     
     var context: LAContext!
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var interstitial: GADInterstitial!
     var showInterstitial: Bool!
@@ -67,16 +91,14 @@ class AlarmViewController: UIViewController {
             self.view.backgroundColor = theme.backgroundColor
             self.roundClockPlaceholder.backgroundColor = theme.backgroundColor
             self.hideButton.borderColor = theme.blueColor
-            self.hideButton.setTitleColor(theme.blackColor, forState: UIControlState.Normal)
+            self.hideButton.setTitleColor(theme.blackColor, for: UIControlState())
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print("viewWillAppear")
-        
-        appDelegate.locationManager.delegate = self
     }
     
     override func viewDidLoad() {
@@ -98,13 +120,13 @@ class AlarmViewController: UIViewController {
         theme = SettingsTheme.theme01
         self.numberPad.becomeFirstResponder()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AlarmViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        NSNotificationCenter().addObserver(self, selector: #selector(setupAds), name: "onAdsEnabled", object: nil)
+        NotificationCenter().addObserver(self, selector: #selector(setupAds), name: NSNotification.Name(rawValue: "onAdsEnabled"), object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         showInterstitial = false
         alarmManager.setAlarmState(.Ready)
     }
@@ -113,45 +135,47 @@ class AlarmViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func setupAds() {
-        let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
+    @objc fileprivate func setupAds() {
+        let removeAds = UserDefaults.standard.bool(forKey: "kRemoveAdsSwitchValue")
         
         if !removeAds {
             loadAdBanner()
         }
         else {
-            bannerView.hidden = true
+            bannerView.isHidden = true
         }
     }
     
-    private func loadAdBanner() {
+    fileprivate func loadAdBanner() {
         print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
         
         bannerView.adUnitID = kConfigAdUnitBannerId
         
-        bannerView.hidden = false
+        bannerView.isHidden = false
         bannerView.rootViewController = self
-        bannerView.loadRequest(GADRequest())
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "9d76e2f8ed01fcade9b41f4fea72a5c7"]
+        bannerView.load(request)
     }
     
-    private func setupNavigationBar() {
-        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    fileprivate func setupNavigationBar() {
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController!.navigationBar.shadowImage = UIImage()
-        navigationController!.navigationBar.translucent = true
+        navigationController!.navigationBar.isTranslucent = true
         navigationController!.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
-            NSForegroundColorAttributeName: UIColor.blackColor()
+            NSForegroundColorAttributeName: UIColor.black
         ]
     }
     
-    private func setupSlidebarMenu() {
+    fileprivate func setupSlidebarMenu() {
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
             // if iPad:
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            if UIDevice.current.userInterfaceIdiom == .pad {
                 self.revealViewController().rearViewRevealWidth = UIScreen().bounds.size.width - 150
             }
             else {
@@ -160,7 +184,7 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    private func setupManagers() {
+    fileprivate func setupManagers() {
         alarmManager = AlarmManager.sharedInstance
         alarmManager.alertHandler.alarmOnDelegate = self
         alarmManager.alarmUIDelegate = self
@@ -173,33 +197,33 @@ class AlarmViewController: UIViewController {
         alarmManager.setAlarmState(.Ready)
     }
     
-    private func setupDynamic() {
+    fileprivate func setupDynamic() {
         dynamicBallsUIView = DynamicFlyingBalls(frame: self.view.bounds)
         dynamicBallsUIView.associateVC(self)
         self.view.addSubview(dynamicBallsUIView)
         previewView = AVCamPreviewView(frame: dynamicBallsUIView.balls[0].frame)
     }
     
-    private func startClock() {
-        roundClockPlaceholder.hidden = false
+    fileprivate func startClock() {
+        roundClockPlaceholder.isHidden = false
         roundClock = RoundClock(frame: roundClockPlaceholder.bounds)
         roundClock.roundClockProtocol = self
         let delayTimer = timerManager.delayTimer
-        roundClock.duration = Double(delayTimer.delayDown)
+        roundClock.duration = Double((delayTimer?.delayDown)!)
         roundClock.startCountDown()
         roundClockPlaceholder.addSubview(roundClock)
     }
     
-    private func stopClock() {
-        roundClockPlaceholder.hidden = true
+    fileprivate func stopClock() {
+        roundClockPlaceholder.isHidden = true
         roundClock?.removeFromSuperview()
         roundClock?.stopCountDown()
         roundClock?.displayLink.invalidate()
         roundClock = nil
     }
     
-    private func setupInterstitials() {
-        let removeAds = NSUserDefaults.standardUserDefaults().boolForKey("kRemoveAdsSwitchValue")
+    fileprivate func setupInterstitials() {
+        let removeAds = UserDefaults.standard.bool(forKey: "kRemoveAdsSwitchValue")
         
         if !removeAds {
             showInterstitial = true
@@ -207,46 +231,46 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    private func setDefaults(){
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    fileprivate func setDefaults(){
+        let userDefaults = UserDefaults.standard
         
-        if userDefaults.objectForKey("kPhotoSwitchValue") == nil {
-            userDefaults.setObject(true, forKey: "kPhotoSwitchValue")
+        if userDefaults.object(forKey: "kPhotoSwitchValue") == nil {
+            userDefaults.set(true, forKey: "kPhotoSwitchValue")
         }
         
-        if userDefaults.objectForKey("kVideoSwitchValue") == nil {
-            userDefaults.setObject(false, forKey: "kVideoSwitchValue")
+        if userDefaults.object(forKey: "kVideoSwitchValue") == nil {
+            userDefaults.set(false, forKey: "kVideoSwitchValue")
         }
         
-        if userDefaults.objectForKey("kSoundSwitchValue") == nil {
-            userDefaults.setObject(false, forKey: "kSoundSwitchValue")
+        if userDefaults.object(forKey: "kSoundSwitchValue") == nil {
+            userDefaults.set(false, forKey: "kSoundSwitchValue")
         }
         
-        if userDefaults.objectForKey("kSensitivityIndex") == nil {
-            userDefaults.setObject(1, forKey: "kSensitivityIndex")
+        if userDefaults.object(forKey: "kSensitivityIndex") == nil {
+            userDefaults.set(1, forKey: "kSensitivityIndex")
         }
         
         userDefaults.synchronize()
     }
     
-    private func setTouchHandler() {
+    fileprivate func setTouchHandler() {
         let singleFingerTap = UITapGestureRecognizer(target: self, action: #selector(AlarmViewController.handleSingleTap(_:)))
         hiddenBlackView.addGestureRecognizer(singleFingerTap)
     }
     
-    func handleSingleTap(recognizer: UITapGestureRecognizer){
+    func handleSingleTap(_ recognizer: UITapGestureRecognizer){
         if alarmManager.getAlarmState() == .Armed {
-            hiddenBlackView.hidden = true
-            hideButton.hidden = false
+            hiddenBlackView.isHidden = true
+            hideButton.isHidden = false
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return navigationController?.navigationBarHidden == true
+    override var prefersStatusBarHidden : Bool {
+        return navigationController?.isNavigationBarHidden == true
     }
     
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        return UIStatusBarAnimation.Slide
+    override var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
+        return UIStatusBarAnimation.slide
     }
     
     func intruderAlert(){
@@ -257,13 +281,13 @@ class AlarmViewController: UIViewController {
 
     }
     
-    func setDynamicBall(text: String, color: UIColor, userinteractable: Bool){
+    func setDynamicBall(_ text: String, color: UIColor, userinteractable: Bool){
         let balls = dynamicBallsUIView.balls as! [UIButton]
         
         for ball in balls {
-            ball.setTitle(text, forState: UIControlState.Normal)
+            ball.setTitle(text, for: UIControlState())
             ball.backgroundColor = color
-            ball.userInteractionEnabled = userinteractable
+            ball.isUserInteractionEnabled = userinteractable
         }
     }
     
@@ -271,21 +295,23 @@ class AlarmViewController: UIViewController {
         let interstitial = GADInterstitial(adUnitID: kConfigAdUnitInterstitialsId)
         
         interstitial.delegate = self
-        interstitial.loadRequest(GADRequest())
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "9d76e2f8ed01fcade9b41f4fea72a5c7"]
+        interstitial.load(request)
         return interstitial
     }
     
-    private func showInterstitials() {
+    fileprivate func showInterstitials() {
         if self.interstitial != nil && self.interstitial.isReady {
             if showInterstitial == true {
                 print("***INTERSTITIAL SHOWING***")
-                self.interstitial.presentFromRootViewController(self)
+                self.interstitial.present(fromRootViewController: self)
                 showInterstitial = false
             }
         }
     }
     
-    private func numberPadChanged() {
+    fileprivate func numberPadChanged() {
         let codeFromPad = numberPad.text;
         
         // How many digits should the code have?
@@ -314,11 +340,11 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    @IBAction func numberPadChanged(sender: UITextField) {
+    @IBAction func numberPadChanged(_ sender: UITextField) {
         numberPadChanged()
     }
     
-    @IBAction func AlarmButtonAction(sender: UIButton) {
+    @IBAction func AlarmButtonAction(_ sender: UIButton) {
         
         // ARMED
         if alarmManager.getAlarmState() == .Armed ||  alarmManager.getAlarmState() == .Alert ||  alarmManager.getAlarmState() == .Alerting {
@@ -338,19 +364,19 @@ class AlarmViewController: UIViewController {
         }
     }
     
-    @IBAction func TouchIDButtonAction(sender: AnyObject) {
+    @IBAction func TouchIDButtonAction(_ sender: AnyObject) {
         
         // Touch ID available
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil){
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil){
             
-            context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics,
+            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics,
                                    localizedReason: "Unarming with Touch ID",
                                    reply: { (success: Bool, error: NSError?) -> Void in
                                     
-                                    dispatch_async(dispatch_get_main_queue(), {
+                                    DispatchQueue.main.async(execute: {
                                         if success {
                                             // Show "the passcode" for a short time
-                                            UIView.transitionWithView(self.numberPad, duration: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+                                            UIView.transition(with: self.numberPad, duration: 1.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                                                 self.numberPad.text = self.passCode
                                                 }, completion: { (success:Bool) -> Void in
                                                     self.alarmManager.setAlarmState(.Ready)
@@ -362,15 +388,15 @@ class AlarmViewController: UIViewController {
                                             var showAlert : Bool
                                             
                                             switch(error!.code) {
-                                            case LAError.AuthenticationFailed.rawValue:
+                                            case LAError.Code.authenticationFailed.rawValue:
                                                 message = "There was a problem verifying your identity."
                                                 showAlert = true
                                                 break;
-                                            case LAError.UserCancel.rawValue:
+                                            case LAError.Code.userCancel.rawValue:
                                                 message = "You pressed cancel."
                                                 showAlert = true
                                                 break;
-                                            case LAError.UserFallback.rawValue:
+                                            case LAError.Code.userFallback.rawValue:
                                                 message = "You pressed password."
                                                 showAlert = true
                                                 break;
@@ -381,31 +407,31 @@ class AlarmViewController: UIViewController {
                                             }
                                             
                                             let alertView = UIAlertController(title: "Error",
-                                                message: message as String, preferredStyle:.Alert)
-                                            let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
+                                                message: message as String, preferredStyle:.alert)
+                                            let okAction = UIAlertAction(title: "Darn!", style: .default, handler: nil)
                                             alertView.addAction(okAction)
                                             if showAlert {
-                                                self.presentViewController(alertView, animated: true, completion: nil)
+                                                self.present(alertView, animated: true, completion: nil)
                                             }
                                         }
                                     })
-            })
+            } as! (Bool, Error?) -> Void)
         }
             // Touch ID not available
         else {
             let alertView = UIAlertController(title: "Error",
-                                              message: "Touch ID not available" as String, preferredStyle:.Alert)
-            let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
+                                              message: "Touch ID not available" as String, preferredStyle:.alert)
+            let okAction = UIAlertAction(title: "Darn!", style: .default, handler: nil)
             alertView.addAction(okAction)
-            self.presentViewController(alertView, animated: true, completion: nil)
+            self.present(alertView, animated: true, completion: nil)
         }
     }
     
     @IBAction
-    func hideButtonAction(sender: MonitorButton) {
+    func hideButtonAction(_ sender: MonitorButton) {
         sender.animateTouchUpInside { () -> Void in
-            self.hiddenBlackView.hidden = false
-            self.hideButton.hidden = true
+            self.hiddenBlackView.isHidden = false
+            self.hideButton.isHidden = true
         }
     }
 }
@@ -415,22 +441,22 @@ extension AlarmViewController : AlarmUIDelegate {
         showInterstitials()
         stopClock()
  
-        alarmCountDownLabel.hidden = true
+        alarmCountDownLabel.isHidden = true
         context = nil;
-        touchIDButton.hidden = true
+        touchIDButton.isHidden = true
         numberPad.text = ""
         
         setDynamicBall("Ready", color: SettingsTheme.theme01.ready, userinteractable: false)
         
-        touchIDButton.hidden = true
-        previewView.hidden = true
+        touchIDButton.isHidden = true
+        previewView.isHidden = true
         
-        let appFrame = UIScreen.mainScreen().bounds
+        let appFrame = UIScreen.main.bounds
         
-        UIView.animateWithDuration(0.5, animations: {
-            self.navigationController?.navigationBarHidden = false
-            self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
-            self.hideButton.hidden = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.navigationController?.isNavigationBarHidden = false
+            self.view.window?.frame = CGRect(x: 0, y: 0, width: appFrame.size.width, height: appFrame.size.height)
+            self.hideButton.isHidden = true
         })
         
         appDelegate.hubs.notificationMessage = Constants.Notifications.IntruderMessage
@@ -444,40 +470,40 @@ extension AlarmViewController : AlarmUIDelegate {
         // Save passcode
         self.passCode = numberPad.text;
         
-        let appFrame = UIScreen.mainScreen().bounds
+        let appFrame = UIScreen.main.bounds
         
-        UIView.animateWithDuration(0.5, animations: {
-            self.navigationController?.navigationBarHidden = true
-            self.view.window?.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height)
-            self.hiddenBlackView.hidden = false;
+        UIView.animate(withDuration: 0.5, animations: {
+            self.navigationController?.isNavigationBarHidden = true
+            self.view.window?.frame = CGRect(x: 0, y: 0, width: appFrame.size.width, height: appFrame.size.height)
+            self.hiddenBlackView.isHidden = false;
         })
         
         setDynamicBall("ARMED", color: SettingsTheme.theme01.arm, userinteractable: false)
   
         numberPad.text = ""
         alarmCountDownLabel.text = String(0)
-        alarmCountDownLabel.hidden = true
+        alarmCountDownLabel.isHidden = true
    
         context = LAContext()
         
         // Show TouchID button if supported
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil) {
-            touchIDButton.hidden = false
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+            touchIDButton.isHidden = false
         }
     }
     
     func alert() {
         startClock()
-        self.hiddenBlackView.hidden = true;
-        self.hideButton.hidden = true
+        self.hiddenBlackView.isHidden = true;
+        self.hideButton.isHidden = true
     }
     
     func alerting() {
-        let startCamera = NSUserDefaults.standardUserDefaults().boolForKey("kPhotoSwitchValue")
-        let startVideo = NSUserDefaults.standardUserDefaults().boolForKey("kVideoSwitchValue")
+        let startCamera = UserDefaults.standard.bool(forKey: "kPhotoSwitchValue")
+        let startVideo = UserDefaults.standard.bool(forKey: "kVideoSwitchValue")
         
         if startCamera || startVideo {
-            previewView.hidden = false
+            previewView.isHidden = false
             let balls = dynamicBallsUIView.balls as! [UIButton]
             balls[0].addSubview(previewView)
         }
@@ -488,7 +514,7 @@ extension AlarmViewController : AlarmUIDelegate {
 }
 
 extension AlarmViewController : DetectorProtol {
-    func detectMotion(accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!) {
+    func detectMotion(_ accelerometerData: CMAccelerometerData!, gyroData: CMGyroData!) {
         
         if (accelerometerData != nil && detectorManager.accelerometerData != nil){
             // Compare saved motion with current acceleration data
@@ -513,21 +539,21 @@ extension AlarmViewController : DetectorProtol {
 extension AlarmViewController : AlarmOnDelegate {
     func notifyRecipient(){
         
-        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+        let deviceRegistered = UserDefaults.standard.bool(forKey: "kdeviceRegistered")
         
         if !deviceRegistered { return }
         
-        appDelegate.hubs.SendToEnabledPlatforms()
+        appDelegate.hubs.sendToEnabledPlatforms()
     }
     
     func beep() {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        OperationQueue.main.addOperation({ () -> Void in
             
             let countTimer = self.timerManager.countDownTmer
             
-            if countTimer.isRunning() {
-                self.alarmCountDownLabel.hidden = false
-                self.alarmCountDownLabel.text = String(countTimer.countDown)
+            if (countTimer?.isRunning())! {
+                self.alarmCountDownLabel.isHidden = false
+                self.alarmCountDownLabel.text = String(describing: countTimer?.countDown)
             }
             else{
                 self.alarmManager.setAlarmState(.Armed)
@@ -536,11 +562,11 @@ extension AlarmViewController : AlarmOnDelegate {
     }
     
     func tone() {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in            
+        OperationQueue.main.addOperation({ () -> Void in            
             let delayTimer = self.timerManager.delayTimer
             
-            if delayTimer.isRunning() {
-                print("Alarming in \(delayTimer.delayDown)")
+            if (delayTimer?.isRunning())! {
+                print("Alarming in \(delayTimer?.delayDown)")
             }
             else{
                 self.alarmManager.setAlarmState(.Alerting)
@@ -571,7 +597,7 @@ extension AlarmViewController : AlarmOnDelegate {
 }
 
 extension AlarmViewController : GADInterstitialDelegate {
-    func interstitialDidDismissScreen(ad: GADInterstitial!) {
+    func interstitialDidDismissScreen(_ ad: GADInterstitial!) {
         setupInterstitials()
     }
 }
@@ -579,36 +605,6 @@ extension AlarmViewController : GADInterstitialDelegate {
 extension AlarmViewController : RoundClockProtocol {
     func timerDidFinish() {
         stopClock()
-    }
-}
-
-extension AlarmViewController: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        let message = "locations = \(locValue.latitude) \(locValue.longitude)"
-        NSLog("%@", message);
-        
-        // If alarm is set
-        if alarmManager.getAlarmState() == .Armed {
-            
-            // And app is in background
-            if UIApplication.sharedApplication().applicationState == .Background {
-                
-                // If current location has not yet been requested
-                if detectorManager?.currentLocation == nil {
-                    detectorManager.currentLocation = manager.location
-                }
-                
-//                // If current location when alarm was set is different from the location update, it means the device has been moved...
-//                if manager.location != detectorManager?.currentLocation {
-//                    intruderAlert()
-//                }
-            }
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print(error.localizedDescription)
     }
 }
 

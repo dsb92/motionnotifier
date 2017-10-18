@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+extern const NSString *const kConfigAdAppId;
 extern const NSString *const kConfigAdUnitBannerId;
 extern const NSString *const kConfigAdUnitInterstitialsId;
 

@@ -9,18 +9,8 @@ NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/gotyah";
 
 #if DEBUG || TEST
 #warning all modules in debug mode
-    #define ADS_IN_TEST_MODE
     #define LAYOUT_IN_TEST_MODE
     #define TIMER_LAY_TEST_MODE
-#endif
-
-#ifndef ADS_IN_TEST_MODE
-    NSString *const kConfigAdUnitBannerId = @"ca-app-pub-9818395476815781/2955409368";  // live
-    NSString *const kConfigAdUnitInterstitialsId = @"ca-app-pub-9818395476815781/6675162529";
-#else
-    #warning ADS in debug mode:
-    NSString *const kConfigAdUnitBannerId = @"ca-app-pub-3940256099942544/2934735716";  // test
-    NSString *const kConfigAdUnitInterstitialsId = @"ca-app-pub-3940256099942544/4411468910";
 #endif
 
 #ifndef LAYOUT_IN_TEST_MODE
@@ -38,6 +28,10 @@ NSString *const kAboutUrl = @"http://dabdeveloper.wix.com/gotyah";
     const NSUInteger kDelayCountDown = 4;
     const NSUInteger kNotificationExpiration = 10;
 #endif
+
+NSString *const kConfigAdAppId= @"ca-app-pub-8950051795385970~6412082183";
+NSString *const kConfigAdUnitBannerId = @"ca-app-pub-8950051795385970/7533592165";
+NSString *const kConfigAdUnitInterstitialsId = @"ca-app-pub-8950051795385970/5002087156";
 
 @implementation Config
 

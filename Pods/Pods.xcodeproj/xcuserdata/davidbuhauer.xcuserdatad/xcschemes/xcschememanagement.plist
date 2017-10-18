@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Gotyah.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -12,7 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>91DB0DDA26CC014CA5A7F123AC513224</key>
+		<key>510CCB1ECBCC0A6BB5ACA5BB55A11B45</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5920BEF6D814D9C7388C84718F765191</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92A2D86292540C2EF184B546E0A1267A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

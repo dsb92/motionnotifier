@@ -13,19 +13,19 @@ private let buttonPadding: CGFloat = 50
 @IBDesignable
 @objc class MonitorButton: UIButton {
     
-    override func intrinsicContentSize() -> CGSize {
-        let size = super.intrinsicContentSize()
+    override var intrinsicContentSize : CGSize {
+        let size = super.intrinsicContentSize
         return CGSize(width: size.width + buttonPadding, height: size.height)
     }
     
-    func animateTouchUpInside(completion completion: () -> Void) {
-        userInteractionEnabled = false
+    func animateTouchUpInside(completion: @escaping () -> Void) {
+        isUserInteractionEnabled = false
         layer.masksToBounds = true
         
         let fillLayer = CALayer()
         fillLayer.backgroundColor = self.layer.borderColor
         fillLayer.frame = self.layer.bounds
-        layer.insertSublayer(fillLayer, atIndex: 0)
+        layer.insertSublayer(fillLayer, at: 0)
         
         let center = CGPoint(x: fillLayer.bounds.midX, y: fillLayer.bounds.midY)
         let radius: CGFloat = max(frame.width / 2 , frame.height / 2)
@@ -40,10 +40,10 @@ private let buttonPadding: CGFloat = 50
             opacityAnimation.duration = 0.2
             opacityAnimation.delegate = AnimationDelegate {
                 fillLayer.removeFromSuperlayer()
-                self.userInteractionEnabled = true
+                self.isUserInteractionEnabled = true
                 completion()
             }
-            fillLayer.addAnimation(opacityAnimation, forKey: "opacity")
+            fillLayer.add(opacityAnimation, forKey: "opacity")
         }
         circularAnimation.start()
         

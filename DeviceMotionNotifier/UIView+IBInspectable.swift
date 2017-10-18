@@ -34,10 +34,10 @@ extension UIView {
     var borderColor: UIColor? {
         get {
             guard let color = layer.borderColor else { return nil }
-            return UIColor(CGColor: color)
+            return UIColor(cgColor: color)
         }
         set {
-            layer.borderColor = newValue?.CGColor
+            layer.borderColor = newValue?.cgColor
         }
     }
 }

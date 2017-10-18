@@ -19,8 +19,8 @@ class MainRegisterViewController: UIViewController {
     @IBOutlet
     weak var menuButton: UIBarButtonItem!
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    private var settingsViewController: MainRegisterSettingsViewController!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    fileprivate var settingsViewController: MainRegisterSettingsViewController!
     
     var theme: SettingsTheme! {
         didSet {
@@ -28,9 +28,9 @@ class MainRegisterViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        registerButton.setTitle(getButtonText(), forState: UIControlState.Normal)
-        registerButton.enabled = true
+    override func viewWillAppear(_ animated: Bool) {
+        registerButton.setTitle(getButtonText(), for: UIControlState())
+        registerButton.isEnabled = true
     }
     
     override func viewDidLoad() {
@@ -41,28 +41,28 @@ class MainRegisterViewController: UIViewController {
         setupSlidebarMenu()
         setDefaults()
         
-        appDelegate.hubs.ParseConnectionString()
+        appDelegate.hubs.parseConnectionString()
         appDelegate.hubs.registerClient = RegisterClient(endpoint: BACKEND_ENDPOINT)
     }
     
-    private func setupNavigationBar() {
-        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    fileprivate func setupNavigationBar() {
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController!.navigationBar.shadowImage = UIImage()
-        navigationController!.navigationBar.translucent = true
+        navigationController!.navigationBar.isTranslucent = true
         navigationController!.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "GothamPro", size: 20)!,
-            NSForegroundColorAttributeName: UIColor.whiteColor()
+            NSForegroundColorAttributeName: UIColor.white
         ]
     }
     
-    private func setupSlidebarMenu() {
+    fileprivate func setupSlidebarMenu() {
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
             // if iPad:
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            if UIDevice.current.userInterfaceIdiom == .pad {
                 self.revealViewController().rearViewRevealWidth = 600
             }
             else {
@@ -72,30 +72,30 @@ class MainRegisterViewController: UIViewController {
         }
     }
     
-    private func setDefaults(){
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    fileprivate func setDefaults(){
+        let userDefaults = UserDefaults.standard
         
-        if userDefaults.objectForKey("kRemoveAdsSwitchValue") == nil {
-            userDefaults.setObject(false, forKey: "kRemoveAdsSwitchValue")
+        if userDefaults.object(forKey: "kRemoveAdsSwitchValue") == nil {
+            userDefaults.set(false, forKey: "kRemoveAdsSwitchValue")
         }
         
         userDefaults.synchronize()
     }
     
-    private func getButtonText() -> String {
-        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+    fileprivate func getButtonText() -> String {
+        let deviceRegistered = UserDefaults.standard.bool(forKey: "kdeviceRegistered")
         let registerButtonTitle = deviceRegistered ? "CONTINUE" : "REGISTER ALARM"
         return registerButtonTitle
     }
     
     @IBAction
-    func backToMainRegisterViewController(segue: UIStoryboardSegue) { }
+    func backToMainRegisterViewController(_ segue: UIStoryboardSegue) { }
 
     @IBAction
-    func RegisterButtonAction(sender: UIButton) {
+    func RegisterButtonAction(_ sender: UIButton) {
         
         // Dont let user press button more than once
-        registerButton.enabled = false
+        registerButton.isEnabled = false
         
         // Register device here
         
@@ -108,32 +108,32 @@ class MainRegisterViewController: UIViewController {
             return
         }
         
-        registerButton.setTitle("", forState: UIControlState.Normal)
+        registerButton.setTitle("", for: UIControlState())
         
         spinner.startAnimating()
 
         // set '-' on white spaces
-        deviceToMonitor = deviceToMonitor?.stringByReplacingOccurrencesOfString(" ", withString: "-")
-        deviceToNotify = deviceToNotify?.stringByReplacingOccurrencesOfString(" ", withString: "-")
+        deviceToMonitor = deviceToMonitor?.replacingOccurrences(of: " ", with: "-")
+        deviceToNotify = deviceToNotify?.replacingOccurrences(of: " ", with: "-")
         
         // OBS Password same as name of device
         let pass = deviceToMonitor
         
-        self.appDelegate.hubs.createAndSetAuthenticationHeaderWithUsername(deviceToMonitor, andPassword: pass)
+        self.appDelegate.hubs.createAndSetAuthenticationHeader(withUsername: deviceToMonitor, andPassword: pass)
         
         if self.appDelegate.hubs.deviceToken != nil {
-            self.appDelegate.hubs.registerClient.registerWithDeviceToken(self.appDelegate.hubs.deviceToken, tags: nil) { (error) -> Void in
+            self.appDelegate.hubs.registerClient.register(withDeviceToken: self.appDelegate.hubs.deviceToken, tags: nil) { (error) -> Void in
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     self.spinner.stopAnimating()
                     
                     if (error == nil) {
                         
-                        let deviceRegistered = NSUserDefaults.standardUserDefaults().boolForKey("kdeviceRegistered")
+                        let deviceRegistered = UserDefaults.standard.bool(forKey: "kdeviceRegistered")
                         
                         if !deviceRegistered {
-                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "kdeviceRegistered")
+                            UserDefaults.standard.set(true, forKey: "kdeviceRegistered")
                         }
                         
                         self.appDelegate.hubs.userName = deviceToMonitor
@@ -142,12 +142,12 @@ class MainRegisterViewController: UIViewController {
                         
                         let alarmSB = UIStoryboard(name: "Alarm", bundle: nil)
                         let initialVC = alarmSB.instantiateInitialViewController()
-                        self.presentViewController(initialVC!, animated: true, completion: nil)
+                        self.present(initialVC!, animated: true, completion: nil)
                     }
                     else{
                         JSSAlertView().danger(self, title: "Failed to register, please try again")
-                        self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
-                        self.registerButton.enabled = true
+                        self.registerButton.setTitle(self.getButtonText(), for: UIControlState())
+                        self.registerButton.isEnabled = true
                     }
                 })
             }
@@ -158,13 +158,13 @@ class MainRegisterViewController: UIViewController {
             
             self.spinner.stopAnimating()
             JSSAlertView().danger(self, title: "Failed to register, please try again")
-            self.registerButton.setTitle(self.getButtonText(), forState: UIControlState.Normal)
-            registerButton.enabled = true
+            self.registerButton.setTitle(self.getButtonText(), for: UIControlState())
+            registerButton.isEnabled = true
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let settings = segue.destinationViewController as? MainRegisterSettingsViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let settings = segue.destination as? MainRegisterSettingsViewController {
             settingsViewController = settings
         }
     }

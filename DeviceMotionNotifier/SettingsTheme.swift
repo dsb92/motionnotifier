@@ -38,7 +38,7 @@ import UIKit
         cellTitleColor = UIColor(string: "#8e8e8e") // darkgrey
         cellTextFieldColor = UIColor(string: "#55606f") // darker darkgrey
         blueColor = UIColor(string: "#0079b8") // light blue
-        blackColor = UIColor.blackColor()
+        blackColor = UIColor.black
         redColor = UIColor(string: "#ef5350") // light red
         greenColor = UIColor(string: "#3cb371") // light green
         
