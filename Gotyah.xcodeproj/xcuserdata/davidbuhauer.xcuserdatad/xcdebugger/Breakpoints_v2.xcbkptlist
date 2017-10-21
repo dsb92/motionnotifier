@@ -376,22 +376,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeviceMotionNotifier/AlarmMenuViewController.swift"
-            timestampString = "484398645.769948"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "soundSwitchValueChanged(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DeviceMotionNotifier/IAP.swift"
             timestampString = "481839429.181088"
             startingColumnNumber = "9223372036854775807"
@@ -430,7 +414,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "244"
             endingLineNumber = "244"
-            landmarkName = "errorPurchase(productId:errorMsg:)"
+            landmarkName = "errorPurchase(_:errorMsg:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

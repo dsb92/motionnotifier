@@ -46,7 +46,7 @@ class AlarmManager {
                 detectorManager?.currentLocation = nil
                 alertHandler?.stopMakingNoise()
                 alertHandler?.stopCaptureVideo()
-                timerManager.countDownTmer.stop()
+                timerManager.countDownTmer?.stop()
                 timerManager.delayTimer.stop()
                 timerManager.notificationTimer.stop()
                 
@@ -62,7 +62,7 @@ class AlarmManager {
                 initialize()
                 
                 alarmUIDelegate?.arming()
-                timerManager.countDownTmer.start()
+                timerManager.countDownTmer?.start()
                 break
                 
             case .Armed:

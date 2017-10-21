@@ -26,7 +26,7 @@ class RoundClock: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        displayLink = CADisplayLink(target: self, selector: #selector(setNeedsDisplay(_:)))
+        displayLink = CADisplayLink(target: self, selector: #selector(UIView.setNeedsDisplay as (UIView) -> () -> Void))
         displayLink.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
 
         backgroundColor = UIColor.clear

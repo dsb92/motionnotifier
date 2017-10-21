@@ -18,7 +18,7 @@ protocol TimerDelegate {
 
 class TimerManager {
     
-    var countDownTmer: CountDownTimer!
+    var countDownTmer: CountDownTimer?
     var delayTimer: DelayTimer!
     var notificationTimer: NotificationTimer!
     
@@ -27,7 +27,7 @@ class TimerManager {
         delayTimer = DelayTimer()
         notificationTimer = NotificationTimer()
         
-        countDownTmer.handler = handler
+        countDownTmer?.handler = handler
         delayTimer.handler = handler
         notificationTimer.handler = handler
     }

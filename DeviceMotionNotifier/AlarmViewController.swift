@@ -367,72 +367,83 @@ class AlarmViewController: UIViewController {
     @IBAction func TouchIDButtonAction(_ sender: AnyObject) {
         
         // Touch ID available
-        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil){
-            
-            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics,
-                                   localizedReason: "Unarming with Touch ID",
-                                   reply: { (success: Bool, error: NSError?) -> Void in
-                                    
-                                    DispatchQueue.main.async(execute: {
-                                        if success {
-                                            // Show "the passcode" for a short time
-                                            UIView.transition(with: self.numberPad, duration: 1.0, options: UIViewAnimationOptions(), animations: { () -> Void in
-                                                self.numberPad.text = self.passCode
-                                                }, completion: { (success:Bool) -> Void in
-                                                    self.alarmManager.setAlarmState(.Ready)
-                                            })
-                                        }
-                                        
-                                        if error != nil {
-                                            var message : NSString
-                                            var showAlert : Bool
-                                            
-                                            switch(error!.code) {
-                                            case LAError.Code.authenticationFailed.rawValue:
-                                                message = "There was a problem verifying your identity."
-                                                showAlert = true
-                                                break;
-                                            case LAError.Code.userCancel.rawValue:
-                                                message = "You pressed cancel."
-                                                showAlert = true
-                                                break;
-                                            case LAError.Code.userFallback.rawValue:
-                                                message = "You pressed password."
-                                                showAlert = true
-                                                break;
-                                            default:
-                                                showAlert = true
-                                                message = "Touch ID may not be configured"
-                                                break;
-                                            }
-                                            
-                                            let alertView = UIAlertController(title: "Error",
-                                                message: message as String, preferredStyle:.alert)
-                                            let okAction = UIAlertAction(title: "Darn!", style: .default, handler: nil)
-                                            alertView.addAction(okAction)
-                                            if showAlert {
-                                                self.present(alertView, animated: true, completion: nil)
-                                            }
-                                        }
-                                    })
-            } as! (Bool, Error?) -> Void)
-        }
-            // Touch ID not available
-        else {
-            let alertView = UIAlertController(title: "Error",
-                                              message: "Touch ID not available" as String, preferredStyle:.alert)
-            let okAction = UIAlertAction(title: "Darn!", style: .default, handler: nil)
-            alertView.addAction(okAction)
-            self.present(alertView, animated: true, completion: nil)
+        if self.context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil){
+            self.context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unarming with Touch ID", reply: { (success, error) in
+                if success {
+                    DispatchQueue.main.async {
+                        //Authentication was successful
+                        self.handleTouchID(success: success)
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        //Authentication failed. Show alert indicating what error occurred
+                       self.handleTouchID(error: error as! LAError)
+                    }
+                }
+            })
+        } else {
+             self.handleTouchIDUnavailable()
         }
     }
-    
-    @IBAction
-    func hideButtonAction(_ sender: MonitorButton) {
+
+    @IBAction func hideButtonAction(_ sender: MonitorButton) {
         sender.animateTouchUpInside { () -> Void in
             self.hiddenBlackView.isHidden = false
             self.hideButton.isHidden = true
         }
+    }
+    
+    func handleTouchID(success: Bool) {
+        if success {
+            // Show "the passcode" for a short time
+            UIView.transition(with: self.numberPad, duration: 1.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+                self.numberPad.text = self.passCode
+            }, completion: { (success:Bool) -> Void in
+                self.alarmManager.setAlarmState(.Ready)
+            })
+        }
+    }
+    
+    func handleTouchID(error: LAError) {
+        var message : NSString
+        var showAlert : Bool
+        
+        switch(error.code) {
+        case LAError.authenticationFailed:
+            message = "There was a problem verifying your identity."
+            showAlert = true
+            break;
+        case LAError.userCancel:
+            message = "You pressed cancel."
+            showAlert = true
+            break;
+        case LAError.userFallback:
+            message = "You pressed password."
+            showAlert = true
+            break;
+        default:
+            showAlert = true
+            message = "Touch ID may not be configured"
+            break;
+        }
+        
+        let alertView = UIAlertController(title: "Error",
+                                          message: message as String, preferredStyle:.alert)
+        let okAction = UIAlertAction(title: "Darn!", style: .default, handler: nil)
+        alertView.addAction(okAction)
+        if showAlert {
+            self.present(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    func handleTouchIDUnavailable() {
+        // Touch ID not available
+        let alertView = UIAlertController(title: "Error",
+                                          message: "Touch ID not available" as String, preferredStyle:.alert)
+        let okAction = UIAlertAction(title: "Darn!", style: .default, handler: nil)
+        alertView.addAction(okAction)
+        self.present(alertView, animated: true, completion: nil)
     }
 }
 
@@ -551,12 +562,14 @@ extension AlarmViewController : AlarmOnDelegate {
             
             let countTimer = self.timerManager.countDownTmer
             
-            if (countTimer?.isRunning())! {
-                self.alarmCountDownLabel.isHidden = false
-                self.alarmCountDownLabel.text = String(describing: countTimer?.countDown)
-            }
-            else{
-                self.alarmManager.setAlarmState(.Armed)
+            if let timer: CountDownTimer = countTimer {
+                if (timer.isRunning()) {
+                    self.alarmCountDownLabel.isHidden = false
+                    self.alarmCountDownLabel.text = "\(timer.countDown)"
+                }
+                else{
+                    self.alarmManager.setAlarmState(.Armed)
+                }
             }
         })
     }
