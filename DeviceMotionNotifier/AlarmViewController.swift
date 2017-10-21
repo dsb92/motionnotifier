@@ -12,6 +12,8 @@ import CoreMotion
 import CoreLocation
 import LocalAuthentication
 import GoogleMobileAds
+import StoreKit
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -99,6 +101,24 @@ class AlarmViewController: UIViewController {
         super.viewWillAppear(animated)
         
         print("viewWillAppear")
+        
+        self.rateIfNeeded()
+    }
+    
+    func rateIfNeeded() {
+        let iMinSessions = 6
+
+        var numLaunches = UserDefaults.standard.integer(forKey: "numLaunchesRateMe")
+        numLaunches += 1
+        
+        UserDefaults.standard.set(numLaunches, forKey: "numLaunchesRateMe")
+        UserDefaults.standard.synchronize()
+        
+        if numLaunches % iMinSessions == 0 {
+            if #available(iOS 10.3, *) {
+                SKStoreReviewController.requestReview()
+            }
+        }
     }
     
     override func viewDidLoad() {
